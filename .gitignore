@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Raw lecture videos are large local source files and exceed normal GitHub limits.
+videos/

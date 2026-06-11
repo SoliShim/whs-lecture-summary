@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>프로그래밍 기초(C) 1-1 - 산업별 소프트웨어 품질 기준</title>
+  <link rel="stylesheet" href="../../../../assets/styles.css">
+</head>
+
+<body>
+  <header class="site-header lecture-header">
+    <nav class="top-nav">
+      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+      <a href="../index.html#lectures">과목 강의 목록</a>
+      <a href="#transcript">STT 원문</a>
+    </nav>
+    <section class="lecture-hero">
+      <div>
+        <p class="small-label">프밍 1-1</p>
+        <h1>산업별 소프트웨어 품질 기준</h1>
+        <p class="lead">스마트 팩토리와 스마트 헬스케어는 같은 소프트웨어라도 서로 다른 품질 기준을 요구한다.</p>
+        <div class="tag-row large"><span>소프트웨어 산업</span><span>품질 기준</span><span>국제 표준</span></div>
+      </div>
+      <aside class="toc-box">
+        <strong>페이지 목차</strong>
+        <a href="#section-1">강의의 핵심 질문</a><a href="#section-2">스마트 팩토리의 품질 기준</a><a href="#section-3">스마트 헬스케어의 품질 기준</a><a href="#section-4">정리</a>
+      </aside>
+    </section>
+  </header>
+
+  <main class="lecture-main">
+    <section class="content-wrap intro-grid">
+      <article class="note-block">
+        <h2>학습 목표</h2>
+        <ul class="check-list"><li>소프트웨어 품질을 모든 산업에 같은 잣대로 평가하면 안 되는 이유를 이해한다.</li><li>스마트 팩토리와 스마트 헬스케어의 품질 표준 예시를 비교한다.</li><li>앞으로 어떤 분야로 가더라도 해당 분야의 표준을 확인해야 함을 정리한다.</li></ul>
+      </article>
+      <article class="note-block compact-source">
+        <h2>자료 기준</h2>
+        <p>이 페이지는 STT 원문만 바탕으로 정리했다. 자동 전사 특성상 반복 인사, 무의미한 잡음, 명백한 말 끊김은 학습 내용에 맞게 정돈했고, 원문은 하단에 보존했다.</p>
+      </article>
+    </section>
+
+    <div class="content-wrap notes-layout">
+      
+        <section id="section-1" class="note-section">
+          <h2>강의의 핵심 질문</h2>
+          <p>이 강의는 “도메인이 달라도 공통적인 품질 매트릭만 올리면 충분한가?”라는 질문에서 출발한다. STT의 결론은 명확하다. 소프트웨어는 다양한 산업군에 들어가지만, 산업마다 요구하는 최소 품질 기준과 검토 관점이 다르므로 한 산업의 기준을 다른 산업에 그대로 적용하면 무리가 있다.</p>
+<div class="diagram two-col">
+  <div><span class="node-title">공통 착각</span><p>소프트웨어니까 모든 산업에 같은 품질 기준을 적용하면 될 것 같다.</p></div>
+  <div><span class="node-title">강의 결론</span><p>도메인별 표준과 품질 기준을 확인하고, 그 기준을 만족하도록 설계해야 한다.</p></div>
+</div>
+        </section>
+        
+        <section id="section-2" class="note-section">
+          <h2>스마트 팩토리의 품질 기준</h2>
+          <p>스마트 팩토리에도 소프트웨어가 들어간다. 다만 공장 자동화와 제조 환경에 들어가는 소프트웨어는 해당 도메인이 요구하는 품질 수준을 만족해야 한다. 강의에서는 스마트 팩토리 쪽 예시로 <strong>ISOICTR 6306-1</strong>이라는 국제 표준을 언급한다. STT 표기 그대로 옮기면 이 표준은 스마트 팩토리에 들어가는 소프트웨어가 최소한 어느 정도 품질을 만족한다고 판단하기 위한 가이드라인으로 설명된다.</p>
+<p>핵심은 “스마트 팩토리 소프트웨어라면 스마트 팩토리 맥락의 표준을 봐야 한다”는 점이다. 단순히 기능이 돌아가는지, 코드가 깔끔한지 같은 일반 기준만으로는 충분하지 않다.</p>
+        </section>
+        
+        <section id="section-3" class="note-section">
+          <h2>스마트 헬스케어의 품질 기준</h2>
+          <p>스마트 헬스케어 역시 소프트웨어가 들어가지만, 스마트 팩토리 표준을 그대로 가져다 쓰기는 어렵다. 강의에서는 헬스케어 디바이스 소프트웨어와 관련해 <strong>ISOTR 22696</strong>을 예로 들고, 이 표준이 <strong>헬스 인포메틱스</strong>라는 제목으로 만들어졌다고 설명한다.</p>
+<p>즉 헬스케어 디바이스 안에 들어가는 소프트웨어는 의료·건강 정보 처리라는 도메인 특성에 맞는 품질 정보를 만족해야 한다. 제조 현장 기준과 의료기기 기준은 위험 모델, 사용자, 실패 비용이 다르기 때문에 같은 기준으로 처리할 수 없다.</p>
+        </section>
+        
+        <section id="section-4" class="note-section">
+          <h2>정리</h2>
+          <ul class="check-list">
+  <li>소프트웨어 산업은 여러 산업군으로 확장되어 있고, 산업군마다 소프트웨어가 요구받는 역할이 다르다.</li>
+  <li>품질을 높인다는 말은 단순히 공통 지표만 올린다는 뜻이 아니라, 해당 도메인의 최소 품질 기준을 만족한다는 뜻까지 포함한다.</li>
+  <li>스마트 팩토리와 스마트 헬스케어는 각각 별도의 국제 표준 예시가 있을 정도로 품질 기준이 다르다.</li>
+  <li>앞으로 어떤 분야로 진출하더라도 그 분야의 표준을 확인하고, 안전한 소프트웨어를 만들 수 있어야 한다.</li>
+</ul>
+        </section>
+        
+      
+    </div>
+
+    <section class="content-wrap note-block">
+      <h2>복습 체크</h2>
+      <ul class="check-list"><li>스마트 팩토리 표준을 스마트 헬스케어에 그대로 쓰기 어려운 이유를 설명할 수 있는가?</li><li>도메인별 최소 품질 기준을 확인해야 하는 이유를 말할 수 있는가?</li><li>소프트웨어 품질이 코드 자체의 품질만 의미하지 않는다는 점을 이해했는가?</li></ul>
+    </section>
+
+    <section id="transcript" class="content-wrap transcript-wrap">
+      <details>
+        <summary>STT 원문 펼치기</summary>
+        <div class="transcript-text">소프트웨어 산업의 이해를 더 상세하게 볼 건데요
+예를 들어서 스마트 팩토리와 스마트 헬스케어 두 가지 다른 도메인에서도 소프트웨어가 존재하지만 자 그러면 저희는 소프트웨어의 품질을 올리기 위해서 향상시키기 위해서 그냥 이런 도메인 구분하지 않고 그냥 공통적인 품질 매트리트링만 향상시키면 되는 것인가? 아닙니다
+결국에는 그 도메인마다
+요구하는 소프트웨어의 품질 기준이 있습니다
+그래서 스마트 팩토리 같은 경우는 ISOICTR 6306-1이라는 이런 국제 표준이 있고요
+결국엔 최소한 이 국제 표준을 만족을 해야 스마트 팩토리에 들어가는 소프트웨어는 어느 정도 품질이 만족이 된다라는 내용의 가이드라인입니다
+결국 그래서 이런 가이드라인을 따라야겠죠
+또 밑에 있는 스마트 헬스케어 같은 경우도 스마트 팩토리에 있는 가이드라인을 그대로 활용하기에는 무리가 있습니다
+그래서 국제적으로 ISOTR 22696 이라는 국제 표준도 만들어져 있고 이는 헬스 인포메틱스라는 제목으로 만들어져 있습니다
+다시 말해서 헬스케어 디바이스 안에 들어가는 소프트웨어는 최소한 이 가이드라인 안에 있는 품질 정보들을 만족을 해야 한다
+라는 내용들입니다
+자 이렇게 해서 다양한 소프트웨어 산업에 대해서 이해했고 산업군별로 다양한 소프트웨어들이 들어간다는 것도 이해했고요
+또한 그 산업군별로 요구하는 소프트웨어의 최소 품질 기준도 다
+다르다
+라는 것도 알 수 있었습니다
+자 그럼 저희는 앞으로 어떤 분야로 나아갈지 모르지만 이런 다양한 분야에서 각각의 표준들을 지키고 이 소프트웨어를 안전하게 만들 수 있는 그런 사람들이 되었으면 합니다
+이번 강의는 여기서 마치겠습니다
+다음 강의는 여기서 마치겠습니다</div>
+      </details>
+    </section>
+
+    <nav class="content-wrap page-nav">
+      <a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-02.html">다음: 1-2</a>
+    </nav>
+  </main>
+</body>
+</html>

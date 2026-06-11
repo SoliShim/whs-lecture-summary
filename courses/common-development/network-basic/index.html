@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>네트워크 기초 강의 정리</title>
+  <link rel="stylesheet" href="../../../assets/styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="top-nav">
+      <a class="brand" href="../../../index.html">화이트햇 강의 정리</a>
+      <a href="../../../index.html#tracks">전체 트랙</a>
+      <a href="#lectures">강의 목록</a>
+      <a href="#map">전체 흐름</a>
+    </nav>
+    <section class="index-hero">
+      <div>
+        <p class="small-label">STT 원문 기반 HTML 강의 노트</p>
+        <h1>네트워크 기초</h1>
+        <p class="lead">네트워크와 인터넷, TCP/IP 계층, 데이터 링크·네트워크·전송·응용 계층, 와이어샤크 패킷 분석, 소켓 프로그래밍을 정리한 과목.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lectures">강의 목록으로 이동</a>
+          <a class="button secondary" href="lectures/lesson-07.html">대표 강의 바로가기</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <div class="panel-stat"><strong>8</strong><span>강의 HTML</span></div>
+        <div class="panel-stat"><strong>40,346</strong><span>원문 문자 수</span></div>
+        <div class="mini-flow">
+          <span>인터넷</span><span>계층</span><span>주소</span><span>프로토콜</span><span>실습</span>
+        </div>
+      </aside>
+    </section>
+  </header>
+
+  <main>
+    <section id="map" class="section-band">
+      <div class="content-wrap">
+        <h2>전체 흐름</h2>
+        <p class="section-intro">강의는 네트워크와 인터넷이 보안에서 중요한 이유로 시작해 TCP/IP 계층 구조, 데이터 링크·네트워크·전송·응용 계층, Wireshark 패킷 분석, UDP/TCP 소켓 프로그래밍으로 이어진다.</p>
+        <div class="course-map">
+          <div><span>1-1 · 1-2</span><strong>네트워크 큰 그림</strong><p>네트워크, 인터넷, 프로토콜, TCP/IP 계층과 캡슐화</p></div><div><span>1-3 · 1-4</span><strong>하위 계층</strong><p>프레임, MAC, ARP, Ethernet, IP, 라우팅, IPv4/IPv6</p></div><div><span>1-5 · 1-6</span><strong>전송과 응용</strong><p>TCP/UDP, 포트, HTTP, HTTPS, DNS</p></div><div><span>1-7</span><strong>패킷 분석</strong><p>Wireshark, HTTP request/response, 캡슐화, TCP 3-way handshake</p></div><div><span>1-8</span><strong>소켓 프로그래밍</strong><p>UDP/TCP client-server 구현 흐름과 Python socket 예시</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lectures" class="content-wrap lecture-grid-section">
+      <h2>강의별 정리</h2>
+      <p class="section-intro">각 페이지는 학생이 읽기 좋은 정리본을 먼저 배치하고, 원문 STT는 접힌 영역에 보존했다.</p>
+      <div class="lecture-grid">
+        
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">네트워크 1-1</span>
+                <div class="tag-row"><span>네트워크 개요</span><span>인터넷</span><span>보안</span></div>
+              </div>
+              <h3>네트워크와 인터넷 기초</h3>
+              <p>네트워크가 왜 보안 학습의 기반인지 이해하고, 인터넷·패킷·ISP·프로토콜·TCP/IP의 큰 그림을 잡는다.</p>
+              <a class="button" href="lectures/lesson-01.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">네트워크 1-2</span>
+                <div class="tag-row"><span>TCP/IP 모델</span><span>계층화</span><span>캡슐화</span></div>
+              </div>
+              <h3>프로토콜 계층 구조</h3>
+              <p>복잡한 네트워크 통신을 TCP/IP 계층 모델로 나누어 보고, 각 계층의 단위와 캡슐화 흐름을 이해한다.</p>
+              <a class="button" href="lectures/lesson-02.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">네트워크 1-3</span>
+                <div class="tag-row"><span>데이터 링크</span><span>MAC</span><span>ARP</span></div>
+              </div>
+              <h3>데이터 링크 계층</h3>
+              <p>프레임, MAC 주소, ARP, Ethernet, 스위치의 역할을 통해 근거리 네트워크에서 이웃 노드로 전달되는 과정을 이해한다.</p>
+              <a class="button" href="lectures/lesson-03.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">네트워크 1-4</span>
+                <div class="tag-row"><span>IP</span><span>라우팅</span><span>IPv4</span></div>
+              </div>
+              <h3>네트워크 계층</h3>
+              <p>IP 계층이 데이터그램을 이용해 호스트 대 호스트 전달과 라우팅을 수행하는 방식을 이해한다.</p>
+              <a class="button" href="lectures/lesson-04.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">네트워크 1-5</span>
+                <div class="tag-row"><span>TCP</span><span>UDP</span><span>세그먼트</span></div>
+              </div>
+              <h3>트랜스포트 계층</h3>
+              <p>응용 프로그램 메시지를 프로세스 대 프로세스로 전달하는 TCP·UDP·QUIC, 포트, 세그먼트, 신뢰성, handshake를 정리한다.</p>
+              <a class="button" href="lectures/lesson-05.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">네트워크 1-6</span>
+                <div class="tag-row"><span>HTTP</span><span>HTTPS</span><span>DNS</span></div>
+              </div>
+              <h3>애플리케이션 계층</h3>
+              <p>네트워크 애플리케이션 구조, 클라이언트-서버와 P2P, HTTP 요청·응답, HTTPS, DNS를 정리한다.</p>
+              <a class="button" href="lectures/lesson-06.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">네트워크 1-7</span>
+                <div class="tag-row"><span>Wireshark</span><span>패킷 분석</span><span>3-way handshake</span></div>
+              </div>
+              <h3>와이어샤크 실습 패킷 분석</h3>
+              <p>Wireshark로 HTTP 패킷을 캡처하고 Frame, Ethernet, IPv4, TCP, HTTP 계층과 3-way handshake를 직접 확인한다.</p>
+              <a class="button" href="lectures/lesson-07.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">네트워크 1-8</span>
+                <div class="tag-row"><span>Socket</span><span>UDP 프로그래밍</span><span>TCP 프로그래밍</span></div>
+              </div>
+              <h3>소켓 프로그래밍</h3>
+              <p>UDP와 TCP 소켓으로 클라이언트-서버 애플리케이션을 구현하는 기본 흐름을 이해한다.</p>
+              <a class="button" href="lectures/lesson-08.html">강의 정리 보기</a>
+            </article>
+            
+      </div>
+    </section>
+
+    <section class="content-wrap note-block">
+      <h2>작성 기준</h2>
+      <ul class="check-list">
+        <li>네트워크 기초 STT 원문 8개 파일을 기준으로 작성했다.</li><li>강의별 상세 정리와 함께 STT 전체 흐름을 문단으로 정돈한 ‘강의 전체 정돈본’을 본문에 포함했다.</li><li>자동 전사 오류로 보이는 표현은 문맥상 의미가 분명한 경우에만 학습 가능한 네트워크 용어와 명령으로 정돈했다.</li><li>외부 인터넷 자료나 이미지는 사용하지 않았고, 필요한 도식과 Python 소켓 예시는 HTML 본문 안에 직접 구성했다.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

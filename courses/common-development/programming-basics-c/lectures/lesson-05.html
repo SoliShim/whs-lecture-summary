@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>프로그래밍 기초(C) 1-5 - 오픈소스 소프트웨어와 라이선스</title>
+  <link rel="stylesheet" href="../../../../assets/styles.css">
+</head>
+
+<body>
+  <header class="site-header lecture-header">
+    <nav class="top-nav">
+      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+      <a href="../index.html#lectures">과목 강의 목록</a>
+      <a href="#transcript">STT 원문</a>
+    </nav>
+    <section class="lecture-hero">
+      <div>
+        <p class="small-label">프밍 1-5</p>
+        <h1>오픈소스 소프트웨어와 라이선스</h1>
+        <p class="lead">공개된 코드를 가져다 쓸 때는 소스 공개, 동일 라이선스, 상업적 이용 가능성을 확인해야 한다.</p>
+        <div class="tag-row large"><span>OSS</span><span>라이선스</span><span>상업적 이용</span></div>
+      </div>
+      <aside class="toc-box">
+        <strong>페이지 목차</strong>
+        <a href="#section-1">오픈소스 소프트웨어란</a><a href="#section-2">공개되어 있다고 마음대로 쓸 수 있는가</a><a href="#section-3">라이선스를 볼 때의 세 가지 기준</a><a href="#section-4">MIT와 Apache 2.0 예시</a><a href="#section-5">정리</a>
+      </aside>
+    </section>
+  </header>
+
+  <main class="lecture-main">
+    <section class="content-wrap intro-grid">
+      <article class="note-block">
+        <h2>학습 목표</h2>
+        <ul class="check-list"><li>오픈소스 소프트웨어를 사용하는 이유를 설명한다.</li><li>라이선스를 확인할 때 볼 세 가지 기준을 정리한다.</li><li>MIT 라이선스 예시와 Apache 2.0처럼 제약이 있을 수 있는 경우를 구분한다.</li></ul>
+      </article>
+      <article class="note-block compact-source">
+        <h2>자료 기준</h2>
+        <p>이 페이지는 STT 원문만 바탕으로 정리했다. 자동 전사 특성상 반복 인사, 무의미한 잡음, 명백한 말 끊김은 학습 내용에 맞게 정돈했고, 원문은 하단에 보존했다.</p>
+      </article>
+    </section>
+
+    <div class="content-wrap notes-layout">
+      
+        <section id="section-1" class="note-section">
+          <h2>오픈소스 소프트웨어란</h2>
+          <p>소프트웨어를 만들 때 처음부터 끝까지 모든 기능을 직접 만들 수도 있지만, 시간과 역량의 한계가 있다. 그래서 기존 개발자들이 많이 사용하고 인터넷에 공개적으로 사용할 수 있게 해 둔 소스 코드를 가져와 내 소프트웨어에 합칠 수 있다. 이런 소프트웨어를 <strong>오픈소스 소프트웨어</strong>, 줄여서 <strong>OSS</strong>라고 부른다.</p>
+        </section>
+        
+        <section id="section-2" class="note-section">
+          <h2>공개되어 있다고 마음대로 쓸 수 있는가</h2>
+          <p>강의의 질문은 “인터넷에 공개되어 있으니 원하는 대로 가져와 붙이고 돈을 벌고 공유해도 되는가?”이다. 답은 “반은 맞고 반은 틀리다”이다. 공개되어 있다는 사실과 사용 조건이 자유롭다는 사실은 다르다. 오픈소스에도 <strong>라이선스</strong>가 있고, 라이선스마다 허용 범위와 의무가 다르다.</p>
+        </section>
+        
+        <section id="section-3" class="note-section">
+          <h2>라이선스를 볼 때의 세 가지 기준</h2>
+          <div class="diagram three-col">
+  <div><span class="node-title">1. 소스 공개 의무</span><p>오픈소스를 가져와 만든 내 코드까지 공개해야 하는가?</p></div>
+  <div><span class="node-title">2. 동일 라이선스 적용</span><p>내 소프트웨어에도 같은 라이선스를 적용해야 하는가?</p></div>
+  <div><span class="node-title">3. 상업적 이용</span><p>이 라이선스를 사용해 만든 소프트웨어로 돈을 벌 수 있는가?</p></div>
+</div>
+<p>강의에서는 라이선스가 수십 가지 더 있지만, 최소한 이 세 기준으로 먼저 필터링하면 내 프로젝트에 적합한 오픈소스인지 판단하는 데 도움이 된다고 설명한다.</p>
+        </section>
+        
+        <section id="section-4" class="note-section">
+          <h2>MIT와 Apache 2.0 예시</h2>
+          <p><strong>MIT 라이선스</strong>는 강의에서 가장 자유로운 예시로 다룬다. 소스 코드 공개 의무가 없고, 동일한 라이선스를 강제로 적용하지 않아도 되며, 상업적 이용도 가능하다고 설명한다.</p>
+<p><strong>Apache 2.0</strong>은 STT에서 “세 가지를 모두 완전히 풀어주는 것이 아니라 몇 가지 제약이 있다”고만 언급된다. 강의의 목적은 특정 라이선스 조항을 모두 외우는 것이 아니라, 라이선스마다 조건이 다르므로 세 기준으로 먼저 판별하는 습관을 갖는 것이다.</p>
+        </section>
+        
+        <section id="section-5" class="note-section">
+          <h2>정리</h2>
+          <ul class="check-list">
+  <li>OSS는 개발 시간을 줄이고 기존 코드를 활용할 수 있게 해 준다.</li>
+  <li>하지만 공개되어 있다는 이유만으로 무제한 사용이 가능한 것은 아니다.</li>
+  <li>소스 공개 의무, 동일 라이선스 적용 의무, 상업적 이용 가능 여부를 먼저 확인해야 한다.</li>
+  <li>라이선스 조건이 프로젝트 목적과 맞지 않으면 품질을 높이려던 선택이 법적·운영 리스크가 될 수 있다.</li>
+</ul>
+        </section>
+        
+      
+    </div>
+
+    <section class="content-wrap note-block">
+      <h2>복습 체크</h2>
+      <ul class="check-list"><li>OSS를 사용하는 이유와 주의할 점을 함께 설명할 수 있는가?</li><li>라이선스 판단 기준 세 가지를 말할 수 있는가?</li><li>MIT 라이선스가 강의에서 어떤 예시로 사용되었는가?</li></ul>
+    </section>
+
+    <section id="transcript" class="content-wrap transcript-wrap">
+      <details>
+        <summary>STT 원문 펼치기</summary>
+        <div class="transcript-text">다음은 오픈소스 소프트웨어입니다
+저희가 소프트웨어를 만들 때에는 처음부터 끝까지 저희가 모든 기능을 다
+만들 수도 있지만 사실은 그걸 다
+만들기에는 시간도 부족하고 저희의 역량이 부족할 수도 있어요
+그래서 기존의 개발자들이 많이 사용하고 또 인터넷에 공개적으로 사용할 수 있게 되어 있는 소스 코드들을 저희가 가져와서 내 소프트웨어에 합칠 수 있습니다
+그래서 그러한 소프트웨어들을 오픈소스 소프트웨어라고 하고 줄여서 OSS라고 부르기도 합니다
+자 그러면 여기서 질문이에요
+오픈소스 소프트웨어는 인터넷에 공개되어 있으니까 내가 원하는 대로 막 가져와서 내 소프트웨어에 막 갖다
+붙이고 돈 벌고 남들한테 공유해도 돼요? 반은 맞고 반은 틀립니다
+자 그러면 이걸 어떻게 구분하냐 오픈소스 소프트웨어에도 라이센스가 있습니다
+근데 이 라이센스가 여기 보이시는 이렇게 다섯 가지들만 있는 게 아니라 정말 수십 가지 더 있습니다
+하지만 최소한 이 정도의 라이센스를 이해하고 여기에 없다가 하더라도 어떠한 기준으로 라이센스를 판별하면 될지에 대해서만 이해하면 되기 때문에 다섯 가지만 가져왔고요
+이 다섯 가지도 결국에는 세 가지로 기준을 세울 수 있어요
+첫 번째는 이 오픈소스를 가져와서 내 걸 만들었을 때 소스 코드를 내 것까지 다
+공개해야 되냐 그런 의무가 있느냐 없느냐로 구분할 수 있고요
+두 번째로는 내 소스 코드에 대해서 이 라이센스를 적용하면 나도 똑같이 이 라이센스를 적용을 해야 되냐 라는 겁니다
+세 번째로는 이제 중요하죠
+이 라이센스를 사용해서 내가 만들었을 때 과연 내가 이 소프트웨어로 돈을 벌어도 될까 안 된다
+된다
+에 대한 기준입니다
+그래서 이 세 가지 기준이 가장 핵심적이고 이렇게 다섯 가지 정도 있는 겁니다
+예를 들어서 MIT 라이센스 같은 경우는 소스 코드 공개 의무도 없고요
+동일한 라이센스를 적용하지 않아도 되고요
+그리고 내가 이 라이센스를 적용해서 소프트웨어를 만들고 돈을 벌어도 돼요
+상업적 이용을 해도 됩니다
+네 하지만 뭐 아파치 2.0 라이센스 같은 경우는 이 세 가지에 대해서 다
+풀어주는 게 아니라 몇 가지 제약이 또 있죠
+그래서 앞으로 오픈소스 소프트웨어를 사용할 때 이 세 가지 기준으로 한번 먼저 필터링을 해보고 과연 내 프로젝트에 적합한 오픈소스인지 판단해 보는 것도 좋을 것 같습니다
+자 이렇게 해서 오픈소스 소프트웨어의 생태계 그리고 라이센스를 선정하는 기준에 대해서도 간단하게 요약을 해드렸습니다
+자 이번 강의는 여기서 마치겠습니다
+오늘의..</div>
+      </details>
+    </section>
+
+    <nav class="content-wrap page-nav">
+      <a class="button secondary" href="lesson-04.html">이전: 1-4</a><a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-06.html">다음: 1-6</a>
+    </nav>
+  </main>
+</body>
+</html>
