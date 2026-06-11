@@ -6,6 +6,8 @@ from pathlib import Path
 from textwrap import dedent
 
 from course_data.computer_architecture_1 import build_computer_architecture_1_lectures
+from course_data.cryptography_basic import build_cryptography_basic_lectures
+from course_data.ethics_cyber_security import build_ethics_cyber_security_lectures
 from course_data.network_basic import build_network_basic_lectures
 from course_data.os_basic import build_os_basic_lectures
 
@@ -14,15 +16,65 @@ ROOT = Path(__file__).resolve().parent
 COURSE_ROOT = ROOT / "courses"
 ASSET_DIR = ROOT / "assets"
 STT_ROOT = ROOT / "stt"
+PUBLIC_OPERATIONAL_PATTERNS = [
+    "STT",
+    "자동 전사",
+    "전사 내용",
+    "전사되어",
+    "전사에서는",
+    "전사 흐름",
+    "전사 잡음",
+    "반복 전사",
+    "정돈본",
+    "자료 기준",
+    "작성 기준",
+    "파일 기준",
+    "외부 인터넷 자료",
+    "HTML 본문",
+    "스크린샷 기준",
+    "문장과 문단",
+    "접이식",
+    "텍스트만",
+    "사용자가 요청한",
+    "하단에는",
+    "문맥상",
+]
+REPEATED_TRANSCRIPT_PHRASES = [
+    "다음 영상에서 만나요",
+    "바로 이어서 진행하겠습니다",
+    "수고하셨습니다",
+    "감사합니다",
+]
 
 
 def code_block(source: str, lang: str = "c") -> str:
     return f'<pre><code class="language-{lang}">{html.escape(dedent(source).strip())}</code></pre>'
 
 
-def reading_transcript(text: str) -> str:
+def clean_transcript_text(text: str) -> str:
     text = re.sub(r"\s+", " ", text.strip())
-    text = re.sub(r"(요|다|죠|니다|세요|겁니다|입니다|됩니다)\s+", r"\1\n", text)
+    for phrase in REPEATED_TRANSCRIPT_PHRASES:
+        pattern = rf"(?:{re.escape(phrase)}[.!?！。]*\s*){{2,}}"
+        text = re.sub(pattern, f"{phrase}. ", text)
+    return text.strip()
+
+
+def validate_public_html(path: Path, content: str) -> None:
+    found = [pattern for pattern in PUBLIC_OPERATIONAL_PATTERNS if pattern in content]
+    if found:
+        joined = ", ".join(found)
+        raise ValueError(f"{path} contains user-facing operational copy: {joined}")
+
+
+def write_public_html(path: Path, content: str) -> None:
+    validate_public_html(path, content)
+    path.write_text(content, encoding="utf-8")
+
+
+def reading_transcript(text: str) -> str:
+    text = clean_transcript_text(text)
+    text = re.sub(r"([.!?。])\s+", r"\1\n", text)
+    text = re.sub(r"(요|죠|니다|세요|겁니다|입니다|됩니다)(?![.!?。])\s+", r"\1.\n", text)
     return html.escape(text)
 
 
@@ -100,7 +152,7 @@ LECTURES = [
             {
                 "heading": "강의의 핵심 질문",
                 "body": """
-                <p>이 강의는 “도메인이 달라도 공통적인 품질 매트릭만 올리면 충분한가?”라는 질문에서 출발한다. STT의 결론은 명확하다. 소프트웨어는 다양한 산업군에 들어가지만, 산업마다 요구하는 최소 품질 기준과 검토 관점이 다르므로 한 산업의 기준을 다른 산업에 그대로 적용하면 무리가 있다.</p>
+                <p>이 강의는 “도메인이 달라도 공통적인 품질 매트릭만 올리면 충분한가?”라는 질문에서 출발한다. 강의의 결론은 명확하다. 소프트웨어는 다양한 산업군에 들어가지만, 산업마다 요구하는 최소 품질 기준과 검토 관점이 다르므로 한 산업의 기준을 다른 산업에 그대로 적용하면 무리가 있다.</p>
                 <div class="diagram two-col">
                   <div><span class="node-title">공통 착각</span><p>소프트웨어니까 모든 산업에 같은 품질 기준을 적용하면 될 것 같다.</p></div>
                   <div><span class="node-title">강의 결론</span><p>도메인별 표준과 품질 기준을 확인하고, 그 기준을 만족하도록 설계해야 한다.</p></div>
@@ -110,7 +162,7 @@ LECTURES = [
             {
                 "heading": "스마트 팩토리의 품질 기준",
                 "body": """
-                <p>스마트 팩토리에도 소프트웨어가 들어간다. 다만 공장 자동화와 제조 환경에 들어가는 소프트웨어는 해당 도메인이 요구하는 품질 수준을 만족해야 한다. 강의에서는 스마트 팩토리 쪽 예시로 <strong>ISOICTR 6306-1</strong>이라는 국제 표준을 언급한다. STT 표기 그대로 옮기면 이 표준은 스마트 팩토리에 들어가는 소프트웨어가 최소한 어느 정도 품질을 만족한다고 판단하기 위한 가이드라인으로 설명된다.</p>
+                <p>스마트 팩토리에도 소프트웨어가 들어간다. 다만 공장 자동화와 제조 환경에 들어가는 소프트웨어는 해당 도메인이 요구하는 품질 수준을 만족해야 한다. 강의에서는 스마트 팩토리 쪽 예시로 <strong>ISOICTR 6306-1</strong>이라는 국제 표준을 언급한다. 이 표준은 스마트 팩토리에 들어가는 소프트웨어가 최소한 어느 정도 품질을 만족한다고 판단하기 위한 가이드라인으로 설명된다.</p>
                 <p>핵심은 “스마트 팩토리 소프트웨어라면 스마트 팩토리 맥락의 표준을 봐야 한다”는 점이다. 단순히 기능이 돌아가는지, 코드가 깔끔한지 같은 일반 기준만으로는 충분하지 않다.</p>
                 """,
             },
@@ -143,19 +195,19 @@ LECTURES = [
         "id": "1-2",
         "file": "lecture-1-2.html",
         "title": "산업별 표준을 다시 확인하기",
-        "subtitle": "STT 원문상 1-1과 동일한 내용으로 전사되어, 같은 주제를 중복 복습용으로 정리했다.",
+        "subtitle": "1-1과 같은 주제를 반복 복습할 수 있도록 도메인별 품질 기준을 다시 정리한다.",
         "tags": ["복습", "도메인 표준", "품질 기준"],
         "objectives": [
-            "1-1과 동일한 STT 내용을 기준으로 도메인별 품질 기준을 다시 정리한다.",
+            "도메인별 품질 기준을 다시 정리한다.",
             "스마트 팩토리와 스마트 헬스케어 예시의 차이를 반복 확인한다.",
             "표준 준수와 안전한 소프트웨어 개발의 연결고리를 복습한다.",
         ],
         "sections": [
             {
-                "heading": "STT 파일 상태",
+                "heading": "반복 복습 구성",
                 "body": """
-                <p>이 파일의 STT는 1-1과 같은 내용으로 전사되어 있다. 따라서 별도의 새로운 개념을 덧붙이지 않고, 같은 강의 내용을 복습 관점으로 재구성했다. 원문은 하단의 STT 원문 영역에서 그대로 확인할 수 있다.</p>
-                <div class="callout">정리 기준: 반복 전사된 마무리 문구는 학습 흐름에 맞춰 정리했고, 핵심 개념은 1-1과 동일하게 보존했다.</div>
+                <p>이 강의는 1-1에서 다룬 도메인별 품질 기준을 복습 관점으로 다시 묶는다. 새로운 개념을 무리하게 덧붙이기보다 스마트 팩토리와 스마트 헬스케어 예시를 다시 비교하면서 핵심 결론을 확실히 잡는 데 초점을 둔다.</p>
+                <div class="callout">복습 포인트: 산업군이 달라지면 소프트웨어에 요구되는 품질 기준과 검토 관점도 달라진다.</div>
                 """,
             },
             {
@@ -184,7 +236,7 @@ LECTURES = [
             },
         ],
         "checks": [
-            "1-1과 1-2 STT가 동일하다는 점을 확인했는가?",
+            "1-1과 1-2가 같은 주제를 반복해서 다룬다는 점을 확인했는가?",
             "스마트 팩토리와 스마트 헬스케어의 표준 예시를 구분할 수 있는가?",
             "산업군별 표준을 확인하는 태도가 왜 중요한지 설명할 수 있는가?",
         ],
@@ -283,7 +335,7 @@ LECTURES = [
                 "heading": "품질 매트릭을 보는 이유",
                 "body": """
                 <p>강의에서는 소프트웨어 품질을 1부터 100, 1부터 1000까지도 나열할 수 있다고 말한다. 하지만 실제로는 학계와 산업계에서 반복적으로 중요하게 보는 가중치 높은 품질 매트릭이 있다. 여러 분류 체계에는 Portability, Modifiability, Correctness, Functionality, Supportability, Functional, Portability 등 다양한 항목이 나오지만, 자세히 보면 서로 겹치는 항목이 많다.</p>
-                <p>겹치는 항목을 추려 보면 최소한 유지해야 할 핵심 매트릭을 얻을 수 있고, 강의에서는 오른쪽 표에 8가지 매트릭이 정리된다고 설명한다. STT에서 길게 설명된 항목은 아래와 같다.</p>
+                <p>겹치는 항목을 추려 보면 최소한 유지해야 할 핵심 매트릭을 얻을 수 있고, 강의에서는 오른쪽 표에 8가지 매트릭이 정리된다고 설명한다. 특히 자세히 다룬 항목은 아래와 같다.</p>
                 """,
             },
             {
@@ -369,7 +421,7 @@ LECTURES = [
                 "heading": "MIT와 Apache 2.0 예시",
                 "body": """
                 <p><strong>MIT 라이선스</strong>는 강의에서 가장 자유로운 예시로 다룬다. 소스 코드 공개 의무가 없고, 동일한 라이선스를 강제로 적용하지 않아도 되며, 상업적 이용도 가능하다고 설명한다.</p>
-                <p><strong>Apache 2.0</strong>은 STT에서 “세 가지를 모두 완전히 풀어주는 것이 아니라 몇 가지 제약이 있다”고만 언급된다. 강의의 목적은 특정 라이선스 조항을 모두 외우는 것이 아니라, 라이선스마다 조건이 다르므로 세 기준으로 먼저 판별하는 습관을 갖는 것이다.</p>
+                <p><strong>Apache 2.0</strong>은 “세 가지를 모두 완전히 풀어주는 것이 아니라 몇 가지 제약이 있다”는 예시로 언급된다. 강의의 목적은 특정 라이선스 조항을 모두 외우는 것이 아니라, 라이선스마다 조건이 다르므로 세 기준으로 먼저 판별하는 습관을 갖는 것이다.</p>
                 """,
             },
             {
@@ -533,7 +585,7 @@ LECTURES = [
                 <ol>
                   <li>Visual Studio Code를 설치한다.</li>
                   <li>좌측 확장 마켓에서 C/C++ Extension Pack을 설치한다.</li>
-                  <li>MinGW(전사에서는 “민지 W”)를 설치한다.</li>
+                  <li>MinGW를 설치한다.</li>
                   <li>필요 패키지를 Mark for Installation 한 뒤 Installation 메뉴에서 Apply Changes를 누른다.</li>
                   <li>Windows 환경 변수에 MinGW의 bin 경로를 추가한다.</li>
                   <li>CMD에서 <code>gcc -v</code>, <code>g++ -v</code>로 버전이 나오는지 확인한다.</li>
@@ -994,7 +1046,6 @@ LECTURES = [
                 "heading": "과목 마무리",
                 "body": """
                 <p>강의 마지막에서는 프로그래밍 기초 과목이 단순히 언어와 문법을 많이 외우는 수업이 아니라, 개발자 또는 화이트 해커로서 프로그래밍을 할 준비가 되도록 만들기 위한 수업이었다고 정리한다. 이론과 실무 내용을 함께 다루려 했고, 긴 강의를 따라온 수강생에게 감사 인사를 전하며 마무리한다.</p>
-                <div class="callout">후반부 STT에는 반복 인사와 자동 전사 잡음이 일부 포함되어 있어, 학습 내용에 해당하는 부분만 위 정리본에 반영했다. 원문은 아래에서 확인할 수 있다.</div>
                 """,
             },
         ],
@@ -1011,13 +1062,15 @@ LECTURES = [
 COMPUTER_ARCHITECTURE_1_LECTURES = build_computer_architecture_1_lectures(code_block)
 OS_BASIC_LECTURES = build_os_basic_lectures(code_block)
 NETWORK_BASIC_LECTURES = build_network_basic_lectures(code_block)
+CRYPTOGRAPHY_BASIC_LECTURES = build_cryptography_basic_lectures(code_block)
+ETHICS_CYBER_SECURITY_LECTURES = build_ethics_cyber_security_lectures(code_block)
 
 
 TRACKS = [
     {
         "id": "common-development",
         "title": "공통/개발",
-        "description": "프로그래밍, 컴퓨터 구조, 운영체제, 네트워크처럼 모든 보안 분야의 바탕이 되는 과목 묶음.",
+        "description": "프로그래밍, 컴퓨터 구조, 운영체제, 네트워크, 암호학처럼 모든 보안 분야의 바탕이 되는 과목 묶음.",
     },
     {
         "id": "vulnerability",
@@ -1054,11 +1107,6 @@ COURSES = [
             ("1-7", "C 언어 기초", "변수부터 구조체까지 문법 총정리"),
             ("1-8", "개선과 장애 대응", "결제 장애, 메모리 누수, 재배포"),
         ],
-        "notes": [
-            "외부 자료나 인터넷 이미지는 사용하지 않았다. 사용자가 요청한 “STT 자료만” 조건을 지키기 위해 강의 원문에 근거한 설명만 넣었다.",
-            "STT의 자동 전사 오류로 보이는 단어는 문맥상 의미가 분명한 경우에만 학습 가능한 표현으로 정리했다.",
-            "1-1과 1-2는 STT 내용이 동일하므로, 1-2 페이지에는 중복 전사 사실을 명시했다.",
-        ],
         "lectures": LECTURES,
     },
     {
@@ -1079,12 +1127,6 @@ COURSES = [
             ("1-4", "CPU", "소스 코드, 어셈블리, 명령어 사이클, CISC/RISC"),
             ("1-5 · 1-6", "메모리와 입출력", "디버거, 엔디안, 계층 구조, USB, 인터럽트, DMA"),
         ],
-        "notes": [
-            "컴퓨터 구조 I의 STT 원문 6개 파일을 기준으로 작성했다.",
-            "자동 전사 오류로 보이는 단어는 문맥상 의미가 분명한 경우에만 학습 가능한 표현으로 정돈했다.",
-            "교수님이 언급한 사담, 실무 경험, 보안 학습 연결점도 학습 맥락이 있는 경우 빠뜨리지 않고 본문에 반영했다.",
-            "외부 인터넷 자료나 이미지는 사용하지 않았고, 필요한 도식과 코드는 HTML 본문 안에 직접 구성했다.",
-        ],
         "lectures": COMPUTER_ARCHITECTURE_1_LECTURES,
     },
     {
@@ -1104,13 +1146,6 @@ COURSES = [
             ("1-7 · 1-8", "패키지와 서비스", "apt, dpkg, systemd, systemctl, journalctl"),
             ("1-9 · 1-12", "운영 실습", "웹·FTP·DB 서버, 개발환경, 배시, 모니터링"),
         ],
-        "notes": [
-            "운영체제 기초 STT 원문 12개 파일을 기준으로 작성했다.",
-            "강의별 상세 정리와 함께 STT 전체 흐름을 문단으로 정돈한 ‘강의 전체 정돈본’을 본문에 포함했다.",
-            "자동 전사 오류로 보이는 표현은 문맥상 의미가 분명한 경우에만 학습 가능한 명령어와 용어로 정돈했다.",
-            "외부 인터넷 자료나 이미지는 사용하지 않았고, 필요한 명령어 예시와 표는 HTML 본문 안에 직접 구성했다.",
-        ],
-        "include_full_walkthrough": True,
         "lectures": OS_BASIC_LECTURES,
     },
     {
@@ -1130,13 +1165,6 @@ COURSES = [
             ("1-7", "패킷 분석", "Wireshark, HTTP request/response, 캡슐화, TCP 3-way handshake"),
             ("1-8", "소켓 프로그래밍", "UDP/TCP client-server 구현 흐름과 Python socket 예시"),
         ],
-        "notes": [
-            "네트워크 기초 STT 원문 8개 파일을 기준으로 작성했다.",
-            "강의별 상세 정리와 함께 STT 전체 흐름을 문단으로 정돈한 ‘강의 전체 정돈본’을 본문에 포함했다.",
-            "자동 전사 오류로 보이는 표현은 문맥상 의미가 분명한 경우에만 학습 가능한 네트워크 용어와 명령으로 정돈했다.",
-            "외부 인터넷 자료나 이미지는 사용하지 않았고, 필요한 도식과 Python 소켓 예시는 HTML 본문 안에 직접 구성했다.",
-        ],
-        "include_full_walkthrough": True,
         "lectures": NETWORK_BASIC_LECTURES,
     },
     {
@@ -1144,18 +1172,41 @@ COURSES = [
         "track_id": "common-development",
         "title": "암호학 기초",
         "short_title": "암호학",
-        "status": "pending",
-        "summary": "STT 파일이 들어오면 같은 템플릿으로 정리할 과목.",
-        "lectures": [],
+        "status": "ready",
+        "summary": "보안 목표, 암호 기술 분류, 해시와 HMAC, 기밀성, 공개키 암호, 디지털 서명, PKI, TLS와 하이브리드 암호 기술을 정리한 과목.",
+        "featured_lecture": "1-6",
+        "flow": ["보안 목표", "해시", "기밀성", "공개키", "TLS"],
+        "map_intro": "강의는 암호학 기초 강의 계획에서 출발해 보안 목표와 Kerckhoffs 원리, 무결성과 인증을 위한 해시·HMAC, 기밀성을 위한 대칭키·비대칭키, 공개키 신뢰 체계, TLS와 하이브리드 암호 기술 활용으로 이어진다.",
+        "map": [
+            ("1-1", "강의 계획", "암호학 기초 비대면 강의의 전체 흐름과 오프라인 보완 계획"),
+            ("1-2", "암호학 개요", "보안 목표, 보안 서비스, Kerckhoffs 원리, 보안 강도, 암호 기술 분류"),
+            ("1-3", "무결성과 인증", "암호 해시, 메시지 다이제스트, 비둘기집 원리, 생일 문제, HMAC과 한계"),
+            ("1-4", "기밀성", "대칭키와 비대칭키 암호 기술, stream/block 암호, 인증과 부인방지"),
+            ("1-5", "공개키 체계", "키 배송 문제, Diffie-Hellman, 디지털 서명, 인증서, PKI, X.509"),
+            ("1-6", "암호 기술 활용", "SSL/TLS, cipher suite, 암호화 트래픽 모니터링, 하이브리드 암호 기술"),
+        ],
+        "lectures": CRYPTOGRAPHY_BASIC_LECTURES,
     },
     {
         "id": "ethics-cyber-security",
         "track_id": "common-development",
         "title": "정보보안윤리 / 사이버 안보",
+        "transcript_title": "정보보안윤리-사이버-안보",
         "short_title": "보안윤리",
-        "status": "pending",
-        "summary": "STT 파일이 들어오면 같은 템플릿으로 정리할 과목.",
-        "lectures": [],
+        "status": "ready",
+        "summary": "사이버 안보의 정의, 국내 사이버 위협 사건사, 사이버 전쟁, 국가별 전략, 한국의 안보 체계와 국가 사이버 안보 전략을 정리한 과목.",
+        "featured_lecture": "1-8",
+        "flow": ["사이버 안보", "위협 사건", "사이버전", "국가 체계", "전략"],
+        "map_intro": "강의는 사이버 안보의 의미에서 출발해 국내 정보보호 환경과 위협 사건, 사이버 냉전·전쟁, 주요 국가의 노력, 한국의 국가 사이버 안보 체계, 2024년 국가 사이버 안보 전략으로 이어진다.",
+        "map": [
+            ("1-1", "사이버 안보 개요", "개인·기업·국가 보호, 주요 보안 기술, 레질리언스"),
+            ("1-2 · 1-3", "사이버 위협 사건사", "정보통신망법, 인터넷 대란, DDoS, 개인정보, 한수원, 가상자산"),
+            ("1-4", "사이버 전쟁과 안보", "사이버 냉전, Great Firewall, 러시아·우크라이나 하이브리드전"),
+            ("1-5", "국가별 노력", "미국 Defend Forward, 중국·러시아·EU·한국의 전략"),
+            ("1-6 · 1-7", "한국 안보 체계", "국가안보실, 국가정보원, NCSC, 과기정통부, KISA, 금융보안원, 개보위"),
+            ("1-8", "국가 사이버 안보 전략", "2024 전략의 비전, 목표, 공세적 방어, 글로벌 공조, 복원력"),
+        ],
+        "lectures": ETHICS_CYBER_SECURITY_LECTURES,
     },
     {
         "id": "security-trends",
@@ -1163,7 +1214,7 @@ COURSES = [
         "title": "최신 보안 동향",
         "short_title": "보안 동향",
         "status": "pending",
-        "summary": "STT 파일이 들어오면 같은 템플릿으로 정리할 과목.",
+        "summary": "자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.",
         "lectures": [],
     },
     {
@@ -1172,7 +1223,7 @@ COURSES = [
         "title": "해커의 프로그래밍",
         "short_title": "해커 프로그래밍",
         "status": "pending",
-        "summary": "STT 파일이 들어오면 같은 템플릿으로 정리할 과목.",
+        "summary": "자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.",
         "lectures": [],
     },
     {
@@ -1181,7 +1232,7 @@ COURSES = [
         "title": "시큐어코딩",
         "short_title": "시큐어코딩",
         "status": "pending",
-        "summary": "STT 파일이 들어오면 같은 템플릿으로 정리할 과목.",
+        "summary": "자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.",
         "lectures": [],
     },
     {
@@ -1190,7 +1241,7 @@ COURSES = [
         "title": "모던 웹 개발 및 보안",
         "short_title": "웹 보안",
         "status": "pending",
-        "summary": "STT 파일이 들어오면 같은 템플릿으로 정리할 과목.",
+        "summary": "자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.",
         "lectures": [],
     },
 ]
@@ -1220,8 +1271,62 @@ def course_status_label(course: dict) -> str:
     if course["status"] == "ready":
         return "정리 완료"
     if course["status"] == "pending-stt":
-        return "STT 대기"
+        return "자료 준비 중"
     return "준비 예정"
+
+
+# Course cards get stable visual hooks so regenerated/new courses keep the same theme.
+COURSE_ICON_BY_ID = {
+    "programming-basics-c": "code",
+    "computer-architecture-1": "systems",
+    "os-basic": "operations",
+    "network-basic": "network",
+    "cryptography-basic": "crypto",
+    "ethics-cyber-security": "shield",
+    "security-ethics-cyber-security": "shield",
+    "security-trends": "trend",
+    "latest-security-trends": "trend",
+    "hacker-programming": "code",
+    "secure-coding": "secure-code",
+    "modern-web-dev-security": "web",
+    "modern-web-security": "web",
+}
+
+COURSE_ICON_CYCLE = [
+    "code",
+    "systems",
+    "operations",
+    "network",
+    "crypto",
+    "shield",
+    "trend",
+    "code",
+    "secure-code",
+    "web",
+]
+
+
+def course_icon_key(course: dict, position: int) -> str:
+    explicit_icon = str(course.get("icon", "")).strip()
+    if explicit_icon:
+        return filename_part(explicit_icon).lower() or "code"
+
+    course_id = str(course.get("id", ""))
+    if course_id in COURSE_ICON_BY_ID:
+        return COURSE_ICON_BY_ID[course_id]
+
+    if "network" in course_id:
+        return "network"
+    if "crypto" in course_id or "cipher" in course_id:
+        return "crypto"
+    if "web" in course_id:
+        return "web"
+    if "coding" in course_id or "program" in course_id:
+        return "code"
+    if "os" in course_id or "operating" in course_id:
+        return "operations"
+
+    return COURSE_ICON_CYCLE[(position - 1) % len(COURSE_ICON_CYCLE)]
 
 
 def shared_head(title: str, css_prefix: str = "") -> str:
@@ -1232,6 +1337,7 @@ def shared_head(title: str, css_prefix: str = "") -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(title)}</title>
   <link rel="stylesheet" href="{css_prefix}assets/styles.css">
+  <script src="{css_prefix}assets/code-highlight.js" defer></script>
 </head>
 """
 
@@ -1240,9 +1346,13 @@ def tag_list(tags: list[str]) -> str:
     return "".join(f"<span>{html.escape(tag)}</span>" for tag in tags)
 
 
-def render_site_index(all_transcripts: dict[str, dict[str, str]]) -> str:
-    total_chars = sum(len(text) for transcripts in all_transcripts.values() for text in transcripts.values())
+def render_site_index() -> str:
     total_ready_lectures = sum(len(course.get("lectures", [])) for course in ready_courses())
+    total_review_questions = sum(
+        len(lecture.get("checks", []))
+        for course in ready_courses()
+        for lecture in course.get("lectures", [])
+    )
     ready_course_buttons = "".join(
         f'<a class="button secondary" href="{course_href(course)}">{html.escape(str(course["title"]))} 열기</a>'
         for course in ready_courses()
@@ -1269,16 +1379,17 @@ def render_site_index(all_transcripts: dict[str, dict[str, str]]) -> str:
         )
 
         course_items = []
-        for course in courses:
+        for course_position, course in enumerate(courses, start=1):
             status_class = "status-ready" if course["status"] == "ready" else "status-pending"
+            icon_key = course_icon_key(course, course_position)
             action = (
                 f'<a class="button" href="{course_href(course)}">과목 열기</a>'
                 if course["status"] == "ready"
-                else '<span class="status-note">STT 추가 후 생성</span>'
+                else '<span class="status-note">준비 중</span>'
             )
             course_items.append(
                 f"""
-                <article class="course-item">
+                <article class="course-item course-icon-{html.escape(icon_key)}" data-course-id="{html.escape(str(course['id']))}">
                   <div>
                     <div class="course-item-head">
                       <h3>{html.escape(str(course['title']))}</h3>
@@ -1322,9 +1433,9 @@ def render_site_index(all_transcripts: dict[str, dict[str, str]]) -> str:
     </nav>
     <section class="index-hero">
       <div>
-        <p class="small-label">STT 원문 기반 HTML 강의 노트</p>
+        <p class="small-label">화이트햇 강의 노트</p>
         <h1>화이트햇 과정 전체를 트랙과 과목 단위로 정리하는 강의 아카이브</h1>
-        <p class="lead">각 과목의 STT 파일을 기준으로 핵심 개념, 세부 설명, 예시, 복습 질문을 HTML 노트로 정리한다. 현재는 {len(ready_courses())}개 과목, {total_ready_lectures}개 강의가 생성되어 있다.</p>
+        <p class="lead">핵심 개념, 세부 설명, 예시, 복습 질문을 과목별로 모아 바로 공부할 수 있게 정리한다. 현재는 {len(ready_courses())}개 과목, {total_ready_lectures}개 강의를 볼 수 있다.</p>
         <div class="hero-actions">
           <a class="button primary" href="#tracks">트랙 보기</a>
           {ready_course_buttons}
@@ -1333,8 +1444,8 @@ def render_site_index(all_transcripts: dict[str, dict[str, str]]) -> str:
       <aside class="hero-panel">
         <div class="panel-stat"><strong>{len(TRACKS)}</strong><span>트랙</span></div>
         <div class="panel-stat"><strong>{len(COURSES)}</strong><span>등록 과목</span></div>
-        <div class="panel-stat"><strong>{total_ready_lectures}</strong><span>생성 강의</span></div>
-        <div class="panel-stat"><strong>{total_chars:,}</strong><span>원문 문자 수</span></div>
+        <div class="panel-stat"><strong>{total_ready_lectures}</strong><span>강의</span></div>
+        <div class="panel-stat"><strong>{total_review_questions}</strong><span>복습 질문</span></div>
       </aside>
     </section>
   </header>
@@ -1342,7 +1453,7 @@ def render_site_index(all_transcripts: dict[str, dict[str, str]]) -> str:
   <main>
     <section id="tracks" class="content-wrap track-grid-section">
       <h2>전체 트랙</h2>
-      <p class="section-intro">제공된 스크린샷 기준으로 4개 트랙을 먼저 잡고, 과목이 들어오는 순서대로 각 트랙 아래에 HTML 정리본을 추가한다.</p>
+      <p class="section-intro">화이트햇 과정의 주요 학습 범위를 트랙별로 나누고, 각 과목의 강의 노트를 한곳에서 찾을 수 있게 정리한다.</p>
       <div class="track-grid">
         {''.join(track_cards)}
       </div>
@@ -1352,24 +1463,16 @@ def render_site_index(all_transcripts: dict[str, dict[str, str]]) -> str:
       {''.join(track_sections)}
     </div>
 
-    <section class="content-wrap note-block">
-      <h2>파일 기준</h2>
-      <ul class="check-list">
-        <li>영상은 <code>videos/트랙/과목/과목명-01-강의-제목.mp4</code>처럼 과목, 순서, 제목이 보이게 둔다.</li>
-        <li>STT 원문은 <code>stt/트랙/과목/과목명-01-강의-제목.txt</code>처럼 과목, 순서, 제목이 보이게 둔다.</li>
-        <li>생성된 HTML은 <code>courses/트랙/과목/</code> 아래에 과목 페이지와 강의별 페이지로 저장된다.</li>
-      </ul>
-    </section>
   </main>
 </body>
 </html>
 """
 
 
-def render_course_index(course: dict, transcripts: dict[str, str]) -> str:
+def render_course_index(course: dict) -> str:
     cards = []
     lectures = course.get("lectures", [])
-    total_chars = sum(len(text) for text in transcripts.values())
+    review_count = sum(len(lecture.get("checks", [])) for lecture in lectures)
     featured_id = course.get("featured_lecture")
     featured = next((lecture for lecture in lectures if lecture["id"] == featured_id), lectures[-1])
     for lecture in lectures:
@@ -1392,7 +1495,6 @@ def render_course_index(course: dict, transcripts: dict[str, str]) -> str:
         for item in course.get("map", [])
     )
     flow = "".join(f"<span>{html.escape(item)}</span>" for item in course.get("flow", []))
-    notes = "".join(f"<li>{html.escape(item)}</li>" for item in course.get("notes", []))
 
     return shared_head(f"{course['title']} 강의 정리", "../../../") + f"""
 <body>
@@ -1405,7 +1507,7 @@ def render_course_index(course: dict, transcripts: dict[str, str]) -> str:
     </nav>
     <section class="index-hero">
       <div>
-        <p class="small-label">STT 원문 기반 HTML 강의 노트</p>
+        <p class="small-label">과목 강의 노트</p>
         <h1>{html.escape(str(course['title']))}</h1>
         <p class="lead">{html.escape(str(course['summary']))}</p>
         <div class="hero-actions">
@@ -1414,8 +1516,8 @@ def render_course_index(course: dict, transcripts: dict[str, str]) -> str:
         </div>
       </div>
       <aside class="hero-panel">
-        <div class="panel-stat"><strong>{len(lectures)}</strong><span>강의 HTML</span></div>
-        <div class="panel-stat"><strong>{total_chars:,}</strong><span>원문 문자 수</span></div>
+        <div class="panel-stat"><strong>{len(lectures)}</strong><span>강의</span></div>
+        <div class="panel-stat"><strong>{review_count}</strong><span>복습 질문</span></div>
         <div class="mini-flow">
           {flow}
         </div>
@@ -1427,7 +1529,7 @@ def render_course_index(course: dict, transcripts: dict[str, str]) -> str:
     <section id="map" class="section-band">
       <div class="content-wrap">
         <h2>전체 흐름</h2>
-        <p class="section-intro">{html.escape(str(course.get("map_intro", "강의는 STT 원문 흐름에 맞춰 핵심 개념, 예시, 실무 맥락을 순서대로 정리한다.")))}</p>
+        <p class="section-intro">{html.escape(str(course.get("map_intro", "강의의 핵심 개념, 예시, 실무 맥락을 순서대로 정리한다.")))}</p>
         <div class="course-map">
           {course_map}
         </div>
@@ -1436,25 +1538,19 @@ def render_course_index(course: dict, transcripts: dict[str, str]) -> str:
 
     <section id="lectures" class="content-wrap lecture-grid-section">
       <h2>강의별 정리</h2>
-      <p class="section-intro">각 페이지는 학생이 읽기 좋은 정리본을 먼저 배치하고, 원문 STT는 접힌 영역에 보존했다.</p>
+      <p class="section-intro">각 강의 페이지에서 학습 목표, 상세 정리, 예시, 복습 질문을 바로 확인할 수 있다.</p>
       <div class="lecture-grid">
         {''.join(cards)}
       </div>
     </section>
 
-    <section class="content-wrap note-block">
-      <h2>작성 기준</h2>
-      <ul class="check-list">
-        {notes}
-      </ul>
-    </section>
   </main>
 </body>
 </html>
 """
 
 
-def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str]) -> str:
+def render_lecture(lecture: dict, course: dict) -> str:
     lectures = course.get("lectures", [])
     prev_next = []
     idx = lectures.index(lecture)
@@ -1481,17 +1577,6 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str]) -> 
     )
     checks = "".join(f"<li>{html.escape(item)}</li>" for item in lecture["checks"])
     objectives = "".join(f"<li>{html.escape(item)}</li>" for item in lecture["objectives"])
-    raw_transcript = transcripts.get(lecture["id"], "")
-    transcript = reading_transcript(raw_transcript) if raw_transcript else "STT 원문 파일이 아직 연결되지 않았습니다."
-    full_walkthrough = ""
-    if raw_transcript and (lecture.get("include_full_walkthrough") or course.get("include_full_walkthrough")):
-        full_walkthrough = f"""
-        <section class="note-section full-walkthrough">
-          <h2>강의 전체 정돈본</h2>
-          <p>아래 내용은 STT 원문 흐름을 유지하면서 문장과 문단을 나눠 읽기 쉽게 정리한 전체 강의 본문이다. 세부 설명을 건너뛰지 않고 따라가야 하는 강의는 이 영역까지 함께 읽으면 된다.</p>
-          <div class="readable-transcript">{readable_transcript_block(raw_transcript)}</div>
-        </section>
-        """
     lecture_label = f"{course['short_title']} {lecture['id']}"
 
     return shared_head(f"{course['title']} {lecture['id']} - {lecture['title']}", "../../../../") + f"""
@@ -1500,7 +1585,7 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str]) -> 
     <nav class="top-nav">
       <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
       <a href="../index.html#lectures">과목 강의 목록</a>
-      <a href="#transcript">STT 원문</a>
+      <a href="#review">복습 체크</a>
     </nav>
     <section class="lecture-hero">
       <div>
@@ -1522,27 +1607,15 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str]) -> 
         <h2>학습 목표</h2>
         <ul class="check-list">{objectives}</ul>
       </article>
-      <article class="note-block compact-source">
-        <h2>자료 기준</h2>
-        <p>이 페이지는 STT 원문만 바탕으로 정리했다. 자동 전사 특성상 반복 인사, 무의미한 잡음, 명백한 말 끊김은 학습 내용에 맞게 정돈했고, 원문은 하단에 보존했다.</p>
-      </article>
     </section>
 
     <div class="content-wrap notes-layout">
       {sections}
-      {full_walkthrough}
     </div>
 
-    <section class="content-wrap note-block">
+    <section id="review" class="content-wrap note-block">
       <h2>복습 체크</h2>
       <ul class="check-list">{checks}</ul>
-    </section>
-
-    <section id="transcript" class="content-wrap transcript-wrap">
-      <details>
-        <summary>STT 원문 펼치기</summary>
-        <div class="transcript-text">{transcript}</div>
-      </details>
     </section>
 
     <nav class="content-wrap page-nav">
@@ -1556,7 +1629,11 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str]) -> 
 
 def write_styles() -> None:
     ASSET_DIR.mkdir(exist_ok=True)
-    (ASSET_DIR / "styles.css").write_text(
+    styles_path = ASSET_DIR / "styles.css"
+    if styles_path.exists():
+        return
+
+    styles_path.write_text(
         dedent(
             """
             :root {
@@ -1573,6 +1650,19 @@ def write_styles() -> None:
               --blue: #28587b;
               --code-bg: #111827;
               --code-text: #f4f7fb;
+              --code-label-bg: #1f2937;
+              --code-line: #5f6f89;
+              --tok-keyword: #ff7ab6;
+              --tok-type: #7dd3fc;
+              --tok-string: #f9c74f;
+              --tok-comment: #94a3b8;
+              --tok-number: #c4b5fd;
+              --tok-function: #93c5fd;
+              --tok-variable: #a7f3d0;
+              --tok-operator: #fca5a5;
+              --tok-preprocessor: #fdba74;
+              --tok-option: #86efac;
+              --tok-register: #fda4af;
               --shadow: 0 18px 45px rgba(23, 32, 51, 0.08);
               --radius: 8px;
             }
@@ -2013,7 +2103,7 @@ def write_styles() -> None:
 
             .intro-grid {
               display: grid;
-              grid-template-columns: 1.4fr 0.8fr;
+              grid-template-columns: 1fr;
               gap: 18px;
             }
 
@@ -2130,22 +2220,81 @@ def write_styles() -> None:
             }
 
             pre {
+              position: relative;
               margin: 18px 0 0;
               padding: 18px;
               overflow-x: auto;
               border-radius: var(--radius);
+              border: 1px solid rgba(148, 163, 184, 0.22);
               background: var(--code-bg);
               color: var(--code-text);
               line-height: 1.55;
               font-size: 14px;
             }
 
+            pre[data-language] {
+              padding-top: 48px;
+            }
+
+            pre[data-language]::before {
+              content: attr(data-language);
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 34px;
+              display: flex;
+              align-items: center;
+              padding: 0 18px;
+              background: var(--code-label-bg);
+              color: #dbeafe;
+              font-size: 12px;
+              font-weight: 850;
+              letter-spacing: 0;
+              text-transform: uppercase;
+              border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+            }
+
             pre code {
+              display: block;
+              min-width: max-content;
+              counter-reset: code-line;
               padding: 0;
               background: transparent;
               color: inherit;
               font-size: inherit;
             }
+
+            .code-line {
+              display: block;
+              position: relative;
+              min-height: 1.55em;
+              padding-left: 3.2rem;
+              white-space: pre;
+              counter-increment: code-line;
+            }
+
+            .code-line::before {
+              content: counter(code-line);
+              position: absolute;
+              left: 0;
+              width: 2.2rem;
+              color: var(--code-line);
+              text-align: right;
+              user-select: none;
+            }
+
+            .tok-keyword { color: var(--tok-keyword); font-weight: 700; }
+            .tok-type { color: var(--tok-type); font-weight: 700; }
+            .tok-string { color: var(--tok-string); }
+            .tok-comment { color: var(--tok-comment); font-style: italic; }
+            .tok-number { color: var(--tok-number); }
+            .tok-function { color: var(--tok-function); }
+            .tok-variable { color: var(--tok-variable); }
+            .tok-operator { color: var(--tok-operator); }
+            .tok-preprocessor { color: var(--tok-preprocessor); font-weight: 700; }
+            .tok-option { color: var(--tok-option); }
+            .tok-register { color: var(--tok-register); font-weight: 700; }
 
             .diagram {
               display: flex;
@@ -2232,32 +2381,87 @@ def write_styles() -> None:
               margin-top: 34px;
             }
 
+            .reveal-section,
             .transcript-wrap details {
               padding: 0;
               overflow: hidden;
             }
 
-            .transcript-wrap summary {
+            .reveal-section summary {
               cursor: pointer;
-              padding: 20px 24px;
-              font-weight: 850;
+              list-style: none;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 16px;
+              padding: 18px 22px;
               background: #f1f5f8;
+              border: 0;
+            }
+
+            .reveal-section summary::-webkit-details-marker {
+              display: none;
+            }
+
+            .reveal-section summary span {
+              display: grid;
+              gap: 3px;
+              min-width: 0;
+            }
+
+            .reveal-section summary strong {
+              color: var(--ink);
+              font-size: 18px;
+              font-weight: 850;
+              line-height: 1.25;
+            }
+
+            .reveal-section summary small {
+              color: var(--muted);
+              font-size: 13px;
+              font-weight: 650;
+              line-height: 1.35;
+            }
+
+            .reveal-section summary::after {
+              content: "펼치기";
+              flex: 0 0 auto;
+              min-width: 72px;
+              min-height: 34px;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0 12px;
+              border-radius: var(--radius);
+              background: var(--green);
+              color: #ffffff;
+              font-size: 13px;
+              font-weight: 850;
+            }
+
+            .reveal-section[open] summary::after {
+              content: "접기";
+              background: #e7f3ee;
+              color: var(--green-dark);
+            }
+
+            .reveal-body {
+              padding: 24px;
+              border-top: 1px solid var(--line);
+            }
+
+            .reveal-body > p:first-child {
+              margin-top: 0;
             }
 
             .transcript-text {
               padding: 24px;
               max-height: 520px;
               overflow: auto;
-              white-space: pre-wrap;
               color: var(--muted);
               font-size: 14px;
               line-height: 1.8;
               border-top: 1px solid var(--line);
-            }
-
-            .full-walkthrough {
-              border-color: #cfd9df;
-              background: #fbfcfd;
             }
 
             .readable-transcript {
@@ -2269,6 +2473,10 @@ def write_styles() -> None:
               color: #263246;
               font-size: 15px;
               line-height: 1.82;
+            }
+
+            .transcript-text .readable-transcript {
+              margin-top: 0;
             }
 
             .readable-transcript p {
@@ -2287,6 +2495,38 @@ def write_styles() -> None:
               gap: 10px;
               flex-wrap: wrap;
               margin-top: 30px;
+            }
+
+            .content-wrap,
+            .note-block,
+            .note-section,
+            .lecture-card,
+            .course-item,
+            .toc-box,
+            .timeline,
+            .diagram,
+            .course-map {
+              min-width: 0;
+            }
+
+            .note-block,
+            .note-section,
+            .lecture-card,
+            .course-item,
+            .toc-box {
+              overflow-wrap: anywhere;
+            }
+
+            .note-section p,
+            .note-block p,
+            .lecture-card p,
+            .course-item p,
+            .note-section strong,
+            .note-block strong,
+            .lecture-card strong,
+            .course-item strong {
+              min-width: 0;
+              overflow-wrap: anywhere;
             }
 
             @media (max-width: 980px) {
@@ -2361,6 +2601,7 @@ def write_styles() -> None:
               table {
                 display: block;
                 overflow-x: auto;
+                max-width: 100%;
                 white-space: nowrap;
               }
             }
@@ -2371,22 +2612,315 @@ def write_styles() -> None:
     )
 
 
+def write_code_highlighter() -> None:
+    ASSET_DIR.mkdir(exist_ok=True)
+    (ASSET_DIR / "code-highlight.js").write_text(
+        dedent(
+            r"""
+            (() => {
+              const labels = {
+                asm: "Assembly",
+                bash: "Bash",
+                c: "C",
+                cpp: "C++",
+                javascript: "JavaScript",
+                js: "JavaScript",
+                python: "Python",
+                py: "Python",
+                shell: "Shell",
+                sh: "Shell",
+                sql: "SQL",
+                text: "Text",
+                txt: "Text",
+              };
+
+              const escapeMap = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              };
+
+              const escapeHtml = (value) => value.replace(/[&<>"']/g, (char) => escapeMap[char]);
+
+              const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+              const keywordRegex = (words) => new RegExp(`\\b(?:${words.map(escapeRegex).join("|")})\\b`, "g");
+
+              const splitByRegex = (segments, regex, className) => {
+                const next = [];
+                for (const segment of segments) {
+                  if (segment.className !== "plain") {
+                    next.push(segment);
+                    continue;
+                  }
+
+                  let lastIndex = 0;
+                  let matched = false;
+                  for (const match of segment.text.matchAll(regex)) {
+                    const value = match[0];
+                    const index = match.index ?? 0;
+                    if (!value) {
+                      continue;
+                    }
+                    if (index > lastIndex) {
+                      next.push({ className: "plain", text: segment.text.slice(lastIndex, index) });
+                    }
+                    next.push({ className, text: value });
+                    lastIndex = index + value.length;
+                    matched = true;
+                  }
+
+                  if (lastIndex < segment.text.length) {
+                    next.push({ className: "plain", text: segment.text.slice(lastIndex) });
+                  }
+                  if (!matched && segment.text.length === 0) {
+                    next.push(segment);
+                  }
+                }
+                return next;
+              };
+
+              const renderSegments = (segments) =>
+                segments
+                  .map((segment) => {
+                    const text = escapeHtml(segment.text);
+                    return segment.className === "plain" ? text : `<span class="tok-${segment.className}">${text}</span>`;
+                  })
+                  .join("");
+
+              const highlightWithRules = (line, rules) => {
+                let segments = [{ className: "plain", text: line }];
+                for (const [regex, className] of rules) {
+                  segments = splitByRegex(segments, regex, className);
+                }
+                return renderSegments(segments);
+              };
+
+              const cRules = [
+                [/^\s*#\s*[A-Za-z_]\w*[^\n]*/g, "preprocessor"],
+                [/\/\*.*?\*\/|\/\/.*/g, "comment"],
+                [/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, "string"],
+                [/\b(?:0x[0-9A-Fa-f]+|\d+(?:\.\d+)?(?:[uUlLfF]+)?)\b/g, "number"],
+                [
+                  keywordRegex([
+                    "auto",
+                    "break",
+                    "case",
+                    "char",
+                    "const",
+                    "continue",
+                    "default",
+                    "do",
+                    "double",
+                    "else",
+                    "enum",
+                    "extern",
+                    "float",
+                    "for",
+                    "goto",
+                    "if",
+                    "int",
+                    "long",
+                    "register",
+                    "return",
+                    "short",
+                    "signed",
+                    "sizeof",
+                    "static",
+                    "struct",
+                    "switch",
+                    "typedef",
+                    "union",
+                    "unsigned",
+                    "void",
+                    "volatile",
+                    "while",
+                  ]),
+                  "keyword",
+                ],
+                [/\b[A-Za-z_]\w*(?=\s*\()/g, "function"],
+                [/[{}()[\];,.+\-*/%=&|!<>^~?:]+/g, "operator"],
+              ];
+
+              const pythonRules = [
+                [/"{3}.*?"{3}|'{3}.*?'{3}|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, "string"],
+                [/#.*/g, "comment"],
+                [/^\s*@\w+(?:\.\w+)*/g, "preprocessor"],
+                [/\b(?:0x[0-9A-Fa-f]+|\d+(?:\.\d+)?)\b/g, "number"],
+                [
+                  keywordRegex([
+                    "False",
+                    "None",
+                    "True",
+                    "and",
+                    "as",
+                    "assert",
+                    "async",
+                    "await",
+                    "break",
+                    "class",
+                    "continue",
+                    "def",
+                    "del",
+                    "elif",
+                    "else",
+                    "except",
+                    "finally",
+                    "for",
+                    "from",
+                    "global",
+                    "if",
+                    "import",
+                    "in",
+                    "is",
+                    "lambda",
+                    "nonlocal",
+                    "not",
+                    "or",
+                    "pass",
+                    "raise",
+                    "return",
+                    "try",
+                    "while",
+                    "with",
+                    "yield",
+                  ]),
+                  "keyword",
+                ],
+                [/\b(?:AF_INET|SOCK_DGRAM|SOCK_STREAM|print|range|len|str|int|float|list|dict|set|tuple|socket)\b/g, "type"],
+                [/\b[A-Za-z_]\w*(?=\s*\()/g, "function"],
+                [/[{}()[\];,.+\-*/%=&|!<>^~:]+/g, "operator"],
+              ];
+
+              const bashRules = [
+                [/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, "string"],
+                [/(^|\s)#.*/g, "comment"],
+                [/\$\{[^}]+\}|\$\([^)]+\)|\$[A-Za-z_][A-Za-z0-9_]*|\$[0-9?@#]/g, "variable"],
+                [/(^|\s)-{1,2}[A-Za-z0-9][A-Za-z0-9_-]*/g, "option"],
+                [/\b(?:sudo|apt|apt-get|systemctl|journalctl|service|ls|pwd|cd|cp|mv|rm|mkdir|rmdir|touch|cat|echo|chmod|chown|grep|find|curl|ping|kill|ps|jobs|last|users|whoami|ifconfig|arp|gcc|g\+\+|make|python|python3|conda|jupyter|docker|vim|vi|nano|vimtutor|mysql|nginx|apache2|vsftpd|ftp|put|get|break|clear|file|man|df|ssh)\b/g, "function"],
+                [/\b\d+(?:\.\d+)?\b/g, "number"],
+                [/[|&;<>]=?|={1,2}/g, "operator"],
+              ];
+
+              const sqlRules = [
+                [/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g, "string"],
+                [/--.*|\/\*.*?\*\//g, "comment"],
+                [/\b\d+(?:\.\d+)?\b/g, "number"],
+                [
+                  keywordRegex([
+                    "ADD",
+                    "ALTER",
+                    "AND",
+                    "AS",
+                    "BY",
+                    "CREATE",
+                    "DATABASE",
+                    "DELETE",
+                    "DROP",
+                    "FROM",
+                    "GRANT",
+                    "GROUP",
+                    "IDENTIFIED",
+                    "INSERT",
+                    "INTO",
+                    "JOIN",
+                    "ON",
+                    "OR",
+                    "ORDER",
+                    "SELECT",
+                    "SET",
+                    "SHOW",
+                    "TABLE",
+                    "TO",
+                    "UPDATE",
+                    "USE",
+                    "USER",
+                    "VALUES",
+                    "WHERE",
+                  ]),
+                  "keyword",
+                ],
+                [/\b(?:sudo|apt|mysql|systemctl)\b/g, "function"],
+                [/[{}()[\];,.+\-*/%=&|!<>^~]+/g, "operator"],
+              ];
+
+              const asmRules = [
+                [/;.*/g, "comment"],
+                [/\b(?:mov|add|sub|mul|div|push|pop|call|ret|cmp|jmp|je|jne|jg|jl|and|or|xor|lea|int|nop)\b/gi, "keyword"],
+                [/\b(?:eax|ebx|ecx|edx|esi|edi|esp|ebp|rax|rbx|rcx|rdx|rsi|rdi|rsp|rbp|ax|bx|cx|dx|al|bl|cl|dl)\b/gi, "register"],
+                [/\b(?:0x[0-9A-Fa-f]+|\d+)\b/g, "number"],
+                [/[{}()[\];,.+\-*/%=&|!<>^~:]+/g, "operator"],
+              ];
+
+              const rulesByLanguage = {
+                asm: asmRules,
+                bash: bashRules,
+                c: cRules,
+                cpp: cRules,
+                javascript: cRules,
+                js: cRules,
+                python: pythonRules,
+                py: pythonRules,
+                shell: bashRules,
+                sh: bashRules,
+                sql: sqlRules,
+              };
+
+              const normalizeLanguage = (code) => {
+                const languageClass = [...code.classList].find((className) => className.startsWith("language-"));
+                return languageClass ? languageClass.replace("language-", "").toLowerCase() : "text";
+              };
+
+              const highlightLine = (line, language) => {
+                const rules = rulesByLanguage[language];
+                return rules ? highlightWithRules(line, rules) : escapeHtml(line);
+              };
+
+              const highlightBlock = (code) => {
+                if (code.dataset.highlighted === "true") {
+                  return;
+                }
+
+                const language = normalizeLanguage(code);
+                const pre = code.closest("pre");
+                if (pre) {
+                  pre.dataset.language = labels[language] || language.toUpperCase();
+                }
+
+                const source = code.textContent.replace(/\n$/, "");
+                const lines = source.split("\n");
+                code.innerHTML = lines
+                  .map((line) => `<span class="code-line">${highlightLine(line, language)}</span>`)
+                  .join("");
+                code.dataset.highlighted = "true";
+              };
+
+              document.querySelectorAll("pre code").forEach(highlightBlock);
+            })();
+            """
+        ).strip()
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> None:
     generated_courses = ready_courses()
-    all_transcripts = {str(course["id"]): get_transcripts(course) for course in generated_courses}
     write_styles()
-    (ROOT / "index.html").write_text(render_site_index(all_transcripts), encoding="utf-8")
+    write_code_highlighter()
+    write_public_html(ROOT / "index.html", render_site_index())
     for course in generated_courses:
-        transcripts = all_transcripts[str(course["id"])]
         output_dir = course_output_dir(course)
         output_dir.mkdir(parents=True, exist_ok=True)
         lecture_dir = lecture_output_dir(course)
         lecture_dir.mkdir(parents=True, exist_ok=True)
-        (output_dir / "index.html").write_text(render_course_index(course, transcripts), encoding="utf-8")
+        write_public_html(output_dir / "index.html", render_course_index(course))
         for lecture in course.get("lectures", []):
-            (lecture_dir / lecture_html_file(lecture)).write_text(
-                render_lecture(lecture, course, transcripts),
-                encoding="utf-8",
+            write_public_html(
+                lecture_dir / lecture_html_file(lecture),
+                render_lecture(lecture, course),
             )
 
 

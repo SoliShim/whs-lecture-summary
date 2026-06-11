@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>화이트햇 강의 정리</title>
   <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/code-highlight.js" defer></script>
 </head>
 
 <body>
@@ -16,19 +17,19 @@
     </nav>
     <section class="index-hero">
       <div>
-        <p class="small-label">STT 원문 기반 HTML 강의 노트</p>
+        <p class="small-label">화이트햇 강의 노트</p>
         <h1>화이트햇 과정 전체를 트랙과 과목 단위로 정리하는 강의 아카이브</h1>
-        <p class="lead">각 과목의 STT 파일을 기준으로 핵심 개념, 세부 설명, 예시, 복습 질문을 HTML 노트로 정리한다. 현재는 4개 과목, 34개 강의가 생성되어 있다.</p>
+        <p class="lead">핵심 개념, 세부 설명, 예시, 복습 질문을 과목별로 모아 바로 공부할 수 있게 정리한다. 현재는 6개 과목, 48개 강의를 볼 수 있다.</p>
         <div class="hero-actions">
           <a class="button primary" href="#tracks">트랙 보기</a>
-          <a class="button secondary" href="courses/common-development/programming-basics-c/index.html">프로그래밍 기초(C) 열기</a><a class="button secondary" href="courses/common-development/computer-architecture-1/index.html">컴퓨터 구조 I 열기</a><a class="button secondary" href="courses/common-development/os-basic/index.html">운영체제 기초 열기</a><a class="button secondary" href="courses/common-development/network-basic/index.html">네트워크 기초 열기</a>
+          <a class="button secondary" href="courses/common-development/programming-basics-c/index.html">프로그래밍 기초(C) 열기</a><a class="button secondary" href="courses/common-development/computer-architecture-1/index.html">컴퓨터 구조 I 열기</a><a class="button secondary" href="courses/common-development/os-basic/index.html">운영체제 기초 열기</a><a class="button secondary" href="courses/common-development/network-basic/index.html">네트워크 기초 열기</a><a class="button secondary" href="courses/common-development/cryptography-basic/index.html">암호학 기초 열기</a><a class="button secondary" href="courses/common-development/ethics-cyber-security/index.html">정보보안윤리 / 사이버 안보 열기</a>
         </div>
       </div>
       <aside class="hero-panel">
         <div class="panel-stat"><strong>4</strong><span>트랙</span></div>
         <div class="panel-stat"><strong>10</strong><span>등록 과목</span></div>
-        <div class="panel-stat"><strong>34</strong><span>생성 강의</span></div>
-        <div class="panel-stat"><strong>348,726</strong><span>원문 문자 수</span></div>
+        <div class="panel-stat"><strong>48</strong><span>강의</span></div>
+        <div class="panel-stat"><strong>203</strong><span>복습 질문</span></div>
       </aside>
     </section>
   </header>
@@ -36,14 +37,14 @@
   <main>
     <section id="tracks" class="content-wrap track-grid-section">
       <h2>전체 트랙</h2>
-      <p class="section-intro">제공된 스크린샷 기준으로 4개 트랙을 먼저 잡고, 과목이 들어오는 순서대로 각 트랙 아래에 HTML 정리본을 추가한다.</p>
+      <p class="section-intro">화이트햇 과정의 주요 학습 범위를 트랙별로 나누고, 각 과목의 강의 노트를 한곳에서 찾을 수 있게 정리한다.</p>
       <div class="track-grid">
         
             <article class="track-card">
               <span class="small-label">TRACK 01</span>
               <h3>공통/개발</h3>
-              <strong>40%</strong>
-              <p>4/10 과목 정리 완료</p>
+              <strong>60%</strong>
+              <p>6/10 과목 정리 완료</p>
               <a class="button primary" href="#track-common-development">과목 보기</a>
             </article>
             
@@ -83,11 +84,11 @@
                     <span class="small-label">TRACK 01</span>
                     <h2>공통/개발</h2>
                   </div>
-                  <p>프로그래밍, 컴퓨터 구조, 운영체제, 네트워크처럼 모든 보안 분야의 바탕이 되는 과목 묶음.</p>
+                  <p>프로그래밍, 컴퓨터 구조, 운영체제, 네트워크, 암호학처럼 모든 보안 분야의 바탕이 되는 과목 묶음.</p>
                 </div>
                 <div class="course-list">
                   
-                <article class="course-item">
+                <article class="course-item course-icon-code" data-course-id="programming-basics-c">
                   <div>
                     <div class="course-item-head">
                       <h3>프로그래밍 기초(C)</h3>
@@ -98,7 +99,7 @@
                   <a class="button" href="courses/common-development/programming-basics-c/index.html">과목 열기</a>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-systems" data-course-id="computer-architecture-1">
                   <div>
                     <div class="course-item-head">
                       <h3>컴퓨터 구조 I</h3>
@@ -109,7 +110,7 @@
                   <a class="button" href="courses/common-development/computer-architecture-1/index.html">과목 열기</a>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-operations" data-course-id="os-basic">
                   <div>
                     <div class="course-item-head">
                       <h3>운영체제 기초</h3>
@@ -120,7 +121,7 @@
                   <a class="button" href="courses/common-development/os-basic/index.html">과목 열기</a>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-network" data-course-id="network-basic">
                   <div>
                     <div class="course-item-head">
                       <h3>네트워크 기초</h3>
@@ -131,70 +132,70 @@
                   <a class="button" href="courses/common-development/network-basic/index.html">과목 열기</a>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-crypto" data-course-id="cryptography-basic">
                   <div>
                     <div class="course-item-head">
                       <h3>암호학 기초</h3>
-                      <span class="status-pill status-pending">준비 예정</span>
+                      <span class="status-pill status-ready">정리 완료</span>
                     </div>
-                    <p>STT 파일이 들어오면 같은 템플릿으로 정리할 과목.</p>
+                    <p>보안 목표, 암호 기술 분류, 해시와 HMAC, 기밀성, 공개키 암호, 디지털 서명, PKI, TLS와 하이브리드 암호 기술을 정리한 과목.</p>
                   </div>
-                  <span class="status-note">STT 추가 후 생성</span>
+                  <a class="button" href="courses/common-development/cryptography-basic/index.html">과목 열기</a>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-shield" data-course-id="ethics-cyber-security">
                   <div>
                     <div class="course-item-head">
                       <h3>정보보안윤리 / 사이버 안보</h3>
-                      <span class="status-pill status-pending">준비 예정</span>
+                      <span class="status-pill status-ready">정리 완료</span>
                     </div>
-                    <p>STT 파일이 들어오면 같은 템플릿으로 정리할 과목.</p>
+                    <p>사이버 안보의 정의, 국내 사이버 위협 사건사, 사이버 전쟁, 국가별 전략, 한국의 안보 체계와 국가 사이버 안보 전략을 정리한 과목.</p>
                   </div>
-                  <span class="status-note">STT 추가 후 생성</span>
+                  <a class="button" href="courses/common-development/ethics-cyber-security/index.html">과목 열기</a>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-trend" data-course-id="security-trends">
                   <div>
                     <div class="course-item-head">
                       <h3>최신 보안 동향</h3>
                       <span class="status-pill status-pending">준비 예정</span>
                     </div>
-                    <p>STT 파일이 들어오면 같은 템플릿으로 정리할 과목.</p>
+                    <p>자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.</p>
                   </div>
-                  <span class="status-note">STT 추가 후 생성</span>
+                  <span class="status-note">준비 중</span>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-code" data-course-id="hacker-programming">
                   <div>
                     <div class="course-item-head">
                       <h3>해커의 프로그래밍</h3>
                       <span class="status-pill status-pending">준비 예정</span>
                     </div>
-                    <p>STT 파일이 들어오면 같은 템플릿으로 정리할 과목.</p>
+                    <p>자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.</p>
                   </div>
-                  <span class="status-note">STT 추가 후 생성</span>
+                  <span class="status-note">준비 중</span>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-secure-code" data-course-id="secure-coding">
                   <div>
                     <div class="course-item-head">
                       <h3>시큐어코딩</h3>
                       <span class="status-pill status-pending">준비 예정</span>
                     </div>
-                    <p>STT 파일이 들어오면 같은 템플릿으로 정리할 과목.</p>
+                    <p>자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.</p>
                   </div>
-                  <span class="status-note">STT 추가 후 생성</span>
+                  <span class="status-note">준비 중</span>
                 </article>
                 
-                <article class="course-item">
+                <article class="course-item course-icon-web" data-course-id="modern-web-dev-security">
                   <div>
                     <div class="course-item-head">
                       <h3>모던 웹 개발 및 보안</h3>
                       <span class="status-pill status-pending">준비 예정</span>
                     </div>
-                    <p>STT 파일이 들어오면 같은 템플릿으로 정리할 과목.</p>
+                    <p>자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.</p>
                   </div>
-                  <span class="status-note">STT 추가 후 생성</span>
+                  <span class="status-note">준비 중</span>
                 </article>
                 
                 </div>
@@ -248,14 +249,6 @@
             
     </div>
 
-    <section class="content-wrap note-block">
-      <h2>파일 기준</h2>
-      <ul class="check-list">
-        <li>영상은 <code>videos/트랙/과목/과목명-01-강의-제목.mp4</code>처럼 과목, 순서, 제목이 보이게 둔다.</li>
-        <li>STT 원문은 <code>stt/트랙/과목/과목명-01-강의-제목.txt</code>처럼 과목, 순서, 제목이 보이게 둔다.</li>
-        <li>생성된 HTML은 <code>courses/트랙/과목/</code> 아래에 과목 페이지와 강의별 페이지로 저장된다.</li>
-      </ul>
-    </section>
   </main>
 </body>
 </html>

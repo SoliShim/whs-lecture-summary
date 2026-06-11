@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>암호학 기초 1-6 - 암호기술의 활용</title>
+  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <script src="../../../../assets/code-highlight.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header lecture-header">
+    <nav class="top-nav">
+      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+      <a href="../index.html#lectures">과목 강의 목록</a>
+      <a href="#review">복습 체크</a>
+    </nav>
+    <section class="lecture-hero">
+      <div>
+        <p class="small-label">암호학 1-6</p>
+        <h1>암호기술의 활용</h1>
+        <p class="lead">SSL/TLS, HTTPS, IPsec, 802.1X, S/MIME, 2FA, TLS 1.2/1.3, cipher suite, 보안 모니터링, 하이브리드 암호 기술을 정리한다.</p>
+        <div class="tag-row large"><span>TLS</span><span>Cipher Suite</span><span>Hybrid Crypto</span></div>
+      </div>
+      <aside class="toc-box">
+        <strong>페이지 목차</strong>
+        <a href="#section-1">암호 기술의 활용 영역</a><a href="#section-2">SSL/TLS와 HTTPS</a><a href="#section-3">SSL/TLS 역사</a><a href="#section-4">TLS 1.3의 개선</a><a href="#section-5">Cipher suite</a><a href="#section-6">암호화 트래픽과 인증서 오류</a><a href="#section-7">암호와 보안 모니터링</a><a href="#section-8">하이브리드 암호 기술</a><a href="#section-9">오프라인 강의 예고</a>
+      </aside>
+    </section>
+  </header>
+
+  <main class="lecture-main">
+    <section class="content-wrap intro-grid">
+      <article class="note-block">
+        <h2>학습 목표</h2>
+        <ul class="check-list"><li>암호 기술이 실제 서비스와 보안 장치에서 어떻게 활용되는지 예시를 들어 설명한다.</li><li>SSL/TLS와 HTTPS, TLS 1.2와 TLS 1.3, cipher suite의 의미를 이해한다.</li><li>암호화된 트래픽이 보안 모니터링에 주는 영향과 하이브리드 암호 기술의 전체 흐름을 정리한다.</li></ul>
+      </article>
+    </section>
+
+    <div class="content-wrap notes-layout">
+      
+        <section id="section-1" class="note-section">
+          <h2>암호 기술의 활용 영역</h2>
+          <p>마지막 차시는 지금까지 배운 암호 기술이 실제로 어디에 사용되는지 정리한다. 암호 기술은 기밀성뿐 아니라 무결성, 인증, 부인방지까지 폭넓게 사용된다.</p>
+<table>
+  <thead><tr><th>활용 영역</th><th>강의에서의 설명</th></tr></thead>
+  <tbody>
+    <tr><td>SSL/TLS</td><td>인증서 기반 peer 인증과 통신 암호화에 사용된다.</td></tr>
+    <tr><td>IPsec VPN</td><td>네트워크 트래픽을 암호화해 보안 통신을 제공한다.</td></tr>
+    <tr><td>HTTPS</td><td>웹 브라우저의 자물쇠 표시로 익숙한 웹 트래픽 암호화다.</td></tr>
+    <tr><td>802.1X</td><td>네트워크 장치 접근 제어와 인증에 사용된다.</td></tr>
+    <tr><td>S/MIME</td><td>이메일 내용을 암호화하는 데 사용된다.</td></tr>
+    <tr><td>인스턴트 메시지 보안</td><td>카카오톡, 텔레그램 같은 메시지 암호화에 공개키 기반 기술이 쓰인다.</td></tr>
+    <tr><td>코드 서명</td><td>애플리케이션 승인, 권한 부여, 소프트웨어 무결성 확인에 쓰인다.</td></tr>
+    <tr><td>EFS와 보안 USB</td><td>저장된 데이터를 암호화해 보호한다.</td></tr>
+    <tr><td>2단계 인증</td><td>스마트카드, OTP, nonce 기반 인증 흐름에 암호 기술이 쓰인다.</td></tr>
+  </tbody>
+</table>
+        </section>
+        
+        <section id="section-2" class="note-section">
+          <h2>SSL/TLS와 HTTPS</h2>
+          <p>SSL/TLS는 Secure Socket Layer와 Transport Layer Security의 약어다. 인터넷상에서 통신 내용을 암호화해 주는 프로토콜이다. HTTP는 기본적으로 암호화되지 않은 세션을 제공하지만, HTTP를 SSL/TLS 위에서 사용하면 통신이 암호화되고 이를 HTTPS라고 부른다.</p>
+<p>SMTP로 메일을 보내거나 POP3로 메일을 받을 때도 SSL/TLS를 사용하면 암호화 통신으로 데이터를 보호할 수 있다. SSL/TLS를 사용하지 않으면 Alice와 Bob이 주고받는 주문 내용이나 확인서가 평문으로 인터넷을 오간다. SSL/TLS를 사용하면 인터넷상에서 소통되는 내용이 암호문으로 바뀐다.</p>
+        </section>
+        
+        <section id="section-3" class="note-section">
+          <h2>SSL/TLS 역사</h2>
+          <p>SSL은 1994년 Netscape가 웹 서비스 보안을 높이기 위해 Navigator 브라우저에 내장하면서 개발한 기술로 소개된다. 이후 SSL 3.0이 나왔고, IETF는 SSL 3.0을 기반으로 TLS 1.0 표준을 만들었다. SSL 자체는 표준이라기보다 Netscape에서 시작된 기술이고, TLS가 인터넷 표준으로 이어진 흐름이다. 하지만 관용적으로 SSL/TLS를 함께 부른다.</p>
+<p>TLS 1.1과 TLS 1.2가 이어졌고, TLS 1.2는 오랫동안 널리 사용되었다. 2014년 Heartbleed와 POODLE 같은 취약점이 발견되면서 전 세계적으로 큰 우려가 있었고, IETF는 TLS 1.3을 새롭게 개발해 2018년에 발표했다고 강의는 설명한다.</p>
+        </section>
+        
+        <section id="section-4" class="note-section">
+          <h2>TLS 1.3의 개선</h2>
+          <p>TLS 1.3은 TLS 1.2에 비해 여러 성능과 보안성이 개선되었다. 첫째, 통신 세션을 만들기 위한 handshake 과정이 단축되었다. 둘째, cipher suite 사용 방식이 개선되어 더 유연하게 암호 패키지를 사용할 수 있게 되었다. 셋째, 타원곡선 알고리즘 ECC가 기본적으로 지원된다. 넷째, 키 교환 방식으로 Diffie-Hellman 계열 방식을 사용한다.</p>
+<p>강의는 ECC가 RSA와 달리 타원곡선이라는 수학 개념을 사용하며, 같은 보안 수준에서 키 길이를 크게 줄일 수 있다고 설명한다. 키 길이가 줄어들면 연산 부담이 줄고 속도가 빨라지므로, 공개키 암호 알고리즘의 느린 단점을 줄이는 데 도움이 된다.</p>
+        </section>
+        
+        <section id="section-5" class="note-section">
+          <h2>Cipher suite</h2>
+          <p>Cipher suite는 TLS에서 어떤 키 교환 방식, 서명 알고리즘, 대칭키 암호 알고리즘, 운용 모드, 해시 알고리즘을 조합해 사용할지 나타내는 이름이다. 강의는 TLS 1.2의 cipher suite 형식을 예로 들어 설명한다.</p>
+                    <pre><code class="language-text">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+
+ECDHE   : 타원곡선 Diffie-Hellman 기반 키 교환
+RSA     : 디지털 서명 알고리즘
+AES_256 : 256비트 키를 쓰는 대칭키 암호 알고리즘
+GCM     : 블록 암호 운용 모드
+SHA384  : 해시 알고리즘</code></pre>
+                    <p>TLS 1.2 방식은 새로운 키 교환 방법, 해시 알고리즘, 암호 알고리즘이 나올 때마다 조합을 계속 업데이트해야 하는 불편함이 있다. TLS 1.3에서는 이 구조를 단순화해 각 부분을 더 유연하게 합의할 수 있도록 개선되었다고 설명한다.</p>
+        </section>
+        
+        <section id="section-6" class="note-section">
+          <h2>암호화 트래픽과 인증서 오류</h2>
+          <p>암호화된 트래픽은 보안을 높이지만, 보안 모니터링 관점에서는 어려움도 만든다. 공격자가 SSL/TLS를 사용해 암호화된 트래픽으로 네트워크 트랜잭션을 수행하면, 방어자가 내용을 바로 들여다보기 어렵다. 공격자도 암호화된 트래픽을 탐지 우회 수단으로 악용할 수 있다.</p>
+<p>PKI와 인증서 측면에서도 확인해야 할 문제가 있다. X.509 기반 인증서는 유효기간을 가진다. 유효기간이 지나면 브라우저는 인증서가 만료되었다는 경고를 보여 준다. 또한 인증서 서명 검사를 통해 인증서 공개키가 진짜인지 확인할 수 있어야 한다. 서명 유효성을 검사할 수 없으면 브라우저는 Certificate Validation Failure 같은 경고를 표시할 수 있다.</p>
+        </section>
+        
+        <section id="section-7" class="note-section">
+          <h2>암호와 보안 모니터링</h2>
+          <p>암호 기술은 계속 변화하므로 보안을 공부하는 사람은 암호 알고리즘과 작동 방식을 이해해야 한다. 공격자는 암호 알고리즘 자체를 표적으로 삼아 암호 해독을 시도할 수도 있고, 키를 획득해 과거에 수집한 암호문을 복호화하려 할 수도 있다.</p>
+<p>Kerckhoffs 원리처럼 암호 알고리즘은 공개되어 있다고 전제하므로, 검증된 알고리즘을 쓰고 키를 안전하게 보관하는 것이 중요하다. 실제로는 알고리즘 자체가 깨지는 것보다 키가 노출되어 암호화된 데이터가 노출될 위험이 더 현실적일 수 있다고 설명한다.</p>
+<p>방어자 입장에서는 암호화된 패킷 때문에 네트워크 모니터링이 어려워진다. 방화벽, IDS, IPS 같은 보안 장비에서 SSL/TLS 트래픽과 평문 트래픽, HTTPS와 비HTTPS 트래픽을 구분하는 규칙을 구성해야 하고, 가능하다면 암호화된 트래픽을 복호화해 분석할 수 있도록 네트워크를 설계할 필요도 있다.</p>
+        </section>
+        
+        <section id="section-8" class="note-section">
+          <h2>하이브리드 암호 기술</h2>
+          <p>강의의 마지막 핵심은 하이브리드 암호 기술이다. 대칭키 암호 기술은 데이터를 암호화하는 데 사용하고, 비대칭키 암호 기술은 그 대칭키를 안전하게 전달하는 데 사용한다. PKI 또는 CA DB는 송신자와 수신자의 공개키를 신뢰할 수 있게 제공한다.</p>
+<div class="diagram">
+  <div><span class="node-title">1. 데이터 암호화</span><p>계약서 평문을 대칭키로 암호화</p></div>
+  <span class="arrow">→</span>
+  <div><span class="node-title">2. 키 암호화</span><p>대칭키를 수신자의 공개키로 암호화</p></div>
+  <span class="arrow">→</span>
+  <div><span class="node-title">3. 서명</span><p>계약서 해시를 송신자 개인키로 서명</p></div>
+  <span class="arrow">→</span>
+  <div><span class="node-title">4. 검증</span><p>수신자가 복호화와 해시 비교 수행</p></div>
+</div>
+<p>수신자는 자신의 개인키로 암호화된 대칭키를 복호화하고, 그 대칭키로 계약서 암호문을 복호화한다. 그리고 복호화한 계약서로부터 해시값을 계산한다. 송신자가 보낸 디지털 서명은 송신자의 공개키로 확인해 메시지 다이제스트를 복원한다. 두 다이제스트가 같으면 계약서가 변조되지 않았음을 확인할 수 있다. 이 과정에서 기밀성, 무결성, 인증, 부인방지가 함께 달성된다.</p>
+        </section>
+        
+        <section id="section-9" class="note-section">
+          <h2>오프라인 강의 예고</h2>
+          <p>비대면 강의는 여기서 마무리된다. 오프라인 강의에서는 전체 내용을 다시 리뷰하고, 이번 시간에 자세히 다루지 못한 블록 암호의 모드도 살펴볼 예정이다. 또한 OpenSSL을 이용해 해시값을 만들고, 메시지를 암호화하고 복호화하는 실습을 진행한다고 안내한다.</p>
+<p>마지막으로 암호화된 트래픽과 암호화되지 않은 트래픽을 Wireshark로 캡처해 보면서, 보안 관리자로서 암호화 트래픽을 어떻게 다루어야 하는지 생각해 보는 시간을 가질 예정이라고 설명한다.</p>
+        </section>
+        
+    </div>
+
+    <section id="review" class="content-wrap note-block">
+      <h2>복습 체크</h2>
+      <ul class="check-list"><li>SSL/TLS가 HTTP를 어떻게 HTTPS로 만드는지 설명할 수 있는가?</li><li>TLS 1.2 cipher suite 이름에서 키 교환, 서명, 대칭키, 모드, 해시를 읽어낼 수 있는가?</li><li>암호화된 트래픽이 방어자에게 어떤 모니터링 어려움을 주는지 이해했는가?</li><li>하이브리드 암호 기술에서 대칭키, 수신자 공개키, 송신자 개인키, 해시가 각각 어떤 역할을 하는지 말할 수 있는가?</li></ul>
+    </section>
+
+    <nav class="content-wrap page-nav">
+      <a class="button secondary" href="lesson-05.html">이전: 1-5</a><a class="button secondary" href="../index.html">과목 목록으로</a>
+    </nav>
+  </main>
+</body>
+</html>

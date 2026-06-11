@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>프로그래밍 기초(C) 1-4 - 소프트웨어 품질 평가 방법</title>
   <link rel="stylesheet" href="../../../../assets/styles.css">
+  <script src="../../../../assets/code-highlight.js" defer></script>
 </head>
 
 <body>
@@ -12,7 +13,7 @@
     <nav class="top-nav">
       <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
       <a href="../index.html#lectures">과목 강의 목록</a>
-      <a href="#transcript">STT 원문</a>
+      <a href="#review">복습 체크</a>
     </nav>
     <section class="lecture-hero">
       <div>
@@ -34,10 +35,6 @@
         <h2>학습 목표</h2>
         <ul class="check-list"><li>소프트웨어 품질 평가 항목이 매우 많지만 자주 겹치는 핵심 매트릭이 있음을 이해한다.</li><li>유지보수성, 복구성, 재사용성, 보안성의 의미를 설명한다.</li><li>보안성은 기능 동작 여부와 별개로 악의적 행위 가능성을 줄이는 품질 항목임을 이해한다.</li></ul>
       </article>
-      <article class="note-block compact-source">
-        <h2>자료 기준</h2>
-        <p>이 페이지는 STT 원문만 바탕으로 정리했다. 자동 전사 특성상 반복 인사, 무의미한 잡음, 명백한 말 끊김은 학습 내용에 맞게 정돈했고, 원문은 하단에 보존했다.</p>
-      </article>
     </section>
 
     <div class="content-wrap notes-layout">
@@ -45,7 +42,7 @@
         <section id="section-1" class="note-section">
           <h2>품질 매트릭을 보는 이유</h2>
           <p>강의에서는 소프트웨어 품질을 1부터 100, 1부터 1000까지도 나열할 수 있다고 말한다. 하지만 실제로는 학계와 산업계에서 반복적으로 중요하게 보는 가중치 높은 품질 매트릭이 있다. 여러 분류 체계에는 Portability, Modifiability, Correctness, Functionality, Supportability, Functional, Portability 등 다양한 항목이 나오지만, 자세히 보면 서로 겹치는 항목이 많다.</p>
-<p>겹치는 항목을 추려 보면 최소한 유지해야 할 핵심 매트릭을 얻을 수 있고, 강의에서는 오른쪽 표에 8가지 매트릭이 정리된다고 설명한다. STT에서 길게 설명된 항목은 아래와 같다.</p>
+<p>겹치는 항목을 추려 보면 최소한 유지해야 할 핵심 매트릭을 얻을 수 있고, 강의에서는 오른쪽 표에 8가지 매트릭이 정리된다고 설명한다. 특히 자세히 다룬 항목은 아래와 같다.</p>
         </section>
         
         <section id="section-2" class="note-section">
@@ -81,48 +78,11 @@
 </table>
         </section>
         
-      
     </div>
 
-    <section class="content-wrap note-block">
+    <section id="review" class="content-wrap note-block">
       <h2>복습 체크</h2>
       <ul class="check-list"><li>유지보수성이 낮으면 왜 시간이 지날수록 비용이 늘어나는가?</li><li>복구성은 장애가 없다는 뜻이 아니라 무엇을 의미하는가?</li><li>기능이 정상 동작해도 보안 품질이 낮을 수 있는 이유를 설명할 수 있는가?</li></ul>
-    </section>
-
-    <section id="transcript" class="content-wrap transcript-wrap">
-      <details>
-        <summary>STT 원문 펼치기</summary>
-        <div class="transcript-text">이번에는 소프트웨어 품질 평가 방법에 대해서 설명을 드리겠습니다
-사실 소프트웨어 품질이라고 하면 1부터 100까지 1부터 1000까지 나열할 수 있는데요
-하지만 이 1부터 1000까지 있다고 하더라도 저희가 일반적으로 봐야 하는 그런 가중치 높은 품질 매트릭들이 있습니다
-이렇게 품질 매트릭들이 있긴 하지만 전체적으로 이런 학계나 산업계에서는 어떤 식으로 구분하고 있는지 보여드리기 위해서 4가지 대표적인 매트릭들을 가져와 봤습니다
-첫번째 같은 경우에는 Portability부터 Modifiability 이렇게 쭉 있고 두번째 같은 경우에는 Correctness와 Discretive 이렇게 있구요
-세번째는 Functionality부터 Supportability 네번째 같은 경우는 Functional부터 Portability 이렇게 각각 나눠져 있긴 하지만 상세하게 들여다보면 겹치는 것들이 꽤 있어요
-예를 들어서 Maintenability 또 Adaptability 아니면 또 수정이 얼마나 잘 되고 있는지 가용성 Testability 또 Maintenability 있죠
-그래서 결국엔 이렇게 나눠져 있지만 여기서 계속 겹치는 것들을 저희가 판단을 해보면 결국 오른쪽에 있는 8가지 매트릭이 나온다는 겁니다
-즉 최소한 이 8가지 매트릭만 최대값으로 유지를 하더라도 품질은 어느정도 보장할 수 있다
-라는 내용이 되는 거죠
-첫번째로 Maintenability 유지 보수성 입니다
-내가 이 코드를 개발하고 이제 배포를 했어요
-근데 이제 이 배포하고 끝이 아니라 새로운 Needs가 발생하면 그 요구사항을 만족하기 위해서 또 개발을 해야 되잖아요
-그 Needs가 뭐 일주일 뒤에 오면은 사실 코드를 안 만진지 일주일밖에 안 됐으니까 금방 익숙해서 코드를 작성할 수 있어요
-하지만 그 Needs가 3개월 6개월 1년 뒤에 왔다고 하면 내가 아무리 문서화를 잘 해놨다고 하더라도 그 코드를 다시 읽고 해석하는 데 있어서 시간이 많이 들어요
-코스트가 증가합니다
-그래서 향후에도 언제 어디서나 이렇게 코드를 살펴보더라도 유지 보수하게 쉽게 만들 수 있는 그런 매트릭을 Maintenability 라고 하고요
-또 Recoveryability 입니다
-예를 들어서 서비스가 중단이 됐어요
-중단됐을 때 몇 초 이내 복구할 수 있는지 아니면 몇 분 이내 이런 식으로 측정할 수 있는 매트릭이고요
-Efficiency나 Reliability 쭉쭉 있고 이제 Reusability 내가 만든 소스 코드를 다른 프로그램에서 얼마나 재사용할 수 있는지 코드서치 같은 그런 개념과 결합할 수도 있고요
-또 마지막으로 Security 저희가 지금 가장 집중하고 있는 부분인데요
-Security 같은 경우는 기능을 동작하는 데에는 아무런 지장이 없습니다
-하지만 그 기능을 동작하는 데 있어서 사실은 알고 보니까 이 기능을 하면 컴퓨터의 악의적인 행위를 할 수 있는 가능성을 열어주는 거예요
-그러면은 이거는 Security 쪽으로 좋지 않겠죠
-즉 보안 취약점이 발생했다는 겁니다
-그래서 그 보안 취약점을 해결하고 시큐어하게 만들 수 있도록 코딩을 해야 된다
-그래서 그런 것에 대해서 평가할 수 있는 것도 Security Matrix이 존재합니다
-자 이렇게 해서 소프트웨어 품질 평가 방법에 대해서 정의를 해봤습니다
-이번 강의는 여기서 마치겠습니다</div>
-      </details>
     </section>
 
     <nav class="content-wrap page-nav">

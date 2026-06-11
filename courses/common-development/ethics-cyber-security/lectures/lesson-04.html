@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>정보보안윤리 / 사이버 안보 1-4 - 사이버 전쟁과 안보</title>
+  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <script src="../../../../assets/code-highlight.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header lecture-header">
+    <nav class="top-nav">
+      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+      <a href="../index.html#lectures">과목 강의 목록</a>
+      <a href="#review">복습 체크</a>
+    </nav>
+    <section class="lecture-hero">
+      <div>
+        <p class="small-label">보안윤리 1-4</p>
+        <h1>사이버 전쟁과 안보</h1>
+        <p class="lead">사이버 냉전, 국가 배후 해킹, 중국의 Great Firewall, 사이버 전쟁과 하이브리드전의 특징을 정리한다.</p>
+        <div class="tag-row large"><span>사이버 냉전</span><span>Great Firewall</span><span>사이버 전쟁</span></div>
+      </div>
+      <aside class="toc-box">
+        <strong>페이지 목차</strong>
+        <a href="#section-1">사이버 냉전의 의미</a><a href="#section-2">대표적인 사이버 냉전 사례</a><a href="#section-3">중국의 Great Firewall</a><a href="#section-4">Great Firewall의 기술 방식</a><a href="#section-5">사이버 전쟁의 정의와 냉전과의 차이</a><a href="#section-6">러시아·우크라이나와 하이브리드전</a>
+      </aside>
+    </section>
+  </header>
+
+  <main class="lecture-main">
+    <section class="content-wrap intro-grid">
+      <article class="note-block">
+        <h2>학습 목표</h2>
+        <ul class="check-list"><li>사이버 냉전과 사이버 전쟁의 차이를 설명한다.</li><li>스톡스넷, 우크라이나 전력망, APT38, APT10을 사이버 냉전 사례로 이해한다.</li><li>Great Firewall과 러시아·우크라이나 전쟁 사례를 통해 국가 차원의 통제, 검열, 공격·방어 전략을 정리한다.</li></ul>
+      </article>
+    </section>
+
+    <div class="content-wrap notes-layout">
+      
+        <section id="section-1" class="note-section">
+          <h2>사이버 냉전의 의미</h2>
+          <p>사이버 냉전은 국가 간 사이버 공간에서 벌어지는 보이지 않는 전쟁을 뜻한다. 과거 미국과 소련이 직접 군사 충돌을 하지 않으면서 군사적·정치적 대립을 이어간 것을 냉전이라고 부르듯, 지금은 사이버 공간에서 여러 국가가 정보전, 해킹전, 사이버 공격을 주고받는다.</p>
+<p>사이버 냉전에서는 물리적 무기 대신 해킹 기술과 디지털 공격을 활용한다. 직접 충돌 없이도 상대 국가의 핵심 인프라를 마비시킬 수 있고, 누가 공격했는지 바로 증명하기 어려운 익명성이 있다. 그래서 보이지 않는 공격, 보이지 않는 방어, 은밀한 전쟁이라는 표현이 등장한다.</p>
+<ul class="check-list">
+  <li>안보, 경제, 정치적 이익을 노린다.</li>
+  <li>공격 주체를 숨기기 쉽고 증거를 찾기 어렵다.</li>
+  <li>한 번으로 끝나지 않고 장기전으로 이어진다.</li>
+  <li>물리적 피해와 경제적 피해를 동시에 만들 수 있다.</li>
+</ul>
+        </section>
+        
+        <section id="section-2" class="note-section">
+          <h2>대표적인 사이버 냉전 사례</h2>
+          <table>
+  <thead><tr><th>사례</th><th>설명</th><th>의미</th></tr></thead>
+  <tbody>
+    <tr><td>Stuxnet</td><td>미국과 이스라엘 공동 작전으로 추정되는 악성코드가 이란 핵시설의 산업 제어 시스템을 공격했다.</td><td>사이버무기가 물리적 피해를 유발한 대표 사례로 설명된다.</td></tr>
+    <tr><td>러시아·우크라이나 전력망</td><td>2015년 우크라이나 전력망 해킹으로 대규모 정전이 발생했다.</td><td>러시아가 의심되지만, 공격 주체를 단정하기 어려운 익명성 문제가 있다.</td></tr>
+    <tr><td>북한 APT38</td><td>금융과 가상자산 탈취, 외화벌이, 사이버 테러 시도와 연결된다.</td><td>북한의 대표적인 사이버 냉전 활동으로 설명된다.</td></tr>
+    <tr><td>중국 APT10</td><td>미국 핵심 기술과 지식재산권을 노리는 산업스파이 활동을 수행한다고 설명된다.</td><td>미국과 중국의 패권 경쟁, 경제 전쟁과 연결된다.</td></tr>
+  </tbody>
+</table>
+<p>강의는 사이버 냉전의 가장 큰 특징으로 익명성을 꼽는다. 누가 공격했는지 숨길 수 있고, 증거를 찾아가는 과정이 매우 어렵기 때문이다.</p>
+        </section>
+        
+        <section id="section-3" class="note-section">
+          <h2>중국의 Great Firewall</h2>
+          <p>중국의 Great Firewall은 중국 정부가 인터넷 검열과 통제를 위해 만든 국가 차원의 인터넷 차단 시스템이다. 이름은 만리장성(Great Wall)에서 가져왔다. 중국에 가면 구글, 유튜브, 일부 구글 서비스, 여러 해외 앱이 잘 동작하지 않는 경험을 할 수 있는데, 이것이 국가 차원의 인터넷 통제와 관련된다.</p>
+<table>
+  <thead><tr><th>목적</th><th>내용</th></tr></thead>
+  <tbody>
+    <tr><td>정치적 이유</td><td>공산당 비판과 민주화 관련 정보 유입을 차단한다.</td></tr>
+    <tr><td>사회적 이유</td><td>외설물, 폭력물, 종교 갈등 유발 정보 등을 차단한다는 명분을 가진다.</td></tr>
+    <tr><td>경제적 이유</td><td>구글, 유튜브 같은 외국 서비스를 막고 바이두 같은 중국 내 기업 성장을 돕는다.</td></tr>
+    <tr><td>안보적 이유</td><td>외국 정보기관과 해커의 정보전을 막는다는 명분이 있다.</td></tr>
+  </tbody>
+</table>
+<p>멘토는 특히 정치적 통제와 자국 기업 보호가 큰 목적이라고 설명한다. 코로나 시기 지역 봉쇄와 정보 차단 사례도 Great Firewall적 통제의 한 유형으로 언급된다.</p>
+        </section>
+        
+        <section id="section-4" class="note-section">
+          <h2>Great Firewall의 기술 방식</h2>
+          <table>
+  <thead><tr><th>방식</th><th>설명</th></tr></thead>
+  <tbody>
+    <tr><td>IP 차단</td><td>국가 간 관문망에서 특정 IP 주소 접근을 막는다.</td></tr>
+    <tr><td>DNS 조작</td><td>google.com 같은 도메인을 입력해도 실제 구글 IP가 아니라 다른 경고 페이지나 차단 페이지로 보내게 한다.</td></tr>
+    <tr><td>DPI</td><td>Deep Packet Inspection으로 패킷 내용을 분석해 민감한 문자열이나 페이지 로딩을 차단한다.</td></tr>
+    <tr><td>키워드 필터링</td><td>천안문 사건 같은 민감한 검색어를 검색하지 못하게 한다.</td></tr>
+    <tr><td>VPN 탐지와 차단</td><td>검열 우회용 VPN 트래픽을 찾아 막으려 한다.</td></tr>
+  </tbody>
+</table>
+<p>이 사례는 인터넷이 항상 자유로운 공간이 아니라 국가가 통제할 수 있는 공간이라는 점을 보여 준다. 또한 차단 기술과 우회 기술이 계속 경쟁하면서 디지털 검열 기술도 발전하고, 디지털 냉전은 더 복잡해진다.</p>
+        </section>
+        
+        <section id="section-5" class="note-section">
+          <h2>사이버 전쟁의 정의와 냉전과의 차이</h2>
+          <p>사이버 전쟁은 국가 간 또는 국가와 특정 세력 간에 사이버 공간에서 벌어지는 전쟁이다. 군사적, 정치적, 경제적 이익을 목적으로 해킹, DDoS, 데이터 파괴, 인프라 마비 같은 공격을 감행한다.</p>
+<table>
+  <thead><tr><th>구분</th><th>사이버 냉전</th><th>사이버 전쟁</th></tr></thead>
+  <tbody>
+    <tr><td>형태</td><td>은밀하고 장기적인 공격</td><td>공개적이고 대규모적인 공격</td></tr>
+    <tr><td>시점</td><td>물리적 전쟁 전 또는 평시에도 지속</td><td>물리적 전쟁 전·중·후에 직접 동반</td></tr>
+    <tr><td>강도</td><td>상대의 움직임을 탐색하고 흔드는 수준</td><td>국가 자원을 동원해 기능 마비와 피해를 노린다.</td></tr>
+  </tbody>
+</table>
+<p>러시아가 우크라이나를 물리적으로 공격하기 전에는 사이버 냉전 성격의 공격이 이어졌고, 실제 전쟁이 시작된 뒤에는 사이버 전쟁으로 이어졌다. 전문가들은 앞으로 국가 간 전쟁에는 사이버전이 계속 동반될 것이라고 본다.</p>
+        </section>
+        
+        <section id="section-6" class="note-section">
+          <h2>러시아·우크라이나와 하이브리드전</h2>
+          <p>러시아·우크라이나 전쟁은 물리전과 사이버전이 함께 수행된 사례다. 미사일과 탱크가 공격하는 와중에도 인터넷, 기반 시설, 인공위성, 통신망을 대상으로 사이버 공격이 계속된다.</p>
+<p>러시아는 APT28, Sandworm 같은 국가 지원 해커 조직을 동원하고, 인프라 집중 공격, 심리전, 정보전, 가짜뉴스와 선전물 유포, 국제 해커 참여까지 복합적으로 활용한다. 우크라이나는 국가 기능을 유지하고 국제적 지지를 얻기 위해 방어하면서도 역공격과 정보 공개를 수행했다.</p>
+<p>초기 공격에서 러시아는 우크라이나의 인터넷 통신을 차단하려 했지만, 우크라이나는 위성 통신 등을 통해 내부 상황을 X, 페이스북 같은 플랫폼으로 국제사회에 알렸다. 강의는 이것을 방어와 국제 지지 확보가 결합된 사이버전의 모습으로 설명한다.</p>
+<p>사이버 전쟁의 방식에는 DDoS, 악성코드, 랜섬웨어, 정보 탈취, 공급망 공격, 데이터 조작과 파괴가 모두 포함된다. 따라서 보안 전문가는 전쟁 전·중·후의 모든 단계에서 사이버 공격이 또 다른 수단으로 쓰인다는 점을 이해해야 한다.</p>
+        </section>
+        
+    </div>
+
+    <section id="review" class="content-wrap note-block">
+      <h2>복습 체크</h2>
+      <ul class="check-list"><li>사이버 냉전과 사이버 전쟁의 차이를 러시아·우크라이나 사례로 설명할 수 있는가?</li><li>Great Firewall이 IP 차단, DNS 조작, DPI, 키워드 필터링, VPN 차단을 어떻게 활용하는지 정리할 수 있는가?</li><li>하이브리드전에서 물리전과 사이버전, 심리전, 정보전이 어떻게 결합되는지 말할 수 있는가?</li></ul>
+    </section>
+
+    <nav class="content-wrap page-nav">
+      <a class="button secondary" href="lesson-03.html">이전: 1-3</a><a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-05.html">다음: 1-5</a>
+    </nav>
+  </main>
+</body>
+</html>

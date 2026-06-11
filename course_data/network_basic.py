@@ -195,7 +195,7 @@ def build_network_basic_lectures(code_block):
                 {
                     "heading": "TCP/IP 5계층 모델",
                     "body": """
-                    <p>강의에서는 인터넷 프로토콜 스택, TCP/IP 레이어를 기준으로 설명한다. 전사에서는 TCP/IP 4계층이라고도 언급되지만, 설명 자체는 물리 계층을 따로 둔 5계층 흐름으로 진행된다. 물리 계층은 비트 전달만 담당하므로 링크 계층과 묶어 말하는 경우도 있다.</p>
+                    <p>강의에서는 인터넷 프로토콜 스택, TCP/IP 레이어를 기준으로 설명한다. TCP/IP는 4계층으로 묶어 설명하기도 하지만, 여기서는 물리 계층을 따로 둔 5계층 흐름으로 이해하면 된다. 물리 계층은 비트 전달만 담당하므로 링크 계층과 묶어 말하는 경우도 있다.</p>
                     <table>
                       <thead><tr><th>계층</th><th>대표 단위</th><th>역할</th><th>예시 프로토콜·기술</th></tr></thead>
                       <tbody>
@@ -235,9 +235,9 @@ def build_network_basic_lectures(code_block):
                     """,
                 },
                 {
-                    "heading": "STT 반복 구간 처리",
+                    "heading": "캡슐화 핵심 정리",
                     "body": """
-                    <p>이 강의 STT 끝부분에는 “다음 영상에서 만나요”가 여러 번 반복되어 들어 있다. 학습 내용은 캡슐화 설명까지이며, 반복 인사는 원문 보존 영역에 그대로 남겨 두고 본문 정리에서는 한 번만 반영했다.</p>
+                    <p>네트워크 계층 구조를 볼 때는 각 계층의 이름보다 데이터가 어떤 단위로 감싸지며 내려가는지를 먼저 잡는 것이 중요하다. Wireshark에서 여러 프로토콜이 층층이 보이는 이유도 이 캡슐화 구조 때문이다.</p>
                     """,
                 },
             ],
@@ -436,7 +436,7 @@ def build_network_basic_lectures(code_block):
                 {
                     "heading": "NAT, DHCP, IPv6",
                     "body": """
-                    <p>STT에는 “NOT”처럼 전사되어 있지만, 문맥상 강의 내용은 <strong>NAT, Network Address Translation</strong>이다. NAT는 하나의 공용 IP 주소를 사용해 사설 네트워크 안의 여러 사설 IP 주소가 외부와 통신할 수 있게 하는 주소 변환 체계로 설명된다. IPv4 주소 고갈 문제를 완화하는 데 중요한 기술이다.</p>
+                    <p><strong>NAT, Network Address Translation</strong>는 하나의 공용 IP 주소를 사용해 사설 네트워크 안의 여러 사설 IP 주소가 외부와 통신할 수 있게 하는 주소 변환 체계로 설명된다. IPv4 주소 고갈 문제를 완화하는 데 중요한 기술이다.</p>
                     <p>DHCP는 IP 주소를 수동으로 하나하나 지정하지 않고, 네트워크에 접속한 장치에게 동적으로 IP 주소를 할당하는 프로토콜이다. 공유기나 조직 네트워크에서 장치가 자동으로 IP를 받는 흐름을 떠올리면 된다.</p>
                     <p>IPv4 주소 공간 고갈 문제는 오래전부터 논의되어 왔고, 이를 해결하기 위해 IPv6가 개발되었다. IPv4가 32비트 주소를 쓰는 것과 달리 IPv6는 128비트 주소를 사용한다. 또 헤더를 간소화하고 flow labeling 같은 흐름 처리 개념을 포함한다. 다만 강의에서는 IPv6가 수용되고 있지만 아직 IPv4만큼 널리 전환되지는 않았다고 설명한다.</p>
                     """,
@@ -772,7 +772,7 @@ def build_network_basic_lectures(code_block):
                 {
                     "heading": "IP 필터와 Follow TCP Stream",
                     "body": """
-                    <p>특정 서버와 오간 모든 패킷을 보려면 display filter를 사용할 수 있다. 강의에서는 서버 IP를 기준으로 <code>ip.addr == 12.46.96.85</code> 형태의 필터를 설명한다. STT에는 주소 표기가 일부 붙어서 전사되어 있지만, Wireshark 필터 문법은 <code>ip.addr == 주소</code> 형식으로 이해하면 된다.</p>
+                    <p>특정 서버와 오간 모든 패킷을 보려면 display filter를 사용할 수 있다. 강의에서는 서버 IP를 기준으로 <code>ip.addr == 12.46.96.85</code> 형태의 필터를 설명한다. Wireshark 필터 문법은 <code>ip.addr == 주소</code> 형식으로 이해하면 된다.</p>
                     <p>HTTP 패킷을 우클릭해 Follow TCP Stream을 선택하면 하나의 TCP 연결에서 request와 response가 어떤 메시지 흐름으로 오갔는지 볼 수 있다. 이 기능은 HTTP 필터로 request/response를 확인하는 것과 함께, 실제 애플리케이션 데이터 흐름을 보는 데 유용하다.</p>
                     """,
                 },

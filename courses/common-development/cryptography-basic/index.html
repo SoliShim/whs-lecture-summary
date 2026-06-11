@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>암호학 기초 강의 정리</title>
+  <link rel="stylesheet" href="../../../assets/styles.css">
+  <script src="../../../assets/code-highlight.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="top-nav">
+      <a class="brand" href="../../../index.html">화이트햇 강의 정리</a>
+      <a href="../../../index.html#tracks">전체 트랙</a>
+      <a href="#lectures">강의 목록</a>
+      <a href="#map">전체 흐름</a>
+    </nav>
+    <section class="index-hero">
+      <div>
+        <p class="small-label">과목 강의 노트</p>
+        <h1>암호학 기초</h1>
+        <p class="lead">보안 목표, 암호 기술 분류, 해시와 HMAC, 기밀성, 공개키 암호, 디지털 서명, PKI, TLS와 하이브리드 암호 기술을 정리한 과목.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lectures">강의 목록으로 이동</a>
+          <a class="button secondary" href="lectures/lesson-06.html">대표 강의 바로가기</a>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <div class="panel-stat"><strong>6</strong><span>강의</span></div>
+        <div class="panel-stat"><strong>23</strong><span>복습 질문</span></div>
+        <div class="mini-flow">
+          <span>보안 목표</span><span>해시</span><span>기밀성</span><span>공개키</span><span>TLS</span>
+        </div>
+      </aside>
+    </section>
+  </header>
+
+  <main>
+    <section id="map" class="section-band">
+      <div class="content-wrap">
+        <h2>전체 흐름</h2>
+        <p class="section-intro">강의는 암호학 기초 강의 계획에서 출발해 보안 목표와 Kerckhoffs 원리, 무결성과 인증을 위한 해시·HMAC, 기밀성을 위한 대칭키·비대칭키, 공개키 신뢰 체계, TLS와 하이브리드 암호 기술 활용으로 이어진다.</p>
+        <div class="course-map">
+          <div><span>1-1</span><strong>강의 계획</strong><p>암호학 기초 비대면 강의의 전체 흐름과 오프라인 보완 계획</p></div><div><span>1-2</span><strong>암호학 개요</strong><p>보안 목표, 보안 서비스, Kerckhoffs 원리, 보안 강도, 암호 기술 분류</p></div><div><span>1-3</span><strong>무결성과 인증</strong><p>암호 해시, 메시지 다이제스트, 비둘기집 원리, 생일 문제, HMAC과 한계</p></div><div><span>1-4</span><strong>기밀성</strong><p>대칭키와 비대칭키 암호 기술, stream/block 암호, 인증과 부인방지</p></div><div><span>1-5</span><strong>공개키 체계</strong><p>키 배송 문제, Diffie-Hellman, 디지털 서명, 인증서, PKI, X.509</p></div><div><span>1-6</span><strong>암호 기술 활용</strong><p>SSL/TLS, cipher suite, 암호화 트래픽 모니터링, 하이브리드 암호 기술</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lectures" class="content-wrap lecture-grid-section">
+      <h2>강의별 정리</h2>
+      <p class="section-intro">각 강의 페이지에서 학습 목표, 상세 정리, 예시, 복습 질문을 바로 확인할 수 있다.</p>
+      <div class="lecture-grid">
+        
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">암호학 1-1</span>
+                <div class="tag-row"><span>강의 계획</span><span>암호학 개요</span><span>학습 범위</span></div>
+              </div>
+              <h3>강의 계획</h3>
+              <p>암호학 기초 비대면 강의가 보안 목표, 해시와 인증, 기밀성, 공개키, TLS 활용으로 이어지는 전체 흐름을 잡는다.</p>
+              <a class="button" href="lectures/lesson-01.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">암호학 1-2</span>
+                <div class="tag-row"><span>보안 목표</span><span>Kerckhoffs</span><span>키 길이</span></div>
+              </div>
+              <h3>암호학 기초 개요</h3>
+              <p>보안 통신의 목표, 보안 메커니즘과 서비스, 암호학 용어, Kerckhoffs 원리, 키 길이와 암호 기술 분류를 정리한다.</p>
+              <a class="button" href="lectures/lesson-02.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">암호학 1-3</span>
+                <div class="tag-row"><span>해시 함수</span><span>HMAC</span><span>무결성</span></div>
+              </div>
+              <h3>무결성과 인증</h3>
+              <p>암호 해시 함수, 메시지 다이제스트, 비둘기집 원리, 생일 문제, HMAC, 해시 함수의 한계를 정리한다.</p>
+              <a class="button" href="lectures/lesson-03.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">암호학 1-4</span>
+                <div class="tag-row"><span>기밀성</span><span>대칭키</span><span>비대칭키</span></div>
+              </div>
+              <h3>기밀성</h3>
+              <p>인가받은 사용자만 메시지를 읽게 하는 기밀성을 대칭키·비대칭키 암호 기술로 구현하는 방식을 정리한다.</p>
+              <a class="button" href="lectures/lesson-04.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">암호학 1-5</span>
+                <div class="tag-row"><span>Diffie-Hellman</span><span>디지털 서명</span><span>PKI</span></div>
+              </div>
+              <h3>공개키 암호기술</h3>
+              <p>키 배송 문제, Diffie-Hellman, 디지털 서명, 코드 서명, 디지털 인증서, PKI와 X.509를 정리한다.</p>
+              <a class="button" href="lectures/lesson-05.html">강의 정리 보기</a>
+            </article>
+            
+            <article class="lecture-card">
+              <div class="card-top">
+                <span class="lecture-id">암호학 1-6</span>
+                <div class="tag-row"><span>TLS</span><span>Cipher Suite</span><span>Hybrid Crypto</span></div>
+              </div>
+              <h3>암호기술의 활용</h3>
+              <p>SSL/TLS, HTTPS, IPsec, 802.1X, S/MIME, 2FA, TLS 1.2/1.3, cipher suite, 보안 모니터링, 하이브리드 암호 기술을 정리한다.</p>
+              <a class="button" href="lectures/lesson-06.html">강의 정리 보기</a>
+            </article>
+            
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

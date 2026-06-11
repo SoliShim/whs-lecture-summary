@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>암호학 기초 1-1 - 강의 계획</title>
+  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <script src="../../../../assets/code-highlight.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header lecture-header">
+    <nav class="top-nav">
+      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+      <a href="../index.html#lectures">과목 강의 목록</a>
+      <a href="#review">복습 체크</a>
+    </nav>
+    <section class="lecture-hero">
+      <div>
+        <p class="small-label">암호학 1-1</p>
+        <h1>강의 계획</h1>
+        <p class="lead">암호학 기초 비대면 강의가 보안 목표, 해시와 인증, 기밀성, 공개키, TLS 활용으로 이어지는 전체 흐름을 잡는다.</p>
+        <div class="tag-row large"><span>강의 계획</span><span>암호학 개요</span><span>학습 범위</span></div>
+      </div>
+      <aside class="toc-box">
+        <strong>페이지 목차</strong>
+        <a href="#section-1">멘토 소개와 강의 위치</a><a href="#section-2">1차시: 암호학 기초 개요</a><a href="#section-3">2차시: 무결성과 인증</a><a href="#section-4">3차시: 기밀성</a><a href="#section-5">4차시: 공개키 암호 기술</a><a href="#section-6">5차시: 암호 기술의 활용</a>
+      </aside>
+    </section>
+  </header>
+
+  <main class="lecture-main">
+    <section class="content-wrap intro-grid">
+      <article class="note-block">
+        <h2>학습 목표</h2>
+        <ul class="check-list"><li>이민우 멘토의 암호학 기초 강의가 어떤 순서로 진행되는지 파악한다.</li><li>각 차시에서 다룰 보안 목표와 암호 기술의 큰 범위를 미리 이해한다.</li><li>비대면 강의와 이후 오프라인 강의의 역할을 구분한다.</li></ul>
+      </article>
+    </section>
+
+    <div class="content-wrap notes-layout">
+      
+        <section id="section-1" class="note-section">
+          <h2>멘토 소개와 강의 위치</h2>
+          <p>강의는 2023년도 차세대 보안리더 양성 프로그램 화이트스쿨 수강생을 대상으로 시작한다. 암호학 기초를 함께 살펴볼 멘토는 이민우 멘토다. 이 첫 강의는 본격적인 개념 설명보다 전체 차시의 방향과 학습 순서를 안내하는 강의 계획에 해당한다.</p>
+<p>비대면 강의에서는 암호 기술의 핵심 개념을 차시별로 훑고, 비대면 강의에서 다루지 못한 일부 내용과 실습은 9월 초 예정된 오프라인 강의에서 보완한다고 설명한다.</p>
+        </section>
+        
+        <section id="section-2" class="note-section">
+          <h2>1차시: 암호학 기초 개요</h2>
+          <p>1차시에서는 암호학 기초에 대한 overview를 다룬다. 보안 통신이 무엇인지, 보안 목표란 무엇인지, 암호 기술의 기본 개념이 무엇인지 살펴본다. 특히 암호 기술을 공부할 때 계속 등장하는 <strong>Kerckhoffs의 원리</strong>를 확인한다.</p>
+<p>또 암호 알고리즘과 키 길이의 관계를 배운다. 강의 전체에서 반복되는 핵심 관점은 암호 알고리즘 자체를 숨기는 것이 아니라, 공개된 알고리즘 위에서 비밀키를 어떻게 안전하게 관리하느냐가 중요하다는 것이다. 마지막으로 암호 기술이 실제로 어디에 활용되는지도 간략히 살펴본다.</p>
+        </section>
+        
+        <section id="section-3" class="note-section">
+          <h2>2차시: 무결성과 인증</h2>
+          <p>2차시에서는 무결성(integrity)과 인증(authentication)을 다룬다. 무결성은 데이터가 수정되지 않았음을 확인하는 목표이고, 인증은 메시지의 출처 또는 송신자가 올바른지를 확인하는 목표다.</p>
+<p>이 목표를 달성하기 위해 암호 해시 함수가 등장한다. 해시 함수와 관련된 비둘기집 원리, 생일 문제, 해시 함수의 동작 방식, 출처 인증에 적용하는 방식, 잘 알려진 해시 함수, 그리고 해시 함수만으로 달성하기 어려운 한계까지 살펴본다.</p>
+        </section>
+        
+        <section id="section-4" class="note-section">
+          <h2>3차시: 기밀성</h2>
+          <p>3차시에서는 기밀성(confidentiality)을 다룬다. 기밀성은 인가받은 사용자만 메시지를 읽을 수 있도록 하는 보안 목표다. 데이터 기밀성을 어떻게 구현할 수 있는지, 이를 위해 대칭키 암호 기술과 비대칭키 암호 기술이 어떻게 사용되는지 배운다.</p>
+<p>이 차시는 대칭키와 비대칭키를 비교하는 데 중요하다. 같은 키를 쓰는지, 서로 다른 키를 쓰는지, 속도와 키 길이가 어떻게 다른지, 어떤 상황에서 어떤 기술을 쓰는지 이후 공개키 강의와 TLS 강의의 기반이 된다.</p>
+        </section>
+        
+        <section id="section-5" class="note-section">
+          <h2>4차시: 공개키 암호 기술</h2>
+          <p>4차시에서는 공개키 암호 기술을 더 자세히 다룬다. Diffie-Hellman 키 교환 알고리즘, 디지털 서명, 코드 서명, 디지털 인증서가 주요 주제다. 공개키를 사용하려면 단순히 공개키를 인터넷에 올려두는 것만으로는 부족하고, 공개키를 신뢰할 수 있게 관리하는 체계가 필요하다.</p>
+<p>따라서 공개키 관리 체계, PKI(Public Key Infrastructure), 공개키 신뢰성, 인증서 class, 신뢰 시스템, PKI 시스템의 상호 운용성도 함께 다룬다.</p>
+        </section>
+        
+        <section id="section-6" class="note-section">
+          <h2>5차시: 암호 기술의 활용</h2>
+          <p>마지막 5차시에서는 지금까지 배운 암호 기술들이 실제로 어떻게 활용되는지 본다. SSL/TLS, TLS 1.2와 TLS 1.3 비교, cipher suite 개념, 트래픽 암호화와 보안 모니터링 이슈, 그리고 하이브리드 암호 기술이 주요 내용이다.</p>
+<p>마지막 차시는 암호 기술 활용과 오프라인 보완 계획까지 이어진다. 앞에서 배운 목표와 메커니즘이 실제 통신 보안, 트래픽 모니터링, 하이브리드 암호 구조로 어떻게 연결되는지 확인하는 흐름이다.</p>
+        </section>
+        
+    </div>
+
+    <section id="review" class="content-wrap note-block">
+      <h2>복습 체크</h2>
+      <ul class="check-list"><li>암호학 기초 비대면 강의가 몇 개의 주제 흐름으로 구성되는지 설명할 수 있는가?</li><li>무결성, 인증, 기밀성, 공개키, TLS 활용이 어떤 순서로 이어지는지 말할 수 있는가?</li><li>비대면 강의와 오프라인 강의에서 각각 어떤 역할을 맡는지 이해했는가?</li></ul>
+    </section>
+
+    <nav class="content-wrap page-nav">
+      <a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-02.html">다음: 1-2</a>
+    </nav>
+  </main>
+</body>
+</html>
