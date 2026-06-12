@@ -6,6 +6,8 @@
   <title>정보보안윤리 / 사이버 안보 강의 정리</title>
   <link rel="stylesheet" href="../../../assets/styles.css">
   <script src="../../../assets/code-highlight.js" defer></script>
+  <script src="../../../assets/study-state.js" defer></script>
+  <script src="../../../assets/study-tools.js" defer></script>
 </head>
 
 <body>
@@ -37,6 +39,69 @@
   </header>
 
   <main>
+    <section class="content-wrap course-routine" aria-label="과목 학습 루틴">
+      <article>
+        <span>1</span>
+        <strong>전체 흐름 보기</strong>
+        <p>과목에서 어떤 순서로 개념이 이어지는지 먼저 잡는다.</p>
+      </article>
+      <article>
+        <span>2</span>
+        <strong>강의 하나 선택</strong>
+        <p>태그와 설명을 보고 지금 필요한 강의부터 들어간다.</p>
+      </article>
+      <article>
+        <span>3</span>
+        <strong>복습 질문으로 확인</strong>
+        <p>읽고 끝내지 말고 질문에 답하면서 기억을 고정한다.</p>
+      </article>
+    </section>
+
+    <section class="content-wrap course-progress-panel" data-course-id="ethics-cyber-security" data-course-total="8" aria-label="과목 학습 진행률">
+      <div>
+        <span class="study-card-kicker">나의 과목 진행률</span>
+        <strong><span data-course-completed>0</span> / <span data-course-total-label>8</span>강 완료</strong>
+        <p>완료 표시는 이 브라우저에 저장된다. 강의를 들은 뒤 카드나 강의 페이지에서 체크하면 된다.</p>
+      </div>
+      <div class="progress-track"><i data-course-bar></i></div>
+    </section>
+
+    <section class="content-wrap finder-panel lecture-finder" data-lecture-finder aria-label="강의 검색과 필터">
+      <div class="finder-copy">
+        <span class="study-card-kicker">강의 찾기</span>
+        <h2>제목, 태그, 완료 상태로 좁히기</h2>
+        <p>복습할 강의만 찾거나 아직 안 본 강의만 남겨서 이어 들을 수 있다.</p>
+      </div>
+      <div class="finder-controls">
+        <label class="search-box">
+          <span>강의 검색</span>
+          <input type="search" data-lecture-search placeholder="예: 포인터, OWASP, TCP">
+        </label>
+        <div class="filter-row" role="group" aria-label="완료 상태 필터">
+          <button class="filter-chip is-active" type="button" data-lecture-status-filter="all">전체</button>
+          <button class="filter-chip" type="button" data-lecture-status-filter="remaining">남은 강의</button>
+          <button class="filter-chip" type="button" data-lecture-status-filter="done">완료한 강의</button>
+        </div>
+        <div class="filter-row tag-filter-row" role="group" aria-label="강의 태그 필터">
+          <button class="filter-chip is-active" type="button" data-lecture-tag-filter="all">모든 태그</button>
+          <button class="filter-chip" type="button" data-lecture-tag-filter="1.25 인터넷 대란">1.25 인터넷 대란</button><button class="filter-chip" type="button" data-lecture-tag-filter="2024 전략">2024 전략</button><button class="filter-chip" type="button" data-lecture-tag-filter="defend forward">Defend Forward</button><button class="filter-chip" type="button" data-lecture-tag-filter="great firewall">Great Firewall</button><button class="filter-chip" type="button" data-lecture-tag-filter="kisa">KISA</button><button class="filter-chip" type="button" data-lecture-tag-filter="ncsc">NCSC</button><button class="filter-chip" type="button" data-lecture-tag-filter="가상자산">가상자산</button><button class="filter-chip" type="button" data-lecture-tag-filter="개인정보 유출">개인정보 유출</button><button class="filter-chip" type="button" data-lecture-tag-filter="개인정보보호위원회">개인정보보호위원회</button><button class="filter-chip" type="button" data-lecture-tag-filter="공세적 방어">공세적 방어</button><button class="filter-chip" type="button" data-lecture-tag-filter="국가 전략">국가 전략</button><button class="filter-chip" type="button" data-lecture-tag-filter="국가안보실">국가안보실</button><button class="filter-chip" type="button" data-lecture-tag-filter="국가정보원">국가정보원</button><button class="filter-chip" type="button" data-lecture-tag-filter="국제 협력">국제 협력</button><button class="filter-chip" type="button" data-lecture-tag-filter="금융보안원">금융보안원</button><button class="filter-chip" type="button" data-lecture-tag-filter="기반시설">기반시설</button><button class="filter-chip" type="button" data-lecture-tag-filter="레질리언스">레질리언스</button><button class="filter-chip" type="button" data-lecture-tag-filter="보안 요소">보안 요소</button>
+        </div>
+        <p class="finder-result"><strong data-lecture-result-count>8</strong>개 강의 표시 중</p>
+        <p class="finder-empty" data-lecture-empty hidden>조건에 맞는 강의가 없다. 검색어를 줄이거나 모든 태그로 바꿔 본다.</p>
+      </div>
+    </section>
+
+    <section class="content-wrap course-note-panel" data-course-note-panel data-course-id="ethics-cyber-security" aria-label="과목 메모 모아보기">
+      <div>
+        <span class="study-card-kicker">최근 메모</span>
+        <strong>헷갈린 강의만 다시 찾기</strong>
+        <p>각 강의 페이지에서 남긴 개인 메모를 이 과목 안에서 모아 본다.</p>
+      </div>
+      <div class="course-note-list" data-course-note-list>
+        <p class="empty-study-note">아직 이 과목에 저장한 메모가 없습니다.</p>
+      </div>
+    </section>
+
     <section id="map" class="section-band">
       <div class="content-wrap">
         <h2>전체 흐름</h2>
@@ -49,87 +114,135 @@
 
     <section id="lectures" class="content-wrap lecture-grid-section">
       <h2>강의별 정리</h2>
-      <p class="section-intro">각 강의 페이지에서 학습 목표, 상세 정리, 예시, 복습 질문을 바로 확인할 수 있다.</p>
+      <p class="section-intro">각 강의 페이지에서 학습 목표, 상세 정리, 예시, 복습 질문과 강의 원문을 바로 확인할 수 있다.</p>
       <div class="lecture-grid">
         
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="ethics-cyber-security" data-lesson-id="1-1" data-lesson-key="ethics-cyber-security:1-1" data-search-text="1-1 사이버 안보에 대해서 사이버 안보의 범위, 개인·기업·국가 차원의 필요성, 그리고 보안을 구성하는 주요 기술 요소를 큰 그림으로 정리한다. 사이버 안보 보안 요소 레질리언스" data-tags="사이버 안보|||보안 요소|||레질리언스">
               <div class="card-top">
                 <span class="lecture-id">보안윤리 1-1</span>
-                <div class="tag-row"><span>사이버 안보</span><span>보안 요소</span><span>레질리언스</span></div>
+                <div class="tag-row"><span>사이버 안보</span><span>보안 요소</span><span>레질리언스</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>사이버 안보에 대해서</h3>
               <p>사이버 안보의 범위, 개인·기업·국가 차원의 필요성, 그리고 보안을 구성하는 주요 기술 요소를 큰 그림으로 정리한다.</p>
-              <a class="button" href="lectures/lesson-01.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-01.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="ethics-cyber-security:1-1" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="ethics-cyber-security" data-lesson-id="1-2" data-lesson-key="ethics-cyber-security:1-2" data-search-text="1-2 정보보호 환경의 변화와 사이버위협 주요 이슈 1 2001년 정보통신망법 개정부터 2003년 인터넷 대란, 2009년 ddos, 2011년 개인정보보호법, 2013년 사이버 테러까지의 흐름을 정리한다. 정보통신망법 1.25 인터넷 대란 사이버 테러" data-tags="정보통신망법|||1.25 인터넷 대란|||사이버 테러">
               <div class="card-top">
                 <span class="lecture-id">보안윤리 1-2</span>
-                <div class="tag-row"><span>정보통신망법</span><span>1.25 인터넷 대란</span><span>사이버 테러</span></div>
+                <div class="tag-row"><span>정보통신망법</span><span>1.25 인터넷 대란</span><span>사이버 테러</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>정보보호 환경의 변화와 사이버위협 주요 이슈 1</h3>
               <p>2001년 정보통신망법 개정부터 2003년 인터넷 대란, 2009년 DDoS, 2011년 개인정보보호법, 2013년 사이버 테러까지의 흐름을 정리한다.</p>
-              <a class="button" href="lectures/lesson-02.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-02.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="ethics-cyber-security:1-2" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="ethics-cyber-security" data-lesson-id="1-3" data-lesson-key="ethics-cyber-security:1-3" data-search-text="1-3 정보보호 환경의 변화와 사이버위협 주요 이슈 2 카드 3사 정보 유출, 한수원 해킹, 가상자산 범죄, 2018~2023년 위협 흐름, 영화 속 사이버 위협 사례를 정리한다. 개인정보 유출 기반시설 가상자산" data-tags="개인정보 유출|||기반시설|||가상자산">
               <div class="card-top">
                 <span class="lecture-id">보안윤리 1-3</span>
-                <div class="tag-row"><span>개인정보 유출</span><span>기반시설</span><span>가상자산</span></div>
+                <div class="tag-row"><span>개인정보 유출</span><span>기반시설</span><span>가상자산</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>정보보호 환경의 변화와 사이버위협 주요 이슈 2</h3>
               <p>카드 3사 정보 유출, 한수원 해킹, 가상자산 범죄, 2018~2023년 위협 흐름, 영화 속 사이버 위협 사례를 정리한다.</p>
-              <a class="button" href="lectures/lesson-03.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-03.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="ethics-cyber-security:1-3" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="ethics-cyber-security" data-lesson-id="1-4" data-lesson-key="ethics-cyber-security:1-4" data-search-text="1-4 사이버 전쟁과 안보 사이버 냉전, 국가 배후 해킹, 중국의 great firewall, 사이버 전쟁과 하이브리드전의 특징을 정리한다. 사이버 냉전 great firewall 사이버 전쟁" data-tags="사이버 냉전|||great firewall|||사이버 전쟁">
               <div class="card-top">
                 <span class="lecture-id">보안윤리 1-4</span>
-                <div class="tag-row"><span>사이버 냉전</span><span>Great Firewall</span><span>사이버 전쟁</span></div>
+                <div class="tag-row"><span>사이버 냉전</span><span>Great Firewall</span><span>사이버 전쟁</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>사이버 전쟁과 안보</h3>
               <p>사이버 냉전, 국가 배후 해킹, 중국의 Great Firewall, 사이버 전쟁과 하이브리드전의 특징을 정리한다.</p>
-              <a class="button" href="lectures/lesson-04.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-04.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="ethics-cyber-security:1-4" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="ethics-cyber-security" data-lesson-id="1-5" data-lesson-key="ethics-cyber-security:1-5" data-search-text="1-5 사이버 안보를 위한 국가의 노력 미국, 중국, 러시아, 유럽연합, 대한민국, 일본의 사이버 안보 전략을 외교·체제·민간 협력 관점에서 비교한다. defend forward 국가 전략 국제 협력" data-tags="defend forward|||국가 전략|||국제 협력">
               <div class="card-top">
                 <span class="lecture-id">보안윤리 1-5</span>
-                <div class="tag-row"><span>Defend Forward</span><span>국가 전략</span><span>국제 협력</span></div>
+                <div class="tag-row"><span>Defend Forward</span><span>국가 전략</span><span>국제 협력</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>사이버 안보를 위한 국가의 노력</h3>
               <p>미국, 중국, 러시아, 유럽연합, 대한민국, 일본의 사이버 안보 전략을 외교·체제·민간 협력 관점에서 비교한다.</p>
-              <a class="button" href="lectures/lesson-05.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-05.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="ethics-cyber-security:1-5" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="ethics-cyber-security" data-lesson-id="1-6" data-lesson-key="ethics-cyber-security:1-6" data-search-text="1-6 국가 사이버 안보체계 현황 1 대통령, 국가안보실, 국가정보원, 국가사이버안보센터가 한국의 사이버 안보 체계에서 맡는 역할을 정리한다. 국가안보실 국가정보원 ncsc" data-tags="국가안보실|||국가정보원|||ncsc">
               <div class="card-top">
                 <span class="lecture-id">보안윤리 1-6</span>
-                <div class="tag-row"><span>국가안보실</span><span>국가정보원</span><span>NCSC</span></div>
+                <div class="tag-row"><span>국가안보실</span><span>국가정보원</span><span>NCSC</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>국가 사이버 안보체계 현황 1</h3>
               <p>대통령, 국가안보실, 국가정보원, 국가사이버안보센터가 한국의 사이버 안보 체계에서 맡는 역할을 정리한다.</p>
-              <a class="button" href="lectures/lesson-06.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-06.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="ethics-cyber-security:1-6" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="ethics-cyber-security" data-lesson-id="1-7" data-lesson-key="ethics-cyber-security:1-7" data-search-text="1-7 국가 사이버 안보체계 현황 2 과기정통부, kisa, 국가보안기술연구소, 금융위원회, 금융보안원, 개인정보보호위원회의 역할을 정리한다. kisa 금융보안원 개인정보보호위원회" data-tags="kisa|||금융보안원|||개인정보보호위원회">
               <div class="card-top">
                 <span class="lecture-id">보안윤리 1-7</span>
-                <div class="tag-row"><span>KISA</span><span>금융보안원</span><span>개인정보보호위원회</span></div>
+                <div class="tag-row"><span>KISA</span><span>금융보안원</span><span>개인정보보호위원회</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>국가 사이버 안보체계 현황 2</h3>
               <p>과기정통부, KISA, 국가보안기술연구소, 금융위원회, 금융보안원, 개인정보보호위원회의 역할을 정리한다.</p>
-              <a class="button" href="lectures/lesson-07.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-07.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="ethics-cyber-security:1-7" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="ethics-cyber-security" data-lesson-id="1-8" data-lesson-key="ethics-cyber-security:1-8" data-search-text="1-8 국가 사이버 안보 전략 2019년과 2024년 국가 사이버 안보 전략의 의미, 2024년 전략의 비전·목표·과제, 공세적 방어와 글로벌 협력, 레질리언스를 정리한다. 2024 전략 공세적 방어 사이버 복원력" data-tags="2024 전략|||공세적 방어|||사이버 복원력">
               <div class="card-top">
                 <span class="lecture-id">보안윤리 1-8</span>
-                <div class="tag-row"><span>2024 전략</span><span>공세적 방어</span><span>사이버 복원력</span></div>
+                <div class="tag-row"><span>2024 전략</span><span>공세적 방어</span><span>사이버 복원력</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>국가 사이버 안보 전략</h3>
               <p>2019년과 2024년 국가 사이버 안보 전략의 의미, 2024년 전략의 비전·목표·과제, 공세적 방어와 글로벌 협력, 레질리언스를 정리한다.</p>
-              <a class="button" href="lectures/lesson-08.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-08.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="ethics-cyber-security:1-8" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
       </div>

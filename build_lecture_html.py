@@ -8,8 +8,11 @@ from textwrap import dedent
 from course_data.computer_architecture_1 import build_computer_architecture_1_lectures
 from course_data.cryptography_basic import build_cryptography_basic_lectures
 from course_data.ethics_cyber_security import build_ethics_cyber_security_lectures
+from course_data.hackers_programming import build_hackers_programming_lectures
+from course_data.latest_security_trend import build_latest_security_trend_lectures
 from course_data.network_basic import build_network_basic_lectures
 from course_data.os_basic import build_os_basic_lectures
+from course_data.secure_coding import build_secure_coding_lectures
 
 
 ROOT = Path(__file__).resolve().parent
@@ -60,7 +63,8 @@ def clean_transcript_text(text: str) -> str:
 
 
 def validate_public_html(path: Path, content: str) -> None:
-    found = [pattern for pattern in PUBLIC_OPERATIONAL_PATTERNS if pattern in content]
+    visible_page_copy = re.sub(r'<section id="transcript"[\s\S]*?</section>', "", content)
+    found = [pattern for pattern in PUBLIC_OPERATIONAL_PATTERNS if pattern in visible_page_copy]
     if found:
         joined = ", ".join(found)
         raise ValueError(f"{path} contains user-facing operational copy: {joined}")
@@ -1064,6 +1068,9 @@ OS_BASIC_LECTURES = build_os_basic_lectures(code_block)
 NETWORK_BASIC_LECTURES = build_network_basic_lectures(code_block)
 CRYPTOGRAPHY_BASIC_LECTURES = build_cryptography_basic_lectures(code_block)
 ETHICS_CYBER_SECURITY_LECTURES = build_ethics_cyber_security_lectures(code_block)
+HACKERS_PROGRAMMING_LECTURES = build_hackers_programming_lectures(code_block)
+LATEST_SECURITY_TREND_LECTURES = build_latest_security_trend_lectures(code_block)
+SECURE_CODING_LECTURES = build_secure_coding_lectures(code_block)
 
 
 TRACKS = [
@@ -1209,31 +1216,71 @@ COURSES = [
         "lectures": ETHICS_CYBER_SECURITY_LECTURES,
     },
     {
-        "id": "security-trends",
+        "id": "latest-security-trend",
         "track_id": "common-development",
         "title": "최신 보안 동향",
         "short_title": "보안 동향",
-        "status": "pending",
-        "summary": "자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.",
-        "lectures": [],
+        "status": "ready",
+        "summary": "제로트러스트, AI 보안, 클라우드 보안, 블록체인·Web 3.0, 사이버 테러, 인간중심보안을 최신 보안 키워드 관점에서 정리한 과목.",
+        "featured_lecture": "1-6",
+        "flow": ["동향 학습", "제로트러스트", "AI", "클라우드", "블록체인", "사이버 테러", "사람 중심"],
+        "map_intro": "강의는 최신 보안 동향을 따라가는 학습 방법에서 출발해 제로트러스트, AI와 보안, 클라우드 보안, 블록체인과 Web 3.0 보안 이슈, 사이버 테러와 랜섬웨어·피싱, 인간중심보안으로 이어진다.",
+        "map": [
+            ("1-1", "학습 방향", "구글링, 뉴스레터, 기록 습관과 6개 최신 보안 키워드"),
+            ("1-2", "제로트러스트", "원격근무와 탈경계화, 경계 보안의 한계, MFA, 최소 권한, ZTA"),
+            ("1-3", "AI와 보안", "NLP, 컴퓨터 비전, 보안 관제, AI 악용, 적대적 공격"),
+            ("1-4", "클라우드 보안", "IaaS/PaaS/SaaS, CSP/MSP, 책임 공유, SECaaS, 클라우드 위협"),
+            ("1-5", "블록체인 보안", "Web 3.0, DeFi, DAO, NFT, 암호화폐 해킹, CBDC"),
+            ("1-6", "사이버 테러", "사이버전, 러시아·우크라이나, 랜섬웨어, 피싱, BEC"),
+            ("1-7", "인간중심보안", "사람 중심 설계, 보안 문화, 유저블 시큐리티"),
+        ],
+        "notes": [
+            "최신 보안 동향 STT 텍스트 7개 파일을 기준으로 작성했다.",
+            "각 강의 하단에는 STT 전체 흐름을 문단으로 정돈한 ‘STT 정돈본’을 접이식 패널로 제공한다.",
+            "자동 전사 오류로 보이는 표현은 문맥상 의미가 분명한 경우에만 학습 가능한 보안 용어와 설명으로 정돈했다.",
+            "외부 인터넷 자료나 이미지는 사용하지 않았고, 필요한 표·도식·흐름 예시는 HTML 본문 안에 직접 구성했다.",
+        ],
+        "lectures": LATEST_SECURITY_TREND_LECTURES,
     },
     {
-        "id": "hacker-programming",
+        "id": "hackers-programming",
         "track_id": "common-development",
         "title": "해커의 프로그래밍",
         "short_title": "해커 프로그래밍",
-        "status": "pending",
-        "summary": "자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.",
-        "lectures": [],
+        "status": "ready",
+        "summary": "Python, HTTP, API, 자동화, 개인정보 결합, 가상자산 거래 그래프, BeautifulSoup 크롤링, OSINT를 해커의 문제 해결 관점에서 정리한 과목.",
+        "featured_lecture": "1-8",
+        "flow": ["환경 구축", "웹 요청", "API", "자동화", "데이터 결합", "그래프", "OSINT"],
+        "map_intro": "강의는 해커의 프로그래밍이 무엇인지에서 출발해 Python 실습 환경과 Base64, HTTP와 requests, API와 키 관리, n8n 자동화, 개인정보 결합, 가상자산 믹싱 그래프, BeautifulSoup 크롤링, OSINT 정보 그래프로 이어진다.",
+        "map": [
+            ("1-1", "과목 방향", "해커의 원래 의미, 웹·데이터·도구 흐름, 실습 윤리"),
+            ("1-2", "Python과 Base64", "Python/VS Code 환경, Code Runner, CyberChef, Base64 자동 디코딩"),
+            ("1-3", "HTTP와 스크래핑", "요청·응답, HTML 구조, requests, 100개 노트 자동 탐색"),
+            ("1-4 · 1-5", "API와 자동화", "웹 API, JSON, 키 관리, n8n 노드 기반 워크플로우"),
+            ("1-6 · 1-7", "데이터 분석", "개인정보 결합, 모자이크 이론, Faker, 믹싱, 거래 그래프, Graphviz"),
+            ("1-8 · 1-9", "크롤링과 OSINT", "BeautifulSoup, 사이트맵 복원, 공개 출처 정보, 정보 그래프"),
+        ],
+        "lectures": HACKERS_PROGRAMMING_LECTURES,
     },
     {
         "id": "secure-coding",
         "track_id": "common-development",
         "title": "시큐어코딩",
         "short_title": "시큐어코딩",
-        "status": "pending",
-        "summary": "자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.",
-        "lectures": [],
+        "status": "ready",
+        "summary": "시큐어 코딩의 정의, OWASP Top 10, 입력 검증, 보안 기능, 시간·상태, 에러 처리, 코드 오류, API 오용, Secure SDLC를 정리한 과목.",
+        "featured_lecture": "1-4",
+        "flow": ["개요", "OWASP", "입력 검증", "보안 기능", "시간·상태", "에러 처리", "Secure SDLC"],
+        "map_intro": "강의는 시큐어 코딩의 위치와 필요성에서 출발해 OWASP Top 10, 입력 데이터 검증, 보안 기능과 시간·상태 문제, 에러 처리와 API 오용, 마지막으로 Secure SDLC와 위협 모델링으로 이어진다.",
+        "map": [
+            ("1-1", "시큐어 코딩 개요", "개발 생명주기에서 구현 단계의 보안 약점 제거"),
+            ("1-2 · 1-3", "OWASP Top 10", "접근 제어, 암호화 실패, 인젝션, 설계·설정 오류, 취약 구성요소, 인증, 무결성, 로깅, SSRF"),
+            ("1-4 · 1-5", "입력 데이터 검증", "SQL/Code/Command Injection, Path Traversal, XSS, 업로드, CSRF, SSRF, Response Splitting, Integer Overflow, Format String"),
+            ("1-6", "보안 기능과 시간·상태", "암호 알고리즘, 하드코딩, 난수, 쿠키, 무결성, 인증 제한, Race Condition, 무한 루프"),
+            ("1-7", "에러 처리와 API 오용", "오류 메시지 노출, 예외 처리, 널 참조, 역직렬화, DNS lookup, 취약 API"),
+            ("1-8", "Secure SDLC", "보안 요구사항, 설계 원칙, BLP 모델, 위협 모델링, 리스크 처리"),
+        ],
+        "lectures": SECURE_CODING_LECTURES,
     },
     {
         "id": "modern-web-dev-security",
@@ -1285,8 +1332,10 @@ COURSE_ICON_BY_ID = {
     "ethics-cyber-security": "shield",
     "security-ethics-cyber-security": "shield",
     "security-trends": "trend",
+    "latest-security-trend": "trend",
     "latest-security-trends": "trend",
     "hacker-programming": "code",
+    "hackers-programming": "code",
     "secure-coding": "secure-code",
     "modern-web-dev-security": "web",
     "modern-web-security": "web",
@@ -1338,6 +1387,8 @@ def shared_head(title: str, css_prefix: str = "") -> str:
   <title>{html.escape(title)}</title>
   <link rel="stylesheet" href="{css_prefix}assets/styles.css">
   <script src="{css_prefix}assets/code-highlight.js" defer></script>
+  <script src="{css_prefix}assets/study-state.js" defer></script>
+  <script src="{css_prefix}assets/study-tools.js" defer></script>
 </head>
 """
 
@@ -1382,6 +1433,21 @@ def render_site_index() -> str:
         for course_position, course in enumerate(courses, start=1):
             status_class = "status-ready" if course["status"] == "ready" else "status-pending"
             icon_key = course_icon_key(course, course_position)
+            lecture_count = len(course.get("lectures", []))
+            course_search = " ".join(
+                [
+                    str(course.get("title", "")),
+                    str(course.get("short_title", "")),
+                    str(course.get("summary", "")),
+                    str(track.get("title", "")),
+                    str(course.get("status", "")),
+                ]
+            )
+            progress_attr = (
+                f' data-course-total="{lecture_count}" data-course-progress-target="true"'
+                if course["status"] == "ready"
+                else ""
+            )
             action = (
                 f'<a class="button" href="{course_href(course)}">과목 열기</a>'
                 if course["status"] == "ready"
@@ -1389,11 +1455,12 @@ def render_site_index() -> str:
             )
             course_items.append(
                 f"""
-                <article class="course-item course-icon-{html.escape(icon_key)}" data-course-id="{html.escape(str(course['id']))}">
+                <article class="course-item course-icon-{html.escape(icon_key)}" data-course-id="{html.escape(str(course['id']))}" data-course-status="{html.escape(str(course['status']))}" data-search-text="{html.escape(course_search.lower())}"{progress_attr}>
                   <div>
                     <div class="course-item-head">
                       <h3>{html.escape(str(course['title']))}</h3>
                       <span class="status-pill {status_class}">{course_status_label(course)}</span>
+                      {('<span class="course-progress-chip" data-course-progress-label>0/' + str(lecture_count) + ' 완료</span>') if course["status"] == "ready" else ""}
                     </div>
                     <p>{html.escape(str(course['summary']))}</p>
                   </div>
@@ -1433,9 +1500,9 @@ def render_site_index() -> str:
     </nav>
     <section class="index-hero">
       <div>
-        <p class="small-label">화이트햇 강의 노트</p>
-        <h1>화이트햇 과정 전체를 트랙과 과목 단위로 정리하는 강의 아카이브</h1>
-        <p class="lead">핵심 개념, 세부 설명, 예시, 복습 질문을 과목별로 모아 바로 공부할 수 있게 정리한다. 현재는 {len(ready_courses())}개 과목, {total_ready_lectures}개 강의를 볼 수 있다.</p>
+        <p class="small-label">이거 언제 다 듣지?</p>
+        <h1>화이트햇 강의 요약 노트</h1>
+        <p class="lead">강의마다 핵심만 뽑아 정리했습니다. 제가 한건 아니고 AI가요. 화이트햇 4기 화이팅!</p>
         <div class="hero-actions">
           <a class="button primary" href="#tracks">트랙 보기</a>
           {ready_course_buttons}
@@ -1451,6 +1518,56 @@ def render_site_index() -> str:
   </header>
 
   <main>
+    <section class="content-wrap student-dashboard" aria-label="학습 시작 가이드">
+      <article class="study-card study-card-strong">
+        <span class="study-card-kicker">오늘의 시작</span>
+        <h2>한 번에 다 보지 말고, 과목 하나만 끝까지 훑기</h2>
+        <p>강의를 실제로 듣는 흐름처럼 과목을 먼저 고르고, 강의 목록에서 순서대로 들어가며 마지막에 복습 질문으로 확인한다.</p>
+        <div class="overall-progress" data-total-lectures="{total_ready_lectures}">
+          <span>내 진행률</span>
+          <strong><span data-overall-completed>0</span>/<span data-overall-total>{total_ready_lectures}</span></strong>
+          <div class="progress-track"><i data-overall-bar></i></div>
+        </div>
+        <a class="button primary" href="#courses">과목 고르기</a>
+      </article>
+      <article class="study-card">
+        <span class="study-step">01</span>
+        <h3>강의 목록</h3>
+        <p>제목과 태그로 오늘 들을 강의를 빠르게 고른다.</p>
+      </article>
+      <article class="study-card">
+        <span class="study-step">02</span>
+        <h3>상세 정리</h3>
+        <p>개념 설명, 표, 예시 코드를 강의 순서대로 읽는다.</p>
+      </article>
+      <article class="study-card">
+        <span class="study-step">03</span>
+        <h3>복습 체크</h3>
+        <p>질문에 답할 수 있는지 확인하고, 필요하면 강의 원문으로 되돌아간다.</p>
+      </article>
+    </section>
+
+    <section class="content-wrap finder-panel site-finder" data-course-finder aria-label="과목 검색">
+      <div class="finder-copy">
+        <span class="study-card-kicker">빠른 탐색</span>
+        <h2>지금 필요한 과목 바로 찾기</h2>
+        <p>과목 이름, 주제, 키워드로 검색하고 정리된 과목만 따로 볼 수 있다.</p>
+      </div>
+      <div class="finder-controls">
+        <label class="search-box">
+          <span>과목 검색</span>
+          <input type="search" data-course-search placeholder="예: 네트워크, 암호학, OWASP">
+        </label>
+        <div class="filter-row" role="group" aria-label="과목 상태 필터">
+          <button class="filter-chip is-active" type="button" data-course-status-filter="all">전체</button>
+          <button class="filter-chip" type="button" data-course-status-filter="ready">정리 완료</button>
+          <button class="filter-chip" type="button" data-course-status-filter="pending">준비 예정</button>
+        </div>
+        <p class="finder-result"><strong data-course-result-count>{len(COURSES)}</strong>개 과목 표시 중</p>
+        <p class="finder-empty" data-course-empty hidden>조건에 맞는 과목이 없다. 검색어를 줄이거나 전체로 바꿔 본다.</p>
+      </div>
+    </section>
+
     <section id="tracks" class="content-wrap track-grid-section">
       <h2>전체 트랙</h2>
       <p class="section-intro">화이트햇 과정의 주요 학습 범위를 트랙별로 나누고, 각 과목의 강의 노트를 한곳에서 찾을 수 있게 정리한다.</p>
@@ -1472,20 +1589,37 @@ def render_site_index() -> str:
 def render_course_index(course: dict) -> str:
     cards = []
     lectures = course.get("lectures", [])
+    unique_tags = sorted({str(tag) for lecture in lectures for tag in lecture.get("tags", [])})
     review_count = sum(len(lecture.get("checks", [])) for lecture in lectures)
     featured_id = course.get("featured_lecture")
     featured = next((lecture for lecture in lectures if lecture["id"] == featured_id), lectures[-1])
     for lecture in lectures:
+        lesson_key = f"{course['id']}:{lecture['id']}"
+        lecture_search = " ".join(
+            [
+                str(lecture.get("id", "")),
+                str(lecture.get("title", "")),
+                str(lecture.get("subtitle", "")),
+                " ".join(str(tag) for tag in lecture.get("tags", [])),
+            ]
+        )
+        lecture_tags = "|||".join(str(tag).lower() for tag in lecture.get("tags", []))
         cards.append(
             f"""
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="{html.escape(str(course['id']))}" data-lesson-id="{html.escape(str(lecture['id']))}" data-lesson-key="{html.escape(lesson_key)}" data-search-text="{html.escape(lecture_search.lower())}" data-tags="{html.escape(lecture_tags)}">
               <div class="card-top">
                 <span class="lecture-id">{html.escape(str(course['short_title']))} {lecture['id']}</span>
-                <div class="tag-row">{tag_list(lecture['tags'])}</div>
+                <div class="tag-row">{tag_list(lecture['tags'])}<span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>{html.escape(lecture['title'])}</h3>
               <p>{html.escape(lecture['subtitle'])}</p>
-              <a class="button" href="lectures/{lecture_html_file(lecture)}">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/{lecture_html_file(lecture)}">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="{html.escape(lesson_key)}" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             """
         )
@@ -1495,6 +1629,10 @@ def render_course_index(course: dict) -> str:
         for item in course.get("map", [])
     )
     flow = "".join(f"<span>{html.escape(item)}</span>" for item in course.get("flow", []))
+    tag_filters = "".join(
+        f'<button class="filter-chip" type="button" data-lecture-tag-filter="{html.escape(tag.lower())}">{html.escape(tag)}</button>'
+        for tag in unique_tags[:18]
+    )
 
     return shared_head(f"{course['title']} 강의 정리", "../../../") + f"""
 <body>
@@ -1526,6 +1664,69 @@ def render_course_index(course: dict) -> str:
   </header>
 
   <main>
+    <section class="content-wrap course-routine" aria-label="과목 학습 루틴">
+      <article>
+        <span>1</span>
+        <strong>전체 흐름 보기</strong>
+        <p>과목에서 어떤 순서로 개념이 이어지는지 먼저 잡는다.</p>
+      </article>
+      <article>
+        <span>2</span>
+        <strong>강의 하나 선택</strong>
+        <p>태그와 설명을 보고 지금 필요한 강의부터 들어간다.</p>
+      </article>
+      <article>
+        <span>3</span>
+        <strong>복습 질문으로 확인</strong>
+        <p>읽고 끝내지 말고 질문에 답하면서 기억을 고정한다.</p>
+      </article>
+    </section>
+
+    <section class="content-wrap course-progress-panel" data-course-id="{html.escape(str(course['id']))}" data-course-total="{len(lectures)}" aria-label="과목 학습 진행률">
+      <div>
+        <span class="study-card-kicker">나의 과목 진행률</span>
+        <strong><span data-course-completed>0</span> / <span data-course-total-label>{len(lectures)}</span>강 완료</strong>
+        <p>완료 표시는 이 브라우저에 저장된다. 강의를 들은 뒤 카드나 강의 페이지에서 체크하면 된다.</p>
+      </div>
+      <div class="progress-track"><i data-course-bar></i></div>
+    </section>
+
+    <section class="content-wrap finder-panel lecture-finder" data-lecture-finder aria-label="강의 검색과 필터">
+      <div class="finder-copy">
+        <span class="study-card-kicker">강의 찾기</span>
+        <h2>제목, 태그, 완료 상태로 좁히기</h2>
+        <p>복습할 강의만 찾거나 아직 안 본 강의만 남겨서 이어 들을 수 있다.</p>
+      </div>
+      <div class="finder-controls">
+        <label class="search-box">
+          <span>강의 검색</span>
+          <input type="search" data-lecture-search placeholder="예: 포인터, OWASP, TCP">
+        </label>
+        <div class="filter-row" role="group" aria-label="완료 상태 필터">
+          <button class="filter-chip is-active" type="button" data-lecture-status-filter="all">전체</button>
+          <button class="filter-chip" type="button" data-lecture-status-filter="remaining">남은 강의</button>
+          <button class="filter-chip" type="button" data-lecture-status-filter="done">완료한 강의</button>
+        </div>
+        <div class="filter-row tag-filter-row" role="group" aria-label="강의 태그 필터">
+          <button class="filter-chip is-active" type="button" data-lecture-tag-filter="all">모든 태그</button>
+          {tag_filters}
+        </div>
+        <p class="finder-result"><strong data-lecture-result-count>{len(lectures)}</strong>개 강의 표시 중</p>
+        <p class="finder-empty" data-lecture-empty hidden>조건에 맞는 강의가 없다. 검색어를 줄이거나 모든 태그로 바꿔 본다.</p>
+      </div>
+    </section>
+
+    <section class="content-wrap course-note-panel" data-course-note-panel data-course-id="{html.escape(str(course['id']))}" aria-label="과목 메모 모아보기">
+      <div>
+        <span class="study-card-kicker">최근 메모</span>
+        <strong>헷갈린 강의만 다시 찾기</strong>
+        <p>각 강의 페이지에서 남긴 개인 메모를 이 과목 안에서 모아 본다.</p>
+      </div>
+      <div class="course-note-list" data-course-note-list>
+        <p class="empty-study-note">아직 이 과목에 저장한 메모가 없습니다.</p>
+      </div>
+    </section>
+
     <section id="map" class="section-band">
       <div class="content-wrap">
         <h2>전체 흐름</h2>
@@ -1538,7 +1739,7 @@ def render_course_index(course: dict) -> str:
 
     <section id="lectures" class="content-wrap lecture-grid-section">
       <h2>강의별 정리</h2>
-      <p class="section-intro">각 강의 페이지에서 학습 목표, 상세 정리, 예시, 복습 질문을 바로 확인할 수 있다.</p>
+      <p class="section-intro">각 강의 페이지에서 학습 목표, 상세 정리, 예시, 복습 질문과 강의 원문을 바로 확인할 수 있다.</p>
       <div class="lecture-grid">
         {''.join(cards)}
       </div>
@@ -1550,8 +1751,45 @@ def render_course_index(course: dict) -> str:
 """
 
 
-def render_lecture(lecture: dict, course: dict) -> str:
+def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | None = None) -> str:
     lectures = course.get("lectures", [])
+    transcripts = transcripts or {}
+    raw_transcript = transcripts.get(str(lecture["id"]), "").strip()
+    transcript_nav = '<a href="#transcript">강의 원문</a>' if raw_transcript else ""
+    progress_items = [
+        ('#goals', '학습 목표', '오늘 범위 잡기'),
+        ('#section-1', '상세 정리', '개념 따라가기'),
+        ('#review', '복습 체크', '질문으로 점검'),
+        ('#personal-note', '개인 메모', '헷갈린 지점 저장'),
+    ]
+    if raw_transcript:
+        progress_items.append(('#transcript', '강의 원문', '필요할 때 비교'))
+    progress_links = "".join(
+        f"""
+        <a href="{href}">
+          <span>{number}</span>
+          <strong>{label}</strong>
+          <small>{helper}</small>
+        </a>
+        """
+        for number, (href, label, helper) in enumerate(progress_items, start=1)
+    )
+    transcript_section = ""
+    if raw_transcript:
+        transcript_section = f"""
+    <section id="transcript" class="content-wrap transcript-wrap">
+      <details class="reveal-section">
+        <summary>
+          <span>
+            <strong>강의 원문 보기</strong>
+            <small>선생님이 실제로 말한 내용을 정리본과 비교해서 확인한다.</small>
+          </span>
+        </summary>
+        <div class="transcript-text">{html.escape(raw_transcript)}</div>
+      </details>
+    </section>
+        """
+
     prev_next = []
     idx = lectures.index(lecture)
     if idx > 0:
@@ -1565,7 +1803,7 @@ def render_lecture(lecture: dict, course: dict) -> str:
     section_nav = "".join(
         f'<a href="#section-{i + 1}">{html.escape(section["heading"])}</a>'
         for i, section in enumerate(lecture["sections"])
-    )
+    ) + '<a href="#personal-note">개인 메모</a>' + transcript_nav
     sections = "".join(
         f"""
         <section id="section-{i + 1}" class="note-section">
@@ -1578,15 +1816,18 @@ def render_lecture(lecture: dict, course: dict) -> str:
     checks = "".join(f"<li>{html.escape(item)}</li>" for item in lecture["checks"])
     objectives = "".join(f"<li>{html.escape(item)}</li>" for item in lecture["objectives"])
     lecture_label = f"{course['short_title']} {lecture['id']}"
+    lesson_key = f"{course['id']}:{lecture['id']}"
 
     return shared_head(f"{course['title']} {lecture['id']} - {lecture['title']}", "../../../../") + f"""
-<body>
+<body data-course-id="{html.escape(str(course['id']))}" data-lesson-id="{html.escape(str(lecture['id']))}" data-lesson-key="{html.escape(lesson_key)}" data-lesson-title="{html.escape(str(lecture['title']))}" data-lesson-label="{html.escape(lecture_label)}">
   <header class="site-header lecture-header">
     <nav class="top-nav">
-      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
-      <a href="../index.html#lectures">과목 강의 목록</a>
-      <a href="#review">복습 체크</a>
-    </nav>
+	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+	      <a href="../index.html#lectures">과목 강의 목록</a>
+	      <a href="#personal-note">내 메모</a>
+	      <a href="#review">복습 체크</a>
+	      {transcript_nav}
+	    </nav>
     <section class="lecture-hero">
       <div>
         <p class="small-label">{html.escape(lecture_label)}</p>
@@ -1602,7 +1843,38 @@ def render_lecture(lecture: dict, course: dict) -> str:
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap intro-grid">
+    <section class="content-wrap study-progress" aria-label="강의 학습 순서">
+      {progress_links}
+    </section>
+
+    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
+      <div>
+        <span class="study-card-kicker">현재 강의</span>
+        <strong>{html.escape(lecture_label)} 완료 상태</strong>
+        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
+      </div>
+      <button class="completion-toggle large" type="button" data-lesson-key="{html.escape(lesson_key)}" aria-pressed="false">
+        <span class="completion-dot" aria-hidden="true"></span>
+        <span class="completion-label">완료 표시</span>
+      </button>
+    </section>
+
+    <section id="personal-note" class="content-wrap personal-note-panel" aria-label="개인 학습 메모">
+      <div class="personal-note-copy">
+        <span class="study-card-kicker">내 메모</span>
+        <h2>수업 중 헷갈린 지점 저장</h2>
+        <p>강의를 들으면서 다시 볼 개념, 질문, 실습 중 막힌 지점을 적어 둔다. 이 메모는 이 브라우저에만 저장된다.</p>
+      </div>
+      <div class="personal-note-tools">
+        <textarea data-lesson-note rows="6" placeholder="예: 표준명 다시 확인하기, 다음에 직접 설명해 볼 질문, 실습에서 막힌 부분"></textarea>
+        <div class="note-tool-row">
+          <span class="note-save-status" data-note-save-status>아직 저장된 메모가 없습니다</span>
+          <button class="note-clear-button" type="button" data-note-clear>메모 비우기</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
         <h2>학습 목표</h2>
         <ul class="check-list">{objectives}</ul>
@@ -1613,13 +1885,15 @@ def render_lecture(lecture: dict, course: dict) -> str:
       {sections}
     </div>
 
-    <section id="review" class="content-wrap note-block">
-      <h2>복습 체크</h2>
-      <ul class="check-list">{checks}</ul>
-    </section>
+	    <section id="review" class="content-wrap note-block">
+	      <h2>복습 체크</h2>
+	      <ul class="check-list">{checks}</ul>
+	    </section>
 
-    <nav class="content-wrap page-nav">
-      {''.join(prev_next)}
+	    {transcript_section}
+
+	    <nav class="content-wrap page-nav">
+	      {''.join(prev_next)}
     </nav>
   </main>
 </body>
@@ -2458,6 +2732,8 @@ def write_styles() -> None:
               padding: 24px;
               max-height: 520px;
               overflow: auto;
+              white-space: pre-wrap;
+              overflow-wrap: anywhere;
               color: var(--muted);
               font-size: 14px;
               line-height: 1.8;
@@ -2906,12 +3182,480 @@ def write_code_highlighter() -> None:
     )
 
 
+def write_study_state_script() -> None:
+    ASSET_DIR.mkdir(exist_ok=True)
+    (ASSET_DIR / "study-state.js").write_text(
+        dedent(
+            r"""
+            (() => {
+              const progressStorageKey = "whitehatLectureProgress.v1";
+              const notesStorageKey = "whitehatLectureNotes.v1";
+
+              const safeRead = (key) => {
+                try {
+                  return JSON.parse(localStorage.getItem(key) || "{}");
+                } catch {
+                  return {};
+                }
+              };
+
+              const safeWrite = (key, state) => {
+                try {
+                  localStorage.setItem(key, JSON.stringify(state));
+                } catch {
+                  // The UI still works for the current page even when storage is unavailable.
+                }
+              };
+
+              const getCourseId = (lessonKey) => String(lessonKey || "").split(":")[0];
+
+              const setButtonState = (button, isComplete) => {
+                button.setAttribute("aria-pressed", String(isComplete));
+                button.classList.toggle("is-complete", isComplete);
+                const label = button.querySelector(".completion-label");
+                if (label) {
+                  label.textContent = isComplete ? "완료됨" : "완료 표시";
+                }
+              };
+
+              const knownCourseTotals = () =>
+                [...document.querySelectorAll("[data-course-progress-target], .course-progress-panel")]
+                  .map((element) => ({
+                    courseId: element.dataset.courseId,
+                    total: Number(element.dataset.courseTotal || 0),
+                  }))
+                  .filter((item) => item.courseId && item.total > 0);
+
+              const countCompleted = (state, courseId) =>
+                Object.keys(state).filter((key) => state[key] && (!courseId || getCourseId(key) === courseId)).length;
+
+              const updateCourseProgress = (state) => {
+                for (const item of knownCourseTotals()) {
+                  const completed = Math.min(countCompleted(state, item.courseId), item.total);
+                  const percent = item.total ? Math.round((completed / item.total) * 100) : 0;
+
+                  document
+                    .querySelectorAll(`[data-course-id="${CSS.escape(item.courseId)}"][data-course-progress-target]`)
+                    .forEach((element) => {
+                      element.dataset.progressPercent = String(percent);
+                      const label = element.querySelector("[data-course-progress-label]");
+                      if (label) {
+                        label.textContent = `${completed}/${item.total} 완료`;
+                      }
+                    });
+
+                  document
+                    .querySelectorAll(`.course-progress-panel[data-course-id="${CSS.escape(item.courseId)}"]`)
+                    .forEach((panel) => {
+                      const completedLabel = panel.querySelector("[data-course-completed]");
+                      const totalLabel = panel.querySelector("[data-course-total-label]");
+                      const bar = panel.querySelector("[data-course-bar]");
+                      if (completedLabel) completedLabel.textContent = String(completed);
+                      if (totalLabel) totalLabel.textContent = String(item.total);
+                      if (bar) bar.style.setProperty("--progress", `${percent}%`);
+                    });
+                }
+              };
+
+              const updateOverallProgress = (state) => {
+                const totalElement = document.querySelector("[data-total-lectures]");
+                if (!totalElement) {
+                  return;
+                }
+
+                const total = Number(totalElement.dataset.totalLectures || 0);
+                const completed = Math.min(countCompleted(state), total);
+                const percent = total ? Math.round((completed / total) * 100) : 0;
+                const completedLabel = document.querySelector("[data-overall-completed]");
+                const totalLabel = document.querySelector("[data-overall-total]");
+                const bar = document.querySelector("[data-overall-bar]");
+                if (completedLabel) completedLabel.textContent = String(completed);
+                if (totalLabel) totalLabel.textContent = String(total);
+                if (bar) bar.style.setProperty("--progress", `${percent}%`);
+              };
+
+              const applyState = (state) => {
+                document.querySelectorAll("[data-lesson-key]").forEach((element) => {
+                  const key = element.dataset.lessonKey;
+                  const isComplete = Boolean(state[key]);
+                  element.classList.toggle("is-complete", isComplete);
+                });
+
+                document.querySelectorAll(".completion-toggle[data-lesson-key]").forEach((button) => {
+                  setButtonState(button, Boolean(state[button.dataset.lessonKey]));
+                });
+
+                updateCourseProgress(state);
+                updateOverallProgress(state);
+                document.dispatchEvent(new CustomEvent("whitehat-progress-change"));
+              };
+
+              const bindToggles = (state) => {
+                document.querySelectorAll(".completion-toggle[data-lesson-key]").forEach((button) => {
+                  button.addEventListener("click", () => {
+                    const key = button.dataset.lessonKey;
+                    if (!key) {
+                      return;
+                    }
+                    state[key] = !state[key];
+                    if (!state[key]) {
+                      delete state[key];
+                    }
+                    safeWrite(progressStorageKey, state);
+                    applyState(state);
+                  });
+                });
+              };
+
+              const getNoteText = (entry) => {
+                if (typeof entry === "string") {
+                  return entry;
+                }
+                return String(entry?.text || "");
+              };
+
+              const hasNote = (notes, key) => getNoteText(notes[key]).trim().length > 0;
+
+              const formatSavedAt = (value) => {
+                const date = new Date(value);
+                if (Number.isNaN(date.getTime())) {
+                  return "방금 저장";
+                }
+                return `${date.toLocaleDateString("ko-KR", {
+                  month: "numeric",
+                  day: "numeric",
+                })} ${date.toLocaleTimeString("ko-KR", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}`;
+              };
+
+              const clipNote = (text) => {
+                const normalized = text.replace(/\s+/g, " ").trim();
+                return normalized.length > 120 ? `${normalized.slice(0, 120)}...` : normalized;
+              };
+
+              const collectLectureMeta = () => {
+                const meta = new Map();
+                document.querySelectorAll(".lecture-card[data-lesson-key]").forEach((card) => {
+                  const key = card.dataset.lessonKey;
+                  if (!key) {
+                    return;
+                  }
+                  meta.set(key, {
+                    label: card.querySelector(".lecture-id")?.textContent.trim() || key.split(":")[1],
+                    title: card.querySelector("h3")?.textContent.trim() || "강의 메모",
+                    href: card.querySelector(".card-actions a")?.getAttribute("href") || "#lectures",
+                  });
+                });
+                return meta;
+              };
+
+              const updateNoteIndicators = (notes) => {
+                document.querySelectorAll(".lecture-card[data-lesson-key], body[data-lesson-key]").forEach((element) => {
+                  const key = element.dataset.lessonKey;
+                  element.classList.toggle("has-note", hasNote(notes, key));
+                });
+
+                document.querySelectorAll(".lecture-card[data-lesson-key]").forEach((card) => {
+                  const indicator = card.querySelector("[data-note-presence]");
+                  if (indicator) {
+                    indicator.hidden = !hasNote(notes, card.dataset.lessonKey);
+                  }
+                });
+              };
+
+              const updateCourseNotePanel = (notes) => {
+                const panel = document.querySelector("[data-course-note-panel]");
+                if (!panel) {
+                  return;
+                }
+
+                const courseId = panel.dataset.courseId;
+                const list = panel.querySelector("[data-course-note-list]");
+                if (!courseId || !list) {
+                  return;
+                }
+
+                const meta = collectLectureMeta();
+                const entries = Object.entries(notes)
+                  .map(([key, entry]) => ({
+                    key,
+                    entry,
+                    text: getNoteText(entry).trim(),
+                  }))
+                  .filter((item) => item.text && getCourseId(item.key) === courseId)
+                  .sort((a, b) => {
+                    const aTime = new Date(a.entry?.updatedAt || 0).getTime();
+                    const bTime = new Date(b.entry?.updatedAt || 0).getTime();
+                    return bTime - aTime;
+                  })
+                  .slice(0, 6);
+
+                list.replaceChildren();
+                if (!entries.length) {
+                  const empty = document.createElement("p");
+                  empty.className = "empty-study-note";
+                  empty.textContent = "아직 이 과목에 저장한 메모가 없습니다.";
+                  list.append(empty);
+                  return;
+                }
+
+                entries.forEach(({ key, entry, text }) => {
+                  const fallback = meta.get(key) || {};
+                  const item = document.createElement("a");
+                  item.className = "course-note-item";
+                  item.href = fallback.href || "#lectures";
+
+                  const title = document.createElement("strong");
+                  const label = entry?.label || fallback.label || key.split(":")[1] || "강의";
+                  title.textContent = `${label} · ${entry?.title || fallback.title || "강의 메모"}`;
+
+                  const body = document.createElement("p");
+                  body.textContent = clipNote(text);
+
+                  const saved = document.createElement("span");
+                  saved.textContent = formatSavedAt(entry?.updatedAt);
+
+                  item.append(title, body, saved);
+                  list.append(item);
+                });
+              };
+
+              const applyNotes = (notes) => {
+                updateNoteIndicators(notes);
+                updateCourseNotePanel(notes);
+                document.dispatchEvent(new CustomEvent("whitehat-notes-change"));
+              };
+
+              const bindPersonalNote = (notes) => {
+                const textarea = document.querySelector("[data-lesson-note]");
+                if (!textarea) {
+                  return;
+                }
+
+                const key = document.body.dataset.lessonKey;
+                const status = document.querySelector("[data-note-save-status]");
+                const clearButton = document.querySelector("[data-note-clear]");
+                if (!key) {
+                  textarea.disabled = true;
+                  if (status) {
+                    status.textContent = "이 강의 정보를 찾을 수 없어 메모를 저장할 수 없습니다";
+                  }
+                  return;
+                }
+
+                const updateStatus = () => {
+                  const text = getNoteText(notes[key]).trim();
+                  if (!status) {
+                    return;
+                  }
+                  if (!text) {
+                    status.textContent = "아직 저장된 메모가 없습니다";
+                    return;
+                  }
+                  status.textContent = `자동 저장됨 · ${text.length}자 · ${formatSavedAt(notes[key]?.updatedAt)}`;
+                };
+
+                const save = () => {
+                  const rawText = textarea.value;
+                  const text = rawText.trim();
+                  if (text) {
+                    notes[key] = {
+                      text: rawText,
+                      updatedAt: new Date().toISOString(),
+                      courseId: document.body.dataset.courseId || getCourseId(key),
+                      lessonId: document.body.dataset.lessonId || key.split(":")[1],
+                      title: document.body.dataset.lessonTitle || document.querySelector(".lecture-hero h1")?.textContent.trim() || "강의 메모",
+                      label: document.body.dataset.lessonLabel || document.querySelector(".lecture-hero .small-label")?.textContent.trim() || key.split(":")[1],
+                    };
+                  } else {
+                    delete notes[key];
+                  }
+                  safeWrite(notesStorageKey, notes);
+                  updateStatus();
+                  applyNotes(notes);
+                };
+
+                textarea.value = getNoteText(notes[key]);
+                updateStatus();
+                textarea.addEventListener("input", save);
+                clearButton?.addEventListener("click", () => {
+                  textarea.value = "";
+                  save();
+                  textarea.focus();
+                });
+              };
+
+              document.addEventListener("DOMContentLoaded", () => {
+                const state = safeRead(progressStorageKey);
+                const notes = safeRead(notesStorageKey);
+                bindToggles(state);
+                applyState(state);
+                bindPersonalNote(notes);
+                applyNotes(notes);
+              });
+            })();
+            """
+        ).strip()
+        + "\n",
+        encoding="utf-8",
+    )
+
+
+def write_study_tools_script() -> None:
+    ASSET_DIR.mkdir(exist_ok=True)
+    (ASSET_DIR / "study-tools.js").write_text(
+        dedent(
+            r"""
+            (() => {
+              const normalize = (value) => String(value || "").trim().toLowerCase();
+
+              const setActive = (buttons, activeButton) => {
+                buttons.forEach((button) => button.classList.toggle("is-active", button === activeButton));
+              };
+
+              const setupCourseFinder = () => {
+                const root = document.querySelector("[data-course-finder]");
+                if (!root) {
+                  return;
+                }
+
+                const input = root.querySelector("[data-course-search]");
+                const statusButtons = [...root.querySelectorAll("[data-course-status-filter]")];
+                const countLabel = root.querySelector("[data-course-result-count]");
+                const emptyMessage = root.querySelector("[data-course-empty]");
+                const courseItems = [...document.querySelectorAll(".course-item[data-course-status]")];
+                const trackSections = [...document.querySelectorAll(".track-section")];
+                let activeStatus = "all";
+
+                const apply = () => {
+                  const query = normalize(input?.value);
+                  let visibleCount = 0;
+
+                  courseItems.forEach((item) => {
+                    const matchesQuery = !query || normalize(item.dataset.searchText || item.textContent).includes(query);
+                    const matchesStatus = activeStatus === "all" || item.dataset.courseStatus === activeStatus;
+                    const visible = matchesQuery && matchesStatus;
+                    item.hidden = !visible;
+                    item.classList.toggle("is-filtered-out", !visible);
+                    if (visible) visibleCount += 1;
+                  });
+
+                  trackSections.forEach((section) => {
+                    const hasVisibleCourse = Boolean(section.querySelector(".course-item:not([hidden]), .empty-state:not([hidden])"));
+                    section.hidden = !hasVisibleCourse;
+                  });
+
+                  if (countLabel) {
+                    countLabel.textContent = String(visibleCount);
+                  }
+                  if (emptyMessage) {
+                    emptyMessage.hidden = visibleCount > 0;
+                  }
+                };
+
+                input?.addEventListener("input", apply);
+                statusButtons.forEach((button) => {
+                  button.addEventListener("click", () => {
+                    activeStatus = button.dataset.courseStatusFilter || "all";
+                    setActive(statusButtons, button);
+                    apply();
+                  });
+                });
+
+                apply();
+              };
+
+              const setupLectureFinder = () => {
+                const root = document.querySelector("[data-lecture-finder]");
+                if (!root) {
+                  return;
+                }
+
+                const input = root.querySelector("[data-lecture-search]");
+                const statusButtons = [...root.querySelectorAll("[data-lecture-status-filter]")];
+                const tagButtons = [...root.querySelectorAll("[data-lecture-tag-filter]")];
+                const countLabel = root.querySelector("[data-lecture-result-count]");
+                const emptyMessage = root.querySelector("[data-lecture-empty]");
+                const lectureCards = [...document.querySelectorAll(".lecture-card[data-lesson-key]")];
+                let activeStatus = "all";
+                let activeTag = "all";
+
+                const apply = () => {
+                  const query = normalize(input?.value);
+                  let visibleCount = 0;
+
+                  lectureCards.forEach((card) => {
+                    const isComplete = card.classList.contains("is-complete");
+                    const matchesQuery = !query || normalize(card.dataset.searchText || card.textContent).includes(query);
+                    const tags = normalize(card.dataset.tags).split("|||");
+                    const matchesTag = activeTag === "all" || tags.includes(activeTag);
+                    const matchesStatus =
+                      activeStatus === "all" ||
+                      (activeStatus === "done" && isComplete) ||
+                      (activeStatus === "remaining" && !isComplete);
+                    const visible = matchesQuery && matchesTag && matchesStatus;
+                    card.hidden = !visible;
+                    card.classList.toggle("is-filtered-out", !visible);
+                    if (visible) visibleCount += 1;
+                  });
+
+                  if (countLabel) {
+                    countLabel.textContent = String(visibleCount);
+                  }
+                  if (emptyMessage) {
+                    emptyMessage.hidden = visibleCount > 0;
+                  }
+                };
+
+                input?.addEventListener("input", apply);
+                statusButtons.forEach((button) => {
+                  button.addEventListener("click", () => {
+                    activeStatus = button.dataset.lectureStatusFilter || "all";
+                    setActive(statusButtons, button);
+                    apply();
+                  });
+                });
+                tagButtons.forEach((button) => {
+                  button.addEventListener("click", () => {
+                    activeTag = button.dataset.lectureTagFilter || "all";
+                    setActive(tagButtons, button);
+                    apply();
+                  });
+                });
+
+                document.addEventListener("whitehat-progress-change", apply);
+                document.addEventListener("click", (event) => {
+                  if (event.target.closest(".completion-toggle")) {
+                    window.setTimeout(apply, 0);
+                  }
+                });
+
+                apply();
+              };
+
+              document.addEventListener("DOMContentLoaded", () => {
+                setupCourseFinder();
+                setupLectureFinder();
+              });
+            })();
+            """
+        ).strip()
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def main() -> None:
     generated_courses = ready_courses()
     write_styles()
     write_code_highlighter()
+    write_study_state_script()
+    write_study_tools_script()
     write_public_html(ROOT / "index.html", render_site_index())
     for course in generated_courses:
+        transcripts = get_transcripts(course)
         output_dir = course_output_dir(course)
         output_dir.mkdir(parents=True, exist_ok=True)
         lecture_dir = lecture_output_dir(course)
@@ -2920,7 +3664,7 @@ def main() -> None:
         for lecture in course.get("lectures", []):
             write_public_html(
                 lecture_dir / lecture_html_file(lecture),
-                render_lecture(lecture, course),
+                render_lecture(lecture, course, transcripts),
             )
 
 

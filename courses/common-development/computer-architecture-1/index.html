@@ -6,6 +6,8 @@
   <title>컴퓨터 구조 I 강의 정리</title>
   <link rel="stylesheet" href="../../../assets/styles.css">
   <script src="../../../assets/code-highlight.js" defer></script>
+  <script src="../../../assets/study-state.js" defer></script>
+  <script src="../../../assets/study-tools.js" defer></script>
 </head>
 
 <body>
@@ -37,6 +39,69 @@
   </header>
 
   <main>
+    <section class="content-wrap course-routine" aria-label="과목 학습 루틴">
+      <article>
+        <span>1</span>
+        <strong>전체 흐름 보기</strong>
+        <p>과목에서 어떤 순서로 개념이 이어지는지 먼저 잡는다.</p>
+      </article>
+      <article>
+        <span>2</span>
+        <strong>강의 하나 선택</strong>
+        <p>태그와 설명을 보고 지금 필요한 강의부터 들어간다.</p>
+      </article>
+      <article>
+        <span>3</span>
+        <strong>복습 질문으로 확인</strong>
+        <p>읽고 끝내지 말고 질문에 답하면서 기억을 고정한다.</p>
+      </article>
+    </section>
+
+    <section class="content-wrap course-progress-panel" data-course-id="computer-architecture-1" data-course-total="6" aria-label="과목 학습 진행률">
+      <div>
+        <span class="study-card-kicker">나의 과목 진행률</span>
+        <strong><span data-course-completed>0</span> / <span data-course-total-label>6</span>강 완료</strong>
+        <p>완료 표시는 이 브라우저에 저장된다. 강의를 들은 뒤 카드나 강의 페이지에서 체크하면 된다.</p>
+      </div>
+      <div class="progress-track"><i data-course-bar></i></div>
+    </section>
+
+    <section class="content-wrap finder-panel lecture-finder" data-lecture-finder aria-label="강의 검색과 필터">
+      <div class="finder-copy">
+        <span class="study-card-kicker">강의 찾기</span>
+        <h2>제목, 태그, 완료 상태로 좁히기</h2>
+        <p>복습할 강의만 찾거나 아직 안 본 강의만 남겨서 이어 들을 수 있다.</p>
+      </div>
+      <div class="finder-controls">
+        <label class="search-box">
+          <span>강의 검색</span>
+          <input type="search" data-lecture-search placeholder="예: 포인터, OWASP, TCP">
+        </label>
+        <div class="filter-row" role="group" aria-label="완료 상태 필터">
+          <button class="filter-chip is-active" type="button" data-lecture-status-filter="all">전체</button>
+          <button class="filter-chip" type="button" data-lecture-status-filter="remaining">남은 강의</button>
+          <button class="filter-chip" type="button" data-lecture-status-filter="done">완료한 강의</button>
+        </div>
+        <div class="filter-row tag-filter-row" role="group" aria-label="강의 태그 필터">
+          <button class="filter-chip is-active" type="button" data-lecture-tag-filter="all">모든 태그</button>
+          <button class="filter-chip" type="button" data-lecture-tag-filter="cisc/risc">CISC/RISC</button><button class="filter-chip" type="button" data-lecture-tag-filter="cpu">CPU</button><button class="filter-chip" type="button" data-lecture-tag-filter="cpu 아키텍처">CPU 아키텍처</button><button class="filter-chip" type="button" data-lecture-tag-filter="usb">USB</button><button class="filter-chip" type="button" data-lecture-tag-filter="디버거">디버거</button><button class="filter-chip" type="button" data-lecture-tag-filter="메모리">메모리</button><button class="filter-chip" type="button" data-lecture-tag-filter="명령어 사이클">명령어 사이클</button><button class="filter-chip" type="button" data-lecture-tag-filter="비트와 바이트">비트와 바이트</button><button class="filter-chip" type="button" data-lecture-tag-filter="시스템 구성">시스템 구성</button><button class="filter-chip" type="button" data-lecture-tag-filter="엔디안">엔디안</button><button class="filter-chip" type="button" data-lecture-tag-filter="오리엔테이션">오리엔테이션</button><button class="filter-chip" type="button" data-lecture-tag-filter="오버플로우">오버플로우</button><button class="filter-chip" type="button" data-lecture-tag-filter="인터럽트">인터럽트</button><button class="filter-chip" type="button" data-lecture-tag-filter="입출력">입출력</button><button class="filter-chip" type="button" data-lecture-tag-filter="정수 표현">정수 표현</button><button class="filter-chip" type="button" data-lecture-tag-filter="컴퓨터 구조">컴퓨터 구조</button><button class="filter-chip" type="button" data-lecture-tag-filter="컴퓨터 정의">컴퓨터 정의</button><button class="filter-chip" type="button" data-lecture-tag-filter="학습 범위">학습 범위</button>
+        </div>
+        <p class="finder-result"><strong data-lecture-result-count>6</strong>개 강의 표시 중</p>
+        <p class="finder-empty" data-lecture-empty hidden>조건에 맞는 강의가 없다. 검색어를 줄이거나 모든 태그로 바꿔 본다.</p>
+      </div>
+    </section>
+
+    <section class="content-wrap course-note-panel" data-course-note-panel data-course-id="computer-architecture-1" aria-label="과목 메모 모아보기">
+      <div>
+        <span class="study-card-kicker">최근 메모</span>
+        <strong>헷갈린 강의만 다시 찾기</strong>
+        <p>각 강의 페이지에서 남긴 개인 메모를 이 과목 안에서 모아 본다.</p>
+      </div>
+      <div class="course-note-list" data-course-note-list>
+        <p class="empty-study-note">아직 이 과목에 저장한 메모가 없습니다.</p>
+      </div>
+    </section>
+
     <section id="map" class="section-band">
       <div class="content-wrap">
         <h2>전체 흐름</h2>
@@ -49,67 +114,103 @@
 
     <section id="lectures" class="content-wrap lecture-grid-section">
       <h2>강의별 정리</h2>
-      <p class="section-intro">각 강의 페이지에서 학습 목표, 상세 정리, 예시, 복습 질문을 바로 확인할 수 있다.</p>
+      <p class="section-intro">각 강의 페이지에서 학습 목표, 상세 정리, 예시, 복습 질문과 강의 원문을 바로 확인할 수 있다.</p>
       <div class="lecture-grid">
         
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="computer-architecture-1" data-lesson-id="1-1" data-lesson-key="computer-architecture-1:1-1" data-search-text="1-1 강의 목차와 학습 방향 컴퓨터 구조 i는 컴퓨터의 의미, 데이터 표현, cpu, 메모리, 입출력 시스템을 넓게 훑는 기초 과목이다. 오리엔테이션 학습 범위 컴퓨터 구조" data-tags="오리엔테이션|||학습 범위|||컴퓨터 구조">
               <div class="card-top">
                 <span class="lecture-id">컴구 I 1-1</span>
-                <div class="tag-row"><span>오리엔테이션</span><span>학습 범위</span><span>컴퓨터 구조</span></div>
+                <div class="tag-row"><span>오리엔테이션</span><span>학습 범위</span><span>컴퓨터 구조</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>강의 목차와 학습 방향</h3>
               <p>컴퓨터 구조 I는 컴퓨터의 의미, 데이터 표현, CPU, 메모리, 입출력 시스템을 넓게 훑는 기초 과목이다.</p>
-              <a class="button" href="lectures/lesson-01.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-01.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="computer-architecture-1:1-1" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="computer-architecture-1" data-lesson-id="1-2" data-lesson-key="computer-architecture-1:1-2" data-search-text="1-2 컴퓨터 시스템 개요 컴퓨터를 명령에 따라 데이터를 처리하는 전자 장치로 보고, 시스템 구성 요소와 역사적 흐름을 연결한다. 컴퓨터 정의 시스템 구성 cpu 아키텍처" data-tags="컴퓨터 정의|||시스템 구성|||cpu 아키텍처">
               <div class="card-top">
                 <span class="lecture-id">컴구 I 1-2</span>
-                <div class="tag-row"><span>컴퓨터 정의</span><span>시스템 구성</span><span>CPU 아키텍처</span></div>
+                <div class="tag-row"><span>컴퓨터 정의</span><span>시스템 구성</span><span>CPU 아키텍처</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>컴퓨터 시스템 개요</h3>
               <p>컴퓨터를 명령에 따라 데이터를 처리하는 전자 장치로 보고, 시스템 구성 요소와 역사적 흐름을 연결한다.</p>
-              <a class="button" href="lectures/lesson-02.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-02.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="computer-architecture-1:1-2" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="computer-architecture-1" data-lesson-id="1-3" data-lesson-key="computer-architecture-1:1-3" data-search-text="1-3 데이터 표현 컴퓨터가 0과 1로 숫자, 문자, 정수, 실수, 프로그램의 상태를 표현하는 방식을 이해한다. 비트와 바이트 정수 표현 오버플로우" data-tags="비트와 바이트|||정수 표현|||오버플로우">
               <div class="card-top">
                 <span class="lecture-id">컴구 I 1-3</span>
-                <div class="tag-row"><span>비트와 바이트</span><span>정수 표현</span><span>오버플로우</span></div>
+                <div class="tag-row"><span>비트와 바이트</span><span>정수 표현</span><span>오버플로우</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>데이터 표현</h3>
               <p>컴퓨터가 0과 1로 숫자, 문자, 정수, 실수, 프로그램의 상태를 표현하는 방식을 이해한다.</p>
-              <a class="button" href="lectures/lesson-03.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-03.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="computer-architecture-1:1-3" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="computer-architecture-1" data-lesson-id="1-4" data-lesson-key="computer-architecture-1:1-4" data-search-text="1-4 중앙처리장치(cpu) 소스 코드가 기계어가 되고, cpu가 명령을 가져와 해석하고 실행하는 과정을 중심으로 cpu를 이해한다. cpu 명령어 사이클 cisc/risc" data-tags="cpu|||명령어 사이클|||cisc/risc">
               <div class="card-top">
                 <span class="lecture-id">컴구 I 1-4</span>
-                <div class="tag-row"><span>CPU</span><span>명령어 사이클</span><span>CISC/RISC</span></div>
+                <div class="tag-row"><span>CPU</span><span>명령어 사이클</span><span>CISC/RISC</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>중앙처리장치(CPU)</h3>
               <p>소스 코드가 기계어가 되고, CPU가 명령을 가져와 해석하고 실행하는 과정을 중심으로 CPU를 이해한다.</p>
-              <a class="button" href="lectures/lesson-04.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-04.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="computer-architecture-1:1-4" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="computer-architecture-1" data-lesson-id="1-5" data-lesson-key="computer-architecture-1:1-5" data-search-text="1-5 메모리와 시스템 메모리를 디버거로 관찰하고, 엔디안, ram과 rom, 메모리 계층 구조를 시스템 해킹 관점까지 연결한다. 메모리 디버거 엔디안" data-tags="메모리|||디버거|||엔디안">
               <div class="card-top">
                 <span class="lecture-id">컴구 I 1-5</span>
-                <div class="tag-row"><span>메모리</span><span>디버거</span><span>엔디안</span></div>
+                <div class="tag-row"><span>메모리</span><span>디버거</span><span>엔디안</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>메모리와 시스템</h3>
               <p>메모리를 디버거로 관찰하고, 엔디안, RAM과 ROM, 메모리 계층 구조를 시스템 해킹 관점까지 연결한다.</p>
-              <a class="button" href="lectures/lesson-05.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-05.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="computer-architecture-1:1-5" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
-            <article class="lecture-card">
+            <article class="lecture-card" data-course-id="computer-architecture-1" data-lesson-id="1-6" data-lesson-key="computer-architecture-1:1-6" data-search-text="1-6 입출력 시스템 버스, 포트, usb, 인터럽트, dma를 통해 컴퓨터가 외부 장치와 통신하는 방식을 이해한다. 입출력 usb 인터럽트" data-tags="입출력|||usb|||인터럽트">
               <div class="card-top">
                 <span class="lecture-id">컴구 I 1-6</span>
-                <div class="tag-row"><span>입출력</span><span>USB</span><span>인터럽트</span></div>
+                <div class="tag-row"><span>입출력</span><span>USB</span><span>인터럽트</span><span class="note-presence" data-note-presence hidden>메모 있음</span></div>
               </div>
               <h3>입출력 시스템</h3>
               <p>버스, 포트, USB, 인터럽트, DMA를 통해 컴퓨터가 외부 장치와 통신하는 방식을 이해한다.</p>
-              <a class="button" href="lectures/lesson-06.html">강의 정리 보기</a>
+              <div class="card-actions">
+                <a class="button" href="lectures/lesson-06.html">강의 정리 보기</a>
+                <button class="completion-toggle" type="button" data-lesson-key="computer-architecture-1:1-6" aria-pressed="false">
+                  <span class="completion-dot" aria-hidden="true"></span>
+                  <span class="completion-label">완료 표시</span>
+                </button>
+              </div>
             </article>
             
       </div>

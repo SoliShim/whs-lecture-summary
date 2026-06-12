@@ -6,15 +6,19 @@
   <title>프로그래밍 기초(C) 1-5 - 오픈소스 소프트웨어와 라이선스</title>
   <link rel="stylesheet" href="../../../../assets/styles.css">
   <script src="../../../../assets/code-highlight.js" defer></script>
+  <script src="../../../../assets/study-state.js" defer></script>
+  <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body>
+<body data-course-id="programming-basics-c" data-lesson-id="1-5" data-lesson-key="programming-basics-c:1-5" data-lesson-title="오픈소스 소프트웨어와 라이선스" data-lesson-label="프밍 1-5">
   <header class="site-header lecture-header">
     <nav class="top-nav">
-      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
-      <a href="../index.html#lectures">과목 강의 목록</a>
-      <a href="#review">복습 체크</a>
-    </nav>
+	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+	      <a href="../index.html#lectures">과목 강의 목록</a>
+	      <a href="#personal-note">내 메모</a>
+	      <a href="#review">복습 체크</a>
+	      <a href="#transcript">강의 원문</a>
+	    </nav>
     <section class="lecture-hero">
       <div>
         <p class="small-label">프밍 1-5</p>
@@ -24,13 +28,74 @@
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">오픈소스 소프트웨어란</a><a href="#section-2">공개되어 있다고 마음대로 쓸 수 있는가</a><a href="#section-3">라이선스를 볼 때의 세 가지 기준</a><a href="#section-4">MIT와 Apache 2.0 예시</a><a href="#section-5">정리</a>
+        <a href="#section-1">오픈소스 소프트웨어란</a><a href="#section-2">공개되어 있다고 마음대로 쓸 수 있는가</a><a href="#section-3">라이선스를 볼 때의 세 가지 기준</a><a href="#section-4">MIT와 Apache 2.0 예시</a><a href="#section-5">정리</a><a href="#personal-note">개인 메모</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap intro-grid">
+    <section class="content-wrap study-progress" aria-label="강의 학습 순서">
+      
+        <a href="#goals">
+          <span>1</span>
+          <strong>학습 목표</strong>
+          <small>오늘 범위 잡기</small>
+        </a>
+        
+        <a href="#section-1">
+          <span>2</span>
+          <strong>상세 정리</strong>
+          <small>개념 따라가기</small>
+        </a>
+        
+        <a href="#review">
+          <span>3</span>
+          <strong>복습 체크</strong>
+          <small>질문으로 점검</small>
+        </a>
+        
+        <a href="#personal-note">
+          <span>4</span>
+          <strong>개인 메모</strong>
+          <small>헷갈린 지점 저장</small>
+        </a>
+        
+        <a href="#transcript">
+          <span>5</span>
+          <strong>강의 원문</strong>
+          <small>필요할 때 비교</small>
+        </a>
+        
+    </section>
+
+    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
+      <div>
+        <span class="study-card-kicker">현재 강의</span>
+        <strong>프밍 1-5 완료 상태</strong>
+        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
+      </div>
+      <button class="completion-toggle large" type="button" data-lesson-key="programming-basics-c:1-5" aria-pressed="false">
+        <span class="completion-dot" aria-hidden="true"></span>
+        <span class="completion-label">완료 표시</span>
+      </button>
+    </section>
+
+    <section id="personal-note" class="content-wrap personal-note-panel" aria-label="개인 학습 메모">
+      <div class="personal-note-copy">
+        <span class="study-card-kicker">내 메모</span>
+        <h2>수업 중 헷갈린 지점 저장</h2>
+        <p>강의를 들으면서 다시 볼 개념, 질문, 실습 중 막힌 지점을 적어 둔다. 이 메모는 이 브라우저에만 저장된다.</p>
+      </div>
+      <div class="personal-note-tools">
+        <textarea data-lesson-note rows="6" placeholder="예: 표준명 다시 확인하기, 다음에 직접 설명해 볼 질문, 실습에서 막힌 부분"></textarea>
+        <div class="note-tool-row">
+          <span class="note-save-status" data-note-save-status>아직 저장된 메모가 없습니다</span>
+          <button class="note-clear-button" type="button" data-note-clear>메모 비우기</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
         <h2>학습 목표</h2>
         <ul class="check-list"><li>오픈소스 소프트웨어를 사용하는 이유를 설명한다.</li><li>라이선스를 확인할 때 볼 세 가지 기준을 정리한다.</li><li>MIT 라이선스 예시와 Apache 2.0처럼 제약이 있을 수 있는 경우를 구분한다.</li></ul>
@@ -77,13 +142,27 @@
         
     </div>
 
-    <section id="review" class="content-wrap note-block">
-      <h2>복습 체크</h2>
-      <ul class="check-list"><li>OSS를 사용하는 이유와 주의할 점을 함께 설명할 수 있는가?</li><li>라이선스 판단 기준 세 가지를 말할 수 있는가?</li><li>MIT 라이선스가 강의에서 어떤 예시로 사용되었는가?</li></ul>
-    </section>
+	    <section id="review" class="content-wrap note-block">
+	      <h2>복습 체크</h2>
+	      <ul class="check-list"><li>OSS를 사용하는 이유와 주의할 점을 함께 설명할 수 있는가?</li><li>라이선스 판단 기준 세 가지를 말할 수 있는가?</li><li>MIT 라이선스가 강의에서 어떤 예시로 사용되었는가?</li></ul>
+	    </section>
 
-    <nav class="content-wrap page-nav">
-      <a class="button secondary" href="lesson-04.html">이전: 1-4</a><a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-06.html">다음: 1-6</a>
+	    
+    <section id="transcript" class="content-wrap transcript-wrap">
+      <details class="reveal-section">
+        <summary>
+          <span>
+            <strong>강의 원문 보기</strong>
+            <small>선생님이 실제로 말한 내용을 정리본과 비교해서 확인한다.</small>
+          </span>
+        </summary>
+        <div class="transcript-text">다음은 오픈소스 소프트웨어입니다 저희가 소프트웨어를 만들 때에는 처음부터 끝까지 저희가 모든 기능을 다 만들 수도 있지만 사실은 그걸 다 만들기에는 시간도 부족하고 저희의 역량이 부족할 수도 있어요 그래서 기존의 개발자들이 많이 사용하고 또 인터넷에 공개적으로 사용할 수 있게 되어 있는 소스 코드들을 저희가 가져와서 내 소프트웨어에 합칠 수 있습니다 그래서 그러한 소프트웨어들을 오픈소스 소프트웨어라고 하고 줄여서 OSS라고 부르기도 합니다 자 그러면 여기서 질문이에요 오픈소스 소프트웨어는 인터넷에 공개되어 있으니까 내가 원하는 대로 막 가져와서 내 소프트웨어에 막 갖다 붙이고 돈 벌고 남들한테 공유해도 돼요? 반은 맞고 반은 틀립니다 자 그러면 이걸 어떻게 구분하냐 오픈소스 소프트웨어에도 라이센스가 있습니다 근데 이 라이센스가 여기 보이시는 이렇게 다섯 가지들만 있는 게 아니라 정말 수십 가지 더 있습니다 하지만 최소한 이 정도의 라이센스를 이해하고 여기에 없다가 하더라도 어떠한 기준으로 라이센스를 판별하면 될지에 대해서만 이해하면 되기 때문에 다섯 가지만 가져왔고요 이 다섯 가지도 결국에는 세 가지로 기준을 세울 수 있어요 첫 번째는 이 오픈소스를 가져와서 내 걸 만들었을 때 소스 코드를 내 것까지 다 공개해야 되냐 그런 의무가 있느냐 없느냐로 구분할 수 있고요 두 번째로는 내 소스 코드에 대해서 이 라이센스를 적용하면 나도 똑같이 이 라이센스를 적용을 해야 되냐 라는 겁니다 세 번째로는 이제 중요하죠 이 라이센스를 사용해서 내가 만들었을 때 과연 내가 이 소프트웨어로 돈을 벌어도 될까 안 된다 된다 에 대한 기준입니다 그래서 이 세 가지 기준이 가장 핵심적이고 이렇게 다섯 가지 정도 있는 겁니다 예를 들어서 MIT 라이센스 같은 경우는 소스 코드 공개 의무도 없고요 동일한 라이센스를 적용하지 않아도 되고요 그리고 내가 이 라이센스를 적용해서 소프트웨어를 만들고 돈을 벌어도 돼요 상업적 이용을 해도 됩니다 네 하지만 뭐 아파치 2.0 라이센스 같은 경우는 이 세 가지에 대해서 다 풀어주는 게 아니라 몇 가지 제약이 또 있죠 그래서 앞으로 오픈소스 소프트웨어를 사용할 때 이 세 가지 기준으로 한번 먼저 필터링을 해보고 과연 내 프로젝트에 적합한 오픈소스인지 판단해 보는 것도 좋을 것 같습니다 자 이렇게 해서 오픈소스 소프트웨어의 생태계 그리고 라이센스를 선정하는 기준에 대해서도 간단하게 요약을 해드렸습니다 자 이번 강의는 여기서 마치겠습니다 오늘의..</div>
+      </details>
+    </section>
+        
+
+	    <nav class="content-wrap page-nav">
+	      <a class="button secondary" href="lesson-04.html">이전: 1-4</a><a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-06.html">다음: 1-6</a>
     </nav>
   </main>
 </body>

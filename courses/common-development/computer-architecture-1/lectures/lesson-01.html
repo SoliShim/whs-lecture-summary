@@ -6,15 +6,19 @@
   <title>컴퓨터 구조 I 1-1 - 강의 목차와 학습 방향</title>
   <link rel="stylesheet" href="../../../../assets/styles.css">
   <script src="../../../../assets/code-highlight.js" defer></script>
+  <script src="../../../../assets/study-state.js" defer></script>
+  <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body>
+<body data-course-id="computer-architecture-1" data-lesson-id="1-1" data-lesson-key="computer-architecture-1:1-1" data-lesson-title="강의 목차와 학습 방향" data-lesson-label="컴구 I 1-1">
   <header class="site-header lecture-header">
     <nav class="top-nav">
-      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
-      <a href="../index.html#lectures">과목 강의 목록</a>
-      <a href="#review">복습 체크</a>
-    </nav>
+	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+	      <a href="../index.html#lectures">과목 강의 목록</a>
+	      <a href="#personal-note">내 메모</a>
+	      <a href="#review">복습 체크</a>
+	      <a href="#transcript">강의 원문</a>
+	    </nav>
     <section class="lecture-hero">
       <div>
         <p class="small-label">컴구 I 1-1</p>
@@ -24,13 +28,74 @@
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">멘토 소개와 강의 분위기</a><a href="#section-2">과목의 다섯 가지 큰 흐름</a><a href="#section-3">왜 넓게 훑는가</a><a href="#section-4">학생이 잡아야 할 학습 전략</a>
+        <a href="#section-1">멘토 소개와 강의 분위기</a><a href="#section-2">과목의 다섯 가지 큰 흐름</a><a href="#section-3">왜 넓게 훑는가</a><a href="#section-4">학생이 잡아야 할 학습 전략</a><a href="#personal-note">개인 메모</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap intro-grid">
+    <section class="content-wrap study-progress" aria-label="강의 학습 순서">
+      
+        <a href="#goals">
+          <span>1</span>
+          <strong>학습 목표</strong>
+          <small>오늘 범위 잡기</small>
+        </a>
+        
+        <a href="#section-1">
+          <span>2</span>
+          <strong>상세 정리</strong>
+          <small>개념 따라가기</small>
+        </a>
+        
+        <a href="#review">
+          <span>3</span>
+          <strong>복습 체크</strong>
+          <small>질문으로 점검</small>
+        </a>
+        
+        <a href="#personal-note">
+          <span>4</span>
+          <strong>개인 메모</strong>
+          <small>헷갈린 지점 저장</small>
+        </a>
+        
+        <a href="#transcript">
+          <span>5</span>
+          <strong>강의 원문</strong>
+          <small>필요할 때 비교</small>
+        </a>
+        
+    </section>
+
+    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
+      <div>
+        <span class="study-card-kicker">현재 강의</span>
+        <strong>컴구 I 1-1 완료 상태</strong>
+        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
+      </div>
+      <button class="completion-toggle large" type="button" data-lesson-key="computer-architecture-1:1-1" aria-pressed="false">
+        <span class="completion-dot" aria-hidden="true"></span>
+        <span class="completion-label">완료 표시</span>
+      </button>
+    </section>
+
+    <section id="personal-note" class="content-wrap personal-note-panel" aria-label="개인 학습 메모">
+      <div class="personal-note-copy">
+        <span class="study-card-kicker">내 메모</span>
+        <h2>수업 중 헷갈린 지점 저장</h2>
+        <p>강의를 들으면서 다시 볼 개념, 질문, 실습 중 막힌 지점을 적어 둔다. 이 메모는 이 브라우저에만 저장된다.</p>
+      </div>
+      <div class="personal-note-tools">
+        <textarea data-lesson-note rows="6" placeholder="예: 표준명 다시 확인하기, 다음에 직접 설명해 볼 질문, 실습에서 막힌 부분"></textarea>
+        <div class="note-tool-row">
+          <span class="note-save-status" data-note-save-status>아직 저장된 메모가 없습니다</span>
+          <button class="note-clear-button" type="button" data-note-clear>메모 비우기</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
         <h2>학습 목표</h2>
         <ul class="check-list"><li>이현재 멘토가 어떤 관점에서 컴퓨터 구조 기초를 설명하는지 이해한다.</li><li>컴퓨터 구조 I에서 다루는 다섯 가지 큰 주제를 순서대로 파악한다.</li><li>이 과목이 깊은 전공 이론보다 앞으로의 보안·개발 학습을 위한 기초 감각을 만드는 강의임을 이해한다.</li></ul>
@@ -82,13 +147,27 @@
         
     </div>
 
-    <section id="review" class="content-wrap note-block">
-      <h2>복습 체크</h2>
-      <ul class="check-list"><li>컴퓨터 구조 I에서 다루는 다섯 주제를 순서대로 말할 수 있는가?</li><li>이 강의가 깊은 회로 이론보다 기초 개념의 큰 그림을 잡는 수업이라는 점을 이해했는가?</li><li>CPU, 메모리, 입출력 장치가 이후 보안·개발 학습에서 왜 반복적으로 등장하는지 설명할 수 있는가?</li></ul>
-    </section>
+	    <section id="review" class="content-wrap note-block">
+	      <h2>복습 체크</h2>
+	      <ul class="check-list"><li>컴퓨터 구조 I에서 다루는 다섯 주제를 순서대로 말할 수 있는가?</li><li>이 강의가 깊은 회로 이론보다 기초 개념의 큰 그림을 잡는 수업이라는 점을 이해했는가?</li><li>CPU, 메모리, 입출력 장치가 이후 보안·개발 학습에서 왜 반복적으로 등장하는지 설명할 수 있는가?</li></ul>
+	    </section>
 
-    <nav class="content-wrap page-nav">
-      <a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-02.html">다음: 1-2</a>
+	    
+    <section id="transcript" class="content-wrap transcript-wrap">
+      <details class="reveal-section">
+        <summary>
+          <span>
+            <strong>강의 원문 보기</strong>
+            <small>선생님이 실제로 말한 내용을 정리본과 비교해서 확인한다.</small>
+          </span>
+        </summary>
+        <div class="transcript-text">안녕하세요. 2023년 차세대 보안리더 양성 프로그램 화이트스쿨 여러분들 환영합니다. 저는 컴퓨터 구조 기초 수업을 맡게 된 이현재 멘토라고 합니다. 처음 제 소개를 드리자면 저는 알렙에서 보안제품 개부를 하고 있고 3년간 일을 했습니다. 강의 목차 설명드리겠습니다. 저는 총 5가지 파트로 나눴습니다. 맨 처음에는 컴퓨터가 뭔지 슬쩍 알아보겠습니다. 두 번째로 컴퓨터는 데이터를 어떻게 다루는지 데이터 표현을 통해 배우겠습니다. 세 번째로 컴퓨터의 머리 CPU에 대해서 배우겠습니다. 네 번째로 메모리에 대해서 배우겠습니다. 그리고 마지막으로 입출력 시스템에 대해 배우고 마무리하도록 하겠습니다. 컴퓨터 구조가 사실 양도 많고 되게 방대합니다. 그 중에서 여러분들이 이 정도는 알겠다, 알았으면 좋겠다 하면 것들만 추려가지고 설명을 드리도록 하겠습니다. 교양 수업처럼 좀 편하게 들어주시면 좋을 것 같고요. 부족한 내용이 좀 많아서 언제든지 메모를 해놨다가 저한테 말씀을 주시면은 제가 따로 답변 드리도록 하겠습니다. 그렇습니다. 다음 영상에서 만나요.</div>
+      </details>
+    </section>
+        
+
+	    <nav class="content-wrap page-nav">
+	      <a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-02.html">다음: 1-2</a>
     </nav>
   </main>
 </body>
