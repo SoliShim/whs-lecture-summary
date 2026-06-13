@@ -125,8 +125,117 @@
     apply();
   };
 
-  document.addEventListener("DOMContentLoaded", () => {
+  const setupLectureSideGuide = () => {
+    const guide = document.querySelector("[data-lecture-side-guide]");
+    if (!guide) {
+      return;
+    }
+
+    const links = [...guide.querySelectorAll("[data-side-section-link]")];
+    const current = guide.querySelector("[data-side-current]");
+    const jumpSelect = document.querySelector("[data-section-jump]");
+    const sections = links
+      .map((link) => document.getElementById(link.dataset.sideSectionLink || ""))
+      .filter(Boolean);
+
+    if (!links.length || !sections.length) {
+      return;
+    }
+
+    const setActiveSection = (sectionId) => {
+      links.forEach((link) => {
+        const active = link.dataset.sideSectionLink === sectionId;
+        link.classList.toggle("is-active", active);
+        if (active && current) {
+          current.textContent = `SECTION ${link.querySelector("span")?.textContent || ""}`.trim();
+        }
+        if (active && jumpSelect) {
+          jumpSelect.value = `#${sectionId}`;
+        }
+      });
+    };
+
+    const sectionFromHash = () => {
+      const id = window.location.hash.replace("#", "");
+      return sections.some((section) => section.id === id) ? id : "";
+    };
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        const sectionId = link.dataset.sideSectionLink;
+        if (sectionId) {
+          setActiveSection(sectionId);
+        }
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+          if (visible[0]?.target?.id) {
+            setActiveSection(visible[0].target.id);
+          }
+        },
+        { rootMargin: "-18% 0px -64% 0px", threshold: [0, 0.2, 0.6] },
+      );
+      sections.forEach((section) => observer.observe(section));
+    } else {
+      const updateByScroll = () => {
+        const currentSection = sections.reduce((best, section) => {
+          const top = Math.abs(section.getBoundingClientRect().top - 120);
+          return !best || top < best.top ? { id: section.id, top } : best;
+        }, null);
+        if (currentSection) {
+          setActiveSection(currentSection.id);
+        }
+      };
+      document.addEventListener("scroll", updateByScroll, { passive: true });
+      updateByScroll();
+    }
+
+    setActiveSection(sectionFromHash() || sections[0].id);
+  };
+
+  const setupLectureControls = () => {
+    const sectionSelect = document.querySelector("[data-section-jump]");
+    const sections = [...document.querySelectorAll("[data-note-section]")];
+
+    sectionSelect?.addEventListener("change", () => {
+      const targetId = (sectionSelect.value || "").replace("#", "");
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) {
+        return;
+      }
+      if ("open" in target) {
+        target.open = true;
+      }
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", `#${targetId}`);
+    });
+
+    document.querySelectorAll("[data-section-toggle]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const mode = button.dataset.sectionToggle;
+        sections.forEach((section) => {
+          section.open = mode !== "collapse";
+        });
+      });
+    });
+  };
+
+  const initStudyTools = () => {
     setupCourseFinder();
     setupLectureFinder();
-  });
+    setupLectureSideGuide();
+    setupLectureControls();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initStudyTools);
+  } else {
+    initStudyTools();
+  }
 })();

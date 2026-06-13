@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html
 import re
+from html.parser import HTMLParser
 from pathlib import Path
 from textwrap import dedent
 
@@ -48,6 +49,341 @@ REPEATED_TRANSCRIPT_PHRASES = [
     "수고하셨습니다",
     "감사합니다",
 ]
+EMPHASIS_TERMS = (
+    "Software Development Life Cycle",
+    "도메인별 표준",
+    "소프트웨어 품질",
+    "품질 기준",
+    "품질 매트릭",
+    "국제 표준",
+    "스마트 팩토리",
+    "스마트 헬스케어",
+    "헬스 인포메틱스",
+    "SDLC",
+    "Planning",
+    "Analysis",
+    "Design",
+    "Implementation",
+    "Testing",
+    "Deployment",
+    "Maintenance",
+    "Agile",
+    "Waterfall",
+    "스프린트",
+    "유지보수성",
+    "복구성",
+    "효율성",
+    "신뢰성",
+    "재사용성",
+    "보안성",
+    "Maintainability",
+    "Recoverability",
+    "Efficiency",
+    "Reliability",
+    "Reusability",
+    "Security",
+    "오픈소스 소프트웨어",
+    "MIT 라이선스",
+    "Apache 2.0",
+    "소스 공개 의무",
+    "동일 라이선스",
+    "상업적 이용",
+    "요구사항 명세서",
+    "Information Architecture",
+    "서비스 정책",
+    "개발 정책",
+    "와이어프레임",
+    "WBS",
+    "프로젝트 이해관계자",
+    "프로젝트 일정",
+    "프로젝트 결과물",
+    "C 언어",
+    "컴파일러",
+    "Visual Studio Code",
+    "GCC",
+    "MinGW",
+    "변수",
+    "상수",
+    "자료형",
+    "const",
+    "short",
+    "int",
+    "long",
+    "char",
+    "unsigned char",
+    "printf",
+    "형식 지정자",
+    "입력",
+    "출력",
+    "I/O",
+    "scanf",
+    "fgets",
+    "sprintf",
+    "fputs",
+    "조건문",
+    "if",
+    "else if",
+    "else",
+    "switch case",
+    "반복문",
+    "for",
+    "while",
+    "do while",
+    "초기식",
+    "조건식",
+    "증감식",
+    "함수",
+    "반환형",
+    "매개변수",
+    "return",
+    "배열",
+    "중첩 반복문",
+    "포인터",
+    "call by value",
+    "call by reference",
+    "주소",
+    "문자열",
+    "null 문자",
+    "string.h",
+    "strcpy",
+    "strlen",
+    "strcmp",
+    "strcat",
+    "버퍼 오버플로우",
+    "동적 메모리",
+    "stack",
+    "heap",
+    "malloc",
+    "calloc",
+    "realloc",
+    "memset",
+    "free",
+    "구조체",
+    "typedef",
+    "멤버 변수",
+    "컴퓨터 구조",
+    "컴퓨터 시스템",
+    "CPU",
+    "중앙처리장치",
+    "제어장치",
+    "연산장치",
+    "레지스터",
+    "메모리",
+    "입출력",
+    "주기억장치",
+    "보조기억장치",
+    "입출력장치",
+    "버스",
+    "데이터 버스",
+    "주소 버스",
+    "제어 버스",
+    "명령어 사이클",
+    "인출",
+    "해독",
+    "실행",
+    "인터럽트",
+    "8비트",
+    "비트",
+    "바이트",
+    "2진수",
+    "10진수",
+    "16진수",
+    "보수",
+    "부동소수점",
+    "ASCII",
+    "유니코드",
+    "캐시 메모리",
+    "가상 메모리",
+    "RAM",
+    "ROM",
+    "운영체제",
+    "커널",
+    "시스템 호출",
+    "프로세스",
+    "스레드",
+    "파일 시스템",
+    "리눅스",
+    "우분투",
+    "가상머신",
+    "클라우드",
+    "CLI",
+    "GUI",
+    "쉘",
+    "배시",
+    "패키지",
+    "데몬",
+    "서비스",
+    "권한",
+    "사용자 계정",
+    "그룹",
+    "root",
+    "sudo",
+    "프로세스 관리",
+    "모니터링",
+    "로그",
+    "환경 변수",
+    "환경변수",
+    "PATH",
+    "systemd",
+    "apt",
+    "cron",
+    "쉘 스크립트",
+    "네트워크",
+    "인터넷",
+    "프로토콜",
+    "계층 구조",
+    "OSI 7계층",
+    "TCP/IP",
+    "물리 계층",
+    "데이터 링크 계층",
+    "네트워크 계층",
+    "트랜스포트 계층",
+    "애플리케이션 계층",
+    "이더넷",
+    "MAC 주소",
+    "ARP",
+    "IP 주소",
+    "서브넷",
+    "라우팅",
+    "ICMP",
+    "TCP",
+    "UDP",
+    "포트",
+    "소켓",
+    "HTTP",
+    "DNS",
+    "TLS",
+    "Wireshark",
+    "패킷",
+    "캡처",
+    "3-way handshake",
+    "혼잡 제어",
+    "흐름 제어",
+    "암호학",
+    "평문",
+    "암호문",
+    "암호화",
+    "복호화",
+    "대칭키 암호",
+    "공개키 암호",
+    "기밀성",
+    "무결성",
+    "인증",
+    "부인방지",
+    "해시 함수",
+    "메시지 인증 코드",
+    "전자서명",
+    "인증서",
+    "PKI",
+    "RSA",
+    "AES",
+    "DES",
+    "블록 암호",
+    "스트림 암호",
+    "난수",
+    "키 교환",
+    "Diffie-Hellman",
+    "시큐어 코딩",
+    "보안 약점",
+    "취약점",
+    "공격 유형",
+    "OWASP Top 10",
+    "입력 검증",
+    "접근 통제",
+    "권한 관리",
+    "SQL Injection",
+    "XSS",
+    "SSRF",
+    "경로 조작",
+    "파일 업로드",
+    "에러 처리",
+    "예외 처리",
+    "API 오용",
+    "경쟁 상태",
+    "Race Condition",
+    "세션 관리",
+    "보안 기능",
+    "안전한 코딩",
+    "위협 모델링",
+    "리스크",
+    "퍼징",
+    "정보보안윤리",
+    "사이버 안보",
+    "사이버 위협",
+    "사이버 전쟁",
+    "국가 사이버 안보체계",
+    "국가 사이버 안보 전략",
+    "정보보호",
+    "개인정보",
+    "해킹",
+    "악성코드",
+    "랜섬웨어",
+    "피싱",
+    "APT",
+    "사회공학",
+    "제로데이",
+    "보안 거버넌스",
+    "침해사고",
+    "대응 체계",
+    "법제도",
+    "국가 기반시설",
+    "주요 정보통신 기반시설",
+    "제로트러스트",
+    "Zero Trust",
+    "AI 보안",
+    "생성형 AI",
+    "클라우드 보안",
+    "블록체인",
+    "스마트 컨트랙트",
+    "가상자산",
+    "사이버 테러",
+    "인간중심보안",
+    "보안 인식",
+    "최소 권한",
+    "마이크로 세그멘테이션",
+    "멀티팩터 인증",
+    "MFA",
+    "CASB",
+    "CSPM",
+    "DevSecOps",
+    "공급망 보안",
+    "해커의 프로그래밍",
+    "Python",
+    "파이썬",
+    "Base64",
+    "웹 스크래핑",
+    "BeautifulSoup",
+    "requests",
+    "API",
+    "API 키",
+    "n8n",
+    "워크플로우 자동화",
+    "개인정보 유출",
+    "데이터 결합",
+    "가상자산 믹싱",
+    "거래 그래프",
+    "OSINT",
+    "정보 그래프",
+    "정규표현식",
+    "JSON",
+    "CSV",
+    "크롤링",
+)
+EMPHASIS_BLOCK_TAGS = {"p", "li", "td"}
+EMPHASIS_SKIP_TAGS = {"a", "b", "button", "code", "h1", "h2", "h3", "option", "pre", "script", "select", "strong", "style", "summary", "textarea"}
+EMPHASIS_MAX_PER_BLOCK = 2
+EMPHASIS_STOPWORDS = {
+    "강의",
+    "개요",
+    "기초",
+    "방법",
+    "문법",
+    "복습",
+    "실습",
+    "정리",
+    "총정리",
+    "활용",
+}
 
 
 def code_block(source: str, lang: str = "c") -> str:
@@ -98,6 +434,162 @@ def readable_transcript_block(text: str) -> str:
     if current:
         paragraphs.append(" ".join(current))
     return "".join(f"<p>{paragraph}</p>" for paragraph in paragraphs)
+
+
+def normalize_emphasis_term(term: object) -> str:
+    term = html.unescape(re.sub(r"<[^>]+>", " ", str(term)))
+    term = re.sub(r"\s+", " ", term).strip(" :-–—,./·()[]")
+    if len(term) < 2 or term in EMPHASIS_STOPWORDS:
+        return ""
+    return term
+
+
+def split_candidate_terms(text: object) -> list[str]:
+    plain = html.unescape(re.sub(r"<[^>]+>", " ", str(text)))
+    plain = re.sub(r"\([^)]*\)", " ", plain)
+    parts = re.split(r"[,·:：]|(?:\s+(?:및|그리고|와|과)\s+)", plain)
+    return [part for part in (normalize_emphasis_term(part) for part in parts) if part and len(part) <= 18]
+
+
+def emphasis_terms_for(lecture: dict | None = None, section: dict | None = None) -> list[str]:
+    candidates: list[object] = list(EMPHASIS_TERMS)
+    if lecture:
+        candidates.extend(lecture.get("tags", []))
+    if section:
+        candidates.extend(split_candidate_terms(section.get("heading", "")))
+
+    terms = []
+    seen = set()
+    for candidate in candidates:
+        term = normalize_emphasis_term(candidate)
+        key = term.casefold()
+        if not term or key in seen:
+            continue
+        seen.add(key)
+        terms.append(term)
+
+    return sorted(terms, key=len, reverse=True)
+
+
+def emphasis_pattern(term: str) -> re.Pattern[str]:
+    escaped = re.escape(term)
+    if re.fullmatch(r"[A-Za-z0-9_+.#/\- ]+", term):
+        return re.compile(rf"(?<![A-Za-z0-9_+.#/\-]){escaped}(?![A-Za-z0-9_+.#/\-])", re.IGNORECASE)
+    return re.compile(rf"(?<![가-힣A-Za-z0-9]){escaped}", re.IGNORECASE)
+
+
+class AutoEmphasisParser(HTMLParser):
+    def __init__(self, terms: list[str]):
+        super().__init__(convert_charrefs=False)
+        self.output: list[str] = []
+        self.tag_stack: list[str] = []
+        self.block_counts: list[int] = []
+        self.used_terms: set[str] = set()
+        self.term_patterns = [(term.casefold(), emphasis_pattern(term)) for term in terms]
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        tag_name = tag.lower()
+        self.output.append(self.get_starttag_text() or self.rebuild_starttag(tag, attrs))
+        self.tag_stack.append(tag_name)
+        if tag_name in EMPHASIS_BLOCK_TAGS:
+            self.block_counts.append(0)
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.output.append(self.get_starttag_text() or self.rebuild_starttag(tag, attrs, closed=True))
+
+    def handle_endtag(self, tag: str) -> None:
+        tag_name = tag.lower()
+        if tag_name in EMPHASIS_BLOCK_TAGS and self.block_counts:
+            self.block_counts.pop()
+        self.pop_tag(tag_name)
+        self.output.append(f"</{tag}>")
+
+    def handle_data(self, data: str) -> None:
+        if not data.strip() or not self.emphasis_allowed():
+            self.output.append(data)
+            return
+        self.output.append(self.emphasize_data(data))
+
+    def handle_entityref(self, name: str) -> None:
+        self.output.append(f"&{name};")
+
+    def handle_charref(self, name: str) -> None:
+        self.output.append(f"&#{name};")
+
+    def rebuild_starttag(self, tag: str, attrs: list[tuple[str, str | None]], *, closed: bool = False) -> str:
+        attr_text = "".join(
+            f' {name}="{html.escape(value, quote=True)}"' if value is not None else f" {name}"
+            for name, value in attrs
+        )
+        suffix = " /" if closed else ""
+        return f"<{tag}{attr_text}{suffix}>"
+
+    def pop_tag(self, tag: str) -> None:
+        for index in range(len(self.tag_stack) - 1, -1, -1):
+            if self.tag_stack[index] == tag:
+                del self.tag_stack[index:]
+                break
+
+    def emphasis_allowed(self) -> bool:
+        return bool(self.block_counts) and not any(tag in EMPHASIS_SKIP_TAGS for tag in self.tag_stack)
+
+    def emphasize_data(self, data: str) -> str:
+        remaining = EMPHASIS_MAX_PER_BLOCK - self.block_counts[-1]
+        if remaining <= 0:
+            return data
+
+        matches = []
+        for key, pattern in self.term_patterns:
+            if key in self.used_terms:
+                continue
+            match = pattern.search(data)
+            if match:
+                length = match.end() - match.start()
+                matches.append((match.start(), -length, match.end(), key))
+
+        if not matches:
+            return data
+
+        selected = []
+        occupied_until = -1
+        for start, _negative_length, end, key in sorted(matches):
+            if start < occupied_until:
+                continue
+            selected.append((start, end, key))
+            occupied_until = end
+            if len(selected) >= remaining:
+                break
+
+        if not selected:
+            return data
+
+        parts = []
+        cursor = 0
+        for start, end, key in selected:
+            parts.append(data[cursor:start])
+            parts.append(f"<strong>{data[start:end]}</strong>")
+            cursor = end
+            self.used_terms.add(key)
+        parts.append(data[cursor:])
+        self.block_counts[-1] += len(selected)
+        return "".join(parts)
+
+    def get_html(self) -> str:
+        return "".join(self.output)
+
+
+def emphasize_html(fragment: str, terms: list[str]) -> str:
+    if not terms:
+        return fragment
+    parser = AutoEmphasisParser(terms)
+    parser.feed(fragment)
+    parser.close()
+    return parser.get_html()
+
+
+def emphasize_plain_text(text: object, terms: list[str]) -> str:
+    wrapped = emphasize_html(f"<p>{html.escape(str(text))}</p>", terms)
+    return wrapped.removeprefix("<p>").removesuffix("</p>")
 
 
 def lecture_number(lecture: dict) -> int:
@@ -1397,6 +1889,60 @@ def tag_list(tags: list[str]) -> str:
     return "".join(f"<span>{html.escape(tag)}</span>" for tag in tags)
 
 
+def text_from_html(fragment: str) -> str:
+    without_code = re.sub(r"<pre[\s\S]*?</pre>", " ", dedent(fragment), flags=re.IGNORECASE)
+    without_tags = re.sub(r"<[^>]+>", " ", without_code)
+    return re.sub(r"\s+", " ", html.unescape(without_tags)).strip()
+
+
+def render_section_body(section: dict, lecture: dict | None = None) -> str:
+    body = dedent(str(section.get("body", ""))).strip()
+    if not body:
+        return ""
+
+    return emphasize_html(body, emphasis_terms_for(lecture, section))
+
+
+def render_lecture_control_panel(lecture: dict, transcript_nav: str) -> str:
+    options = "".join(
+        f'<option value="#section-{index}">{index:02d}. {html.escape(str(section["heading"]))}</option>'
+        for index, section in enumerate(lecture["sections"], start=1)
+    )
+    transcript_link = '<a class="button secondary" href="#transcript">강의 원문</a>' if transcript_nav else ""
+    return f"""
+    <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
+      <div class="section-jump-field">
+        <label for="section-jump-{html.escape(str(lecture['id']))}">섹션 바로가기</label>
+        <select id="section-jump-{html.escape(str(lecture['id']))}" data-section-jump>
+          <option value="">읽을 섹션 선택</option>
+          {options}
+        </select>
+      </div>
+      <div class="lecture-control-actions" aria-label="섹션 보기 방식">
+        <button class="button secondary" type="button" data-section-toggle="collapse">섹션 접기</button>
+        <button class="button secondary" type="button" data-section-toggle="expand">전체 펼치기</button>
+        <a class="button secondary" href="#review">복습 체크</a>
+        {transcript_link}
+      </div>
+    </section>
+    """
+
+
+def lecture_content_stats(lecture: dict) -> dict[str, int]:
+    sections = list(lecture.get("sections", []))
+    body_html = "\n".join(str(section.get("body", "")) for section in sections).lower()
+    body_text = " ".join(text_from_html(str(section.get("body", ""))) for section in sections)
+    return {
+        "sections": len(sections),
+        "code": body_html.count("<pre"),
+        "tables": body_html.count("<table"),
+        "diagrams": body_html.count('class="diagram'),
+        "timelines": body_html.count('class="timeline'),
+        "lists": body_html.count("<ul") + body_html.count("<ol"),
+        "chars": len(body_text),
+    }
+
+
 def render_site_index() -> str:
     total_ready_lectures = sum(len(course.get("lectures", [])) for course in ready_courses())
     total_review_questions = sum(
@@ -1586,6 +2132,118 @@ def render_site_index() -> str:
 """
 
 
+def lecture_card_profile_items(lecture: dict) -> list[tuple[str, str]]:
+    stats = lecture_content_stats(lecture)
+    items: list[tuple[str, str]] = [
+        ("섹션", f"{stats['sections']}개"),
+        ("복습", f"{len(lecture.get('checks', []))}문항"),
+    ]
+
+    focus_items: list[tuple[str, str]] = []
+    if stats["code"]:
+        focus_items.append(("코드", f"{stats['code']}개"))
+    if stats["tables"]:
+        focus_items.append(("표", f"{stats['tables']}개"))
+    if stats["diagrams"] or stats["timelines"]:
+        focus_items.append(("그림", f"{stats['diagrams'] + stats['timelines']}개"))
+    if stats["lists"]:
+        focus_items.append(("목록", f"{stats['lists']}개"))
+    if not focus_items:
+        focus_items.append(("개념", "중심"))
+
+    return items + focus_items[:3]
+
+
+def render_lecture_card_profile(lecture: dict) -> str:
+    chips = "".join(
+        f"<span><strong>{html.escape(label)}</strong>{html.escape(value)}</span>"
+        for label, value in lecture_card_profile_items(lecture)
+    )
+    return f"""
+              <div class="lecture-profile" aria-label="강의 학습 정보">
+                {chips}
+              </div>
+    """
+
+
+def course_overview_stats(course: dict) -> dict[str, int]:
+    lectures = list(course.get("lectures", []))
+    totals = {
+        "lectures": len(lectures),
+        "sections": 0,
+        "checks": 0,
+        "code": 0,
+        "tables": 0,
+        "diagrams": 0,
+        "timelines": 0,
+        "lists": 0,
+        "minutes": 0,
+    }
+    for lecture in lectures:
+        stats = lecture_content_stats(lecture)
+        totals["sections"] += stats["sections"]
+        totals["checks"] += len(lecture.get("checks", []))
+        totals["code"] += stats["code"]
+        totals["tables"] += stats["tables"]
+        totals["diagrams"] += stats["diagrams"]
+        totals["timelines"] += stats["timelines"]
+        totals["lists"] += stats["lists"]
+        totals["minutes"] += max(8, min(65, round(stats["chars"] / 420) + stats["sections"] * 2 + stats["code"] * 3))
+    return totals
+
+
+def course_focus_summary(stats: dict[str, int]) -> list[tuple[str, str]]:
+    items = [
+        ("코드", stats["code"]),
+        ("표", stats["tables"]),
+        ("그림/흐름", stats["diagrams"] + stats["timelines"]),
+        ("목록", stats["lists"]),
+    ]
+    present = [(label, count) for label, count in items if count]
+    if not present:
+        return [("개념 중심", "핵심 문장 위주")]
+    return [(label, f"{count}개") for label, count in present[:4]]
+
+
+def render_course_overview(course: dict) -> str:
+    stats = course_overview_stats(course)
+    focus_items = "".join(
+        f"<span><strong>{html.escape(label)}</strong>{html.escape(str(value))}</span>"
+        for label, value in course_focus_summary(stats)
+    )
+    metric_cards = [
+        ("강의", f"{stats['lectures']}개", "순서대로 듣기"),
+        ("섹션", f"{stats['sections']}개", "나누어 읽기"),
+        ("예상", f"약 {stats['minutes']}분", "2~3회 분할"),
+        ("복습", f"{stats['checks']}문항", "질문으로 확인"),
+    ]
+    metrics = "".join(
+        f"""
+        <article>
+          <span>{html.escape(label)}</span>
+          <strong>{html.escape(value)}</strong>
+          <p>{html.escape(helper)}</p>
+        </article>
+        """
+        for label, value, helper in metric_cards
+    )
+    return f"""
+    <section class="content-wrap course-overview-panel" aria-label="과목 학습 개요">
+      <div class="course-overview-copy">
+        <span class="study-card-kicker">과목 학습 개요</span>
+        <h2>전체 분량을 보고 오늘 들을 양 정하기</h2>
+        <p>강의 목록으로 내려가기 전에 과목 전체의 분량과 학습 유형을 먼저 확인한다.</p>
+        <div class="course-focus-strip" aria-label="주요 학습 유형">
+          {focus_items}
+        </div>
+      </div>
+      <div class="course-overview-metrics">
+        {metrics}
+      </div>
+    </section>
+    """
+
+
 def render_course_index(course: dict) -> str:
     cards = []
     lectures = course.get("lectures", [])
@@ -1595,12 +2253,16 @@ def render_course_index(course: dict) -> str:
     featured = next((lecture for lecture in lectures if lecture["id"] == featured_id), lectures[-1])
     for lecture in lectures:
         lesson_key = f"{course['id']}:{lecture['id']}"
+        profile_text = " ".join(
+            f"{label} {value}" for label, value in lecture_card_profile_items(lecture)
+        )
         lecture_search = " ".join(
             [
                 str(lecture.get("id", "")),
                 str(lecture.get("title", "")),
                 str(lecture.get("subtitle", "")),
                 " ".join(str(tag) for tag in lecture.get("tags", [])),
+                profile_text,
             ]
         )
         lecture_tags = "|||".join(str(tag).lower() for tag in lecture.get("tags", []))
@@ -1609,10 +2271,11 @@ def render_course_index(course: dict) -> str:
             <article class="lecture-card" data-course-id="{html.escape(str(course['id']))}" data-lesson-id="{html.escape(str(lecture['id']))}" data-lesson-key="{html.escape(lesson_key)}" data-search-text="{html.escape(lecture_search.lower())}" data-tags="{html.escape(lecture_tags)}">
               <div class="card-top">
                 <span class="lecture-id">{html.escape(str(course['short_title']))} {lecture['id']}</span>
-                <div class="tag-row">{tag_list(lecture['tags'])}<span class="note-presence" data-note-presence hidden>메모 있음</span></div>
+                <div class="tag-row">{tag_list(lecture['tags'])}</div>
               </div>
               <h3>{html.escape(lecture['title'])}</h3>
               <p>{html.escape(lecture['subtitle'])}</p>
+              {render_lecture_card_profile(lecture)}
               <div class="card-actions">
                 <a class="button" href="lectures/{lecture_html_file(lecture)}">강의 정리 보기</a>
                 <button class="completion-toggle" type="button" data-lesson-key="{html.escape(lesson_key)}" aria-pressed="false">
@@ -1682,6 +2345,8 @@ def render_course_index(course: dict) -> str:
       </article>
     </section>
 
+    {render_course_overview(course)}
+
     <section class="content-wrap course-progress-panel" data-course-id="{html.escape(str(course['id']))}" data-course-total="{len(lectures)}" aria-label="과목 학습 진행률">
       <div>
         <span class="study-card-kicker">나의 과목 진행률</span>
@@ -1716,17 +2381,6 @@ def render_course_index(course: dict) -> str:
       </div>
     </section>
 
-    <section class="content-wrap course-note-panel" data-course-note-panel data-course-id="{html.escape(str(course['id']))}" aria-label="과목 메모 모아보기">
-      <div>
-        <span class="study-card-kicker">최근 메모</span>
-        <strong>헷갈린 강의만 다시 찾기</strong>
-        <p>각 강의 페이지에서 남긴 개인 메모를 이 과목 안에서 모아 본다.</p>
-      </div>
-      <div class="course-note-list" data-course-note-list>
-        <p class="empty-study-note">아직 이 과목에 저장한 메모가 없습니다.</p>
-      </div>
-    </section>
-
     <section id="map" class="section-band">
       <div class="content-wrap">
         <h2>전체 흐름</h2>
@@ -1754,26 +2408,9 @@ def render_course_index(course: dict) -> str:
 def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | None = None) -> str:
     lectures = course.get("lectures", [])
     transcripts = transcripts or {}
+    lecture_terms = emphasis_terms_for(lecture)
     raw_transcript = transcripts.get(str(lecture["id"]), "").strip()
     transcript_nav = '<a href="#transcript">강의 원문</a>' if raw_transcript else ""
-    progress_items = [
-        ('#goals', '학습 목표', '오늘 범위 잡기'),
-        ('#section-1', '상세 정리', '개념 따라가기'),
-        ('#review', '복습 체크', '질문으로 점검'),
-        ('#personal-note', '개인 메모', '헷갈린 지점 저장'),
-    ]
-    if raw_transcript:
-        progress_items.append(('#transcript', '강의 원문', '필요할 때 비교'))
-    progress_links = "".join(
-        f"""
-        <a href="{href}">
-          <span>{number}</span>
-          <strong>{label}</strong>
-          <small>{helper}</small>
-        </a>
-        """
-        for number, (href, label, helper) in enumerate(progress_items, start=1)
-    )
     transcript_section = ""
     if raw_transcript:
         transcript_section = f"""
@@ -1782,10 +2419,27 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
         <summary>
           <span>
             <strong>강의 원문 보기</strong>
-            <small>선생님이 실제로 말한 내용을 정리본과 비교해서 확인한다.</small>
+            <small>읽기용 문단 보기와 원문 그대로 보기를 함께 제공한다.</small>
           </span>
         </summary>
-        <div class="transcript-text">{html.escape(raw_transcript)}</div>
+        <div class="transcript-reading-panel">
+          <div class="transcript-reading-head">
+            <span class="study-card-kicker">읽기용 문단 보기</span>
+            <p>긴 STT 원문을 문장 흐름에 맞춰 문단으로 나누어 정리본과 비교하기 쉽게 만든 보기다.</p>
+          </div>
+          <div class="readable-transcript">
+            {readable_transcript_block(raw_transcript)}
+          </div>
+          <details class="raw-transcript-panel">
+            <summary>
+              <span>
+                <strong>원문 그대로 보기</strong>
+                <small>STT 원문을 수정하지 않은 형태로 확인한다.</small>
+              </span>
+            </summary>
+            <div class="transcript-text raw-transcript-text">{html.escape(raw_transcript)}</div>
+          </details>
+        </div>
       </details>
     </section>
         """
@@ -1803,20 +2457,35 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
     section_nav = "".join(
         f'<a href="#section-{i + 1}">{html.escape(section["heading"])}</a>'
         for i, section in enumerate(lecture["sections"])
-    ) + '<a href="#personal-note">개인 메모</a>' + transcript_nav
-    sections = "".join(
+    ) + '<a href="#review">복습 체크</a>' + transcript_nav
+    side_nav = "".join(
         f"""
-        <section id="section-{i + 1}" class="note-section">
-          <h2>{html.escape(section['heading'])}</h2>
-          {dedent(section['body']).strip()}
-        </section>
+        <a{(' class="is-active"' if i == 0 else '')} href="#section-{i + 1}" data-side-section-link="section-{i + 1}">
+          <span>{i + 1:02d}</span>
+          <strong>{html.escape(section["heading"])}</strong>
+        </a>
         """
         for i, section in enumerate(lecture["sections"])
     )
-    checks = "".join(f"<li>{html.escape(item)}</li>" for item in lecture["checks"])
-    objectives = "".join(f"<li>{html.escape(item)}</li>" for item in lecture["objectives"])
+    sections = "".join(
+        f"""
+        <details id="section-{i + 1}" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION {i + 1:02d}</span>
+            <h2>{html.escape(section['heading'])}</h2>
+          </summary>
+          <div class="note-section-body">
+            {render_section_body(section, lecture)}
+          </div>
+        </details>
+        """
+        for i, section in enumerate(lecture["sections"])
+    )
+    checks = "".join(f"<li>{emphasize_plain_text(item, lecture_terms)}</li>" for item in lecture["checks"])
+    objectives = "".join(f"<li>{emphasize_plain_text(item, lecture_terms)}</li>" for item in lecture["objectives"])
     lecture_label = f"{course['short_title']} {lecture['id']}"
     lesson_key = f"{course['id']}:{lecture['id']}"
+    subtitle = emphasize_plain_text(lecture["subtitle"], lecture_terms)
 
     return shared_head(f"{course['title']} {lecture['id']} - {lecture['title']}", "../../../../") + f"""
 <body data-course-id="{html.escape(str(course['id']))}" data-lesson-id="{html.escape(str(lecture['id']))}" data-lesson-key="{html.escape(lesson_key)}" data-lesson-title="{html.escape(str(lecture['title']))}" data-lesson-label="{html.escape(lecture_label)}">
@@ -1824,7 +2493,6 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
 	      <a href="../index.html#lectures">과목 강의 목록</a>
-	      <a href="#personal-note">내 메모</a>
 	      <a href="#review">복습 체크</a>
 	      {transcript_nav}
 	    </nav>
@@ -1832,7 +2500,7 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
       <div>
         <p class="small-label">{html.escape(lecture_label)}</p>
         <h1>{html.escape(lecture['title'])}</h1>
-        <p class="lead">{html.escape(lecture['subtitle'])}</p>
+        <p class="lead">{subtitle}</p>
         <div class="tag-row large">{tag_list(lecture['tags'])}</div>
       </div>
       <aside class="toc-box">
@@ -1843,10 +2511,6 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap study-progress" aria-label="강의 학습 순서">
-      {progress_links}
-    </section>
-
     <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
       <div>
         <span class="study-card-kicker">현재 강의</span>
@@ -1859,20 +2523,7 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
       </button>
     </section>
 
-    <section id="personal-note" class="content-wrap personal-note-panel" aria-label="개인 학습 메모">
-      <div class="personal-note-copy">
-        <span class="study-card-kicker">내 메모</span>
-        <h2>수업 중 헷갈린 지점 저장</h2>
-        <p>강의를 들으면서 다시 볼 개념, 질문, 실습 중 막힌 지점을 적어 둔다. 이 메모는 이 브라우저에만 저장된다.</p>
-      </div>
-      <div class="personal-note-tools">
-        <textarea data-lesson-note rows="6" placeholder="예: 표준명 다시 확인하기, 다음에 직접 설명해 볼 질문, 실습에서 막힌 부분"></textarea>
-        <div class="note-tool-row">
-          <span class="note-save-status" data-note-save-status>아직 저장된 메모가 없습니다</span>
-          <button class="note-clear-button" type="button" data-note-clear>메모 비우기</button>
-        </div>
-      </div>
-    </section>
+    {render_lecture_control_panel(lecture, transcript_nav)}
 
     <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
@@ -1881,8 +2532,20 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
       </article>
     </section>
 
-    <div class="content-wrap notes-layout">
-      {sections}
+    <div class="content-wrap lecture-study-layout">
+      <aside class="lecture-side-guide" data-lecture-side-guide aria-label="상세 정리 섹션 길잡이">
+        <div class="side-guide-head">
+          <span data-side-current>SECTION 01</span>
+          <strong>상세 정리 길잡이</strong>
+          <p>{len(lecture["sections"])}개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+        </div>
+        <nav class="side-guide-links" aria-label="상세 정리 바로가기">
+          {side_nav}
+        </nav>
+      </aside>
+      <div class="notes-layout">
+        {sections}
+      </div>
     </div>
 
 	    <section id="review" class="content-wrap note-block">
@@ -3189,7 +3852,6 @@ def write_study_state_script() -> None:
             r"""
             (() => {
               const progressStorageKey = "whitehatLectureProgress.v1";
-              const notesStorageKey = "whitehatLectureNotes.v1";
 
               const safeRead = (key) => {
                 try {
@@ -3307,193 +3969,10 @@ def write_study_state_script() -> None:
                 });
               };
 
-              const getNoteText = (entry) => {
-                if (typeof entry === "string") {
-                  return entry;
-                }
-                return String(entry?.text || "");
-              };
-
-              const hasNote = (notes, key) => getNoteText(notes[key]).trim().length > 0;
-
-              const formatSavedAt = (value) => {
-                const date = new Date(value);
-                if (Number.isNaN(date.getTime())) {
-                  return "방금 저장";
-                }
-                return `${date.toLocaleDateString("ko-KR", {
-                  month: "numeric",
-                  day: "numeric",
-                })} ${date.toLocaleTimeString("ko-KR", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}`;
-              };
-
-              const clipNote = (text) => {
-                const normalized = text.replace(/\s+/g, " ").trim();
-                return normalized.length > 120 ? `${normalized.slice(0, 120)}...` : normalized;
-              };
-
-              const collectLectureMeta = () => {
-                const meta = new Map();
-                document.querySelectorAll(".lecture-card[data-lesson-key]").forEach((card) => {
-                  const key = card.dataset.lessonKey;
-                  if (!key) {
-                    return;
-                  }
-                  meta.set(key, {
-                    label: card.querySelector(".lecture-id")?.textContent.trim() || key.split(":")[1],
-                    title: card.querySelector("h3")?.textContent.trim() || "강의 메모",
-                    href: card.querySelector(".card-actions a")?.getAttribute("href") || "#lectures",
-                  });
-                });
-                return meta;
-              };
-
-              const updateNoteIndicators = (notes) => {
-                document.querySelectorAll(".lecture-card[data-lesson-key], body[data-lesson-key]").forEach((element) => {
-                  const key = element.dataset.lessonKey;
-                  element.classList.toggle("has-note", hasNote(notes, key));
-                });
-
-                document.querySelectorAll(".lecture-card[data-lesson-key]").forEach((card) => {
-                  const indicator = card.querySelector("[data-note-presence]");
-                  if (indicator) {
-                    indicator.hidden = !hasNote(notes, card.dataset.lessonKey);
-                  }
-                });
-              };
-
-              const updateCourseNotePanel = (notes) => {
-                const panel = document.querySelector("[data-course-note-panel]");
-                if (!panel) {
-                  return;
-                }
-
-                const courseId = panel.dataset.courseId;
-                const list = panel.querySelector("[data-course-note-list]");
-                if (!courseId || !list) {
-                  return;
-                }
-
-                const meta = collectLectureMeta();
-                const entries = Object.entries(notes)
-                  .map(([key, entry]) => ({
-                    key,
-                    entry,
-                    text: getNoteText(entry).trim(),
-                  }))
-                  .filter((item) => item.text && getCourseId(item.key) === courseId)
-                  .sort((a, b) => {
-                    const aTime = new Date(a.entry?.updatedAt || 0).getTime();
-                    const bTime = new Date(b.entry?.updatedAt || 0).getTime();
-                    return bTime - aTime;
-                  })
-                  .slice(0, 6);
-
-                list.replaceChildren();
-                if (!entries.length) {
-                  const empty = document.createElement("p");
-                  empty.className = "empty-study-note";
-                  empty.textContent = "아직 이 과목에 저장한 메모가 없습니다.";
-                  list.append(empty);
-                  return;
-                }
-
-                entries.forEach(({ key, entry, text }) => {
-                  const fallback = meta.get(key) || {};
-                  const item = document.createElement("a");
-                  item.className = "course-note-item";
-                  item.href = fallback.href || "#lectures";
-
-                  const title = document.createElement("strong");
-                  const label = entry?.label || fallback.label || key.split(":")[1] || "강의";
-                  title.textContent = `${label} · ${entry?.title || fallback.title || "강의 메모"}`;
-
-                  const body = document.createElement("p");
-                  body.textContent = clipNote(text);
-
-                  const saved = document.createElement("span");
-                  saved.textContent = formatSavedAt(entry?.updatedAt);
-
-                  item.append(title, body, saved);
-                  list.append(item);
-                });
-              };
-
-              const applyNotes = (notes) => {
-                updateNoteIndicators(notes);
-                updateCourseNotePanel(notes);
-                document.dispatchEvent(new CustomEvent("whitehat-notes-change"));
-              };
-
-              const bindPersonalNote = (notes) => {
-                const textarea = document.querySelector("[data-lesson-note]");
-                if (!textarea) {
-                  return;
-                }
-
-                const key = document.body.dataset.lessonKey;
-                const status = document.querySelector("[data-note-save-status]");
-                const clearButton = document.querySelector("[data-note-clear]");
-                if (!key) {
-                  textarea.disabled = true;
-                  if (status) {
-                    status.textContent = "이 강의 정보를 찾을 수 없어 메모를 저장할 수 없습니다";
-                  }
-                  return;
-                }
-
-                const updateStatus = () => {
-                  const text = getNoteText(notes[key]).trim();
-                  if (!status) {
-                    return;
-                  }
-                  if (!text) {
-                    status.textContent = "아직 저장된 메모가 없습니다";
-                    return;
-                  }
-                  status.textContent = `자동 저장됨 · ${text.length}자 · ${formatSavedAt(notes[key]?.updatedAt)}`;
-                };
-
-                const save = () => {
-                  const rawText = textarea.value;
-                  const text = rawText.trim();
-                  if (text) {
-                    notes[key] = {
-                      text: rawText,
-                      updatedAt: new Date().toISOString(),
-                      courseId: document.body.dataset.courseId || getCourseId(key),
-                      lessonId: document.body.dataset.lessonId || key.split(":")[1],
-                      title: document.body.dataset.lessonTitle || document.querySelector(".lecture-hero h1")?.textContent.trim() || "강의 메모",
-                      label: document.body.dataset.lessonLabel || document.querySelector(".lecture-hero .small-label")?.textContent.trim() || key.split(":")[1],
-                    };
-                  } else {
-                    delete notes[key];
-                  }
-                  safeWrite(notesStorageKey, notes);
-                  updateStatus();
-                  applyNotes(notes);
-                };
-
-                textarea.value = getNoteText(notes[key]);
-                updateStatus();
-                textarea.addEventListener("input", save);
-                clearButton?.addEventListener("click", () => {
-                  textarea.value = "";
-                  save();
-                  textarea.focus();
-                });
-              };
-
               document.addEventListener("DOMContentLoaded", () => {
                 const state = safeRead(progressStorageKey);
-                const notes = safeRead(notesStorageKey);
                 bindToggles(state);
                 applyState(state);
-                bindPersonalNote(notes);
-                applyNotes(notes);
               });
             })();
             """
@@ -3635,10 +4114,119 @@ def write_study_tools_script() -> None:
                 apply();
               };
 
-              document.addEventListener("DOMContentLoaded", () => {
+              const setupLectureSideGuide = () => {
+                const guide = document.querySelector("[data-lecture-side-guide]");
+                if (!guide) {
+                  return;
+                }
+
+                const links = [...guide.querySelectorAll("[data-side-section-link]")];
+                const current = guide.querySelector("[data-side-current]");
+                const jumpSelect = document.querySelector("[data-section-jump]");
+                const sections = links
+                  .map((link) => document.getElementById(link.dataset.sideSectionLink || ""))
+                  .filter(Boolean);
+
+                if (!links.length || !sections.length) {
+                  return;
+                }
+
+                const setActiveSection = (sectionId) => {
+                  links.forEach((link) => {
+                    const active = link.dataset.sideSectionLink === sectionId;
+                    link.classList.toggle("is-active", active);
+                    if (active && current) {
+                      current.textContent = `SECTION ${link.querySelector("span")?.textContent || ""}`.trim();
+                    }
+                    if (active && jumpSelect) {
+                      jumpSelect.value = `#${sectionId}`;
+                    }
+                  });
+                };
+
+                const sectionFromHash = () => {
+                  const id = window.location.hash.replace("#", "");
+                  return sections.some((section) => section.id === id) ? id : "";
+                };
+
+                links.forEach((link) => {
+                  link.addEventListener("click", () => {
+                    const sectionId = link.dataset.sideSectionLink;
+                    if (sectionId) {
+                      setActiveSection(sectionId);
+                    }
+                  });
+                });
+
+                if ("IntersectionObserver" in window) {
+                  const observer = new IntersectionObserver(
+                    (entries) => {
+                      const visible = entries
+                        .filter((entry) => entry.isIntersecting)
+                        .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+                      if (visible[0]?.target?.id) {
+                        setActiveSection(visible[0].target.id);
+                      }
+                    },
+                    { rootMargin: "-18% 0px -64% 0px", threshold: [0, 0.2, 0.6] },
+                  );
+                  sections.forEach((section) => observer.observe(section));
+                } else {
+                  const updateByScroll = () => {
+                    const currentSection = sections.reduce((best, section) => {
+                      const top = Math.abs(section.getBoundingClientRect().top - 120);
+                      return !best || top < best.top ? { id: section.id, top } : best;
+                    }, null);
+                    if (currentSection) {
+                      setActiveSection(currentSection.id);
+                    }
+                  };
+                  document.addEventListener("scroll", updateByScroll, { passive: true });
+                  updateByScroll();
+                }
+
+                setActiveSection(sectionFromHash() || sections[0].id);
+              };
+
+              const setupLectureControls = () => {
+                const sectionSelect = document.querySelector("[data-section-jump]");
+                const sections = [...document.querySelectorAll("[data-note-section]")];
+
+                sectionSelect?.addEventListener("change", () => {
+                  const targetId = (sectionSelect.value || "").replace("#", "");
+                  const target = targetId ? document.getElementById(targetId) : null;
+                  if (!target) {
+                    return;
+                  }
+                  if ("open" in target) {
+                    target.open = true;
+                  }
+                  target.scrollIntoView({ behavior: "smooth", block: "start" });
+                  history.replaceState(null, "", `#${targetId}`);
+                });
+
+                document.querySelectorAll("[data-section-toggle]").forEach((button) => {
+                  button.addEventListener("click", () => {
+                    const mode = button.dataset.sectionToggle;
+                    sections.forEach((section) => {
+                      section.open = mode !== "collapse";
+                    });
+                  });
+                });
+              };
+
+              const initStudyTools = () => {
                 setupCourseFinder();
                 setupLectureFinder();
-              });
+                setupLectureSideGuide();
+                setupLectureControls();
+              };
+
+              if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initStudyTools);
+              } else {
+                initStudyTools();
+              }
             })();
             """
         ).strip()

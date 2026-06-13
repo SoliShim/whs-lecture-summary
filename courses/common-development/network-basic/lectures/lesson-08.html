@@ -15,7 +15,6 @@
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
 	      <a href="../index.html#lectures">과목 강의 목록</a>
-	      <a href="#personal-note">내 메모</a>
 	      <a href="#review">복습 체크</a>
 	      <a href="#transcript">강의 원문</a>
 	    </nav>
@@ -23,51 +22,17 @@
       <div>
         <p class="small-label">네트워크 1-8</p>
         <h1>소켓 프로그래밍</h1>
-        <p class="lead">UDP와 TCP 소켓으로 클라이언트-서버 애플리케이션을 구현하는 기본 흐름을 이해한다.</p>
+        <p class="lead"><strong>UDP</strong>와 <strong>TCP</strong> 소켓으로 클라이언트-서버 애플리케이션을 구현하는 기본 흐름을 이해한다.</p>
         <div class="tag-row large"><span>Socket</span><span>UDP 프로그래밍</span><span>TCP 프로그래밍</span></div>
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">소켓 프로그래밍의 목적</a><a href="#section-2">UDP 소켓 프로그래밍 흐름</a><a href="#section-3">UDP client 예시</a><a href="#section-4">UDP server 예시</a><a href="#section-5">TCP 소켓 프로그래밍 흐름</a><a href="#section-6">TCP client 예시</a><a href="#section-7">TCP server 예시</a><a href="#section-8">UDP와 TCP 구현 차이</a><a href="#section-9">과목 마무리</a><a href="#personal-note">개인 메모</a><a href="#transcript">강의 원문</a>
+        <a href="#section-1">소켓 프로그래밍의 목적</a><a href="#section-2">UDP 소켓 프로그래밍 흐름</a><a href="#section-3">UDP client 예시</a><a href="#section-4">UDP server 예시</a><a href="#section-5">TCP 소켓 프로그래밍 흐름</a><a href="#section-6">TCP client 예시</a><a href="#section-7">TCP server 예시</a><a href="#section-8">UDP와 TCP 구현 차이</a><a href="#section-9">과목 마무리</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap study-progress" aria-label="강의 학습 순서">
-      
-        <a href="#goals">
-          <span>1</span>
-          <strong>학습 목표</strong>
-          <small>오늘 범위 잡기</small>
-        </a>
-        
-        <a href="#section-1">
-          <span>2</span>
-          <strong>상세 정리</strong>
-          <small>개념 따라가기</small>
-        </a>
-        
-        <a href="#review">
-          <span>3</span>
-          <strong>복습 체크</strong>
-          <small>질문으로 점검</small>
-        </a>
-        
-        <a href="#personal-note">
-          <span>4</span>
-          <strong>개인 메모</strong>
-          <small>헷갈린 지점 저장</small>
-        </a>
-        
-        <a href="#transcript">
-          <span>5</span>
-          <strong>강의 원문</strong>
-          <small>필요할 때 비교</small>
-        </a>
-        
-    </section>
-
     <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
       <div>
         <span class="study-card-kicker">현재 강의</span>
@@ -80,52 +45,125 @@
       </button>
     </section>
 
-    <section id="personal-note" class="content-wrap personal-note-panel" aria-label="개인 학습 메모">
-      <div class="personal-note-copy">
-        <span class="study-card-kicker">내 메모</span>
-        <h2>수업 중 헷갈린 지점 저장</h2>
-        <p>강의를 들으면서 다시 볼 개념, 질문, 실습 중 막힌 지점을 적어 둔다. 이 메모는 이 브라우저에만 저장된다.</p>
+    
+    <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
+      <div class="section-jump-field">
+        <label for="section-jump-1-8">섹션 바로가기</label>
+        <select id="section-jump-1-8" data-section-jump>
+          <option value="">읽을 섹션 선택</option>
+          <option value="#section-1">01. 소켓 프로그래밍의 목적</option><option value="#section-2">02. UDP 소켓 프로그래밍 흐름</option><option value="#section-3">03. UDP client 예시</option><option value="#section-4">04. UDP server 예시</option><option value="#section-5">05. TCP 소켓 프로그래밍 흐름</option><option value="#section-6">06. TCP client 예시</option><option value="#section-7">07. TCP server 예시</option><option value="#section-8">08. UDP와 TCP 구현 차이</option><option value="#section-9">09. 과목 마무리</option>
+        </select>
       </div>
-      <div class="personal-note-tools">
-        <textarea data-lesson-note rows="6" placeholder="예: 표준명 다시 확인하기, 다음에 직접 설명해 볼 질문, 실습에서 막힌 부분"></textarea>
-        <div class="note-tool-row">
-          <span class="note-save-status" data-note-save-status>아직 저장된 메모가 없습니다</span>
-          <button class="note-clear-button" type="button" data-note-clear>메모 비우기</button>
-        </div>
+      <div class="lecture-control-actions" aria-label="섹션 보기 방식">
+        <button class="button secondary" type="button" data-section-toggle="collapse">섹션 접기</button>
+        <button class="button secondary" type="button" data-section-toggle="expand">전체 펼치기</button>
+        <a class="button secondary" href="#review">복습 체크</a>
+        <a class="button secondary" href="#transcript">강의 원문</a>
       </div>
     </section>
+    
 
     <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
         <h2>학습 목표</h2>
-        <ul class="check-list"><li>소켓이 애플리케이션과 전송 계층 사이의 통신 출입구라는 점을 설명한다.</li><li>UDP 소켓 프로그래밍의 비연결형 흐름과 sendto/recvfrom 구조를 이해한다.</li><li>TCP 소켓 프로그래밍의 welcome socket, connect, listen, accept, connection socket 흐름을 이해한다.</li></ul>
+        <ul class="check-list"><li><strong>소켓</strong>이 애플리케이션과 전송 계층 사이의 통신 출입구라는 점을 설명한다.</li><li><strong>UDP</strong> <strong>소켓</strong> 프로그래밍의 비연결형 흐름과 sendto/recvfrom 구조를 이해한다.</li><li><strong>TCP</strong> <strong>소켓</strong> 프로그래밍의 welcome socket, connect, listen, accept, connection socket 흐름을 이해한다.</li></ul>
       </article>
     </section>
 
-    <div class="content-wrap notes-layout">
-      
-        <section id="section-1" class="note-section">
-          <h2>소켓 프로그래밍의 목적</h2>
-          <p>마지막 강의는 소켓을 이용해 클라이언트-서버 애플리케이션을 어떻게 만드는지 소개한다. 우리가 사용하는 대부분의 애플리케이션은 네트워크를 거치며, 그 내부에는 TCP 또는 UDP 기반 소켓 프로그래밍이 들어 있다. 이 강의에서는 UDP와 TCP를 기준으로 기본 구조를 본다.</p>
-<p>소켓은 앞 강의에서 설명한 것처럼 애플리케이션과 전송 계층 사이의 출입구다. 애플리케이션은 소켓을 통해 데이터를 보내고 받고, 전송 계층은 TCP나 UDP 규칙에 맞춰 세그먼트 또는 데이터그램을 처리한다.</p>
-        </section>
+    <div class="content-wrap lecture-study-layout">
+      <aside class="lecture-side-guide" data-lecture-side-guide aria-label="상세 정리 섹션 길잡이">
+        <div class="side-guide-head">
+          <span data-side-current>SECTION 01</span>
+          <strong>상세 정리 길잡이</strong>
+          <p>9개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+        </div>
+        <nav class="side-guide-links" aria-label="상세 정리 바로가기">
+          
+        <a class="is-active" href="#section-1" data-side-section-link="section-1">
+          <span>01</span>
+          <strong>소켓 프로그래밍의 목적</strong>
+        </a>
         
-        <section id="section-2" class="note-section">
-          <h2>UDP 소켓 프로그래밍 흐름</h2>
-          <p>UDP는 비연결형 프로토콜이다. 데이터를 보내기 전에 handshake로 연결을 설정하지 않는다. 송신자는 각 패킷에 목적지 IP와 port만 붙여 보내면 되고, 수신자는 받은 패킷에서 보낸 사람의 IP와 port를 추출한다. 다만 UDP는 신뢰성이 없기 때문에 전송된 데이터가 손실될 수 있다.</p>
+        <a href="#section-2" data-side-section-link="section-2">
+          <span>02</span>
+          <strong>UDP 소켓 프로그래밍 흐름</strong>
+        </a>
+        
+        <a href="#section-3" data-side-section-link="section-3">
+          <span>03</span>
+          <strong>UDP client 예시</strong>
+        </a>
+        
+        <a href="#section-4" data-side-section-link="section-4">
+          <span>04</span>
+          <strong>UDP server 예시</strong>
+        </a>
+        
+        <a href="#section-5" data-side-section-link="section-5">
+          <span>05</span>
+          <strong>TCP 소켓 프로그래밍 흐름</strong>
+        </a>
+        
+        <a href="#section-6" data-side-section-link="section-6">
+          <span>06</span>
+          <strong>TCP client 예시</strong>
+        </a>
+        
+        <a href="#section-7" data-side-section-link="section-7">
+          <span>07</span>
+          <strong>TCP server 예시</strong>
+        </a>
+        
+        <a href="#section-8" data-side-section-link="section-8">
+          <span>08</span>
+          <strong>UDP와 TCP 구현 차이</strong>
+        </a>
+        
+        <a href="#section-9" data-side-section-link="section-9">
+          <span>09</span>
+          <strong>과목 마무리</strong>
+        </a>
+        
+        </nav>
+      </aside>
+      <div class="notes-layout">
+        
+        <details id="section-1" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 01</span>
+            <h2>소켓 프로그래밍의 목적</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>마지막 강의는 <strong>소켓</strong>을 이용해 클라이언트-서버 애플리케이션을 어떻게 만드는지 소개한다. 우리가 사용하는 대부분의 애플리케이션은 <strong>네트워크</strong>를 거치며, 그 내부에는 TCP 또는 UDP 기반 소켓 프로그래밍이 들어 있다. 이 강의에서는 UDP와 TCP를 기준으로 기본 구조를 본다.</p>
+<p>소켓은 앞 강의에서 설명한 것처럼 애플리케이션과 전송 계층 사이의 출입구다. 애플리케이션은 소켓을 통해 데이터를 보내고 받고, 전송 계층은 <strong>TCP</strong>나 <strong>UDP</strong> 규칙에 맞춰 세그먼트 또는 데이터그램을 처리한다.</p>
+          </div>
+        </details>
+        
+        <details id="section-2" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 02</span>
+            <h2>UDP 소켓 프로그래밍 흐름</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>UDP</strong>는 비연결형 <strong>프로토콜</strong>이다. 데이터를 보내기 전에 handshake로 연결을 설정하지 않는다. 송신자는 각 패킷에 목적지 IP와 port만 붙여 보내면 되고, 수신자는 받은 패킷에서 보낸 사람의 IP와 port를 추출한다. 다만 UDP는 신뢰성이 없기 때문에 전송된 데이터가 손실될 수 있다.</p>
 <div class="diagram">
-  <div><span class="node-title">서버 소켓</span><p>UDP socket 생성 후 port bind</p></div>
+  <div><span class="node-title">서버 소켓</span><p>UDP <strong>socket</strong> 생성 후 port bind</p></div>
   <span class="arrow">←</span>
   <div><span class="node-title">클라이언트</span><p>서버 IP와 port로 datagram 전송</p></div>
   <span class="arrow">→</span>
   <div><span class="node-title">응답</span><p>서버가 client address로 datagram 반환</p></div>
 </div>
-<p>서버와 클라이언트는 각각 소켓을 열고, 클라이언트는 서버 IP와 port로 데이터그램을 보낸다. 서버는 UDP 세그먼트를 읽고 필요한 처리를 한 뒤 응답을 보낸다. 클라이언트는 응답을 받고 작업을 마치면 소켓을 닫는다.</p>
-        </section>
+<p>서버와 클라이언트는 각각 <strong>소켓</strong>을 열고, 클라이언트는 서버 IP와 port로 데이터그램을 보낸다. 서버는 UDP 세그먼트를 읽고 필요한 처리를 한 뒤 응답을 보낸다. 클라이언트는 응답을 받고 작업을 마치면 소켓을 닫는다.</p>
+          </div>
+        </details>
         
-        <section id="section-3" class="note-section">
-          <h2>UDP client 예시</h2>
-          <p>강의에서 설명한 Python UDP client 구조를 학습용으로 정리하면 다음과 같다. <code>AF_INET</code>은 IPv4를 의미하고, <code>SOCK_DGRAM</code>은 UDP socket을 의미한다. Client는 메시지를 입력받아 서버 주소로 보내고, 서버 응답을 기다린 뒤 출력하고 socket을 닫는다.</p>
+        <details id="section-3" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 03</span>
+            <h2>UDP client 예시</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>강의에서 설명한 <strong>Python</strong> <strong>UDP</strong> client 구조를 학습용으로 정리하면 다음과 같다. <code>AF_INET</code>은 IPv4를 의미하고, <code>SOCK_DGRAM</code>은 UDP socket을 의미한다. Client는 메시지를 입력받아 서버 주소로 보내고, 서버 응답을 기다린 뒤 출력하고 socket을 닫는다.</p>
                     <pre><code class="language-python">from socket import socket, AF_INET, SOCK_DGRAM
 
 server_name = &quot;127.0.0.1&quot;
@@ -139,11 +177,16 @@ modified_message, server_address = client_socket.recvfrom(2048)
 
 print(modified_message.decode())
 client_socket.close()</code></pre>
-        </section>
+          </div>
+        </details>
         
-        <section id="section-4" class="note-section">
-          <h2>UDP server 예시</h2>
-          <p>UDP server는 UDP socket을 만들고 12000번 port에 bind한다. 이후 계속 반복문을 돌며 client에서 온 데이터를 <code>recvfrom</code>으로 받고, 처리한 결과를 client address로 다시 보낸다. UDP에서는 매 요청마다 sender address를 함께 확인하는 점이 중요하다.</p>
+        <details id="section-4" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 04</span>
+            <h2>UDP server 예시</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>UDP</strong> server는 UDP <strong>socket</strong>을 만들고 12000번 port에 bind한다. 이후 계속 반복문을 돌며 client에서 온 데이터를 <code>recvfrom</code>으로 받고, 처리한 결과를 client address로 다시 보낸다. UDP에서는 매 요청마다 sender address를 함께 확인하는 점이 중요하다.</p>
                     <pre><code class="language-python">from socket import socket, AF_INET, SOCK_DGRAM
 
 server_port = 12000
@@ -156,27 +199,37 @@ while True:
     message, client_address = server_socket.recvfrom(2048)
     modified_message = message.decode().upper()
     server_socket.sendto(modified_message.encode(), client_address)</code></pre>
-        </section>
+          </div>
+        </details>
         
-        <section id="section-5" class="note-section">
-          <h2>TCP 소켓 프로그래밍 흐름</h2>
-          <p>TCP는 UDP와 달리 데이터를 주고받기 전에 연결이 수립되어야 한다. 서버에는 항상 열려 있는 welcome socket이 있고, 클라이언트는 그 socket에 연결하고 싶다고 요청한다. TCP connection이 이루어지면 서버는 welcome socket과 별개의 connection socket을 만들어 실제 데이터 통신에 사용한다.</p>
-<p>이 구조 덕분에 서버는 여러 클라이언트와 통신할 수 있고, 각 클라이언트는 source port 등으로 구분된다. TCP는 신뢰성 있는 연결을 제공하며, 3-way handshake 이후 connection socket을 통해 데이터가 오간다.</p>
+        <details id="section-5" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 05</span>
+            <h2>TCP 소켓 프로그래밍 흐름</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>TCP</strong>는 <strong>UDP</strong>와 달리 데이터를 주고받기 전에 연결이 수립되어야 한다. 서버에는 항상 열려 있는 welcome socket이 있고, 클라이언트는 그 socket에 연결하고 싶다고 요청한다. TCP connection이 이루어지면 서버는 welcome socket과 별개의 connection socket을 만들어 실제 데이터 통신에 사용한다.</p>
+<p>이 구조 덕분에 서버는 여러 클라이언트와 통신할 수 있고, 각 클라이언트는 source port 등으로 구분된다. TCP는 <strong>신뢰성</strong> 있는 연결을 제공하며, <strong>3-way handshake</strong> 이후 connection socket을 통해 데이터가 오간다.</p>
 <table>
   <thead><tr><th>요소</th><th>역할</th></tr></thead>
   <tbody>
-    <tr><td>welcome socket</td><td>서버가 클라이언트 연결 요청을 기다리는 소켓이다.</td></tr>
+    <tr><td>welcome <strong>socket</strong></td><td>서버가 클라이언트 연결 요청을 기다리는 <strong>소켓</strong>이다.</td></tr>
     <tr><td>connect</td><td>클라이언트가 서버와 TCP connection을 만들기 위해 호출한다.</td></tr>
     <tr><td>listen</td><td>서버가 연결 요청을 받을 준비를 한다.</td></tr>
     <tr><td>accept</td><td>연결 요청을 받아 connection socket을 만든다.</td></tr>
     <tr><td>connection socket</td><td>연결된 client와 실제 데이터를 주고받는 소켓이다.</td></tr>
   </tbody>
 </table>
-        </section>
+          </div>
+        </details>
         
-        <section id="section-6" class="note-section">
-          <h2>TCP client 예시</h2>
-          <p>TCP client는 UDP client와 달리 데이터를 보내기 전에 <code>connect</code>를 호출한다. 이 호출을 통해 TCP connection이 만들어지고, 이후 같은 socket으로 데이터를 보내고 응답을 받는다.</p>
+        <details id="section-6" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 06</span>
+            <h2>TCP client 예시</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>TCP</strong> client는 <strong>UDP</strong> client와 달리 데이터를 보내기 전에 <code>connect</code>를 호출한다. 이 호출을 통해 TCP connection이 만들어지고, 이후 같은 socket으로 데이터를 보내고 응답을 받는다.</p>
                     <pre><code class="language-python">from socket import socket, AF_INET, SOCK_STREAM
 
 server_name = &quot;127.0.0.1&quot;
@@ -192,11 +245,16 @@ modified_sentence = client_socket.recv(2048)
 print(modified_sentence.decode())
 
 client_socket.close()</code></pre>
-        </section>
+          </div>
+        </details>
         
-        <section id="section-7" class="note-section">
-          <h2>TCP server 예시</h2>
-          <p>TCP server는 socket을 만들고 bind한 뒤, <code>listen</code>으로 연결 요청을 기다린다. Client가 연결하면 <code>accept</code>가 connection socket을 반환하고, server는 그 socket으로 값을 받고 응답을 보낸 뒤 connection socket을 닫는다. Welcome socket은 계속 살아 있으므로 다음 client 연결을 다시 받을 수 있다.</p>
+        <details id="section-7" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 07</span>
+            <h2>TCP server 예시</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>TCP</strong> server는 <strong>socket</strong>을 만들고 bind한 뒤, <code>listen</code>으로 연결 요청을 기다린다. Client가 연결하면 <code>accept</code>가 connection socket을 반환하고, server는 그 socket으로 값을 받고 응답을 보낸 뒤 connection socket을 닫는다. Welcome socket은 계속 살아 있으므로 다음 client 연결을 다시 받을 수 있다.</p>
                     <pre><code class="language-python">from socket import socket, AF_INET, SOCK_STREAM
 
 server_port = 12000
@@ -212,45 +270,73 @@ while True:
     modified_sentence = sentence.upper()
     connection_socket.send(modified_sentence.encode())
     connection_socket.close()</code></pre>
-        </section>
+          </div>
+        </details>
         
-        <section id="section-8" class="note-section">
-          <h2>UDP와 TCP 구현 차이</h2>
-          <table>
+        <details id="section-8" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 08</span>
+            <h2>UDP와 TCP 구현 차이</h2>
+          </summary>
+          <div class="note-section-body">
+            <table>
   <thead><tr><th>구분</th><th>UDP</th><th>TCP</th></tr></thead>
   <tbody>
-    <tr><td>연결 설정</td><td>없다.</td><td>connect와 3-way handshake가 있다.</td></tr>
-    <tr><td>전송 함수 감각</td><td>sendto/recvfrom으로 주소를 함께 다룬다.</td><td>연결 후 send/recv로 통신한다.</td></tr>
-    <tr><td>서버 구조</td><td>bind 후 반복적으로 datagram을 읽는다.</td><td>listen 후 accept로 connection socket을 만든다.</td></tr>
-    <tr><td>신뢰성</td><td>기본 제공하지 않는다.</td><td>신뢰성 있는 전송을 제공한다.</td></tr>
+    <tr><td>연결 설정</td><td>없다.</td><td>connect와 <strong>3-way handshake</strong>가 있다.</td></tr>
+    <tr><td>전송 <strong>함수</strong> 감각</td><td>sendto/recvfrom으로 <strong>주소</strong>를 함께 다룬다.</td><td>연결 후 send/recv로 통신한다.</td></tr>
+    <tr><td>서버 구조</td><td>bind 후 반복적으로 datagram을 읽는다.</td><td>listen 후 accept로 connection <strong>socket</strong>을 만든다.</td></tr>
+    <tr><td><strong>신뢰성</strong></td><td>기본 제공하지 않는다.</td><td>신뢰성 있는 전송을 제공한다.</td></tr>
     <tr><td>종료</td><td>클라이언트가 할 일을 마치면 socket을 닫는다.</td><td>통신이 끝난 connection socket을 닫고 welcome socket은 계속 유지할 수 있다.</td></tr>
   </tbody>
 </table>
-        </section>
+          </div>
+        </details>
         
-        <section id="section-9" class="note-section">
-          <h2>과목 마무리</h2>
-          <p>강의는 네트워크 기초 과목 전체를 마무리한다. 지금까지 네트워크가 어떻게 흘러가는지, TCP/IP 계층 구조와 각 계층의 원리, 실제 패킷 분석, 기본적인 소켓 프로그래밍 흐름을 배웠다. 멘토는 이 내용이 앞으로 해킹 공부, 포렌식, 다양한 보안 진로에 도움이 되기를 바란다고 말한다.</p>
-<p>오프라인 강의에서는 더 심화된 내용을 다룰 예정이므로, 온라인 강의에서 다룬 계층 구조, HTTP, TCP/UDP, Wireshark, socket programming을 개인적으로 복습하고 오프라인에서 더 실습해 보자고 안내하며 마무리한다.</p>
-        </section>
+        <details id="section-9" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 09</span>
+            <h2>과목 마무리</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>강의는 <strong>네트워크</strong> 기초 과목 전체를 마무리한다. 지금까지 네트워크가 어떻게 흘러가는지, <strong>TCP/IP</strong> 계층 구조와 각 계층의 원리, 실제 패킷 분석, 기본적인 소켓 프로그래밍 흐름을 배웠다. 멘토는 이 내용이 앞으로 해킹 공부, 포렌식, 다양한 보안 진로에 도움이 되기를 바란다고 말한다.</p>
+<p>오프라인 강의에서는 더 심화된 내용을 다룰 예정이므로, 온라인 강의에서 다룬 <strong>계층 구조</strong>, <strong>HTTP</strong>, TCP/UDP, Wireshark, socket programming을 개인적으로 복습하고 오프라인에서 더 실습해 보자고 안내하며 마무리한다.</p>
+          </div>
+        </details>
         
+      </div>
     </div>
 
 	    <section id="review" class="content-wrap note-block">
 	      <h2>복습 체크</h2>
-	      <ul class="check-list"><li>UDP client/server가 연결 설정 없이 datagram을 주고받는 흐름을 설명할 수 있는가?</li><li>Python socket에서 AF_INET과 SOCK_DGRAM이 무엇을 의미하는지 기억하는가?</li><li>TCP server에서 welcome socket과 connection socket이 왜 구분되는지 말할 수 있는가?</li><li>TCP client가 데이터를 보내기 전에 connect를 호출해야 하는 이유를 이해했는가?</li><li>UDP와 TCP 소켓 프로그래밍의 함수 흐름 차이를 표 없이도 설명할 수 있는가?</li></ul>
+	      <ul class="check-list"><li><strong>UDP</strong> client/server가 연결 설정 없이 datagram을 주고받는 흐름을 설명할 수 있는가?</li><li><strong>Python</strong> <strong>socket</strong>에서 AF_INET과 SOCK_DGRAM이 무엇을 의미하는지 기억하는가?</li><li><strong>TCP</strong> server에서 welcome <strong>socket</strong>과 connection socket이 왜 구분되는지 말할 수 있는가?</li><li><strong>TCP</strong> client가 데이터를 보내기 전에 connect를 호출해야 하는 이유를 이해했는가?</li><li><strong>UDP</strong>와 <strong>TCP</strong> 소켓 프로그래밍의 함수 흐름 차이를 표 없이도 설명할 수 있는가?</li></ul>
 	    </section>
-
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">
         <summary>
           <span>
             <strong>강의 원문 보기</strong>
-            <small>선생님이 실제로 말한 내용을 정리본과 비교해서 확인한다.</small>
+            <small>읽기용 문단 보기와 원문 그대로 보기를 함께 제공한다.</small>
           </span>
         </summary>
-        <div class="transcript-text">Q. 소켓 프로그래밍 그리고 TCP 소켓 프로그래밍을 어떻게 진행할 수 있는지를 소개를 드리려고 합니다. 어떻게 소켓을 이용해서 클라이언트 서버 애플리케이션을 만드는가 저희가 쓰는 대부분의 애플리케이션들은 네트워크를 거치고 이런 소켓 프로그래밍이 되어 있겠죠. 그래서 흔히 UDP와 TCP 기반으로 소켓 프로그래밍을 할 수 있고요. 이거를 더 커스텀해서 할 수도 있습니다. 그래서 제가 지금 다룰 것은 UDP와 TCP이고요. 먼저 UDP 소켓 프로그래밍입니다. UDP는 비연결성이 특징이라고 했는데요. 그래서 연결 설정을 하는 핸드쉐이크 과정도 없고요. 단지 샌더는 각 패킷에 목적지 IP와 포트만 첨부를 하면 값을 보낼 수 있게 됩니다. 그러면 그 리시버는 수신된 패킷에서 보내온 사람의 IP와 포트가 뭔지를 추출하는 방식으로 진행이 되는 거죠. 그래서 UDP는 정선된 데이터가 손실이 될 수 있어요. 그러니까 신뢰성이 없다는 뜻이죠. 지금 보이시는 그림은 UDP 소켓 프로그래밍에 대한 계략적인 요약들인데요. 지금 보시면 서버와 클라이언트는 각각 소켓을 열어줍니다. 이 소켓을 열어준다는 뜻은 이제 어플리케이션과 트랜스포스 계층과 통신을 하기 위한 그런 출입구라고 할 수 있다고 했죠. 그래서 지금 보시면 각각 소켓을 연 다음에 클라이언트는 데이터그램을 서버 IP와 포트로 값을 보내게 됩니다. 그럼 서버는 UDP 세그먼트를 읽어드려서 그거에 맞는 응답을 주게 되는 거죠. 그러면 클라이언트는 그거를 다시 받아서 할 일을 다 마치면 클로즈를 하게 되는 비교적 간단한 방식입니다. 그래서 지금 보이시는 코드는 UDP 클라이언트를 파이썬 소켓으로 구현한 코드인데요. 지금 보시면 파이썬의 소켓이라는 모듈을 통해서 소켓을 생성할 수 있습니다. 그래서 이 클라이언트 소켓이라는 변수명으로 소켓을 생성하죠. 클라이언트 소켓을. 여기서 보이시는 AF-iNET은 IP 버전 4를 얘기하고요. 그리고 속 Sock-dj-ram은 UDP를 나타냅니다. 그리고 이 소켓, 열어진 소켓으로 값을 보내게 되죠. 메시지를 입력받아서 서버로 보내게 됩니다. 그러면 그 서버로부터의 응답을 기다린 다음에 값을 출력하고 할 일을 다 마치고 소켓을 닫는 구조로 간단하게 지금 이루어져 있죠. 하지만 여기서 신뢰성은 없다는 얘기를 다시 한번 얘기를 드리고 다음은 UDP 서버는 어떻게 구현하는지 설명을 드리겠습니다. UDP도 똑같이 소켓을 UDP로 열어줍니다. IP 버전 4와 UDP를 이용한 소켓을 열어준 다음에 12,000번의 포트를 할당을 해요. 그래서 바인드를 합니다. 여기로 요청이 들어오면 어떤 값을 철회하게끔 하는 것이고요. 그래서 항상 와일문을 돌면서 클라이언트 측으로부터 어떤 데이터가 오는지를 리시브합니다. 그래서 만약에 리시브가 되면 어떤 과정을 수행한 다음에 그걸 다시 보내주는 역할을 하게 되는 거죠. 그러면 TCP 소켓 프로그래밍은 어떻게 이루어질까요? TCP는 UDP와 다르게 연결이 되어야 합니다. 데이터를 주고받기 전에 연결이 되어야 하기 때문에 항상 환영 소켓이라는 웰컴 소켓이 열려있어요. 그러면 클라이언트는 거기서 똑똑 두드려서 나 연결하고 싶다라는 걸 하면 TCP 커넥션이 이루어지게 되는 것이죠. 그러면 그때 환영 소켓과 다른 연결 소켓을 생성을 해서 통신을 주고받게 되는 겁니다. 그래서 여러 클라이언트들과 통신을 할 수 있게 되고요. 각 소스 포트들은 클라이언트들을 구별하게 됩니다. 그래서 TCP는 실력성 있는 연결을 제공하고 아래 사진을 보시면 웰컴 소켓에서는 3A 핸드쉐이킹을 진행한 다음에 그리고 연결 소켓에서는 터널을 통해서 값을 주고받고 하는 과정이 진행되는 것이죠. 이것은 전체적인 소켓 프로그래밍 개략도인데요. 지금 서버와 클라이언트도 아까 동일하게 소켓을 하나씩 열어줍니다. 그런데 지금 서버에서 먼저 연 소켓 밑에 지금 어셉트 함수를 진행하는 것이 있는데요. 이거는 웰컴 소켓이고 여기서 클라이언트가 문을 똑똑 두드리면 TCP 커넥션이 이루어지게 됩니다. 그러면 이 커넥션이 이루어지고 난 다음에는 클라이언트는 서버로 값을 보낼 수 있게 되고요. 서버는 그 값을 불러입고 어떤 과정을 거친 다음에 클라이언트로 돌려주게 됩니다. 그러면 이제 클라이언트는 연결을 마치고 서버는 그 소켓을 같이 클로즈를 하죠. 하지만 그 환영 소켓은 계속 돌고 있기 때문에 TCP가 클라이언트가 언제나 다시 요청을 연결 설정을 다시 할 수 있게 되는 구조가 됩니다. 그래서 TCP 클라이언트 코드를 보시면 아까 UDP와 다른 부분 일단 클라이언트 측에서는 크게 다른 부분은 지금 이 커넥트라는 함수가 있죠. 그래서 소켓을 열고 데이터를 보내기 전에 TCP 커넥션을 진행을 합니다. 그 다음에 그 소켓으로 값을 보내게 되고요. 그러면 서버로부터 값을 받게 되어서 출력을 하고 종료를 하는 간단한 코드라고 이해하시면 될 것 같습니다. 다음은 TCP 서버인데요. 서버는 TCP 소켓을 열어놓은 다음에 Listen이라는 함수를 통해서 클라이언트가 연결 설정을 할 때까지 기다립니다. 만약에 연결 설정이 이루어졌으면 연결 소켓을 생성해서 Asset라는 함수를 통해서 연결 소켓을 생성하고 그 소켓에서 값을 주고받게 됩니다. 그리고 응답을 보내고 연결 소켓을 닫게 되는 것이죠. 이렇게 네트워크 기초 강의를 통해서 지금까지 네트워크가 어떻게 흘러가는지 계층 구조와 원리들을 이론적으로 이해를 하고 직접 해킷 분석도 해보고 기본적인 소켓 프로그래밍을 어떻게 진행하는지 소개를 드렸습니다. 모두들 수고 많으셨고 이 내용을 토대로 앞으로 해킹 공부나 포렌식, 다양한 보안 진로에 있어서 도움이 되셨으면 좋겠습니다. 오프라인 강의에서는 좀 더 심화적인 내용을 다룰 예정이니까 제가 설명드린 내용 개인적으로 복습도 하시고 오프라인에서 만나서 더 재미난 거 많이 했으면 좋겠습니다. 지금까지 네트워크 기초 강의를 맡게 된 멘토 이효민이었습니다. 감사합니다. 감사합니다.</div>
+        <div class="transcript-reading-panel">
+          <div class="transcript-reading-head">
+            <span class="study-card-kicker">읽기용 문단 보기</span>
+            <p>긴 STT 원문을 문장 흐름에 맞춰 문단으로 나누어 정리본과 비교하기 쉽게 만든 보기다.</p>
+          </div>
+          <div class="readable-transcript">
+            <p>Q. 소켓 프로그래밍 그리고 TCP 소켓 프로그래밍을 어떻게 진행할 수 있는지를 소개를 드리려고 합니다. 어떻게 소켓을 이용해서 클라이언트 서버 애플리케이션을 만드는가 저희가 쓰는 대부분의 애플리케이션들은 네트워크를 거치고 이런 소켓 프로그래밍이 되어 있겠죠. 그래서 흔히 UDP와 TCP 기반으로 소켓 프로그래밍을 할 수 있고요. 이거를 더 커스텀해서 할 수도 있습니다. 그래서 제가 지금 다룰 것은 UDP와 TCP이고요. 먼저 UDP 소켓 프로그래밍입니다. UDP는 비연결성이 특징이라고 했는데요. 그래서 연결 설정을 하는 핸드쉐이크 과정도 없고요. 단지 샌더는 각 패킷에 목적지 IP와 포트만 첨부를 하면 값을 보낼 수 있게 됩니다. 그러면 그 리시버는 수신된 패킷에서 보내온 사람의 IP와 포트가 뭔지를 추출하는 방식으로 진행이 되는 거죠. 그래서 UDP는 정선된 데이터가 손실이 될 수 있어요. 그러니까 신뢰성이 없다는 뜻이죠. 지금 보이시는 그림은 UDP 소켓 프로그래밍에 대한 계략적인 요약들인데요. 지금 보시면 서버와 클라이언트는 각각 소켓을 열어줍니다.</p><p>이 소켓을 열어준다는 뜻은 이제 어플리케이션과 트랜스포스 계층과 통신을 하기 위한 그런 출입구라고 할 수 있다고 했죠. 그래서 지금 보시면 각각 소켓을 연 다음에 클라이언트는 데이터그램을 서버 IP와 포트로 값을 보내게 됩니다. 그럼 서버는 UDP 세그먼트를 읽어드려서 그거에 맞는 응답을 주게 되는 거죠. 그러면 클라이언트는 그거를 다시 받아서 할 일을 다 마치면 클로즈를 하게 되는 비교적 간단한 방식입니다. 그래서 지금 보이시는 코드는 UDP 클라이언트를 파이썬 소켓으로 구현한 코드인데요. 지금 보시면 파이썬의 소켓이라는 모듈을 통해서 소켓을 생성할 수 있습니다. 그래서 이 클라이언트 소켓이라는 변수명으로 소켓을 생성하죠. 클라이언트 소켓을. 여기서 보이시는 AF-iNET은 IP 버전 4를 얘기하고요. 그리고 속 Sock-dj-ram은 UDP를 나타냅니다. 그리고 이 소켓, 열어진 소켓으로 값을 보내게 되죠. 메시지를 입력받아서 서버로 보내게 됩니다. 그러면 그 서버로부터의 응답을 기다린 다음에 값을 출력하고 할 일을 다 마치고 소켓을 닫는 구조로 간단하게 지금 이루어져 있죠.</p><p>하지만 여기서 신뢰성은 없다는 얘기를 다시 한번 얘기를 드리고 다음은 UDP 서버는 어떻게 구현하는지 설명을 드리겠습니다. UDP도 똑같이 소켓을 UDP로 열어줍니다. IP 버전 4와 UDP를 이용한 소켓을 열어준 다음에 12,000번의 포트를 할당을 해요. 그래서 바인드를 합니다. 여기로 요청이 들어오면 어떤 값을 철회하게끔 하는 것이고요. 그래서 항상 와일문을 돌면서 클라이언트 측으로부터 어떤 데이터가 오는지를 리시브합니다. 그래서 만약에 리시브가 되면 어떤 과정을 수행한 다음에 그걸 다시 보내주는 역할을 하게 되는 거죠. 그러면 TCP 소켓 프로그래밍은 어떻게 이루어질까요? TCP는 UDP와 다르게 연결이 되어야 합니다. 데이터를 주고받기 전에 연결이 되어야 하기 때문에 항상 환영 소켓이라는 웰컴 소켓이 열려있어요. 그러면 클라이언트는 거기서 똑똑 두드려서 나 연결하고 싶다라는 걸 하면 TCP 커넥션이 이루어지게 되는 것이죠. 그러면 그때 환영 소켓과 다른 연결 소켓을 생성을 해서 통신을 주고받게 되는 겁니다. 그래서 여러 클라이언트들과 통신을 할 수 있게 되고요.</p><p>각 소스 포트들은 클라이언트들을 구별하게 됩니다. 그래서 TCP는 실력성 있는 연결을 제공하고 아래 사진을 보시면 웰컴 소켓에서는 3A 핸드쉐이킹을 진행한 다음에 그리고 연결 소켓에서는 터널을 통해서 값을 주고받고 하는 과정이 진행되는 것이죠. 이것은 전체적인 소켓 프로그래밍 개략도인데요. 지금 서버와 클라이언트도 아까 동일하게 소켓을 하나씩 열어줍니다. 그런데 지금 서버에서 먼저 연 소켓 밑에 지금 어셉트 함수를 진행하는 것이 있는데요. 이거는 웰컴 소켓이고 여기서 클라이언트가 문을 똑똑 두드리면 TCP 커넥션이 이루어지게 됩니다. 그러면 이 커넥션이 이루어지고 난 다음에는 클라이언트는 서버로 값을 보낼 수 있게 되고요. 서버는 그 값을 불러입고 어떤 과정을 거친 다음에 클라이언트로 돌려주게 됩니다. 그러면 이제 클라이언트는 연결을 마치고 서버는 그 소켓을 같이 클로즈를 하죠. 하지만 그 환영 소켓은 계속 돌고 있기 때문에 TCP가 클라이언트가 언제나 다시 요청을 연결 설정을 다시 할 수 있게 되는 구조가 됩니다. 그래서 TCP 클라이언트 코드를 보시면 아까 UDP와 다른 부분 일단 클라이언트 측에서는 크게 다른 부분은 지금 이 커넥트라는 함수가 있죠.</p><p>그래서 소켓을 열고 데이터를 보내기 전에 TCP 커넥션을 진행을 합니다. 그 다음에 그 소켓으로 값을 보내게 되고요. 그러면 서버로부터 값을 받게 되어서 출력을 하고 종료를 하는 간단한 코드라고 이해하시면 될 것 같습니다. 다음은 TCP 서버인데요. 서버는 TCP 소켓을 열어놓은 다음에 Listen이라는 함수를 통해서 클라이언트가 연결 설정을 할 때까지 기다립니다. 만약에 연결 설정이 이루어졌으면 연결 소켓을 생성해서 Asset라는 함수를 통해서 연결 소켓을 생성하고 그 소켓에서 값을 주고받게 됩니다. 그리고 응답을 보내고 연결 소켓을 닫게 되는 것이죠. 이렇게 네트워크 기초 강의를 통해서 지금까지 네트워크가 어떻게 흘러가는지 계층 구조와 원리들을 이론적으로 이해를 하고 직접 해킷 분석도 해보고 기본적인 소켓 프로그래밍을 어떻게 진행하는지 소개를 드렸습니다. 모두들 수고 많으셨고 이 내용을 토대로 앞으로 해킹 공부나 포렌식, 다양한 보안 진로에 있어서 도움이 되셨으면 좋겠습니다. 오프라인 강의에서는 좀 더 심화적인 내용을 다룰 예정이니까 제가 설명드린 내용 개인적으로 복습도 하시고 오프라인에서 만나서 더 재미난 거 많이 했으면 좋겠습니다.</p><p>지금까지 네트워크 기초 강의를 맡게 된 멘토 이효민이었습니다. 감사합니다.</p>
+          </div>
+          <details class="raw-transcript-panel">
+            <summary>
+              <span>
+                <strong>원문 그대로 보기</strong>
+                <small>STT 원문을 수정하지 않은 형태로 확인한다.</small>
+              </span>
+            </summary>
+            <div class="transcript-text raw-transcript-text">Q. 소켓 프로그래밍 그리고 TCP 소켓 프로그래밍을 어떻게 진행할 수 있는지를 소개를 드리려고 합니다. 어떻게 소켓을 이용해서 클라이언트 서버 애플리케이션을 만드는가 저희가 쓰는 대부분의 애플리케이션들은 네트워크를 거치고 이런 소켓 프로그래밍이 되어 있겠죠. 그래서 흔히 UDP와 TCP 기반으로 소켓 프로그래밍을 할 수 있고요. 이거를 더 커스텀해서 할 수도 있습니다. 그래서 제가 지금 다룰 것은 UDP와 TCP이고요. 먼저 UDP 소켓 프로그래밍입니다. UDP는 비연결성이 특징이라고 했는데요. 그래서 연결 설정을 하는 핸드쉐이크 과정도 없고요. 단지 샌더는 각 패킷에 목적지 IP와 포트만 첨부를 하면 값을 보낼 수 있게 됩니다. 그러면 그 리시버는 수신된 패킷에서 보내온 사람의 IP와 포트가 뭔지를 추출하는 방식으로 진행이 되는 거죠. 그래서 UDP는 정선된 데이터가 손실이 될 수 있어요. 그러니까 신뢰성이 없다는 뜻이죠. 지금 보이시는 그림은 UDP 소켓 프로그래밍에 대한 계략적인 요약들인데요. 지금 보시면 서버와 클라이언트는 각각 소켓을 열어줍니다. 이 소켓을 열어준다는 뜻은 이제 어플리케이션과 트랜스포스 계층과 통신을 하기 위한 그런 출입구라고 할 수 있다고 했죠. 그래서 지금 보시면 각각 소켓을 연 다음에 클라이언트는 데이터그램을 서버 IP와 포트로 값을 보내게 됩니다. 그럼 서버는 UDP 세그먼트를 읽어드려서 그거에 맞는 응답을 주게 되는 거죠. 그러면 클라이언트는 그거를 다시 받아서 할 일을 다 마치면 클로즈를 하게 되는 비교적 간단한 방식입니다. 그래서 지금 보이시는 코드는 UDP 클라이언트를 파이썬 소켓으로 구현한 코드인데요. 지금 보시면 파이썬의 소켓이라는 모듈을 통해서 소켓을 생성할 수 있습니다. 그래서 이 클라이언트 소켓이라는 변수명으로 소켓을 생성하죠. 클라이언트 소켓을. 여기서 보이시는 AF-iNET은 IP 버전 4를 얘기하고요. 그리고 속 Sock-dj-ram은 UDP를 나타냅니다. 그리고 이 소켓, 열어진 소켓으로 값을 보내게 되죠. 메시지를 입력받아서 서버로 보내게 됩니다. 그러면 그 서버로부터의 응답을 기다린 다음에 값을 출력하고 할 일을 다 마치고 소켓을 닫는 구조로 간단하게 지금 이루어져 있죠. 하지만 여기서 신뢰성은 없다는 얘기를 다시 한번 얘기를 드리고 다음은 UDP 서버는 어떻게 구현하는지 설명을 드리겠습니다. UDP도 똑같이 소켓을 UDP로 열어줍니다. IP 버전 4와 UDP를 이용한 소켓을 열어준 다음에 12,000번의 포트를 할당을 해요. 그래서 바인드를 합니다. 여기로 요청이 들어오면 어떤 값을 철회하게끔 하는 것이고요. 그래서 항상 와일문을 돌면서 클라이언트 측으로부터 어떤 데이터가 오는지를 리시브합니다. 그래서 만약에 리시브가 되면 어떤 과정을 수행한 다음에 그걸 다시 보내주는 역할을 하게 되는 거죠. 그러면 TCP 소켓 프로그래밍은 어떻게 이루어질까요? TCP는 UDP와 다르게 연결이 되어야 합니다. 데이터를 주고받기 전에 연결이 되어야 하기 때문에 항상 환영 소켓이라는 웰컴 소켓이 열려있어요. 그러면 클라이언트는 거기서 똑똑 두드려서 나 연결하고 싶다라는 걸 하면 TCP 커넥션이 이루어지게 되는 것이죠. 그러면 그때 환영 소켓과 다른 연결 소켓을 생성을 해서 통신을 주고받게 되는 겁니다. 그래서 여러 클라이언트들과 통신을 할 수 있게 되고요. 각 소스 포트들은 클라이언트들을 구별하게 됩니다. 그래서 TCP는 실력성 있는 연결을 제공하고 아래 사진을 보시면 웰컴 소켓에서는 3A 핸드쉐이킹을 진행한 다음에 그리고 연결 소켓에서는 터널을 통해서 값을 주고받고 하는 과정이 진행되는 것이죠. 이것은 전체적인 소켓 프로그래밍 개략도인데요. 지금 서버와 클라이언트도 아까 동일하게 소켓을 하나씩 열어줍니다. 그런데 지금 서버에서 먼저 연 소켓 밑에 지금 어셉트 함수를 진행하는 것이 있는데요. 이거는 웰컴 소켓이고 여기서 클라이언트가 문을 똑똑 두드리면 TCP 커넥션이 이루어지게 됩니다. 그러면 이 커넥션이 이루어지고 난 다음에는 클라이언트는 서버로 값을 보낼 수 있게 되고요. 서버는 그 값을 불러입고 어떤 과정을 거친 다음에 클라이언트로 돌려주게 됩니다. 그러면 이제 클라이언트는 연결을 마치고 서버는 그 소켓을 같이 클로즈를 하죠. 하지만 그 환영 소켓은 계속 돌고 있기 때문에 TCP가 클라이언트가 언제나 다시 요청을 연결 설정을 다시 할 수 있게 되는 구조가 됩니다. 그래서 TCP 클라이언트 코드를 보시면 아까 UDP와 다른 부분 일단 클라이언트 측에서는 크게 다른 부분은 지금 이 커넥트라는 함수가 있죠. 그래서 소켓을 열고 데이터를 보내기 전에 TCP 커넥션을 진행을 합니다. 그 다음에 그 소켓으로 값을 보내게 되고요. 그러면 서버로부터 값을 받게 되어서 출력을 하고 종료를 하는 간단한 코드라고 이해하시면 될 것 같습니다. 다음은 TCP 서버인데요. 서버는 TCP 소켓을 열어놓은 다음에 Listen이라는 함수를 통해서 클라이언트가 연결 설정을 할 때까지 기다립니다. 만약에 연결 설정이 이루어졌으면 연결 소켓을 생성해서 Asset라는 함수를 통해서 연결 소켓을 생성하고 그 소켓에서 값을 주고받게 됩니다. 그리고 응답을 보내고 연결 소켓을 닫게 되는 것이죠. 이렇게 네트워크 기초 강의를 통해서 지금까지 네트워크가 어떻게 흘러가는지 계층 구조와 원리들을 이론적으로 이해를 하고 직접 해킷 분석도 해보고 기본적인 소켓 프로그래밍을 어떻게 진행하는지 소개를 드렸습니다. 모두들 수고 많으셨고 이 내용을 토대로 앞으로 해킹 공부나 포렌식, 다양한 보안 진로에 있어서 도움이 되셨으면 좋겠습니다. 오프라인 강의에서는 좀 더 심화적인 내용을 다룰 예정이니까 제가 설명드린 내용 개인적으로 복습도 하시고 오프라인에서 만나서 더 재미난 거 많이 했으면 좋겠습니다. 지금까지 네트워크 기초 강의를 맡게 된 멘토 이효민이었습니다. 감사합니다. 감사합니다.</div>
+          </details>
+        </div>
       </details>
     </section>
         

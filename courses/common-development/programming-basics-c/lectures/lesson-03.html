@@ -15,7 +15,6 @@
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
 	      <a href="../index.html#lectures">과목 강의 목록</a>
-	      <a href="#personal-note">내 메모</a>
 	      <a href="#review">복습 체크</a>
 	      <a href="#transcript">강의 원문</a>
 	    </nav>
@@ -28,46 +27,12 @@
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">왜 개발 생명주기를 배워야 하는가</a><a href="#section-2">SDLC 여섯 단계</a><a href="#section-3">Agile</a><a href="#section-4">Waterfall</a><a href="#section-5">선택 기준</a><a href="#personal-note">개인 메모</a><a href="#transcript">강의 원문</a>
+        <a href="#section-1">왜 개발 생명주기를 배워야 하는가</a><a href="#section-2">SDLC 여섯 단계</a><a href="#section-3">Agile</a><a href="#section-4">Waterfall</a><a href="#section-5">선택 기준</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap study-progress" aria-label="강의 학습 순서">
-      
-        <a href="#goals">
-          <span>1</span>
-          <strong>학습 목표</strong>
-          <small>오늘 범위 잡기</small>
-        </a>
-        
-        <a href="#section-1">
-          <span>2</span>
-          <strong>상세 정리</strong>
-          <small>개념 따라가기</small>
-        </a>
-        
-        <a href="#review">
-          <span>3</span>
-          <strong>복습 체크</strong>
-          <small>질문으로 점검</small>
-        </a>
-        
-        <a href="#personal-note">
-          <span>4</span>
-          <strong>개인 메모</strong>
-          <small>헷갈린 지점 저장</small>
-        </a>
-        
-        <a href="#transcript">
-          <span>5</span>
-          <strong>강의 원문</strong>
-          <small>필요할 때 비교</small>
-        </a>
-        
-    </section>
-
     <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
       <div>
         <span class="study-card-kicker">현재 강의</span>
@@ -80,101 +45,182 @@
       </button>
     </section>
 
-    <section id="personal-note" class="content-wrap personal-note-panel" aria-label="개인 학습 메모">
-      <div class="personal-note-copy">
-        <span class="study-card-kicker">내 메모</span>
-        <h2>수업 중 헷갈린 지점 저장</h2>
-        <p>강의를 들으면서 다시 볼 개념, 질문, 실습 중 막힌 지점을 적어 둔다. 이 메모는 이 브라우저에만 저장된다.</p>
+    
+    <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
+      <div class="section-jump-field">
+        <label for="section-jump-1-3">섹션 바로가기</label>
+        <select id="section-jump-1-3" data-section-jump>
+          <option value="">읽을 섹션 선택</option>
+          <option value="#section-1">01. 왜 개발 생명주기를 배워야 하는가</option><option value="#section-2">02. SDLC 여섯 단계</option><option value="#section-3">03. Agile</option><option value="#section-4">04. Waterfall</option><option value="#section-5">05. 선택 기준</option>
+        </select>
       </div>
-      <div class="personal-note-tools">
-        <textarea data-lesson-note rows="6" placeholder="예: 표준명 다시 확인하기, 다음에 직접 설명해 볼 질문, 실습에서 막힌 부분"></textarea>
-        <div class="note-tool-row">
-          <span class="note-save-status" data-note-save-status>아직 저장된 메모가 없습니다</span>
-          <button class="note-clear-button" type="button" data-note-clear>메모 비우기</button>
-        </div>
+      <div class="lecture-control-actions" aria-label="섹션 보기 방식">
+        <button class="button secondary" type="button" data-section-toggle="collapse">섹션 접기</button>
+        <button class="button secondary" type="button" data-section-toggle="expand">전체 펼치기</button>
+        <a class="button secondary" href="#review">복습 체크</a>
+        <a class="button secondary" href="#transcript">강의 원문</a>
       </div>
     </section>
+    
 
     <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
         <h2>학습 목표</h2>
-        <ul class="check-list"><li>SDLC의 여섯 단계를 순서대로 설명한다.</li><li>유지보수 단계에서 새로운 요구가 생기면 다시 기획으로 돌아간다는 순환 구조를 이해한다.</li><li>Agile과 Waterfall의 차이를 프로젝트 상황에 맞춰 선택할 수 있다.</li></ul>
+        <ul class="check-list"><li><strong>SDLC</strong>의 여섯 단계를 순서대로 설명한다.</li><li>유지보수 단계에서 새로운 요구가 생기면 다시 기획으로 돌아간다는 순환 구조를 이해한다.</li><li><strong>Agile</strong>과 <strong>Waterfall</strong>의 차이를 프로젝트 상황에 맞춰 선택할 수 있다.</li></ul>
       </article>
     </section>
 
-    <div class="content-wrap notes-layout">
-      
-        <section id="section-1" class="note-section">
-          <h2>왜 개발 생명주기를 배워야 하는가</h2>
-          <p>취약점 분석을 하든 일반 소프트웨어를 만들든 결과물은 결국 소프트웨어다. 그래서 “어떻게 개발해야 최소한의 버그로 고품질 소프트웨어를 만들 수 있는가”를 설명하기 위해 <strong>SDLC</strong>, 즉 Software Development Life Cycle을 다룬다.</p>
-        </section>
+    <div class="content-wrap lecture-study-layout">
+      <aside class="lecture-side-guide" data-lecture-side-guide aria-label="상세 정리 섹션 길잡이">
+        <div class="side-guide-head">
+          <span data-side-current>SECTION 01</span>
+          <strong>상세 정리 길잡이</strong>
+          <p>5개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+        </div>
+        <nav class="side-guide-links" aria-label="상세 정리 바로가기">
+          
+        <a class="is-active" href="#section-1" data-side-section-link="section-1">
+          <span>01</span>
+          <strong>왜 개발 생명주기를 배워야 하는가</strong>
+        </a>
         
-        <section id="section-2" class="note-section">
-          <h2>SDLC 여섯 단계</h2>
-          <div class="timeline">
+        <a href="#section-2" data-side-section-link="section-2">
+          <span>02</span>
+          <strong>SDLC 여섯 단계</strong>
+        </a>
+        
+        <a href="#section-3" data-side-section-link="section-3">
+          <span>03</span>
+          <strong>Agile</strong>
+        </a>
+        
+        <a href="#section-4" data-side-section-link="section-4">
+          <span>04</span>
+          <strong>Waterfall</strong>
+        </a>
+        
+        <a href="#section-5" data-side-section-link="section-5">
+          <span>05</span>
+          <strong>선택 기준</strong>
+        </a>
+        
+        </nav>
+      </aside>
+      <div class="notes-layout">
+        
+        <details id="section-1" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 01</span>
+            <h2>왜 개발 생명주기를 배워야 하는가</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>취약점</strong> 분석을 하든 일반 소프트웨어를 만들든 결과물은 결국 소프트웨어다. 그래서 “어떻게 개발해야 최소한의 버그로 고품질 소프트웨어를 만들 수 있는가”를 설명하기 위해 <strong>SDLC</strong>, 즉 <strong>Software Development Life Cycle</strong>을 다룬다.</p>
+          </div>
+        </details>
+        
+        <details id="section-2" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 02</span>
+            <h2>SDLC 여섯 단계</h2>
+          </summary>
+          <div class="note-section-body">
+            <div class="timeline">
   <div><strong>1. Planning</strong><p>무엇을 만들지, 유사 소프트웨어가 무엇인지, 큰 방향을 계획한다.</p></div>
   <div><strong>2. Analysis</strong><p>요구사항, 페이지, 기능, 예외 등을 기술적으로 풀어 쓴다.</p></div>
   <div><strong>3. Design</strong><p>아키텍처, 플로우차트, 예외 흐름을 시각화한다.</p></div>
   <div><strong>4. Implementation</strong><p>실제 코드로 구현한다.</p></div>
-  <div><strong>5. Testing</strong><p>기획 요구를 얼마나 만족하는지, 버그와 취약점이 있는지 확인한다.</p></div>
-  <div><strong>6. Deployment & Maintenance</strong><p>배포 후 유지보수한다. 새 요구가 생기면 다시 Planning으로 돌아간다.</p></div>
+  <div><strong>5. Testing</strong><p>기획 요구를 얼마나 만족하는지, 버그와 <strong>취약점</strong>이 있는지 확인한다.</p></div>
+  <div><strong>6. Deployment & Maintenance</strong><p>배포 후 유지보수한다. 새 요구가 생기면 다시 <strong>Planning</strong>으로 돌아간다.</p></div>
 </div>
-<p>강의에서는 유지보수 단계에서 새로운 니즈가 발생하면 다시 1번 기획부터 사이클이 시작된다고 설명한다. 그래서 SDLC는 직선이 아니라 원형 흐름으로 이해해야 한다.</p>
-        </section>
+<p>강의에서는 유지보수 단계에서 새로운 니즈가 발생하면 다시 1번 기획부터 사이클이 시작된다고 설명한다. 그래서 <strong>SDLC</strong>는 직선이 아니라 원형 흐름으로 이해해야 한다.</p>
+          </div>
+        </details>
         
-        <section id="section-3" class="note-section">
-          <h2>Agile</h2>
-          <p>Agile은 하나의 방향성을 가지고 소프트웨어를 만들되, 중간중간 짧은 <strong>스프린트</strong>로 끊어서 개발하는 방식이다. 강의 예시처럼 첫 스프린트에서는 20%, 다음에는 40%, 다음에는 80%, 다음에는 100% 기능을 만족시키는 식으로 빠르게 보강한다.</p>
+        <details id="section-3" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 03</span>
+            <h2>Agile</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>Agile</strong>은 하나의 방향성을 가지고 소프트웨어를 만들되, 중간중간 짧은 <strong>스프린트</strong>로 끊어서 개발하는 방식이다. 강의 예시처럼 첫 <strong>스프린트</strong>에서는 20%, 다음에는 40%, 다음에는 80%, 다음에는 100% 기능을 만족시키는 식으로 빠르게 보강한다.</p>
 <ul>
   <li>스프린트가 짧다.</li>
   <li>요구사항을 지속적으로 반영한다.</li>
   <li>다양한 직군의 팀원이 짧은 주기 안에 함께 움직이므로 소통이 중요하다.</li>
-  <li>시장의 변화에 빠르게 대응해야 하거나 요구사항 변경이 자주 발생하는 서비스에 적합하다.</li>
+  <li>시장의 변화에 빠르게 대응해야 하거나 요구사항 변경이 자주 발생하는 <strong>서비스</strong>에 적합하다.</li>
 </ul>
-        </section>
+          </div>
+        </details>
         
-        <section id="section-4" class="note-section">
-          <h2>Waterfall</h2>
-          <p>Waterfall은 처음부터 깊게 기획하고, 기획을 바탕으로 개발하고, 개발이 끝나면 테스트하는 식으로 한 단계씩 완성도 있게 넘어가는 방식이다. 강의에서는 폭포수가 한 단계씩 떨어지는 그림처럼 설명한다.</p>
+        <details id="section-4" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 04</span>
+            <h2>Waterfall</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>Waterfall</strong>은 처음부터 깊게 기획하고, 기획을 바탕으로 개발하고, 개발이 끝나면 테스트하는 식으로 한 단계씩 완성도 있게 넘어가는 방식이다. 강의에서는 폭포수가 한 단계씩 떨어지는 그림처럼 설명한다.</p>
 <ul>
   <li>프로젝트 초기에 무엇을 만들고 어떤 결과물을 배포할지 명확히 파악한다.</li>
   <li>각 단계 산출물 작성에 시간이 많이 든다.</li>
-  <li>새 요구사항이 들어와도 Agile처럼 바로 반영하지 않고, V1.1, V1.3, V2.0 같은 다음 버전에 반영하는 경우가 많다.</li>
-  <li>요구사항이 명확하고 디테일해야 하는 서비스, 큰 규모 제품, 핵심 기능 개발에 적합하다.</li>
+  <li>새 요구사항이 들어와도 <strong>Agile</strong>처럼 바로 반영하지 않고, V1.1, V1.3, V2.0 같은 다음 버전에 반영하는 경우가 많다.</li>
+  <li>요구사항이 명확하고 디테일해야 하는 <strong>서비스</strong>, 큰 규모 제품, 핵심 기능 개발에 적합하다.</li>
 </ul>
-        </section>
+          </div>
+        </details>
         
-        <section id="section-5" class="note-section">
-          <h2>선택 기준</h2>
-          <table>
+        <details id="section-5" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 05</span>
+            <h2>선택 기준</h2>
+          </summary>
+          <div class="note-section-body">
+            <table>
   <thead><tr><th>구분</th><th>Agile</th><th>Waterfall</th></tr></thead>
   <tbody>
-    <tr><td>흐름</td><td>짧은 스프린트 반복</td><td>단계별 순차 진행</td></tr>
+    <tr><td>흐름</td><td>짧은 <strong>스프린트</strong> 반복</td><td>단계별 순차 진행</td></tr>
     <tr><td>요구사항 변경</td><td>빠르게 반영</td><td>보통 다음 버전에서 반영</td></tr>
     <tr><td>강점</td><td>시장 변화 대응, 빠른 보강</td><td>명확한 산출물, 디테일한 계획</td></tr>
-    <tr><td>어울리는 상황</td><td>변경이 잦은 서비스</td><td>대규모 제품, 핵심 기능, 요구가 명확한 프로젝트</td></tr>
+    <tr><td>어울리는 상황</td><td>변경이 잦은 <strong>서비스</strong></td><td>대규모 제품, 핵심 기능, 요구가 명확한 프로젝트</td></tr>
   </tbody>
 </table>
-<p>강의의 결론은 Agile이 좋고 Waterfall이 나쁘다는 식의 구분이 아니라, 프로젝트 상황에 맞춰 두 방법론의 특징을 떠올려 선택해야 한다는 것이다.</p>
-        </section>
+<p>강의의 결론은 <strong>Agile</strong>이 좋고 <strong>Waterfall</strong>이 나쁘다는 식의 구분이 아니라, 프로젝트 상황에 맞춰 두 방법론의 특징을 떠올려 선택해야 한다는 것이다.</p>
+          </div>
+        </details>
         
+      </div>
     </div>
 
 	    <section id="review" class="content-wrap note-block">
 	      <h2>복습 체크</h2>
-	      <ul class="check-list"><li>SDLC 6단계를 순서대로 말할 수 있는가?</li><li>유지보수 이후 다시 Planning으로 돌아가는 이유를 설명할 수 있는가?</li><li>Agile과 Waterfall 중 요구사항이 자주 바뀌는 서비스에 더 적합한 방법론을 고를 수 있는가?</li></ul>
+	      <ul class="check-list"><li><strong>SDLC</strong> 6단계를 순서대로 말할 수 있는가?</li><li>유지보수 이후 다시 <strong>Planning</strong>으로 돌아가는 이유를 설명할 수 있는가?</li><li><strong>Agile</strong>과 <strong>Waterfall</strong> 중 요구사항이 자주 바뀌는 서비스에 더 적합한 방법론을 고를 수 있는가?</li></ul>
 	    </section>
-
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">
         <summary>
           <span>
             <strong>강의 원문 보기</strong>
-            <small>선생님이 실제로 말한 내용을 정리본과 비교해서 확인한다.</small>
+            <small>읽기용 문단 보기와 원문 그대로 보기를 함께 제공한다.</small>
           </span>
         </summary>
-        <div class="transcript-text">다음은 프로젝트 관리 방법론에 대한 강의입니다 저희가 앞으로 취약점 분석을 하든 아니면 일반적인 소프트웨어를 개발을 하든 간에 결국의 결과물은 소프트웨어입니다 그래서 이 소프트웨어를 어떻게 개발을 해야 되고 어떠한 사이클에서 어떠한 설계를 해야 최소한의 버그로 고품질의 소프트웨어를 만들 수 있을까 라는 내용에 대해서 설명을 드리려고 합니다 그래서 소프트웨어 디벨로먼트 라이프 사이클이라고 해서 줄여서 SDLC라고 하는 개념이 있습니다 1번부터 6번까지 개념이 있는데요 간략하게 설명드리면 1번에서 내가 뭘 할지 무슨 소프트웨어를 만들지 아니면 이 소프트웨어와 유사한 게 뭐가 있는지 이런 것들을 계획을 하는 그런 플래닝 단계가 있고요 두 번째로는 이 플래닝 단계가 만들어지면 더 상세하게 이렇게 해서 어떤 요구를 만족해야 되고 어떤 페이지가 있고 어떤 기능이 있고 어떤 예외가 있고 이런 것들을 기술적으로 다 풀어 쓰는 분석 단계가 있습니다 세 번째로는 이제 전체적인 아키텍처를 그리고 플로우 차트를 그리고 이런 예외들에 대해서 시각화하는 그런 디자인 단계가 있고요 다음으로는 실제로 코드로서 구현을 하는 임플리멘테이션 단계가 있습니다 다음으로는 구현을 했으면 그 기능이 내가 초기에 기획했던 내용들과 비교해서 얼만큼 요구를 만족하고 있는지 아니면 그 소스 코드에 버그가 있는지 취약점이 있는지 이런 테스팅 작업을 해야 됩니다 테스팅까지 다 끝나면 이제 여섯 번째 배포 단계로 가고 그때부터는 메인터넌스 유지 보수 단계로 넘어갑니다 근데 유지 보수 단계에서 새로운 니즈가 또 발생이 돼요 그러면 다시 1번부터 기획을 하게 되겠죠 그렇게 해서 이렇게 원으로 그려지는 SDLC를 공부할 수 있는 겁니다 자 그리고 소프트웨어 디벨로먼 라이프사이클은 이렇게 살펴볼 수 있는데 그러면 각각의 프로젝트는 우리가 어떠한 일정을 어떻게 나누고 일정마다 뭘 해야 되고 어떻게 집중해야 되는지 이런 관리 방법론에 대해서도 얘기할 수 있어야 돼요 정말 많은 관리 방법론이 있지만 필드에서 정말 자주 사용하는 관리 방법론은 크게 두 가지라고 볼 수 있습니다 첫 번째는 에자일 입니다 에자일 같은 경우에는 그림에서도 알 수 있듯이 하나의 방향성을 가지고 소프트웨어를 만드는 건 맞는데 중간중간 짧게 스프린트를 가져가는 거예요 예를 들어서 이번 스프린트에서는 최소 20% 정도의 기능만 만족을 하자 다음 스프린트에서는 40% 다음 스프린트에서는 80% 다음 스프린트에서는 100% 를 만족하자 이렇게 짧게 짧게 끊어서 기능들 별로 빠르게 개발해 나가는 프로젝트 관리 방법론을 에자일이라고 하고요 옆에 있는 이제 워터폴이라고 하는 것은 짧게 짧게 하는 에자일과 다르게 처음부터 아주 깊게 기획을 하고 그 기획을 바탕으로 개발을 하고 개발이 끝나면 테스팅을 하고 차근차근 하나하나씩 완벽하게 넘어가려고 하는 그런 관리 방법론을 의미합니다 그래서 그림처럼 워터폴은 한 단계 한 단계 폭포수가 떨어지는 것 같이 가고 있죠 네 자 그럼 에자일과 워터폴을 이렇게 간단히 설명드렸는데 표로서 다시 요약을 해드리겠습니다 앞으로 저희가 어떤 프로젝트를 하던 간에 에자일로 가는 게 맞을지 워터폴로 가는 게 맞을지 항상 고민해 보는 게 좋을 것 같습니다 에자일 같은 경우는요 스프린트가 짧고 지속적으로 요구사항이 반영됩니다 말씀드렸듯이 짧게 짧게 끊어서 가기 때문에 지속적으로 요구사항이 반영되어 빠르게 반영될 수 있겠죠 그래서 각 기획단계별로 팀원들 간의 원활한 소통이 중요합니다 스프린트가 짧기 때문에 그 안에서 다양한 직군의 팀원들이 다 몰려들기 때문에 원활하게 소통을 해야 돼요 자 그리고 에자일을 그럼 어떤 프로젝트에서 선택하는 게 좋을까요 기준입니다 시장의 변화에 빠르게 대응해야 되는 서비스 또는 요구사항의 변경이 자주 발생하는 경우 이런 경우에는 에자일 프로세스로 짧게 짧게 만들어 나가면서 프로젝트를 보강하는 그런 방향이 좋습니다 다음으로 워터폴 입니다 워터폴은 프로젝트 초기 외에 어떠한 것을 만들고 어떠한 결과물이 어떻게 배포가 될지에 대해서 명확하게 다 파악하는 그런 내용이고요 하지만 이게 하나하나 한 단계 한 단계 넘어가다 보니까 각 기획단계별로 산출물 작성에 많은 시간이 소요됩니다 산출물 작성이 끝났어요 예를 들어 기획이 끝났어요 이제 개발을 하려고 하는데 새로운 요구사항이 들어왔네요 기획에서 그렇게 많은 시간을 써서 왔는데도 새로운 요구사항이 들어왔어요 이거를 그러면 바로 적용을 하나요? 아닙니다 워터폴은 에자일처럼 바로 적용하는 게 아니라 다 끝나고 V1.1, V1.3, V2.0 이런 단계에서 새롭게 반영하기 때문에 에자일보다는 반영하는 속도가 느립니다 하지만 워터폴 같은 경우는 초기에 명확하게 파악하기 때문에 기준으로 요구사항이 더욱 명확해요 명확하기 때문에 디테일해야 하는 서비스에는 좋은 방법론입니다 큰 규모의 제품이나 핵심 기능을 개발하는 경우에는 워터폴이 적합하다 에자일이 좋고 나쁘다 워터폴이 좋고 나쁘다는 없습니다 각각의 상황에 맞게 에자일과 워터폴의 특징을 떠올려서 어떠한 프로젝트에 적용하면 좋을지 이거는 이제 연습을 해 보시면 될 것 같습니다 이번 강의는 여기서 마치겠습니다 다음 강의는 여기서 마치겠습니다</div>
+        <div class="transcript-reading-panel">
+          <div class="transcript-reading-head">
+            <span class="study-card-kicker">읽기용 문단 보기</span>
+            <p>긴 STT 원문을 문장 흐름에 맞춰 문단으로 나누어 정리본과 비교하기 쉽게 만든 보기다.</p>
+          </div>
+          <div class="readable-transcript">
+            <p>다음은 프로젝트 관리 방법론에 대한 강의입니다. 저희가 앞으로 취약점 분석을 하든 아니면 일반적인 소프트웨어를 개발을 하든 간에 결국의 결과물은 소프트웨어입니다. 그래서 이 소프트웨어를 어떻게 개발을 해야 되고 어떠한 사이클에서 어떠한 설계를 해야 최소한의 버그로 고품질의 소프트웨어를 만들 수 있을까 라는 내용에 대해서 설명을 드리려고 합니다. 그래서 소프트웨어 디벨로먼트 라이프 사이클이라고 해서 줄여서 SDLC라고 하는 개념이 있습니다. 1번부터 6번까지 개념이 있는데요. 간략하게 설명드리면 1번에서 내가 뭘 할지 무슨 소프트웨어를 만들지 아니면 이 소프트웨어와 유사한 게 뭐가 있는지 이런 것들을 계획을 하는 그런 플래닝 단계가 있고요. 두 번째로는 이 플래닝 단계가 만들어지면 더 상세하게 이렇게 해서 어떤 요구를 만족해야 되고 어떤 페이지가 있고 어떤 기능이 있고 어떤 예외가 있고 이런 것들을 기술적으로 다 풀어 쓰는 분석 단계가 있습니다. 세 번째로는 이제 전체적인 아키텍처를 그리고 플로우 차트를 그리고 이런 예외들에 대해서 시각화하는 그런 디자인 단계가 있고요.</p><p>다음으로는 실제로 코드로서 구현을 하는 임플리멘테이션 단계가 있습니다. 다음으로는 구현을 했으면 그 기능이 내가 초기에 기획했던 내용들과 비교해서 얼만큼 요구를 만족하고 있는지 아니면 그 소스 코드에 버그가 있는지 취약점이 있는지 이런 테스팅 작업을 해야 됩니다. 테스팅까지 다 끝나면 이제 여섯 번째 배포 단계로 가고 그때부터는 메인터넌스 유지 보수 단계로 넘어갑니다. 근데 유지 보수 단계에서 새로운 니즈가 또 발생이 돼요. 그러면 다시 1번부터 기획을 하게 되겠죠. 그렇게 해서 이렇게 원으로 그려지는 SDLC를 공부할 수 있는 겁니다. 자 그리고 소프트웨어 디벨로먼 라이프사이클은 이렇게 살펴볼 수 있는데 그러면 각각의 프로젝트는 우리가 어떠한 일정을 어떻게 나누고 일정마다 뭘 해야 되고 어떻게 집중해야 되는지 이런 관리 방법론에 대해서도 얘기할 수 있어야 돼요. 정말 많은 관리 방법론이 있지만 필드에서 정말 자주 사용하는 관리 방법론은 크게 두 가지라고 볼 수 있습니다. 첫 번째는 에자일 입니다. 에자일 같은 경우에는 그림에서도 알 수 있듯이 하나의 방향성을 가지고 소프트웨어를 만드는 건 맞는데 중간중간 짧게 스프린트를 가져가는 거예요.</p><p>예를 들어서 이번 스프린트에서는 최소 20% 정도의 기능만 만족을 하자 다음 스프린트에서는 40% 다음 스프린트에서는 80% 다음 스프린트에서는 100% 를 만족하자 이렇게 짧게 짧게 끊어서 기능들 별로 빠르게 개발해 나가는 프로젝트 관리 방법론을 에자일이라고 하고요. 옆에 있는 이제 워터폴이라고 하는 것은 짧게 짧게 하는 에자일과 다르게 처음부터 아주 깊게 기획을 하고 그 기획을 바탕으로 개발을 하고 개발이 끝나면 테스팅을 하고 차근차근 하나하나씩 완벽하게 넘어가려고 하는 그런 관리 방법론을 의미합니다. 그래서 그림처럼 워터폴은 한 단계 한 단계 폭포수가 떨어지는 것 같이 가고 있죠. 네 자 그럼 에자일과 워터폴을 이렇게 간단히 설명드렸는데 표로서 다시 요약을 해드리겠습니다. 앞으로 저희가 어떤 프로젝트를 하던 간에 에자일로 가는 게 맞을지 워터폴로 가는 게 맞을지 항상 고민해 보는 게 좋을 것 같습니다. 에자일 같은 경우는요. 스프린트가 짧고 지속적으로 요구사항이 반영됩니다. 말씀드렸듯이 짧게 짧게 끊어서 가기 때문에 지속적으로 요구사항이 반영되어 빠르게 반영될 수 있겠죠.</p><p>그래서 각 기획단계별로 팀원들 간의 원활한 소통이 중요합니다. 스프린트가 짧기 때문에 그 안에서 다양한 직군의 팀원들이 다 몰려들기 때문에 원활하게 소통을 해야 돼요. 자 그리고 에자일을 그럼 어떤 프로젝트에서 선택하는 게 좋을까요. 기준입니다. 시장의 변화에 빠르게 대응해야 되는 서비스 또는 요구사항의 변경이 자주 발생하는 경우 이런 경우에는 에자일 프로세스로 짧게 짧게 만들어 나가면서 프로젝트를 보강하는 그런 방향이 좋습니다. 다음으로 워터폴 입니다. 워터폴은 프로젝트 초기 외에 어떠한 것을 만들고 어떠한 결과물이 어떻게 배포가 될지에 대해서 명확하게 다 파악하는 그런 내용이고요. 하지만 이게 하나하나 한 단계 한 단계 넘어가다 보니까 각 기획단계별로 산출물 작성에 많은 시간이 소요됩니다. 산출물 작성이 끝났어요. 예를 들어 기획이 끝났어요. 이제 개발을 하려고 하는데 새로운 요구사항이 들어왔네요. 기획에서 그렇게 많은 시간을 써서 왔는데도 새로운 요구사항이 들어왔어요. 이거를 그러면 바로 적용을 하나요? 아닙니다. 워터폴은 에자일처럼 바로 적용하는 게 아니라 다 끝나고 V1.1, V1.3, V2.0 이런 단계에서 새롭게 반영하기 때문에 에자일보다는 반영하는 속도가 느립니다.</p><p>하지만 워터폴 같은 경우는 초기에 명확하게 파악하기 때문에 기준으로 요구사항이 더욱 명확해요. 명확하기 때문에 디테일해야 하는 서비스에는 좋은 방법론입니다. 큰 규모의 제품이나 핵심 기능을 개발하는 경우에는 워터폴이 적합하다 에자일이 좋고 나쁘다 워터폴이 좋고 나쁘다는 없습니다. 각각의 상황에 맞게 에자일과 워터폴의 특징을 떠올려서 어떠한 프로젝트에 적용하면 좋을지 이거는 이제 연습을 해 보시면 될 것 같습니다. 이번 강의는 여기서 마치겠습니다. 다음 강의는 여기서 마치겠습니다</p>
+          </div>
+          <details class="raw-transcript-panel">
+            <summary>
+              <span>
+                <strong>원문 그대로 보기</strong>
+                <small>STT 원문을 수정하지 않은 형태로 확인한다.</small>
+              </span>
+            </summary>
+            <div class="transcript-text raw-transcript-text">다음은 프로젝트 관리 방법론에 대한 강의입니다 저희가 앞으로 취약점 분석을 하든 아니면 일반적인 소프트웨어를 개발을 하든 간에 결국의 결과물은 소프트웨어입니다 그래서 이 소프트웨어를 어떻게 개발을 해야 되고 어떠한 사이클에서 어떠한 설계를 해야 최소한의 버그로 고품질의 소프트웨어를 만들 수 있을까 라는 내용에 대해서 설명을 드리려고 합니다 그래서 소프트웨어 디벨로먼트 라이프 사이클이라고 해서 줄여서 SDLC라고 하는 개념이 있습니다 1번부터 6번까지 개념이 있는데요 간략하게 설명드리면 1번에서 내가 뭘 할지 무슨 소프트웨어를 만들지 아니면 이 소프트웨어와 유사한 게 뭐가 있는지 이런 것들을 계획을 하는 그런 플래닝 단계가 있고요 두 번째로는 이 플래닝 단계가 만들어지면 더 상세하게 이렇게 해서 어떤 요구를 만족해야 되고 어떤 페이지가 있고 어떤 기능이 있고 어떤 예외가 있고 이런 것들을 기술적으로 다 풀어 쓰는 분석 단계가 있습니다 세 번째로는 이제 전체적인 아키텍처를 그리고 플로우 차트를 그리고 이런 예외들에 대해서 시각화하는 그런 디자인 단계가 있고요 다음으로는 실제로 코드로서 구현을 하는 임플리멘테이션 단계가 있습니다 다음으로는 구현을 했으면 그 기능이 내가 초기에 기획했던 내용들과 비교해서 얼만큼 요구를 만족하고 있는지 아니면 그 소스 코드에 버그가 있는지 취약점이 있는지 이런 테스팅 작업을 해야 됩니다 테스팅까지 다 끝나면 이제 여섯 번째 배포 단계로 가고 그때부터는 메인터넌스 유지 보수 단계로 넘어갑니다 근데 유지 보수 단계에서 새로운 니즈가 또 발생이 돼요 그러면 다시 1번부터 기획을 하게 되겠죠 그렇게 해서 이렇게 원으로 그려지는 SDLC를 공부할 수 있는 겁니다 자 그리고 소프트웨어 디벨로먼 라이프사이클은 이렇게 살펴볼 수 있는데 그러면 각각의 프로젝트는 우리가 어떠한 일정을 어떻게 나누고 일정마다 뭘 해야 되고 어떻게 집중해야 되는지 이런 관리 방법론에 대해서도 얘기할 수 있어야 돼요 정말 많은 관리 방법론이 있지만 필드에서 정말 자주 사용하는 관리 방법론은 크게 두 가지라고 볼 수 있습니다 첫 번째는 에자일 입니다 에자일 같은 경우에는 그림에서도 알 수 있듯이 하나의 방향성을 가지고 소프트웨어를 만드는 건 맞는데 중간중간 짧게 스프린트를 가져가는 거예요 예를 들어서 이번 스프린트에서는 최소 20% 정도의 기능만 만족을 하자 다음 스프린트에서는 40% 다음 스프린트에서는 80% 다음 스프린트에서는 100% 를 만족하자 이렇게 짧게 짧게 끊어서 기능들 별로 빠르게 개발해 나가는 프로젝트 관리 방법론을 에자일이라고 하고요 옆에 있는 이제 워터폴이라고 하는 것은 짧게 짧게 하는 에자일과 다르게 처음부터 아주 깊게 기획을 하고 그 기획을 바탕으로 개발을 하고 개발이 끝나면 테스팅을 하고 차근차근 하나하나씩 완벽하게 넘어가려고 하는 그런 관리 방법론을 의미합니다 그래서 그림처럼 워터폴은 한 단계 한 단계 폭포수가 떨어지는 것 같이 가고 있죠 네 자 그럼 에자일과 워터폴을 이렇게 간단히 설명드렸는데 표로서 다시 요약을 해드리겠습니다 앞으로 저희가 어떤 프로젝트를 하던 간에 에자일로 가는 게 맞을지 워터폴로 가는 게 맞을지 항상 고민해 보는 게 좋을 것 같습니다 에자일 같은 경우는요 스프린트가 짧고 지속적으로 요구사항이 반영됩니다 말씀드렸듯이 짧게 짧게 끊어서 가기 때문에 지속적으로 요구사항이 반영되어 빠르게 반영될 수 있겠죠 그래서 각 기획단계별로 팀원들 간의 원활한 소통이 중요합니다 스프린트가 짧기 때문에 그 안에서 다양한 직군의 팀원들이 다 몰려들기 때문에 원활하게 소통을 해야 돼요 자 그리고 에자일을 그럼 어떤 프로젝트에서 선택하는 게 좋을까요 기준입니다 시장의 변화에 빠르게 대응해야 되는 서비스 또는 요구사항의 변경이 자주 발생하는 경우 이런 경우에는 에자일 프로세스로 짧게 짧게 만들어 나가면서 프로젝트를 보강하는 그런 방향이 좋습니다 다음으로 워터폴 입니다 워터폴은 프로젝트 초기 외에 어떠한 것을 만들고 어떠한 결과물이 어떻게 배포가 될지에 대해서 명확하게 다 파악하는 그런 내용이고요 하지만 이게 하나하나 한 단계 한 단계 넘어가다 보니까 각 기획단계별로 산출물 작성에 많은 시간이 소요됩니다 산출물 작성이 끝났어요 예를 들어 기획이 끝났어요 이제 개발을 하려고 하는데 새로운 요구사항이 들어왔네요 기획에서 그렇게 많은 시간을 써서 왔는데도 새로운 요구사항이 들어왔어요 이거를 그러면 바로 적용을 하나요? 아닙니다 워터폴은 에자일처럼 바로 적용하는 게 아니라 다 끝나고 V1.1, V1.3, V2.0 이런 단계에서 새롭게 반영하기 때문에 에자일보다는 반영하는 속도가 느립니다 하지만 워터폴 같은 경우는 초기에 명확하게 파악하기 때문에 기준으로 요구사항이 더욱 명확해요 명확하기 때문에 디테일해야 하는 서비스에는 좋은 방법론입니다 큰 규모의 제품이나 핵심 기능을 개발하는 경우에는 워터폴이 적합하다 에자일이 좋고 나쁘다 워터폴이 좋고 나쁘다는 없습니다 각각의 상황에 맞게 에자일과 워터폴의 특징을 떠올려서 어떠한 프로젝트에 적용하면 좋을지 이거는 이제 연습을 해 보시면 될 것 같습니다 이번 강의는 여기서 마치겠습니다 다음 강의는 여기서 마치겠습니다</div>
+          </details>
+        </div>
       </details>
     </section>
         
