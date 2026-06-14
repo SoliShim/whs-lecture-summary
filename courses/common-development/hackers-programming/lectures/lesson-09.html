@@ -6,11 +6,10 @@
   <title>해커의 프로그래밍 1-9 - OSINT와 정보 그래프</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="hackers-programming" data-lesson-id="1-9" data-lesson-key="hackers-programming:1-9" data-lesson-title="OSINT와 정보 그래프" data-lesson-label="해커 프로그래밍 1-9">
+<body data-course-id="hackers-programming" data-lesson-id="1-9" data-lesson-title="OSINT와 정보 그래프" data-lesson-label="해커 프로그래밍 1-9">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>해커 프로그래밍 1-9 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="hackers-programming:1-9" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -117,8 +104,8 @@
             <p><strong>OSINT</strong>는 Open Source Intelligence의 약자이며, 공개 출처 정보를 뜻한다. 여기서 공개 출처란 특별한 <strong>권한</strong> 없이 접근 가능한 공개된 출처를 말한다. 뉴스, 개인 블로그, SNS, 정부기관 공식 발표, 공개된 위성 사진 등이 모두 포함될 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0003.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0003.jpg" alt="공개출처정보의 정의" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0003.jpg" alt="공개출처정보의 정의" loading="lazy">
   </a>
   <figcaption>
     <strong>공개출처정보의 정의</strong>
@@ -129,8 +116,8 @@
                 <p>디지털 시대에는 종이 신문보다 온라인 뉴스와 SNS가 훨씬 많은 정보를 만든다. 그래서 OSINT의 중요성이 커졌다. 강의에서는 러시아·우크라이나 전쟁, Criminal IP와 Shodan 같은 CTI 플랫폼, 위성 지도와 Google Earth를 활용한 시설 탐색 사례 등을 OSINT 활용 예로 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0005.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0005.jpg" alt="OSINT 활용 사례" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0005.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0005.jpg" alt="OSINT 활용 사례" loading="lazy">
   </a>
   <figcaption>
     <strong>OSINT 활용 사례</strong>
@@ -152,8 +139,8 @@
                 <p>Criminal IP는 사이버보안 OSINT와 CTI에 특화된 검색 엔진·위협 정보 플랫폼이다. <strong>인터넷</strong>을 주기적으로 스캔하고, 특정 IP가 얼마나 위험한지, 알려진 <strong>취약점</strong>이 있는지, 악성코드 C2로 쓰이는지 같은 정보를 제공한다. Maltego는 사이버보안에만 한정되지 않고 여러 데이터 소스를 통합해 그래프 시각화하는 데 강점이 있는 분석 도구다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0009.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0009.jpg" alt="Criminal IP 기반 CTI 검색" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0009.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0009.jpg" alt="Criminal IP 기반 CTI 검색" loading="lazy">
   </a>
   <figcaption>
     <strong>Criminal IP 기반 CTI 검색</strong>
@@ -163,8 +150,8 @@
 
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0011.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0011.jpg" alt="OSINT 도구 분류" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0011.jpg" alt="OSINT 도구 분류" loading="lazy">
   </a>
   <figcaption>
     <strong>OSINT 도구 분류</strong>
@@ -195,8 +182,8 @@
             <p>강의는 EBS 다큐멘터리 속 은퇴한 CIA 부국장의 인터뷰를 소개한다. 많은 사람이 자신이 어디에 사는지, 종교적·정치적 견해, 친구 관계, 이메일 <strong>주소</strong>, 전화번호, 사진을 스스로 <strong>인터넷</strong>에 공개한다는 점이 과거 정보기관 관점에서는 꿈같은 상황이라는 취지다. SNS와 IoT가 일상화되면서 개인은 자신도 모르게 많은 정보를 남긴다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0017.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0017.jpg" alt="SNS가 만든 공개 정보 환경" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0017.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0017.jpg" alt="SNS가 만든 공개 정보 환경" loading="lazy">
   </a>
   <figcaption>
     <strong>SNS가 만든 공개 정보 환경</strong>
@@ -209,8 +196,8 @@
                 <p>사진도 마찬가지다. 스마트폰 사진에는 EXIF 메타데이터가 들어갈 수 있고, 촬영 기기, 촬영 옵션, GPS 위치가 포함될 수 있다. 강의에서는 책상 위 장식품 사진만 보면 취미 정도만 알 수 있지만, EXIF를 보면 휴대폰 기종과 집 위치에 가까운 주소까지 나올 수 있다고 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0025.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0025.jpg" alt="사진 메타데이터와 위치 노출" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0025.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0025.jpg" alt="사진 메타데이터와 위치 노출" loading="lazy">
   </a>
   <figcaption>
     <strong>사진 메타데이터와 위치 노출</strong>
@@ -231,8 +218,8 @@
             <p>스마트폰 <strong>핫스팟</strong> 이름이나 <strong>블루투스</strong> 기기 이름도 단서가 된다. iPhone은 기본 핫스팟 이름이 “누구누구의 iPhone”처럼 설정되는 경우가 많고, Android는 기기명이나 전화번호 일부가 노출될 수 있다. 작은 방이나 한정된 공간에서는 그 정보만으로 주변 사람의 이름이나 전화번호 일부를 추정할 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0029.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0029.jpg" alt="LLM 시대의 공개 게시물 조합 위험" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0029.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0029.jpg" alt="LLM 시대의 공개 게시물 조합 위험" loading="lazy">
   </a>
   <figcaption>
     <strong>LLM 시대의 공개 게시물 조합 위험</strong>
@@ -254,8 +241,8 @@
             <p>강의 후반부는 문제 풀이보다 <strong>OSINT</strong> 도구 소개에 가깝다. Predicta Graph는 무료 버전에서도 어느 정도 기능을 쓸 수 있는 <strong>그래프</strong> 기반 도구로 소개된다. 목적은 알고 있는 정보를 하나의 큰 지도로 연결해 보는 것이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0035.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0035.jpg" alt="Predicta Graph 새 그래프 생성" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0035.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0035.jpg" alt="Predicta Graph 새 그래프 생성" loading="lazy">
       </a>
       <figcaption>
         <strong>Predicta Graph 새 그래프 생성</strong>
@@ -274,8 +261,8 @@ Facebook 김철수 --friend--&gt; 홍길동
 Instagram post --tagged--&gt; 홍길동</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0049.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0049.jpg" alt="Predicta Graph 정보 연결 예시" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0049.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-09-OSINT와-정보-그래프/해커의 프로그래밍-09-OSINT와-정보-그래프 - 0049.jpg" alt="Predicta Graph 정보 연결 예시" loading="lazy">
       </a>
       <figcaption>
         <strong>Predicta Graph 정보 연결 예시</strong>

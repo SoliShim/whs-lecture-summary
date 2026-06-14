@@ -6,11 +6,10 @@
   <title>네트워크 기초 1-4 - 네트워크 계층</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="network-basic" data-lesson-id="1-4" data-lesson-key="network-basic:1-4" data-lesson-title="네트워크 계층" data-lesson-label="네트워크 1-4">
+<body data-course-id="network-basic" data-lesson-id="1-4" data-lesson-title="네트워크 계층" data-lesson-label="네트워크 1-4">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>네트워크 1-4 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="network-basic:1-4" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -128,8 +115,8 @@
                 <p><strong>네트워크 계층</strong>의 단위는 데이터그램이다. 이 계층은 한 호스트에서 다른 호스트로 데이터가 갈 때 어떤 경로를 선택하고 어떻게 전송할지 다룬다. 쉽게 말하면 <strong>라우팅</strong>을 수행한다. 상위 전송 계층에서 내려온 세그먼트를 데이터그램 안에 담아 운반하는 역할을 한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0007.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0007.jpg" alt="Network Layer 개요" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0007.jpg" alt="Network Layer 개요" loading="lazy">
   </a>
   <figcaption>
     <strong>Network Layer 개요</strong>
@@ -157,8 +144,8 @@
             <p>강의는 H1과 H2라는 두 호스트 예시로 <strong>네트워크 계층</strong>의 역할을 설명한다. H1의 전송 계층에서 내려온 세그먼트를 H2의 네트워크 계층까지 전달하고, 다시 H2의 전송 계층으로 올려 주는 것이 네트워크 계층의 큰 역할이다. 그래서 데이터 링크가 이웃 노드 간 전달이라면, 네트워크 계층은 <strong>호스트 대 호스트 전달</strong>을 담당한다고 이해하면 된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0011.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0011.jpg" alt="호스트 대 호스트 전달" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0011.jpg" alt="호스트 대 호스트 전달" loading="lazy">
   </a>
   <figcaption>
     <strong>호스트 대 호스트 전달</strong>
@@ -179,8 +166,8 @@
             <p><strong>네트워크 계층</strong>은 <strong>데이터 평면과 제어 평면</strong>으로 나누어 볼 수 있다. 데이터 평면은 데이터그램을 실제로 전달하는 과정과 IP 프로토콜 관련 내용을 다룬다. 제어 평면은 어떤 라우팅 알고리즘을 사용하고 어떻게 포워딩할지 같은 내용을 다룬다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0015.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0015.jpg" alt="라우터의 데이터 평면과 제어 평면" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0015.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0015.jpg" alt="라우터의 데이터 평면과 제어 평면" loading="lazy">
   </a>
   <figcaption>
     <strong>라우터의 데이터 평면과 제어 평면</strong>
@@ -202,8 +189,8 @@
                 <p>하지만 실제 <strong>인터넷</strong> <strong>네트워크</strong> 계층은 이런 모든 보장을 제공하지 않고 <strong>최선형 서비스(best-effort service)</strong>를 제공한다. 패킷이 보낸 순서대로 도착할 것을 보장하지 않고, 목적지까지 전달될 것도 보장하지 않으며, 종단 시스템 간 지연이나 최소 대역폭도 보장하지 않는다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0019.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0019.jpg" alt="인터넷 네트워크 계층의 최선형 서비스" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0019.jpg" alt="인터넷 네트워크 계층의 최선형 서비스" loading="lazy">
   </a>
   <figcaption>
     <strong>인터넷 네트워크 계층의 최선형 서비스</strong>
@@ -224,8 +211,8 @@
             <p><strong>IP</strong> <strong>프로토콜</strong>을 이해하기 위해 강의는 IPv4 데이터그램 포맷을 소개한다. IPv4 데이터그램은 보통 20바이트 헤더를 가지며, 옵션이 있으면 길이가 달라질 수 있다. 헤더에는 출발지 IP, 목적지 IP, 체크섬, 데이터그램 길이, Type of Service 같은 필드가 들어간다. 데이터 필드에는 상위 전송 계층의 세그먼트가 담긴다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0027.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0027.jpg" alt="IPv4 데이터그램 포맷" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0027.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0027.jpg" alt="IPv4 데이터그램 포맷" loading="lazy">
   </a>
   <figcaption>
     <strong>IPv4 데이터그램 포맷</strong>
@@ -258,8 +245,8 @@
             <p><strong>IPv4</strong> <strong>주소</strong>는 32비트 길이를 가지며, 보통 4개의 바이트를 점으로 구분한 형식으로 쓴다. 서브넷은 IP 네트워크를 더 작고 관리하기 쉬운 부분으로 나눈 것이다. 강의의 그림에서는 여러 서브넷이 라우터로 연결된 형태가 설명된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0031.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0031.jpg" alt="서브넷과 IP 주소" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0031.jpg" alt="서브넷과 IP 주소" loading="lazy">
   </a>
   <figcaption>
     <strong>서브넷과 IP 주소</strong>
@@ -270,8 +257,8 @@
                 <p>강의는 IPv4의 <strong>클래스</strong> 주소 체계도 설명한다. 필요한 호스트 <strong>IP</strong> 개수에 따라 네트워크 영역과 호스트 영역의 크기를 다르게 할당하는 방식이다. 가정용 네트워크에서 자주 보는 192.168.0.1 같은 주소는 C 클래스 사설망 감각과 연결해 이해할 수 있다. C 클래스는 B 클래스보다 호스트 영역이 작고, 대학교나 기업처럼 더 많은 호스트가 필요한 곳에서는 더 큰 주소 영역이 필요할 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0035.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0035.jpg" alt="IPv4 클래스 주소체계" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0035.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0035.jpg" alt="IPv4 클래스 주소체계" loading="lazy">
   </a>
   <figcaption>
     <strong>IPv4 클래스 주소체계</strong>
@@ -300,8 +287,8 @@
                 <p><strong>DHCP, Dynamic Host Configuration Protocol</strong>은 <strong>IP</strong> <strong>주소</strong>를 수동으로 하나하나 지정하지 않고, 네트워크에 접속한 장치에게 동적으로 IP 주소를 할당하는 프로토콜이다. 공유기나 조직 네트워크에서 장치가 자동으로 IP를 받는 흐름을 떠올리면 된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0039.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0039.jpg" alt="Broadcast, NAT, DHCP" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0039.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0039.jpg" alt="Broadcast, NAT, DHCP" loading="lazy">
   </a>
   <figcaption>
     <strong>Broadcast, NAT, DHCP</strong>
@@ -312,8 +299,8 @@
                 <p><strong>IPv4</strong> 주소 공간 고갈 문제는 오래전부터 논의되어 왔고, 이를 해결하기 위해 <strong>IPv6</strong>가 개발되었다. IPv4가 32비트 주소를 쓰는 것과 달리 IPv6는 128비트 주소를 사용한다. 또 헤더를 간소화하고 flow labeling 같은 흐름 처리 개념을 포함한다. 다만 강의에서는 IPv6가 수용되고 있지만 아직 IPv4만큼 널리 전환되지는 않았다고 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0043.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0043.jpg" alt="IPv6" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0043.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0043.jpg" alt="IPv6" loading="lazy">
   </a>
   <figcaption>
     <strong>IPv6</strong>

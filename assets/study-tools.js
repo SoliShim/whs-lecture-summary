@@ -57,74 +57,6 @@
     apply();
   };
 
-  const setupLectureFinder = () => {
-    const root = document.querySelector("[data-lecture-finder]");
-    if (!root) {
-      return;
-    }
-
-    const input = root.querySelector("[data-lecture-search]");
-    const statusButtons = [...root.querySelectorAll("[data-lecture-status-filter]")];
-    const tagButtons = [...root.querySelectorAll("[data-lecture-tag-filter]")];
-    const countLabel = root.querySelector("[data-lecture-result-count]");
-    const emptyMessage = root.querySelector("[data-lecture-empty]");
-    const lectureCards = [...document.querySelectorAll(".lecture-card[data-lesson-key]")];
-    let activeStatus = "all";
-    let activeTag = "all";
-
-    const apply = () => {
-      const query = normalize(input?.value);
-      let visibleCount = 0;
-
-      lectureCards.forEach((card) => {
-        const isComplete = card.classList.contains("is-complete");
-        const matchesQuery = !query || normalize(card.dataset.searchText || card.textContent).includes(query);
-        const tags = normalize(card.dataset.tags).split("|||");
-        const matchesTag = activeTag === "all" || tags.includes(activeTag);
-        const matchesStatus =
-          activeStatus === "all" ||
-          (activeStatus === "done" && isComplete) ||
-          (activeStatus === "remaining" && !isComplete);
-        const visible = matchesQuery && matchesTag && matchesStatus;
-        card.hidden = !visible;
-        card.classList.toggle("is-filtered-out", !visible);
-        if (visible) visibleCount += 1;
-      });
-
-      if (countLabel) {
-        countLabel.textContent = String(visibleCount);
-      }
-      if (emptyMessage) {
-        emptyMessage.hidden = visibleCount > 0;
-      }
-    };
-
-    input?.addEventListener("input", apply);
-    statusButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        activeStatus = button.dataset.lectureStatusFilter || "all";
-        setActive(statusButtons, button);
-        apply();
-      });
-    });
-    tagButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        activeTag = button.dataset.lectureTagFilter || "all";
-        setActive(tagButtons, button);
-        apply();
-      });
-    });
-
-    document.addEventListener("whitehat-progress-change", apply);
-    document.addEventListener("click", (event) => {
-      if (event.target.closest(".completion-toggle")) {
-        window.setTimeout(apply, 0);
-      }
-    });
-
-    apply();
-  };
-
   const setupLectureSideGuide = () => {
     const guide = document.querySelector("[data-lecture-side-guide]");
     if (!guide) {
@@ -228,7 +160,6 @@
 
   const initStudyTools = () => {
     setupCourseFinder();
-    setupLectureFinder();
     setupLectureSideGuide();
     setupLectureControls();
   };

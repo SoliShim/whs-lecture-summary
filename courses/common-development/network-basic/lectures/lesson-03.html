@@ -6,11 +6,10 @@
   <title>네트워크 기초 1-3 - 데이터 링크 계층</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="network-basic" data-lesson-id="1-3" data-lesson-key="network-basic:1-3" data-lesson-title="데이터 링크 계층" data-lesson-label="네트워크 1-3">
+<body data-course-id="network-basic" data-lesson-id="1-3" data-lesson-title="데이터 링크 계층" data-lesson-label="네트워크 1-3">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>네트워크 1-3 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="network-basic:1-3" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -128,8 +115,8 @@
                 <p>이전 강의에서 링크 계층은 한 <strong>네트워크</strong>에서 이웃 네트워크로 데이터를 전송하는 계층이라고 했다. 상위 계층인 <strong>네트워크 계층</strong>에서 내려온 데이터그램은 링크 계층에서 프레임이라는 더 큰 단위로 캡슐화된다. 즉 링크 계층의 기본 단위는 프레임이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0003.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0003.jpg" alt="링크 계층 소개: 노드와 링크" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0003.jpg" alt="링크 계층 소개: 노드와 링크" loading="lazy">
   </a>
   <figcaption>
     <strong>링크 계층 소개: 노드와 링크</strong>
@@ -158,8 +145,8 @@
                 <p>셋째, 신뢰적 전달 서비스도 제공할 수 있다. 후반부에서 <strong>TCP</strong>도 신뢰적 전달을 제공한다고 배우지만, 링크 계층의 신뢰적 전달은 오류가 발생한 링크 구간에서 정정이나 재전송을 수행하는 의미로 설명된다. 넷째, 오류 검출과 정정이다. 상위 계층에서 내려온 데이터그램에 오류가 있다면 그대로 전달할 필요가 없기 때문에, 링크 계층은 낮은 계층에서 오류를 확인한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0007.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0007.jpg" alt="링크 계층이 제공하는 서비스" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0007.jpg" alt="링크 계층이 제공하는 서비스" loading="lazy">
   </a>
   <figcaption>
     <strong>링크 계층이 제공하는 서비스</strong>
@@ -181,8 +168,8 @@
                 <p><strong>MAC 주소</strong>는 호스트나 라우터의 <strong>네트워크</strong> 인터페이스가 갖는 주소다. 하나의 컴퓨터나 라우터에도 여러 네트워크 인터페이스가 있을 수 있고, 각 인터페이스는 자기 MAC 주소를 가진다. 프레임을 수신한 어댑터는 프레임 안의 목적지 MAC 주소를 검사해 이 프레임이 자기에게 온 것인지 판단한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0011.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0011.jpg" alt="링크 계층 주소체계와 MAC 주소" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0011.jpg" alt="링크 계층 주소체계와 MAC 주소" loading="lazy">
   </a>
   <figcaption>
     <strong>링크 계층 주소체계와 MAC 주소</strong>
@@ -212,8 +199,8 @@
                 <p><strong>ARP</strong>는 같은 <strong>서브넷</strong> 안에서 IP 주소에 해당하는 MAC 주소를 알아낸다. 이 매핑은 영원히 유지되지 않는다. 강의에서 언급된 TTL, Time To Live는 이 매핑을 언제 삭제하거나 갱신해야 하는지와 관련된 시간 개념이다. 또한 ARP는 관리자가 하나하나 직접 구성하지 않아도 자동으로 구축되므로 plug and play 성격을 가진다고 설명된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0019.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0019.jpg" alt="ARP: IP 주소에서 MAC 주소 찾기" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0019.jpg" alt="ARP: IP 주소에서 MAC 주소 찾기" loading="lazy">
   </a>
   <figcaption>
     <strong>ARP: IP 주소에서 MAC 주소 찾기</strong>
@@ -235,8 +222,8 @@
             <p>강의는 서로 다른 <strong>서브넷</strong>에 있는 노드끼리 통신하는 경우도 다룬다. 예를 들어 111.111.111.111 쪽 호스트가 222.222.222.222 쪽 다른 서브넷 호스트로 데이터를 보내려 한다고 하자. 로컬 서브넷 안에는 목적지 호스트의 <strong>MAC 주소</strong>가 없기 때문에 ARP로 그 최종 MAC 주소를 바로 구할 수 없다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0023.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0023.jpg" alt="다른 서브넷으로 데이터그램을 보낼 때" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0023.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0023.jpg" alt="다른 서브넷으로 데이터그램을 보낼 때" loading="lazy">
   </a>
   <figcaption>
     <strong>다른 서브넷으로 데이터그램을 보낼 때</strong>
@@ -257,8 +244,8 @@
             <p>오늘날 Ethernet은 가장 중요한 LAN 기술로 소개된다. <strong>인터넷</strong>이 전 세계 네트워킹을 논하는 개념이라면, Ethernet은 근거리 <strong>네트워크</strong>에서 이웃 네트워크 요소로 값을 전송하는 대표 기술이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0031.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0031.jpg" alt="Ethernet 프레임 구조" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0031.jpg" alt="Ethernet 프레임 구조" loading="lazy">
   </a>
   <figcaption>
     <strong>Ethernet 프레임 구조</strong>
@@ -279,8 +266,8 @@
                 <p>Data 필드에는 상위 네트워크 계층의 IP 데이터그램이 들어간다. 강의는 Data 크기를 46바이트에서 1500바이트로 설명하고, 이보다 크면 단편화가 진행될 수 있다고 언급한다. Destination address와 Source address에는 앞에서 배운 목적지·출발지 MAC 주소가 들어가며, Type 필드는 IP 같은 상위 네트워크 계층 프로토콜 종류를 나타낸다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0035.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0035.jpg" alt="Ethernet의 비연결형·비신뢰적 서비스" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0035.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0035.jpg" alt="Ethernet의 비연결형·비신뢰적 서비스" loading="lazy">
   </a>
   <figcaption>
     <strong>Ethernet의 비연결형·비신뢰적 서비스</strong>
@@ -309,8 +296,8 @@
                 </table>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0039.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0039.jpg" alt="링크 계층 스위치와 라우터 비교" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0039.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0039.jpg" alt="링크 계층 스위치와 라우터 비교" loading="lazy">
   </a>
   <figcaption>
     <strong>링크 계층 스위치와 라우터 비교</strong>

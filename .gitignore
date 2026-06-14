@@ -48,7 +48,7 @@ logs/
 *.bak
 *.orig
 
-# Raw lecture media. Keep generated site images in assets/generated/.
+# Raw lecture media. Keep published capture images in screenshots/.
 videos/
 *.mp4
 *.mov

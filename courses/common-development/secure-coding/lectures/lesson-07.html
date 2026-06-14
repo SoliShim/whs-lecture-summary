@@ -6,11 +6,10 @@
   <title>시큐어코딩 1-7 - 에러 처리, 코드 오류, API 오용</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="secure-coding" data-lesson-id="1-7" data-lesson-key="secure-coding:1-7" data-lesson-title="에러 처리, 코드 오류, API 오용" data-lesson-label="시큐어코딩 1-7">
+<body data-course-id="secure-coding" data-lesson-id="1-7" data-lesson-title="에러 처리, 코드 오류, API 오용" data-lesson-label="시큐어코딩 1-7">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>시큐어코딩 1-7 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="secure-coding:1-7" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -122,8 +109,8 @@
             <p>7강은 <strong>시큐어 코딩</strong> 기법 중 마지막 묶음인 <strong>에러 처리, 코드 오류, API 오용</strong>을 다룬다. 첫 번째 주제는 <strong>오류 메시지 노출</strong>이다. 프로그램을 개발하고 운영하면 SQL 오류, URL 라우팅 오류, 서버 내부 예외처럼 다양한 문제가 발생한다. 문제 자체보다 더 위험한 것은 그 오류 메시지가 서버 관리자만 보는 로그에 남는 것이 아니라 일반 사용자 화면에 그대로 표시되는 상황이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0003.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0003.jpg" alt="오류 메시지 노출 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0003.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0003.jpg" alt="오류 메시지 노출 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>오류 메시지 노출 공격 흐름</strong>
@@ -134,8 +121,8 @@
                     <p>강의의 첫 화면은 SQL 오류 메시지가 외부에 노출되는 흐름을 보여 준다. 공격자가 <strong>로그</strong>인이나 게시판 기능에 비정상 <strong>입력</strong>을 보냈을 때, 서버가 “어떤 SQL문이 실패했는지”, “어떤 조건에서 오류가 났는지”를 사용자 화면에 그대로 보여 주면 공격자는 데이터베이스 구조와 쿼리 작성 방식을 추정할 수 있다. 이 정보는 단순한 오류 안내가 아니라 다음 공격을 설계하는 힌트가 된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0007.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0007.jpg" alt="Django 기본 오류 페이지의 정보 노출" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0007.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0007.jpg" alt="Django 기본 오류 페이지의 정보 노출" loading="lazy">
       </a>
       <figcaption>
         <strong>Django 기본 오류 페이지의 정보 노출</strong>
@@ -146,8 +133,8 @@
                     <p>Django의 기본 오류 페이지도 같은 위험을 가진다. 사용자 정의 오류 페이지를 따로 설정하지 않으면 URL 패턴, <code>admin/</code> 경로, 코드 위치, DEBUG 상태처럼 일반 사용자가 알 필요가 없는 내부 정보가 보일 수 있다. 강사는 공격자가 이런 화면을 보고 “관리자 경로가 존재한다”, “어떤 <strong>라우팅</strong> 구조를 쓴다”는 사실을 알아낼 수 있다고 설명했다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0011.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0011.jpg" alt="사용자 정의 오류 페이지 설정" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0011.jpg" alt="사용자 정의 오류 페이지 설정" loading="lazy">
       </a>
       <figcaption>
         <strong>사용자 정의 오류 페이지 설정</strong>
@@ -177,8 +164,8 @@ handler500 = &quot;blog.views.error500&quot;</code></pre>
             <p>오류 메시지를 가리는 것만으로 충분하지 않다. 예외가 발생했을 때 프로그램이 어떤 상태로 이어지는지도 중요하다. 공격자뿐 아니라 일반 사용자도 개발자가 예상하지 못한 값을 <strong>입력</strong>할 수 있고, 그 값이 예외를 발생시킬 수 있다. <strong>예외 처리</strong>가 없으면 프로그램이 종료되거나 서버 기능이 멈출 수 있고, 예외 처리가 있더라도 내부 경로나 데이터를 그대로 보여 주면 공격자에게 힌트가 된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0015.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0015.jpg" alt="오류 상황 처리와 예외 입력" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0015.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0015.jpg" alt="오류 상황 처리와 예외 입력" loading="lazy">
       </a>
       <figcaption>
         <strong>오류 상황 처리와 예외 입력</strong>
@@ -189,8 +176,8 @@ handler500 = &quot;blog.views.error500&quot;</code></pre>
                     <p>강의는 예외 처리의 나쁜 예를 <strong>암호화</strong> 코드로 설명한다. 암호화 <strong>함수</strong>는 <code>key_id</code>를 받아 <code>static_keys</code> 목록에서 키와 IV를 선택한다. 그런데 사용자가 목록 범위를 벗어난 <code>key_id</code>를 주면 <code>IndexError</code>가 발생한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0019.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0019.jpg" alt="예외 발생 시 기본 암호화 키 사용" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0019.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0019.jpg" alt="예외 발생 시 기본 암호화 키 사용" loading="lazy">
       </a>
       <figcaption>
         <strong>예외 발생 시 기본 암호화 키 사용</strong>
@@ -228,8 +215,8 @@ def encryption(key_id, plain_text):
     return encrypted_data.decode(&quot;ASCII&quot;)</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0021.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0021.jpg" alt="예외 발생 시 랜덤 키 생성" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0021.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0021.jpg" alt="예외 발생 시 랜덤 키 생성" loading="lazy">
       </a>
       <figcaption>
         <strong>예외 발생 시 랜덤 키 생성</strong>
@@ -267,8 +254,8 @@ def encryption(key_id, plain_text):
             <p>코드 오류는 단순 버그로 끝나지 않고 <strong>보안 약점</strong>이 될 수 있다. 대표 사례가 <strong>Null Pointer 역참조</strong>다. 공격자나 일반 사용자가 객체 값, 파일명, 파라미터 값을 비워 둘 수 있는데 서버 코드가 “값은 항상 존재한다”고 가정하면, 비어 있는 값을 처리하는 순간 예외가 발생한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0023.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0023.jpg" alt="Null Pointer 역참조 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0023.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0023.jpg" alt="Null Pointer 역참조 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>Null Pointer 역참조 공격 흐름</strong>
@@ -279,8 +266,8 @@ def encryption(key_id, plain_text):
                     <p>강의 화면은 공격자가 객체 값을 Null로 설정하고, 서버가 이를 예상하지 못해 비정상 경로나 오류 정보를 노출하는 흐름을 보여 준다. 공격자는 그 정보를 바탕으로 추가 공격을 시도할 수 있다. <strong>Python</strong>에서는 C/C++의 널 <strong>포인터</strong>와 표현은 다르지만, <code>None</code>을 문자열처럼 다루거나 메서드를 호출하면 같은 종류의 오류가 발생한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0027.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0027.jpg" alt="filename None 검사 누락 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0027.jpg" alt="filename None 검사 누락 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>filename None 검사 누락 코드</strong>
@@ -313,8 +300,8 @@ def parse_xml(request):
         return render(request, &quot;/success.html&quot;, {&quot;result&quot;: result})</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0029.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0029.jpg" alt="filename None 및 빈 문자열 검사" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0029.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0029.jpg" alt="filename None 및 빈 문자열 검사" loading="lazy">
       </a>
       <figcaption>
         <strong>filename None 및 빈 문자열 검사</strong>
@@ -361,8 +348,8 @@ def parse_xml(request):
             <p>다음 주제는 초반 강의에서도 언급했던 <strong>역직렬화</strong>다. 직렬화된 데이터는 사람이 보는 <strong>평문</strong>이 아니라 프로그램이 다시 읽어 객체로 복원할 수 있는 형태다. Python의 <code>pickle</code> 데이터처럼 역직렬화 과정에서 객체 복원 이상의 동작이 일어날 수 있는 형식은 특히 위험하다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0031.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0031.jpg" alt="신뢰할 수 없는 역직렬화 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0031.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0031.jpg" alt="신뢰할 수 없는 역직렬화 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>신뢰할 수 없는 역직렬화 흐름</strong>
@@ -373,8 +360,8 @@ def parse_xml(request):
                     <p>공격자가 공격 코드가 포함된 직렬화 데이터를 서버로 보내고, 서버가 이를 검증 없이 역직렬화하면 원격 코드 <strong>실행</strong>과 시스템 장악으로 이어질 수 있다. 강사는 사람이 바로 해석하기 어려운 데이터 안에 공격 코드가 숨어 있을 수 있고, 이를 그대로 로드하면 서버가 공격 코드를 실행하게 된다고 설명했다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0033.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0033.jpg" alt="무검증 pickle 역직렬화 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0033.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0033.jpg" alt="무검증 pickle 역직렬화 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>무검증 pickle 역직렬화 코드</strong>
@@ -394,8 +381,8 @@ def load_user_object(request):
     return render(request, &quot;/load_user_obj.html&quot;, {&quot;obj&quot;: user_obj})</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0035.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0035.jpg" alt="HMAC 기반 pickle 무결성 검증" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0035.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0035.jpg" alt="HMAC 기반 pickle 무결성 검증" loading="lazy">
       </a>
       <figcaption>
         <strong>HMAC 기반 pickle 무결성 검증</strong>
@@ -441,8 +428,8 @@ def load_user_object(request):
             <p><strong>API 오용</strong>은 웹서버가 외부 API를 호출하거나 자체 API를 제공할 때 잘못된 방식으로 보안 결정을 내리는 문제다. 강의의 대표 예시는 <strong>DNS Lookup에 의존한 보안 결정</strong>이다. 사용자가 <code>www.bank.kr</code> 같은 URL을 <strong>입력</strong>하면, 정상적으로는 DNS가 이 도메인에 맞는 IP를 돌려주고 사용자는 정상 은행 서버에 접속한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0043.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0043.jpg" alt="DNS Lookup에 의존한 보안 결정" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0043.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0043.jpg" alt="DNS Lookup에 의존한 보안 결정" loading="lazy">
       </a>
       <figcaption>
         <strong>DNS Lookup에 의존한 보안 결정</strong>
@@ -454,8 +441,8 @@ def load_user_object(request):
                     <p>강사는 URL 기반으로 DNS를 검색하고 그 결과에만 의존해 보안 판단을 하면, 중간에서 잘못된 IP로 연결하는 공격에 노출될 수 있다고 설명했다. 특히 고정된 대상에 접속해야 하는 기능이라면 도메인 <strong>문자열</strong>만 믿는 방식은 충분하지 않다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0047.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0047.jpg" alt="도메인 비교 대신 IP 비교" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0047.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0047.jpg" alt="도메인 비교 대신 IP 비교" loading="lazy">
       </a>
       <figcaption>
         <strong>도메인 비교 대신 IP 비교</strong>
@@ -498,8 +485,8 @@ def is_trust(host_domain_name):
             <p>마지막 주제는 <strong>취약한 API와 라이브러리 사용</strong>이다. 웹서버는 직접 작성한 코드만으로 동작하지 않는다. 외부 API, 오픈소스 <strong>패키지</strong>, 프레임워크, 라이브러리를 가져와 사용한다. 그런데 그 API나 패키지 자체에 취약점이 있다면, 개발자가 직접 취약한 코드를 작성하지 않았더라도 호출하는 순간 위험이 애플리케이션으로 들어온다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0051.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0051.jpg" alt="취약한 API와 패키지 사용" loading="lazy">
+  <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0051.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0051.jpg" alt="취약한 API와 패키지 사용" loading="lazy">
   </a>
   <figcaption>
     <strong>취약한 API와 패키지 사용</strong>

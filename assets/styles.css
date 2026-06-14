@@ -29,10 +29,6 @@
   --radius: 8px;
 }
 
-.study-progress {
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
-
 @font-face {
   font-family: "Pretendard";
   font-weight: 400;
@@ -2117,9 +2113,7 @@ pre {
   font-size: 14px;
 }
 
-.student-dashboard,
-.course-routine,
-.study-progress {
+.student-dashboard {
   position: relative;
   z-index: 6;
 }
@@ -2133,9 +2127,7 @@ pre {
   align-items: stretch;
 }
 
-.study-card,
-.course-routine article,
-.study-progress a {
+.study-card {
   min-width: 0;
   border: 1px solid rgba(32, 137, 255, 0.13);
   border-radius: 15px;
@@ -2185,128 +2177,12 @@ pre {
   margin-top: 18px;
 }
 
-.study-card p,
-.course-routine p,
-.study-progress small {
+.study-card p {
   color: #4d5865;
 }
 
 .study-card .button {
   margin-top: 18px;
-}
-
-.overall-progress {
-  margin-top: 18px;
-  padding: 16px;
-  border: 1px solid rgba(24, 119, 96, 0.14);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.74);
-}
-
-.overall-progress span,
-.course-progress-chip {
-  color: #4d5865;
-  font-size: 13px;
-  font-weight: 850;
-}
-
-.overall-progress strong {
-  display: block;
-  margin-top: 4px;
-  color: #212121;
-  font-size: 28px;
-  line-height: 1.15;
-}
-
-.progress-track {
-  --progress: 0%;
-  width: 100%;
-  height: 10px;
-  margin-top: 12px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: #e5f1ff;
-}
-
-.progress-track i {
-  display: block;
-  width: var(--progress);
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--green), var(--blue));
-  transition: width 180ms ease;
-}
-
-.course-routine {
-  margin-top: -54px;
-  margin-bottom: 42px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.course-routine article {
-  padding: 22px;
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  gap: 8px 14px;
-  align-items: start;
-}
-
-.course-routine span {
-  grid-row: span 2;
-  width: 44px;
-  height: 44px;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--green);
-  color: #ffffff;
-  font-weight: 900;
-}
-
-.course-routine strong {
-  color: #212121;
-  font-size: 18px;
-}
-
-.course-routine p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.course-progress-panel,
-.lesson-status-panel {
-  margin-bottom: 42px;
-  padding: 24px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
-  gap: 22px;
-  align-items: center;
-  border: 1px solid rgba(32, 137, 255, 0.13);
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 18px 34px rgba(15, 68, 92, 0.1);
-}
-
-.course-progress-panel strong,
-.lesson-status-panel strong {
-  display: block;
-  color: #212121;
-  font-size: clamp(22px, 3vw, 34px);
-  line-height: 1.22;
-}
-
-.course-progress-panel p,
-.lesson-status-panel p {
-  margin: 8px 0 0;
-  color: #4d5865;
-}
-
-.course-progress-panel .progress-track {
-  margin-top: 0;
-  height: 16px;
 }
 
 .finder-panel {
@@ -2326,10 +2202,6 @@ pre {
 
 .site-finder {
   margin-top: 12px;
-}
-
-.lecture-finder {
-  margin-top: 8px;
 }
 
 .finder-copy h2 {
@@ -2430,112 +2302,8 @@ pre {
 }
 
 .course-item[hidden],
-.lecture-card[hidden],
 .track-section[hidden] {
   display: none !important;
-}
-
-.course-progress-chip {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: #e5f1ff;
-  color: var(--blue-dark);
-}
-
-.course-overview-panel {
-  margin-top: -22px;
-  margin-bottom: 24px;
-  padding: 24px;
-  display: grid;
-  grid-template-columns: minmax(250px, 0.32fr) minmax(0, 1fr);
-  gap: 22px;
-  align-items: stretch;
-  border: 1px solid rgba(32, 137, 255, 0.14);
-  border-radius: 15px;
-  background:
-    linear-gradient(135deg, rgba(229, 241, 255, 0.82), rgba(255, 255, 255, 0.97) 56%),
-    #ffffff;
-  box-shadow: 0 16px 30px rgba(15, 68, 92, 0.08);
-}
-
-.course-overview-copy h2 {
-  margin: 12px 0 9px;
-  color: #172033;
-  font-size: clamp(23px, 2.7vw, 32px);
-  line-height: 1.2;
-  text-align: left;
-}
-
-.course-overview-copy p {
-  margin: 0;
-  color: #4d5865;
-  line-height: 1.65;
-}
-
-.course-focus-strip {
-  margin-top: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-
-.course-focus-strip span {
-  min-height: 30px;
-  padding: 0 10px;
-  display: inline-flex;
-  gap: 5px;
-  align-items: center;
-  border-radius: 999px;
-  background: #e5f1ff;
-  color: #4d5865;
-  font-size: 12px;
-  font-weight: 850;
-}
-
-.course-focus-strip strong {
-  color: var(--blue-dark);
-  font-weight: 950;
-}
-
-.course-overview-metrics {
-  min-width: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.course-overview-metrics article {
-  min-width: 0;
-  min-height: 132px;
-  padding: 16px;
-  display: grid;
-  align-content: start;
-  gap: 7px;
-  border: 1px solid rgba(40, 88, 123, 0.12);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.course-overview-metrics span {
-  color: var(--blue-dark);
-  font-size: 12px;
-  font-weight: 950;
-}
-
-.course-overview-metrics strong {
-  color: #172033;
-  font-size: 24px;
-  line-height: 1.1;
-}
-
-.course-overview-metrics p {
-  margin: 0;
-  color: #5b6e78;
-  font-size: 13px;
-  line-height: 1.42;
 }
 
 .lecture-profile {
@@ -2575,123 +2343,6 @@ pre {
 
 .lecture-card .card-actions .button {
   margin: 0;
-}
-
-.completion-toggle {
-  min-height: 42px;
-  padding: 0 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1px solid rgba(33, 33, 33, 0.16);
-  border-radius: 999px;
-  background: #ffffff;
-  color: #344452;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 850;
-  cursor: pointer;
-  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease, color 150ms ease;
-}
-
-.completion-toggle:hover {
-  border-color: var(--green);
-  color: var(--green-dark);
-  transform: translateY(-1px);
-}
-
-.completion-toggle.large {
-  justify-self: end;
-  min-height: 54px;
-  padding: 0 22px;
-  font-size: 15px;
-}
-
-.completion-dot {
-  width: 13px;
-  height: 13px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-}
-
-.completion-toggle.is-complete {
-  border-color: var(--green);
-  background: #ddf6f0;
-  color: var(--green-dark);
-}
-
-.completion-toggle.is-complete .completion-dot {
-  border-color: var(--green);
-  background: var(--green);
-  box-shadow: inset 0 0 0 3px #ddf6f0;
-}
-
-.lecture-card.is-complete {
-  background:
-    linear-gradient(180deg, rgba(221, 246, 240, 0.74), rgba(255, 255, 255, 0.98) 44%),
-    #ffffff;
-}
-
-.lecture-card.is-complete::before {
-  background: var(--green);
-}
-
-.lecture-card.is-complete .lecture-id::after {
-  content: "완료";
-  display: inline-flex;
-  min-height: 24px;
-  margin-left: 8px;
-  padding: 0 8px;
-  align-items: center;
-  border-radius: 999px;
-  background: #ddf6f0;
-  color: var(--green-dark);
-  font-size: 12px;
-}
-
-.study-progress {
-  position: sticky;
-  top: 12px;
-  margin-top: -36px;
-  margin-bottom: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
-  gap: 12px;
-}
-
-.study-progress a {
-  min-height: 76px;
-  display: grid;
-  grid-template-columns: 38px minmax(0, 1fr);
-  gap: 2px 12px;
-  align-items: center;
-  padding: 14px;
-  color: inherit;
-  text-decoration: none;
-  backdrop-filter: blur(16px);
-}
-
-.study-progress span {
-  grid-row: span 2;
-  width: 38px;
-  height: 38px;
-  display: inline-grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #e5f1ff;
-  color: var(--blue-dark);
-  font-weight: 900;
-}
-
-.study-progress strong {
-  font-size: 15px;
-  line-height: 1.2;
-}
-
-.study-progress small {
-  font-size: 12px;
-  line-height: 1.25;
 }
 
 .notes-layout {
@@ -2861,8 +2512,6 @@ pre {
 .top-nav a:focus-visible,
 .toc-box a:focus-visible,
 .study-card a:focus-visible,
-.study-progress a:focus-visible,
-.completion-toggle:focus-visible,
 .filter-chip:focus-visible,
 .search-box input:focus-visible {
   outline: 3px solid var(--amber);
@@ -2878,24 +2527,8 @@ pre {
     grid-column: 1 / -1;
   }
 
-  .course-routine,
-  .study-progress,
-  .course-progress-panel,
-  .lesson-status-panel,
   .finder-panel {
     grid-template-columns: 1fr;
-  }
-
-  .course-overview-panel {
-    grid-template-columns: 1fr;
-  }
-
-  .course-overview-metrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .study-progress {
-    position: static;
   }
 
   .lecture-study-layout {
@@ -2914,9 +2547,7 @@ pre {
 }
 
 @media (max-width: 680px) {
-  .student-dashboard,
-  .course-routine,
-  .study-progress {
+  .student-dashboard {
     width: min(100% - 32px, 1180px);
   }
 
@@ -2925,15 +2556,7 @@ pre {
     grid-template-columns: 1fr;
   }
 
-  .course-routine {
-    margin-top: -34px;
-  }
-
   .study-card,
-  .course-routine article,
-  .study-progress a,
-  .course-progress-panel,
-  .lesson-status-panel,
   .finder-panel {
     border-radius: 12px;
   }
@@ -2942,34 +2565,12 @@ pre {
     padding: 20px;
   }
 
-  .tag-filter-row {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .tag-filter-row::-webkit-scrollbar {
-    display: none;
-  }
-
-  .tag-filter-row .filter-chip {
-    flex: 0 0 auto;
-  }
-
-  .completion-toggle.large {
-    justify-self: stretch;
-  }
-
   .card-actions {
     align-items: stretch;
     flex-direction: column;
   }
 
-  .card-actions .button,
-  .card-actions .completion-toggle {
+  .card-actions .button {
     width: 100%;
   }
 
@@ -3051,11 +2652,6 @@ pre {
   }
 }
 
-/* Final priority override for lecture pages with the added memo step. */
-.study-progress {
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
-
 /* PC reading consistency pass: keep the lecture text primary and all panels quiet. */
 :root {
   --ui-radius: 8px;
@@ -3083,13 +2679,7 @@ body {
 .note-block,
 .note-section,
 .study-card,
-.course-routine article,
-.study-progress a,
-.course-progress-panel,
-.lesson-status-panel,
 .finder-panel,
-.course-overview-panel,
-.course-overview-metrics article,
 .transcript-wrap details,
 .raw-transcript-panel,
 .diagram > div,
@@ -3128,16 +2718,6 @@ pre {
   min-height: 286px;
 }
 
-.lecture-card.is-complete {
-  background:
-    linear-gradient(180deg, rgba(231, 244, 239, 0.72), rgba(255, 255, 255, 0.98) 38%),
-    #ffffff;
-}
-
-.lecture-card.is-complete::before {
-  content: none;
-}
-
 .toc-box {
   width: min(680px, 100%);
   max-height: min(300px, calc(100vh - 300px));
@@ -3161,30 +2741,10 @@ pre {
 }
 
 .intro-grid,
-.lesson-status-panel,
-.study-progress,
 .lecture-study-layout,
 .transcript-wrap,
 .page-nav {
   margin-bottom: 28px;
-}
-
-.study-progress {
-  top: 10px;
-  margin-top: -24px;
-  grid-template-columns: repeat(auto-fit, minmax(178px, 1fr));
-  gap: 10px;
-}
-
-.study-progress a {
-  min-height: 70px;
-  padding: 12px;
-  backdrop-filter: none;
-}
-
-.study-progress span {
-  background: var(--ui-accent-soft);
-  color: var(--green-dark);
 }
 
 .lecture-study-layout {
@@ -3205,11 +2765,8 @@ pre {
 .side-guide-head span,
 .side-guide-links a span,
 .study-card-kicker,
-.course-progress-chip,
 .tag-row span,
-.lecture-profile span,
-.course-focus-strip span,
-.completion-toggle {
+.lecture-profile span {
   border-radius: var(--ui-radius);
 }
 
@@ -3306,26 +2863,19 @@ pre {
   box-shadow: none;
 }
 
-.course-overview-panel,
-.finder-panel,
-.course-progress-panel,
-.lesson-status-panel {
+.finder-panel {
   padding: 24px;
 }
 
-.course-overview-panel,
 .finder-panel {
   background: #ffffff;
 }
 
-.course-overview-metrics article,
-.lecture-profile span,
-.course-focus-strip span {
+.lecture-profile span {
   box-shadow: none;
 }
 
 .button,
-.completion-toggle,
 .filter-chip,
 .search-box input {
   border-radius: var(--ui-radius);
@@ -3597,7 +3147,6 @@ h2 {
   padding-top: 48px;
 }
 
-.lesson-status-panel,
 .lecture-control-panel,
 .note-block,
 .section-disclosure,
@@ -3608,24 +3157,6 @@ h2 {
   box-shadow: var(--ui-shadow);
 }
 
-.lesson-status-panel {
-  min-height: 116px;
-  margin-bottom: 18px;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--panel-gap);
-  align-items: center;
-}
-
-.lesson-status-panel strong {
-  font-size: 27px;
-}
-
-.lesson-status-panel p {
-  max-width: 720px;
-  font-size: 15px;
-  line-height: 1.62;
-}
-
 .lecture-control-panel {
   margin-bottom: 30px;
   padding: 18px;
@@ -3634,8 +3165,7 @@ h2 {
 }
 
 .section-jump-field select,
-.lecture-control-actions .button,
-.completion-toggle.large {
+.lecture-control-actions .button {
   min-height: var(--control-height);
 }
 
@@ -3766,8 +3296,7 @@ h2 {
   gap: 10px;
 }
 
-.card-actions .button,
-.card-actions .completion-toggle {
+.card-actions .button {
   min-height: 42px;
 }
 
@@ -3826,7 +3355,6 @@ h2 {
   }
 
   .lecture-header .lecture-hero,
-  .lesson-status-panel,
   .lecture-control-panel,
   .lecture-study-layout {
     grid-template-columns: 1fr;
@@ -3836,9 +3364,6 @@ h2 {
     justify-content: flex-start;
   }
 
-  .completion-toggle.large {
-    justify-self: start;
-  }
 }
 
 @media (max-width: 680px) {
@@ -3894,12 +3419,6 @@ h2 {
   font-size: 32px;
 }
 
-.course-progress-panel strong,
-.lesson-status-panel strong,
-.course-overview-copy h2 {
-  font-size: 27px;
-}
-
 @media (max-width: 1180px) {
   .lead,
   .section-intro {
@@ -3923,10 +3442,7 @@ h2 {
   }
 
   .study-card h2,
-  .finder-copy h2,
-  .course-progress-panel strong,
-  .lesson-status-panel strong,
-  .course-overview-copy h2 {
+  .finder-copy h2 {
     font-size: 24px;
   }
 }

@@ -6,11 +6,10 @@
   <title>네트워크 기초 1-6 - 애플리케이션 계층</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="network-basic" data-lesson-id="1-6" data-lesson-key="network-basic:1-6" data-lesson-title="애플리케이션 계층" data-lesson-label="네트워크 1-6">
+<body data-course-id="network-basic" data-lesson-id="1-6" data-lesson-title="애플리케이션 계층" data-lesson-label="네트워크 1-6">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>네트워크 1-6 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="network-basic:1-6" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -138,8 +125,8 @@
                 <p>이제 마지막으로 올라오는 계층이 <strong>application layer</strong>다. 응용 계층은 웹 브라우저, 서버 프로그램, 메신저, 게임 클라이언트처럼 사용자가 직접 마주치는 <strong>네트워크</strong> 프로그램의 message를 다룬다. 하지만 응용 계층이 독립적으로 모든 통신을 처리하는 것은 아니다. 강사는 다시 한 번 <strong>각 상위 계층은 하위 계층의 service와 function에 의존한다</strong>고 강조한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0007.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0007.jpg" alt="네트워크 애플리케이션 구조" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0007.jpg" alt="네트워크 애플리케이션 구조" loading="lazy">
   </a>
   <figcaption>
     <strong>네트워크 애플리케이션 구조</strong>
@@ -160,8 +147,8 @@
             <p><strong>네트워크</strong> 애플리케이션은 서로 다른 위치의 end system에서 동작하면서 network를 통해 통신하는 프로그램이다. 강의에서는 대표 구조를 <strong>client-server</strong>와 <strong>P2P, Peer-to-Peer</strong>로 나눈다. 웹사이트처럼 우리가 흔히 쓰는 <strong>서비스</strong>는 대부분 client-server 구조이고, 토렌트 같은 서비스는 P2P 구조의 대표 예시로 설명된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0011.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0011.jpg" alt="Client-server와 P2P 구조 비교" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0011.jpg" alt="Client-server와 P2P 구조 비교" loading="lazy">
   </a>
   <figcaption>
     <strong>Client-server와 P2P 구조 비교</strong>
@@ -189,8 +176,8 @@
             <p><strong>네트워크</strong> 애플리케이션의 실제 통신 주체는 process다. client process와 server process는 컴퓨터 네트워크를 통해 application-layer message를 교환한다. 이 process 간 통신을 가능하게 하는 메커니즘이 바로 앞 강의에서 배운 transport layer다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0015.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0015.jpg" alt="프로세스 간 통신과 소켓" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0015.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0015.jpg" alt="프로세스 간 통신과 소켓" loading="lazy">
   </a>
   <figcaption>
     <strong>프로세스 간 통신과 소켓</strong>
@@ -212,8 +199,8 @@
             <p><strong>HTTP, Hypertext Transfer Protocol</strong>은 여러 resource를 송수신하기 위한 application layer protocol이다. 강사는 <strong>HTTP</strong>가 현대 생활을 크게 바꿨다고 설명한다. 뉴스 확인, 웹 게임, 영화, Netflix, Discord 같은 <strong>서비스</strong>가 웹 기술 위에서 동작하고, 웹 해킹과 패킷 분석에서도 HTTP 이해가 기본이 된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0019.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0019.jpg" alt="HTTP의 stateless와 connectionless 특성" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0019.jpg" alt="HTTP의 stateless와 connectionless 특성" loading="lazy">
   </a>
   <figcaption>
     <strong>HTTP의 stateless와 connectionless 특성</strong>
@@ -236,8 +223,8 @@
             <p><strong>HTTP request</strong>는 client가 server에 어떤 작업을 요청하는 message다. 강의 슬라이드는 요청 메시지를 세 부분으로 나눈다. 첫째는 <strong>시작줄</strong>, 둘째는 <strong>header</strong>, 셋째는 필요할 때 붙는 <strong>body</strong>다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0027.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0027.jpg" alt="HTTP request message 구조" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0027.jpg" alt="HTTP request message 구조" loading="lazy">
       </a>
       <figcaption>
         <strong>HTTP request message 구조</strong>
@@ -279,8 +266,8 @@ form%5Bmember_Id%5D=hello&amp;password=pwnhyo</code></pre>
             <p><strong>HTTP response</strong>는 server가 client에게 보내는 응답 message다. request와 마찬가지로 header와 body를 가지지만, 첫 줄은 요청의 시작줄이 아니라 <strong>상태줄</strong>이다. 상태줄은 protocol version, status code, status text로 구성된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0039.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0039.jpg" alt="HTTP response message 구조" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0039.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0039.jpg" alt="HTTP response message 구조" loading="lazy">
       </a>
       <figcaption>
         <strong>HTTP response message 구조</strong>
@@ -318,8 +305,8 @@ Vary: Accept-Encoding
             <p>강의는 <strong>HTTP</strong>가 <strong>네트워크</strong> 관점에서 왜 위험할 수 있는지 설명한다. HTTP는 암호화되지 않은 message를 요청하고 응답받기 때문에, 중간에서 packet을 sniffing할 수 있는 공격자가 있으면 request와 response의 내용이 그대로 노출될 수 있다. 로그인 과정에서 ID와 password가 HTTP 평문으로 오간다면 그 값도 읽힐 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0047.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0047.jpg" alt="HTTP와 HTTPS" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0047.jpg" alt="HTTP와 HTTPS" loading="lazy">
   </a>
   <figcaption>
     <strong>HTTP와 HTTPS</strong>
@@ -341,8 +328,8 @@ Vary: Accept-Encoding
             <p>응용 계층 <strong>프로토콜</strong>은 <strong>HTTP</strong>만 있는 것이 아니다. 강의에서는 HTTP 다음으로 <strong>DNS, Domain Name System</strong>를 소개한다. 우리가 웹사이트에 접속할 때 보통 IP 주소를 직접 입력하지 않고 <code>https://www.kitribob.kr/</code> 같은 host name을 입력한다. 하지만 router와 host가 실제로 처리하기 쉬운 식별자는 IP address다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0051.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0051.jpg" alt="DNS: 호스트 이름을 IP 주소로 변환" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0051.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0051.jpg" alt="DNS: 호스트 이름을 IP 주소로 변환" loading="lazy">
   </a>
   <figcaption>
     <strong>DNS: 호스트 이름을 IP 주소로 변환</strong>
@@ -354,8 +341,8 @@ Vary: Accept-Encoding
                 <p>강사는 host name이 사람이 기억하고 제공하기에는 편하지만, 길이가 가변적이고 라우터가 직접 처리하기 어렵기 때문에 <strong>네트워크</strong> 내부에서는 IP address가 필요하다고 설명한다. 따라서 DNS는 사람이 쓰는 이름과 네트워크가 쓰는 <strong>주소</strong> 사이를 연결하는 필수 응용 계층 서비스다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0059.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0059.jpg" alt="계층적·분산 DNS 서버 구조" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0059.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-06-애플리케이션-계층/네트워크 기초-06-애플리케이션-계층 - 0059.jpg" alt="계층적·분산 DNS 서버 구조" loading="lazy">
   </a>
   <figcaption>
     <strong>계층적·분산 DNS 서버 구조</strong>

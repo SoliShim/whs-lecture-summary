@@ -6,11 +6,10 @@
   <title>해커의 프로그래밍 1-8 - BeautifulSoup 웹 페이지 분석</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="hackers-programming" data-lesson-id="1-8" data-lesson-key="hackers-programming:1-8" data-lesson-title="BeautifulSoup 웹 페이지 분석" data-lesson-label="해커 프로그래밍 1-8">
+<body data-course-id="hackers-programming" data-lesson-id="1-8" data-lesson-title="BeautifulSoup 웹 페이지 분석" data-lesson-label="해커 프로그래밍 1-8">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>해커 프로그래밍 1-8 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="hackers-programming:1-8" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -117,8 +104,8 @@
             <p>BS4, 즉 <strong>BeautifulSoup</strong>은 <strong>Python</strong>에서 HTML이나 XML 문서를 쉽게 처리하도록 도와주는 패키지다. 이전에 배운 requests가 HTTP 요청을 보내고 응답을 받는 역할이라면, BeautifulSoup은 받은 HTML을 해석하고 필요한 정보만 뽑아내는 역할이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0005.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0005.jpg" alt="BeautifulSoup의 기본 역할" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0005.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0005.jpg" alt="BeautifulSoup의 기본 역할" loading="lazy">
   </a>
   <figcaption>
     <strong>BeautifulSoup의 기본 역할</strong>
@@ -141,8 +128,8 @@
                     <p>개발자 도구에서 다시 마우스 오른쪽 클릭 후 Copy selector를 선택하면, 그 요소를 가리키는 CSS selector가 복사된다. 예를 들어 <code>body &gt; div.navigation &gt; a:nth-child(2)</code> 같은 selector가 만들어질 수 있다. 이 값을 BeautifulSoup의 <code>select()</code>에 넘기면 해당 요소를 리스트로 얻는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0017.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0017.jpg" alt="Copy selector와 select() 실습" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0017.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0017.jpg" alt="Copy selector와 select() 실습" loading="lazy">
       </a>
       <figcaption>
         <strong>Copy selector와 select() 실습</strong>
@@ -164,8 +151,8 @@ print(f&quot;링크 URL: {elements[0][&#x27;href&#x27;]}&quot;)</code></pre>
                     <p><code>select()</code>는 조건을 만족하는 요소 전체를 리스트로 반환한다. 특정 번째 자식 조건을 넣으면 화면 예시처럼 두 번째 문 하나만 나오고, 그 조건을 빼면 빨간문, 파란문, 초록문처럼 여러 링크가 모두 나온다. 요소의 화면 텍스트는 <code>elements[0].text</code>로 읽고, 이동 <strong>주소</strong>는 <code>elements[0]["href"]</code>로 읽는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0021.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0021.jpg" alt="조건을 만족하는 모든 요소 탐색" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0021.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0021.jpg" alt="조건을 만족하는 모든 요소 탐색" loading="lazy">
       </a>
       <figcaption>
         <strong>조건을 만족하는 모든 요소 탐색</strong>
@@ -199,8 +186,8 @@ for idx, element in enumerate(elements):
             <p><strong>웹 스크래핑</strong>과 웹 <strong>크롤링</strong>은 비슷하게 쓰이지만 강의에서는 구분해서 설명한다. 웹 스크래핑은 이미 알고 있는 페이지나 구조에서 필요한 정보를 뽑아내는 것이다. 예를 들어 뉴스 목록 페이지에서 제목과 링크만 추출하는 경우가 여기에 가깝다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0025.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0025.jpg" alt="웹 크롤링의 의미" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0025.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0025.jpg" alt="웹 크롤링의 의미" loading="lazy">
   </a>
   <figcaption>
     <strong>웹 크롤링의 의미</strong>
@@ -228,8 +215,8 @@ for idx, element in enumerate(elements):
             <p>실습 사이트는 <code>dungeon.nyan101.com</code>이다. 각 방에는 하나에서 세 개의 문이 있고, 문을 누르면 다른 방으로 이동한다. 여러 페이지 중 하나에만 <code>WHS</code>로 시작하는 보물 <strong>문자열</strong>이 있다. 이전 <strong>HTTP</strong> 실습처럼 URL이 1, 2, 3으로 예측 가능한 구조가 아니므로, 먼저 현재 페이지의 링크를 읽고 그 링크를 따라가야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0033.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0033.jpg" alt="미궁 사이트 탐색 미션" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0033.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0033.jpg" alt="미궁 사이트 탐색 미션" loading="lazy">
       </a>
       <figcaption>
         <strong>미궁 사이트 탐색 미션</strong>
@@ -240,8 +227,8 @@ for idx, element in enumerate(elements):
                     <p>처음에는 <code>index.html</code>에서 시작해 <code>body &gt; div.navigation &gt; a</code> selector로 모든 문 링크를 가져온다. 링크의 <code>text</code>를 <strong>출력</strong>하면 빨간 문, 파란 문, 초록 문처럼 화면에 보이는 이름이 나오고, <code>href</code>를 출력하면 <code>HWJG.html</code>, <code>ZDTW.html</code>, <code>JRBM.html</code>처럼 실제 이동할 파일 이름이 나온다. 이 단계를 확인한 뒤에야 자동 탐색 <strong>함수</strong>를 만들 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0057.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0057.jpg" alt="visited_paths와 재귀 탐색" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0057.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0057.jpg" alt="visited_paths와 재귀 탐색" loading="lazy">
       </a>
       <figcaption>
         <strong>visited_paths와 재귀 탐색</strong>
@@ -287,8 +274,8 @@ def traversal(path):
 traversal(&quot;index.html&quot;)</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0065.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0065.jpg" alt="보물 방 MMVK" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0065.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0065.jpg" alt="보물 방 MMVK" loading="lazy">
       </a>
       <figcaption>
         <strong>보물 방 MMVK</strong>
@@ -310,8 +297,8 @@ traversal(&quot;index.html&quot;)</code></pre>
                 <p>코드에서는 링크로 들어가기 직전에 출발점, 도착점, 라벨 이름을 <strong>출력</strong>한다. 출발점은 현재 <code>path</code>, 도착점은 링크의 <code>href</code>, 라벨은 빨간문·파란문·초록문 같은 텍스트다. 강의 화면에서는 <code>HWJG.html -&gt; ZXFD.html [빨간 문]</code>처럼 한 줄에 하나의 연결을 남긴다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0077.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0077.jpg" alt="던전 지도 재구성 결과" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0077.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석/해커의 프로그래밍-08-BeautifulSoup-웹-페이지-분석 - 0077.jpg" alt="던전 지도 재구성 결과" loading="lazy">
   </a>
   <figcaption>
     <strong>던전 지도 재구성 결과</strong>

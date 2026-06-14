@@ -1,6 +1,6 @@
 # 화이트햇 강의 UI 디자인 기준
 
-이 문서는 새 강의자료가 추가되어도 현재 강의 사이트의 UI와 학습 경험을 일관되게 유지하기 위한 기준이다. 실제 구현 기준은 `assets/styles.css`, `build_lecture_html.py`, `assets/study-tools.js`, `assets/study-state.js`가 담당한다.
+이 문서는 새 강의자료가 추가되어도 현재 강의 사이트의 UI와 학습 경험을 일관되게 유지하기 위한 기준이다. 실제 구현 기준은 `assets/styles.css`, `build_lecture_html.py`, `assets/study-tools.js`가 담당한다.
 
 ## 핵심 원칙
 
@@ -17,14 +17,12 @@
 
 1. 상단 내비게이션
 2. 강의 헤더: 강의 번호, 제목, 요약, 태그, 페이지 목차
-3. 현재 강의 완료 상태
-4. 강의 탐색 도구: 섹션 드롭다운, 섹션 접기, 전체 펼치기, 복습 체크, 개인 메모, 강의 원문
-5. 학습 목표
-6. 본문 레이아웃: 왼쪽 섹션 길잡이, 오른쪽 본문 섹션
-7. 복습 체크
-8. 개인 메모
-9. 강의 원문
-10. 이전/목록/다음 이동
+3. 강의 탐색 도구: 섹션 드롭다운, 섹션 접기, 전체 펼치기, 복습 체크, 강의 원문
+4. 학습 목표
+5. 본문 레이아웃: 왼쪽 섹션 길잡이, 오른쪽 본문 섹션
+6. 복습 체크
+7. 강의 원문
+8. 이전/목록/다음 이동
 
 본문 섹션은 `details.note-section.section-disclosure` 구조를 사용한다. 기본 상태는 반드시 열린 상태인 `open`이어야 한다.
 
@@ -40,6 +38,7 @@
 - 순서나 흐름이 중요한 내용은 `.timeline`을 쓴다.
 - 두세 개 개념을 나란히 비교할 때만 `.diagram.two-col` 또는 `.diagram.three-col`을 쓴다.
 - 실습 코드가 있을 때만 `code_block(source, lang)` 또는 `<pre><code class="language-...">`를 쓴다.
+- 강의 화면 캡처는 `screen_figure(...)`를 사용하고, 공개 경로는 `screenshots/common-development/...` 아래로 생성한다.
 - 코드, 표, 다이어그램을 같은 섹션에 과하게 몰아넣지 않는다.
 - 핵심 개념어, 표준명, 방법론, 취약점 이름, 프로토콜, 함수명은 필요한 만큼만 `<strong>`으로 강조한다.
 - 한 문단의 볼드 강조는 1-2개 정도로 제한한다. 이미 한 번 강조한 개념을 같은 섹션에서 과하게 반복하지 않는다.
@@ -51,6 +50,10 @@
 다음 요소는 학생의 집중을 분산시키므로 새 강의에 다시 추가하지 않는다.
 
 - 본문 위에 떠 있는 플로팅 진행 카드
+- 완료 상태 표시, 완료 토글, 과목 진행률 패널
+- 과목 페이지 상단 학습 루틴 카드
+- 과목 학습 개요 패널
+- 과목 페이지 강의 찾기/태그 필터 패널
 - `learning-aids-panel`
 - `study-strategy-panel`
 - `exam-recap-panel`
@@ -94,13 +97,12 @@
 4. STT 파일은 `stt/<track>/<course>/과목명-순서-강의제목.txt` 규칙으로 둔다.
 5. 새 과목 핵심어가 자동 강조 목록에 없으면 `build_lecture_html.py`의 `EMPHASIS_TERMS`에 추가한다.
 6. `python3 build_lecture_html.py`를 실행한다.
-7. 생성된 HTML에서 강의 내용이 빠지지 않았는지, 볼드가 과하지 않은지 확인한다.
+7. 생성된 HTML에서 강의 내용이 빠지지 않았는지, 볼드가 과하지 않은지, 캡처 이미지가 `screenshots/` 경로를 바라보는지 확인한다.
 8. 아래 검증 명령을 실행한다.
 
 ```bash
 python3 -m py_compile build_lecture_html.py
 node --check assets/study-tools.js
-node --check assets/study-state.js
 ```
 
 링크와 생성 구조는 필요할 때 다음 기준으로 점검한다.

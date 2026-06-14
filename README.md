@@ -11,6 +11,7 @@
 - 모든 강의 페이지에 섹션 드롭다운, 섹션 접기/전체 펼치기, 왼쪽 섹션 길잡이, 복습 체크, 강의 원문 영역 적용
 - 강의 본문 섹션은 기본적으로 열린 접이식 구조 유지
 - 강의 페이지의 플로팅 진행 카드와 과한 보조 패널 제거 상태 유지
+- 과목 페이지의 상단 학습 루틴, 과목 개요, 강의 찾기 패널 제거 상태 유지
 - 강의 본문, 학습 목표, 복습 체크에 핵심 개념어 자동 볼드 처리 적용
 
 ## 디렉토리 구조
@@ -25,8 +26,10 @@
 ├── assets/
 │   ├── styles.css
 │   ├── code-highlight.js
-│   ├── study-state.js
 │   └── study-tools.js
+├── screenshots/
+│   └── common-development/
+│       └── ...
 ├── course_data/
 │   ├── programming_basics_c.py
 │   ├── hackers_programming.py
@@ -55,8 +58,8 @@
 - `build_lecture_html.py`: 사이트 전체 HTML, 공통 스크립트, 기본 자산, 핵심어 자동 강조를 생성한다.
 - `course_data/*.py`: 과목별 강의 내용 원본이다. 새 강의 본문은 여기서 관리한다.
 - `assets/styles.css`: 현재 UI와 디자인 기준의 실제 스타일 파일이다.
-- `assets/study-tools.js`: 검색, 필터, 섹션 드롭다운, 접기/펼치기, 현재 섹션 표시를 담당한다.
-- `assets/study-state.js`: 완료 상태 저장을 담당한다.
+- `assets/study-tools.js`: 홈 화면 과목 검색/필터, 섹션 드롭다운, 접기/펼치기, 현재 섹션 표시를 담당한다.
+- `screenshots/`: GitHub Pages에서 보여 줄 강의 캡처 이미지다. `videos/`의 원본 영상과 분리해 관리한다.
 - `DESIGN_SYSTEM.md`: 앞으로 새 강의를 추가할 때 지켜야 할 UI/디자인 기준이다.
 - `CODE_HIGHLIGHTING_README.md`: 코드 블록 작성과 색상 강조 기준이다.
 
@@ -77,6 +80,8 @@ python3 build_lecture_html.py
 
 생성된 HTML은 `courses/<track>/<course>/` 아래에 저장된다. 생성된 HTML을 직접 대량 수정하지 말고, 원본 데이터와 공통 스타일을 수정한 뒤 다시 생성한다.
 
+강의 화면 캡처 이미지는 생성 중 `videos/common-development/<course>/<lecture>/`에서 필요한 JPG만 `screenshots/common-development/<course>/<lecture>/`로 복사된다. GitHub Pages 배포에는 `screenshots/`를 포함하고, 원본 영상이 들어 있는 `videos/`는 `.gitignore`로 제외한다.
+
 ## 핵심어 볼드 처리 기준
 
 강의 본문은 읽는 흐름을 해치지 않는 선에서 중요한 개념어만 볼드 처리한다.
@@ -95,7 +100,7 @@ python3 build_lecture_html.py
 - 강의 내용은 삭제하거나 축소하지 않는다.
 - 본문을 중심에 두고, 사진, 인포그래픽, 코드, 표는 이해가 필요할 때만 쓴다.
 - 한 섹션이 너무 길면 내용을 줄이지 말고 섹션을 나눈다.
-- 강의 페이지 구조는 헤더, 완료 상태, 강의 탐색 도구, 학습 목표, 본문, 복습 체크, 강의 원문 순서를 유지한다.
+- 강의 페이지 구조는 헤더, 강의 탐색 도구, 학습 목표, 본문, 복습 체크, 강의 원문 순서를 유지한다.
 - 본문 섹션은 `details.note-section.section-disclosure` 구조와 `open` 기본 상태를 유지한다.
 - PC 화면을 주 타겟으로 한다. 모바일은 보조 대응으로 본다.
 - 새 UI 패턴을 만들기 전 기존 버튼, 드롭다운, 필터, 패널, 본문 섹션 스타일을 재사용한다.
@@ -105,6 +110,10 @@ python3 build_lecture_html.py
 다음 요소는 학생의 집중을 분산시키므로 새 강의 페이지에 넣지 않는다.
 
 - 본문 위에 떠 있는 플로팅 진행 카드
+- 완료 상태 표시, 완료 토글, 과목 진행률 패널
+- 과목 페이지 상단 학습 루틴 카드
+- 과목 학습 개요 패널
+- 과목 페이지 강의 찾기/태그 필터 패널
 - 과한 학습 보조 패널
 - 장식 목적만 있는 인포그래픽
 - 불필요한 예시 카드
@@ -121,7 +130,6 @@ HTML을 다시 생성한 뒤 기본 검증을 실행한다.
 ```bash
 python3 -m py_compile build_lecture_html.py
 node --check assets/study-tools.js
-node --check assets/study-state.js
 ```
 
 전체 HTML 링크와 이미지 경로를 확인할 때는 다음 명령을 사용한다.

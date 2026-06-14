@@ -6,11 +6,10 @@
   <title>해커의 프로그래밍 1-3 - HTTP와 웹 스크래핑</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="hackers-programming" data-lesson-id="1-3" data-lesson-key="hackers-programming:1-3" data-lesson-title="HTTP와 웹 스크래핑" data-lesson-label="해커 프로그래밍 1-3">
+<body data-course-id="hackers-programming" data-lesson-id="1-3" data-lesson-title="HTTP와 웹 스크래핑" data-lesson-label="해커 프로그래밍 1-3">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>해커 프로그래밍 1-3 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="hackers-programming:1-3" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -122,8 +109,8 @@
             <p><strong>HTTP</strong>는 Hypertext Transfer Protocol의 약자이며, 웹브라우저와 웹서버가 데이터를 주고받기 위한 규칙이다. 웹브라우저는 클라이언트로서 요청을 보내고, 서버는 그 요청에 대한 응답을 돌려준다. 이 구조를 request와 response 방식이라고 이해하면 된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0006.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0006.jpg" alt="HTTP 요청과 응답의 기본 구조" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0006.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0006.jpg" alt="HTTP 요청과 응답의 기본 구조" loading="lazy">
   </a>
   <figcaption>
     <strong>HTTP 요청과 응답의 기본 구조</strong>
@@ -153,8 +140,8 @@
             <p>예를 들어 브라우저가 <code>www.example.com</code>의 <code>index.html</code>을 요청한다면, 요청에는 <strong>HTTP</strong> 버전, User-Agent, Accept-Encoding 같은 정보가 들어간다. 서버는 HTTP 1.1 200 OK 같은 상태 줄과 함께 Content-Type, 문자 인코딩, Content-Length 같은 정보를 돌려주고, 바디에는 실제 <strong>HTML</strong>이 들어간다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0011.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0011.jpg" alt="화이트햇 스쿨 홈페이지 실제 HTTP 요청" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0011.jpg" alt="화이트햇 스쿨 홈페이지 실제 HTTP 요청" loading="lazy">
   </a>
   <figcaption>
     <strong>화이트햇 스쿨 홈페이지 실제 HTTP 요청</strong>
@@ -175,8 +162,8 @@
             <p><strong>HTTP</strong>로 받아오는 바디에는 대개 <strong>HTML</strong> 코드가 들어 있다. HTML은 Hypertext Markup Language의 약자이며, 웹페이지를 구조화하고 콘텐츠를 표시하는 표준 마크업 언어다. 여는 태그와 닫는 태그가 있고, <code>head</code>, <code>body</code>, <code>p</code>, <code>a</code>, <code>div</code> 같은 태그가 계층적으로 중첩된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0021.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0021.jpg" alt="브라우저에서 HTML 소스 보기" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0021.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0021.jpg" alt="브라우저에서 HTML 소스 보기" loading="lazy">
   </a>
   <figcaption>
     <strong>브라우저에서 HTML 소스 보기</strong>
@@ -208,8 +195,8 @@
             <p><strong>Python</strong>의 <strong>requests</strong> 패키지는 HTTP 요청을 쉽게 보내고 응답을 객체로 받아오게 해 준다. 설치는 터미널에서 <code>pip install requests</code>로 할 수 있다. 이후 프로젝트가 커지면 virtualenv나 Poetry 같은 가상 환경 도구로 라이브러리 버전을 관리하는 것이 좋다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0036.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0036.jpg" alt="requests로 GET과 POST 요청 보내기" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0036.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0036.jpg" alt="requests로 GET과 POST 요청 보내기" loading="lazy">
   </a>
   <figcaption>
     <strong>requests로 GET과 POST 요청 보내기</strong>
@@ -232,8 +219,8 @@
                     <p><strong>반복문</strong>으로 1부터 100까지 URL을 만들고, 응답 본문 안에 <code>WHS</code>가 있을 때만 출력한다. 강의에서는 73번 노트에서 <code>congratulations the flag is WHS simple web scraping</code>이라는 결과를 찾는 흐름을 보여 준다. 반복 진행 상황을 보기 위해 <code>tqdm</code>으로 루프를 감싸는 방법도 소개한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0061.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0061.jpg" alt="100개 노트 중 WHS 문자열 찾기" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0061.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0061.jpg" alt="100개 노트 중 WHS 문자열 찾기" loading="lazy">
       </a>
       <figcaption>
         <strong>100개 노트 중 WHS 문자열 찾기</strong>

@@ -6,11 +6,10 @@
   <title>모던 웹 개발 및 보안 1-10 - EJS 템플릿 원격 코드 실행</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="modern-web-dev" data-lesson-id="1-10" data-lesson-key="modern-web-dev:1-10" data-lesson-title="EJS 템플릿 원격 코드 실행" data-lesson-label="웹 보안 1-10">
+<body data-course-id="modern-web-dev" data-lesson-id="1-10" data-lesson-title="EJS 템플릿 원격 코드 실행" data-lesson-label="웹 보안 1-10">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>웹 보안 1-10 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="modern-web-dev:1-10" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -110,8 +97,8 @@
           </summary>
           <div class="note-section-body">
             <figure class="screen-figure">
-  <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0001.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0001.jpg" alt="EJS RCE 분석" loading="lazy">
+  <a href="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0001.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0001.jpg" alt="EJS RCE 분석" loading="lazy">
   </a>
   <figcaption>
     <strong>EJS RCE 분석</strong>
@@ -123,8 +110,8 @@
                 <p>EJS는 템플릿 안에서 JavaScript 구문을 실행해 HTML을 만든다. 정상 사용에서는 템플릿 파일은 개발자가 작성하고, 사용자는 데이터만 제공한다. 위험은 이 경계가 깨져 사용자의 <strong>입력</strong>이 템플릿 코드나 렌더 옵션에 영향을 줄 때 생긴다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0008.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0008.jpg" alt="실습 애플리케이션 확인" loading="lazy">
+  <a href="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0008.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0008.jpg" alt="실습 애플리케이션 확인" loading="lazy">
   </a>
   <figcaption>
     <strong>실습 애플리케이션 확인</strong>
@@ -151,8 +138,8 @@ app.get(&quot;/preview&quot;, (req, res) =&gt; {
                     <p>강의의 긴 실습 화면은 코드에서 어떤 값이 EJS로 전달되는지, 에러 스택이 어디를 가리키는지, 템플릿 컴파일 과정에서 어떤 옵션이 참조되는지를 추적하는 방식으로 진행된다. 보안 분석에서는 오류 메시지와 스택 트레이스를 단서로 <strong>입력</strong>이 어느 <strong>함수</strong>까지 도달했는지 확인해야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0068.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0068.jpg" alt="에러 스택 확인" loading="lazy">
+      <a href="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0068.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0068.jpg" alt="에러 스택 확인" loading="lazy">
       </a>
       <figcaption>
         <strong>에러 스택 확인</strong>
@@ -172,8 +159,8 @@ app.get(&quot;/preview&quot;, (req, res) =&gt; {
                 <p>즉 공격 흐름은 보통 한 단계로 끝나지 않는다. 먼저 <strong>입력</strong> 병합, 쿼리 파싱, 객체 처리 <strong>취약점</strong>으로 Prototype을 오염시키고, 그 다음 템플릿 엔진이 오염된 옵션을 참조하게 만들어 코드 실행에 가까워진다. 이런 체인형 취약점은 각 단계만 따로 보면 사소해 보일 수 있어 더 위험하다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0074.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0074.jpg" alt="템플릿 옵션 추적" loading="lazy">
+  <a href="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0074.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0074.jpg" alt="템플릿 옵션 추적" loading="lazy">
   </a>
   <figcaption>
     <strong>템플릿 옵션 추적</strong>
@@ -205,8 +192,8 @@ app.get(&quot;/profile&quot;, (req, res) =&gt; {
                     </ul>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0104.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0104.jpg" alt="최종 동작 검증" loading="lazy">
+      <a href="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0104.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/modern-web-dev/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행/모던 웹 개발 및 보안-10-EJS-템플릿-원격-코드-실행 - 0104.jpg" alt="최종 동작 검증" loading="lazy">
       </a>
       <figcaption>
         <strong>최종 동작 검증</strong>

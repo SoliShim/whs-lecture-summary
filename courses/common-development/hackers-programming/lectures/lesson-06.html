@@ -6,11 +6,10 @@
   <title>해커의 프로그래밍 1-6 - 개인정보 유출과 데이터 결합</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="hackers-programming" data-lesson-id="1-6" data-lesson-key="hackers-programming:1-6" data-lesson-title="개인정보 유출과 데이터 결합" data-lesson-label="해커 프로그래밍 1-6">
+<body data-course-id="hackers-programming" data-lesson-id="1-6" data-lesson-title="개인정보 유출과 데이터 결합" data-lesson-label="해커 프로그래밍 1-6">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>해커 프로그래밍 1-6 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="hackers-programming:1-6" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -138,8 +125,8 @@
             <p><strong>개인정보 유출</strong> 원인은 다양하다. <strong>해킹</strong>으로 데이터베이스가 털릴 수도 있고, 내부자가 유출할 수도 있으며, 누군가 의도하지 않았지만 파일을 잘못 업로드하는 업무상 과실로 새어 나갈 수도 있다. 중소규모 웹사이트, 신뢰하기 어려운 해외 쇼핑몰, 브라우저 확장 기능 취약점 등도 유출 경로가 될 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0007.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0007.jpg" alt="개인정보 유출 사고의 원인" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0007.jpg" alt="개인정보 유출 사고의 원인" loading="lazy">
   </a>
   <figcaption>
     <strong>개인정보 유출 사고의 원인</strong>
@@ -160,8 +147,8 @@
             <p>유출된 <strong>개인정보</strong>는 다크웹이나 <strong>해킹</strong> 포럼에서 공유·판매될 수 있다. 강의에서는 BreachForums 같은 온라인 포럼을 예로 들며, 해커들이 개인정보 유출 데이터나 침해 접근 권한을 거래하는 공간이라고 설명한다. 이 사이트는 미국 FBI와 사법부의 조치로 폐쇄된 적이 있지만 다시 살아나는 등 차단과 재등장이 반복되는 특징이 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0013.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0013.jpg" alt="BreachForums와 유출 데이터 유통" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0013.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0013.jpg" alt="BreachForums와 유출 데이터 유통" loading="lazy">
   </a>
   <figcaption>
     <strong>BreachForums와 유출 데이터 유통</strong>
@@ -190,8 +177,8 @@
             <p><strong>모자이크 이론</strong>은 단편적인 개별 정보는 별로 중요해 보이지 않아도, 여러 조각을 결합하면 이전에는 몰랐던 핵심 사실을 알 수 있다는 주장이다. 원래 정보기관 쪽에서 많이 언급되던 이론이지만, <strong>개인정보</strong>와 OSINT에서도 매우 중요하다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0019.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0019.jpg" alt="모자이크 이론" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0019.jpg" alt="모자이크 이론" loading="lazy">
   </a>
   <figcaption>
     <strong>모자이크 이론</strong>
@@ -213,8 +200,8 @@
             <p>서로 다른 데이터 집합에 공통된 값이 있으면 그 값을 기준으로 하나의 큰 데이터로 합칠 수 있다. SQL에서는 이를 join이라고 한다. 목적에 따라 inner join, left join, right join, outer join을 선택한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0031.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0031.jpg" alt="데이터 결합과 JOIN 방식" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0031.jpg" alt="데이터 결합과 JOIN 방식" loading="lazy">
   </a>
   <figcaption>
     <strong>데이터 결합과 JOIN 방식</strong>
@@ -244,8 +231,8 @@
             <p><strong>개인정보</strong> 실습에서 실제 사람의 정보를 사용하면 윤리적·법적 문제가 생긴다. 그래서 강의에서는 <strong>Python</strong> 패키지 Faker를 소개한다. Faker는 실제 존재하지 않는 이름, 직업, 이메일, 주소, 연락처, 주민등록번호 형식의 값 등을 만들어 낼 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0037.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0037.jpg" alt="Faker를 이용한 가상 개인정보 생성" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0037.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0037.jpg" alt="Faker를 이용한 가상 개인정보 생성" loading="lazy">
   </a>
   <figcaption>
     <strong>Faker를 이용한 가상 개인정보 생성</strong>
@@ -266,8 +253,8 @@
             <p>실습 목표는 흩어진 가상 <strong>개인정보</strong> 파일을 하나의 테이블로 결합하는 것이다. 압축 파일을 풀면 이메일-<strong>주소</strong>, 주소-직업, 이메일-직업, 이메일-전화번호 같은 여러 CSV 파일이 나온다. 각 줄은 쉼표로 구분되며, 강의에서는 주소나 직장 이름 안에 쉼표가 들어가지 않도록 처리되어 있다고 가정한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0084.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0084.jpg" alt="가상 개인정보 병합 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0084.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0084.jpg" alt="가상 개인정보 병합 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>가상 개인정보 병합 코드</strong>
@@ -278,8 +265,8 @@
                     <p><strong>Python</strong>에서는 파일을 읽은 뒤 <code>line.strip()</code>으로 양끝 공백과 줄바꿈을 제거하고, <code>split(",")</code>로 두 항목을 나눈다. 여기서 중요한 것은 어떤 값이 사람을 구분하는 키가 될 수 있는지 판단하는 것이다. 이름은 동명이인이 있을 수 있고, 직업은 당연히 여러 사람이 같을 수 있다. 주소도 가족끼리 공유할 수 있다. 강의에서는 이메일 주소를 비교적 고유한 기준으로 보고 사람을 묶는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0080.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0080.jpg" alt="이름과 성별 정보 추가 병합" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0080.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0080.jpg" alt="이름과 성별 정보 추가 병합" loading="lazy">
       </a>
       <figcaption>
         <strong>이름과 성별 정보 추가 병합</strong>

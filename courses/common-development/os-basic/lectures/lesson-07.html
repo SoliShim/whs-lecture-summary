@@ -6,11 +6,10 @@
   <title>운영체제 기초 1-7 - 패키지 설치</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="os-basic" data-lesson-id="1-7" data-lesson-key="os-basic:1-7" data-lesson-title="패키지 설치" data-lesson-label="운영체제 1-7">
+<body data-course-id="os-basic" data-lesson-id="1-7" data-lesson-title="패키지 설치" data-lesson-label="운영체제 1-7">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>운영체제 1-7 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="os-basic:1-7" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -127,8 +114,8 @@
             <p><strong>패키지</strong>는 설치를 쉽게 하기 위해 배포판 환경에 맞춰 미리 컴파일하고 묶어 둔 소프트웨어다. 소프트웨어는 원래 누군가 작성한 소스 코드에서 출발한다. 그 소스 코드가 실제로 <strong>실행</strong>되려면 컴파일러를 통해 바이너리 실행 파일로 만들어져야 한다. Windows에서는 과거 <code>.exe</code>, 최근에는 <code>.msi</code> 같은 설치 파일을 흔히 보지만, 리눅스는 배포판과 버전이 매우 다양하다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0005.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0005.jpg" alt="패키지의 필요성" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0005.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0005.jpg" alt="패키지의 필요성" loading="lazy">
   </a>
   <figcaption>
     <strong>패키지의 필요성</strong>
@@ -151,8 +138,8 @@
             <p><code>apt</code>는 Advanced Package Tool의 약자다. 사용자는 <code>apt install vim</code>처럼 명령을 내리고, <strong>apt</strong>는 사전에 등록된 <strong>저장소</strong>(repository)와 로컬 캐시를 참고해 어떤 패키지를 어디에서 받아야 하는지 찾는다. 필요하면 의존 패키지도 함께 계산한다. 실제 <code>.deb</code> 파일을 설치하는 더 낮은 단계에서는 <code>dpkg</code>가 관여한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0018.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0018.jpg" alt="APT와 저장소 구조" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0018.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0018.jpg" alt="APT와 저장소 구조" loading="lazy">
       </a>
       <figcaption>
         <strong>APT와 저장소 구조</strong>
@@ -163,8 +150,8 @@
                     <p>저장소는 공개 저장소일 수도 있고, 사설 저장소일 수도 있다. Canonical이 운영하는 Ubuntu 공식 저장소가 있고, Google Chrome처럼 회사가 자체 저장소를 제공하는 경우도 있으며, 개인이 운영하는 PPA 저장소도 있다. 사용자는 저장소 목록을 등록해 두고, apt는 그 목록을 바탕으로 <strong>패키지</strong>를 찾는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0025.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0025.jpg" alt="apt 기본 명령어" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0025.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0025.jpg" alt="apt 기본 명령어" loading="lazy">
       </a>
       <figcaption>
         <strong>apt 기본 명령어</strong>
@@ -193,8 +180,8 @@ sudo dpkg -i package-name.deb</code></pre>
             <p>설치는 <code>apt install</code>이다. <strong>apt</strong>는 로컬에 캐시된 저장소 목록에서 <strong>패키지</strong> 위치를 찾고, 실제 URL에서 패키지를 내려받은 뒤, 내부적으로 dpkg를 이용해 설치한다. 패키지를 지울 때는 목적에 따라 명령을 구분해야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0033.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0033.jpg" alt="remove와 purge의 차이" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0033.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0033.jpg" alt="remove와 purge의 차이" loading="lazy">
       </a>
       <figcaption>
         <strong>remove와 purge의 차이</strong>
@@ -209,8 +196,8 @@ sudo apt autoremove</code></pre>
                     <p><code>apt remove</code>는 <strong>실행</strong> 파일과 주된 패키지 파일을 제거하지만 설정 파일이나 데이터 파일을 남길 수 있다. 예를 들어 웹 서버를 새 버전으로 바꾸거나 잠시 지웠다가 다시 설치할 때 기존 설정이 남아 있으면 유용하다. 반대로 더 이상 쓰지 않을 소프트웨어를 완전히 정리하려면 <code>apt purge</code>를 사용한다. 강사는 이 차이를 “업그레이드를 위해 잠깐 지우는 것인지, 진짜로 폐기하는 것인지”로 구분해 설명한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0044.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0044.jpg" alt="의존성 패키지와 autoremove" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0044.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0044.jpg" alt="의존성 패키지와 autoremove" loading="lazy">
       </a>
       <figcaption>
         <strong>의존성 패키지와 autoremove</strong>
@@ -221,8 +208,8 @@ sudo apt autoremove</code></pre>
                     <p>패키지는 혼자 설치되지 않는 경우가 많다. A를 설치하려면 B와 C가 필요하고, B는 D와 E를 필요로 할 수 있다. 그런데 나중에 A를 지울 때 B, C, D, E를 무조건 같이 지우면 문제가 생길 수 있다. 다른 패키지 G가 B, D, E를 함께 쓰고 있을 수 있기 때문이다. 그래서 <strong>remove</strong>나 <strong>purge</strong>로는 요청한 패키지 중심으로 지우고, 더 이상 아무도 참조하지 않는 의존 패키지는 <code>apt autoremove</code>로 정리한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0046.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0046.jpg" alt="install, update, upgrade 구분" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0046.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0046.jpg" alt="install, update, upgrade 구분" loading="lazy">
       </a>
       <figcaption>
         <strong>install, update, upgrade 구분</strong>
@@ -247,8 +234,8 @@ sudo apt full-upgrade</code></pre>
             <p>저장소 설정은 <strong>CLI</strong> 파일로도 볼 수 있지만, Ubuntu Desktop에서는 Software & Updates <strong>GUI</strong>에서도 확인할 수 있다. GUI 시간에 봤던 화면과 연결해, 어떤 저장소를 사용할지 체크박스로 고를 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0052.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0052.jpg" alt="Software &amp; Updates 저장소 설정" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0052.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0052.jpg" alt="Software &amp; Updates 저장소 설정" loading="lazy">
   </a>
   <figcaption>
     <strong>Software &amp; Updates 저장소 설정</strong>
@@ -268,8 +255,8 @@ sudo apt full-upgrade</code></pre>
                 <p>Other Software 탭에는 추가 저장소가 들어간다. 예를 들어 Chrome을 설치하면 Google이 제공하는 저장소 항목이 추가될 수 있다. 필요에 따라 회사 내부 저장소나 개인 저장소를 추가할 수도 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0060.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0060.jpg" alt="보안 업데이트와 업데이트 정책" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0060.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0060.jpg" alt="보안 업데이트와 업데이트 정책" loading="lazy">
   </a>
   <figcaption>
     <strong>보안 업데이트와 업데이트 정책</strong>
@@ -290,8 +277,8 @@ sudo apt full-upgrade</code></pre>
             <p><strong>GUI</strong>로 보이는 저장소 설정은 <strong>CLI</strong>에서는 파일과 디렉토리로 관리된다. 대표 경로는 <code>/etc/apt/</code> 아래다. <code>/etc/apt/sources.list</code>는 기본 저장소 목록을 담고, <code>/etc/apt/sources.list.d/</code>는 추가 저장소 파일을 담는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0062.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0062.jpg" alt="/etc/apt와 패키지 캐시 위치" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0062.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0062.jpg" alt="/etc/apt와 패키지 캐시 위치" loading="lazy">
       </a>
       <figcaption>
         <strong>/etc/apt와 패키지 캐시 위치</strong>
@@ -307,8 +294,8 @@ ls /var/lib/apt/lists</code></pre>
                     <p><code>/var/cache/apt/archives</code>는 내려받은 <strong>패키지</strong> 파일 캐시와 관련되고, <code>/var/lib/apt/lists</code>는 저장소에서 가져온 패키지 목록과 관련된다. 이 구조를 알고 있으면 <code>apt update</code>가 왜 “목록 갱신”인지 더 명확해진다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0066.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0066.jpg" alt="apt update 실습" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0066.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0066.jpg" alt="apt update 실습" loading="lazy">
       </a>
       <figcaption>
         <strong>apt update 실습</strong>
@@ -322,8 +309,8 @@ sudo apt upgrade</code></pre>
                     <p><code>sudo apt update</code>를 <strong>실행</strong>하면 여러 저장소에서 목록을 가져오는 <strong>출력</strong>이 지나간다. 이때 설치된 Vim이나 nginx가 실제로 바뀌는 것이 아니다. 업데이트 가능한 항목은 <code>apt list --upgradable</code>로 확인하고, 실제 업그레이드는 <code>sudo apt upgrade</code>로 실행한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0069.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0069.jpg" alt="apt upgrade 실습" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0069.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0069.jpg" alt="apt upgrade 실습" loading="lazy">
       </a>
       <figcaption>
         <strong>apt upgrade 실습</strong>
@@ -334,8 +321,8 @@ sudo apt upgrade</code></pre>
                     <p>업그레이드 과정에서는 새 패키지를 내려받고, 압축을 풀고, 기존 버전을 대체하고, 필요한 후처리 스크립트를 실행한다. 강의에서는 “update는 목록 갱신, upgrade는 실제 버전 업그레이드”라는 이름 혼동을 받아들이고 정확히 구분해 쓰라고 정리한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0074.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0074.jpg" alt="apt autoremove 실습" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0074.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0074.jpg" alt="apt autoremove 실습" loading="lazy">
       </a>
       <figcaption>
         <strong>apt autoremove 실습</strong>
@@ -346,8 +333,8 @@ sudo apt upgrade</code></pre>
                     <p>업그레이드나 삭제 후에는 <code>sudo apt autoremove</code>로 남은 의존성 패키지를 정리할 수 있다. 이 명령은 실무에서 자주 쓰이며, 아무 패키지도 더 이상 필요로 하지 않는 라이브러리나 보조 패키지를 제거한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0075.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0075.jpg" alt="add-apt-repository와 PPA" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0075.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0075.jpg" alt="add-apt-repository와 PPA" loading="lazy">
       </a>
       <figcaption>
         <strong>add-apt-repository와 PPA</strong>
@@ -372,8 +359,8 @@ sudo ppa-purge ppa:PPA_REPO_NAME/PPA</code></pre>
             <p>가끔 <code>apt install</code>을 <strong>실행</strong>했는데 lock 관련 오류가 날 수 있다. 이는 다른 <strong>apt</strong>, dpkg, update-manager 프로세스가 패키지 데이터베이스를 사용 중이라는 뜻이다. 패키지 데이터베이스를 두 프로세스가 동시에 고치면 깨질 수 있으므로 잠금 파일로 한 번에 하나만 작업하게 막는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0083.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0083.jpg" alt="apt 잠금 파일 문제" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0083.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0083.jpg" alt="apt 잠금 파일 문제" loading="lazy">
       </a>
       <figcaption>
         <strong>apt 잠금 파일 문제</strong>
@@ -388,8 +375,8 @@ sudo dpkg --configure -a</code></pre>
                     <p>초급 단계에서는 lock 오류가 나면 먼저 기다리는 것이 안전하다. 정말 멈춘 <strong>프로세스</strong>가 확실할 때만 어떤 프로세스가 잠금을 잡고 있는지 확인하고 종료해야 한다. 종료 후 <strong>패키지</strong> 설정이 중간에 멈췄다면 <code>sudo dpkg --configure -a</code>로 미완료 설정을 이어갈 수 있다. 함부로 잠금 파일만 삭제하는 방식은 패키지 데이터베이스를 망가뜨릴 수 있으므로 피해야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0085.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0085.jpg" alt="dpkg와 deb 패키지 직접 설치" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0085.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0085.jpg" alt="dpkg와 deb 패키지 직접 설치" loading="lazy">
       </a>
       <figcaption>
         <strong>dpkg와 deb 패키지 직접 설치</strong>
@@ -405,8 +392,8 @@ dpkg -s google-chrome-stable</code></pre>
                     <p><code>dpkg</code>는 Debian package manager의 낮은 단계 도구다. 저장소에서 검색하고 의존성을 자동 해결하는 일은 apt가 더 잘하지만, 이미 내려받은 <code>.deb</code> 파일을 직접 설치할 때는 <code>dpkg -i</code>가 등장한다. 예전 <strong>GUI</strong> 강의에서 Chrome <code>.deb</code> 파일을 설치한 흐름과 연결된다. 다만 <code>dpkg -i</code>는 의존성을 자동으로 다 해결하지 못할 수 있으므로, 문제가 나면 <code>sudo apt install -f</code>로 빠진 의존성을 고치는 일이 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0089.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0089.jpg" alt="배포판 업그레이드" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0089.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0089.jpg" alt="배포판 업그레이드" loading="lazy">
       </a>
       <figcaption>
         <strong>배포판 업그레이드</strong>
@@ -430,8 +417,8 @@ sudo do-release-upgrade</code></pre>
             <p>강의 마지막은 실제 설치 실습이다. 강사는 화면을 크게 보여 주기 위해 <code>openssh-server</code>를 설치해 원격 접속 환경을 구성한다. 학생들은 동일한 명령을 Ubuntu 터미널에서 따라 하면서, <strong>apt</strong>가 <strong>패키지</strong>와 의존 패키지를 내려받고 설치하는 과정을 확인하면 된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0096.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0096.jpg" alt="실습: openssh-server 설치" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0096.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0096.jpg" alt="실습: openssh-server 설치" loading="lazy">
       </a>
       <figcaption>
         <strong>실습: openssh-server 설치</strong>
@@ -446,8 +433,8 @@ tree</code></pre>
                     <p><code>-y</code> 옵션은 설치 중 “계속하시겠습니까?” 같은 질문에 자동으로 yes를 선택한다. 스크립트나 자동화에서는 편리하지만, 무엇이 설치되는지 모르는 상태에서 습관적으로 붙이는 것은 좋지 않다. 처음 배우는 단계에서는 <strong>출력</strong>에 어떤 의존 패키지가 함께 설치되는지 읽어 보는 것이 좋다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0098.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0098.jpg" alt="실습: tree 설치와 실행" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0098.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0098.jpg" alt="실습: tree 설치와 실행" loading="lazy">
       </a>
       <figcaption>
         <strong>실습: tree 설치와 실행</strong>
@@ -458,8 +445,8 @@ tree</code></pre>
                     <p><code>vim</code>은 앞선 편집기 강의에서 언급한 터미널 편집기이고, <code>tree</code>는 디렉토리 구조를 계층형으로 보여 주는 도구다. 설치 전에는 명령을 찾을 수 없지만, 설치 후에는 바로 <strong>실행</strong>된다. 이것이 패키지 설치가 시스템에 새 명령을 추가하는 가장 직관적인 결과다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0099.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0099.jpg" alt="실습: htop" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0099.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0099.jpg" alt="실습: htop" loading="lazy">
       </a>
       <figcaption>
         <strong>실습: htop</strong>
@@ -470,8 +457,8 @@ tree</code></pre>
                     <p><code>htop</code>은 <strong>CPU</strong>, <strong>메모리</strong>, 프로세스 목록을 터미널에서 보기 좋게 보여 주는 도구다. 뒤의 시스템 모니터링 강의와도 연결된다. 패키지를 설치하면 단순히 파일 하나가 생기는 것이 아니라, 실행 파일, 문서, 설정, 의존 라이브러리 등이 함께 관리될 수 있음을 떠올리면 된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0105.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0105.jpg" alt="실습: sl 패키지" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0105.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-07-패키지-설치/운영체제 기초-07-패키지-설치 - 0105.jpg" alt="실습: sl 패키지" loading="lazy">
       </a>
       <figcaption>
         <strong>실습: sl 패키지</strong>

@@ -6,11 +6,10 @@
   <title>네트워크 기초 1-7 - 와이어샤크 실습 패킷 분석</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="network-basic" data-lesson-id="1-7" data-lesson-key="network-basic:1-7" data-lesson-title="와이어샤크 실습 패킷 분석" data-lesson-label="네트워크 1-7">
+<body data-course-id="network-basic" data-lesson-id="1-7" data-lesson-title="와이어샤크 실습 패킷 분석" data-lesson-label="네트워크 1-7">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>네트워크 1-7 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="network-basic:1-7" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -147,8 +134,8 @@
             <p>7강은 지금까지 배운 <strong>TCP/IP</strong> 5계층을 실제 <strong>패킷</strong> 화면에서 확인하는 실습이다. 앞 강의들에서는 Ethernet, IPv4, TCP, HTTP를 각각 이론적으로 배웠다. 이번에는 브라우저가 HTTP 서버에 접속할 때 실제로 어떤 패킷이 오가고, 그 패킷 안에 계층별 header와 payload가 어떻게 들어가는지 Wireshark로 직접 본다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0007.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0007.jpg" alt="Wireshark와 패킷 캡처의 목적" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0007.jpg" alt="Wireshark와 패킷 캡처의 목적" loading="lazy">
   </a>
   <figcaption>
     <strong>Wireshark와 패킷 캡처의 목적</strong>
@@ -170,8 +157,8 @@
             <p><strong>Wireshark</strong>는 <code>wireshark.org</code> 공식 홈페이지에서 Windows, macOS, Linux용 설치 파일을 받을 수 있다. 강의 화면에서는 macOS ARM 환경을 예로 들며, 다운로드 페이지에는 Windows x64 installer, macOS Arm disk image, macOS Intel disk image 등이 함께 보인다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0011.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0011.jpg" alt="공식 다운로드와 캡처 인터페이스 선택" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0011.jpg" alt="공식 다운로드와 캡처 인터페이스 선택" loading="lazy">
   </a>
   <figcaption>
     <strong>공식 다운로드와 캡처 인터페이스 선택</strong>
@@ -193,8 +180,8 @@
             <p>실습에서는 HTTPS가 적용되지 않은 <strong>HTTP</strong> 서버에 접속한다. HTTPS 통신은 <strong>암호화</strong>되어 있으므로 중간에서 패킷을 보더라도 HTTP 본문을 그대로 읽기 어렵다. 그래서 강사는 자신의 테스트 서버인 <code>pwnhyo.kr:8080</code>에 접속해 HTTP가 평문으로 어떻게 보이는지 보여 준다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0023.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0023.jpg" alt="HTTP display filter 적용" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0023.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0023.jpg" alt="HTTP display filter 적용" loading="lazy">
   </a>
   <figcaption>
     <strong>HTTP display filter 적용</strong>
@@ -216,8 +203,8 @@
             <p>필터 결과에서 request packet 158을 선택하면 아래 packet detail 영역에 계층별 정보가 펼쳐진다. <strong>HTTP</strong> 부분에는 요청 시작줄인 <code>GET / HTTP/1.1</code>이 있고, 그 아래에 여러 header가 이어진다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0027.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0027.jpg" alt="HTTP GET request 세부 항목" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0027.jpg" alt="HTTP GET request 세부 항목" loading="lazy">
       </a>
       <figcaption>
         <strong>HTTP GET request 세부 항목</strong>
@@ -260,8 +247,8 @@ Accept-Language: ko,en;q=0.9,en-US;q=0.8</code></pre>
             <p>Response packet 165는 server <code>122.46.96.85</code>가 client <code>192.168.45.145</code>로 보낸 응답이다. <strong>HTTP</strong> response의 첫 줄은 <code>HTTP/1.1 200 OK</code>다. 이는 HTTP/1.1 버전으로 정상 처리 응답을 보냈다는 뜻이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0031.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0031.jpg" alt="HTTP 200 OK response 세부 항목" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0031.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0031.jpg" alt="HTTP 200 OK response 세부 항목" loading="lazy">
       </a>
       <figcaption>
         <strong>HTTP 200 OK response 세부 항목</strong>
@@ -272,8 +259,8 @@ Accept-Language: ko,en;q=0.9,en-US;q=0.8</code></pre>
                     <p>Response header에는 응답 시각인 <code>Date</code>, 서버 프로그램 정보인 <code>Server: Apache/2.4.41 (Ubuntu)</code>, 본문 길이인 <code>Content-Length: 22</code>, 연결 유지 정책인 <code>Keep-Alive: timeout=5, max=100</code>, 본문 형식인 <code>Content-Type: text/html; charset=UTF-8</code>가 들어 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0035.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0035.jpg" alt="Response body와 브라우저 렌더링" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0035.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0035.jpg" alt="Response body와 브라우저 렌더링" loading="lazy">
       </a>
       <figcaption>
         <strong>Response body와 브라우저 렌더링</strong>
@@ -303,8 +290,8 @@ Content-Type: text/html; charset=UTF-8
             <p><strong>HTTP</strong> response packet을 펼치면 <strong>Wireshark</strong> packet detail에 <strong>Frame, Ethernet II, Internet Protocol Version 4, Transmission Control Protocol, Hypertext Transfer Protocol</strong>이 차례로 보인다. 강사는 이 화면이 지금까지 배운 계층별 캡슐화를 그대로 보여 준다고 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0039.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0039.jpg" alt="Frame, Ethernet, IPv4, TCP, HTTP 계층 구조" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0039.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0039.jpg" alt="Frame, Ethernet, IPv4, TCP, HTTP 계층 구조" loading="lazy">
   </a>
   <figcaption>
     <strong>Frame, Ethernet, IPv4, TCP, HTTP 계층 구조</strong>
@@ -336,8 +323,8 @@ Content-Type: text/html; charset=UTF-8
             <p>Ethernet header는 일반적으로 14byte로 설명된다. 6byte destination MAC address, 6byte source MAC address, 그리고 상위 계층 protocol type으로 구성된다. 강의 화면에서는 <code>Type: IPv4 (0x0800)</code>이 보이므로 Ethernet frame의 payload가 IPv4 datagram이라는 뜻이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0047.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0047.jpg" alt="IPv4 헤더 필드" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0047.jpg" alt="IPv4 헤더 필드" loading="lazy">
   </a>
   <figcaption>
     <strong>IPv4 헤더 필드</strong>
@@ -359,8 +346,8 @@ Content-Type: text/html; charset=UTF-8
             <p><strong>TCP</strong>는 process-to-process logical communication을 제공한다. 그래서 TCP header에서 가장 먼저 봐야 할 값은 port다. 서버에서 클라이언트로 오는 response packet에서는 서버가 source가 되므로 <code>Source Port: 8080</code>이 보이고, 클라이언트 쪽 임시 수신 port가 <code>Destination Port: 62378</code>로 보인다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0055.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0055.jpg" alt="TCP 헤더와 포트·순서 번호" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0055.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0055.jpg" alt="TCP 헤더와 포트·순서 번호" loading="lazy">
   </a>
   <figcaption>
     <strong>TCP 헤더와 포트·순서 번호</strong>
@@ -371,8 +358,8 @@ Content-Type: text/html; charset=UTF-8
                 <p>같은 TCP row에는 <code>Seq: 1</code>, <code>Ack: 478</code>, <code>Len: 226</code>이 표시된다. Sequence number와 acknowledgement number는 TCP가 신뢰적인 연결과 확인 응답을 제공하는 핵심 필드다. <code>Len: 226</code>은 이 TCP segment가 실제 데이터 payload를 226byte 싣고 있다는 뜻이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0059.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0059.jpg" alt="TCP payload 안의 HTTP message" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0059.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0059.jpg" alt="TCP payload 안의 HTTP message" loading="lazy">
   </a>
   <figcaption>
     <strong>TCP payload 안의 HTTP message</strong>
@@ -393,8 +380,8 @@ Content-Type: text/html; charset=UTF-8
             <p><strong>HTTP</strong> 필터는 HTTP request와 response를 빠르게 찾을 때 좋다. 하지만 <strong>TCP</strong> handshake나 ACK처럼 HTTP가 아닌 연결 제어 패킷까지 함께 보려면 서버 IP 기준으로 필터링해야 한다. 강의 화면의 서버 IP는 <code>122.46.96.85</code>이므로 display filter는 다음처럼 쓴다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0067.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0067.jpg" alt="서버 IP 기준 display filter" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0067.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0067.jpg" alt="서버 IP 기준 display filter" loading="lazy">
       </a>
       <figcaption>
         <strong>서버 IP 기준 display filter</strong>
@@ -406,8 +393,8 @@ Content-Type: text/html; charset=UTF-8
                     <p>이 필터를 적용하면 해당 서버와 오간 모든 IP packet이 보인다. 목록에는 <code>[SYN]</code>, <code>[SYN, ACK]</code>, <code>[ACK]</code> 같은 TCP 연결 설정 <strong>패킷</strong>과 <code>GET / HTTP/1.1</code>, <code>HTTP/1.1 200 OK</code> 같은 HTTP 패킷이 함께 표시된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0064.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0064.jpg" alt="Follow TCP Stream" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0064.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0064.jpg" alt="Follow TCP Stream" loading="lazy">
       </a>
       <figcaption>
         <strong>Follow TCP Stream</strong>
@@ -447,8 +434,8 @@ Content-Type: text/html; charset=UTF-8
             <p><strong>TCP</strong>는 데이터를 보내기 전에 연결을 설정한다. 강의에서는 <code>ip.addr == 122.46.96.85</code> 필터를 적용한 상태에서 <strong>Statistics → Flow Graph</strong>를 열고, <strong>Limit to display filter</strong>를 체크해 해당 서버와의 통신 흐름만 그래프로 본다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0071.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0071.jpg" alt="Flow Graph에서 보는 TCP 3-way handshake" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0071.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-07-와이어샤크-실습-패킷-분석/네트워크 기초-07-와이어샤크-실습-패킷-분석 - 0071.jpg" alt="Flow Graph에서 보는 TCP 3-way handshake" loading="lazy">
   </a>
   <figcaption>
     <strong>Flow Graph에서 보는 TCP 3-way handshake</strong>

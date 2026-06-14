@@ -6,11 +6,10 @@
   <title>운영체제 기초 1-3 - 리눅스 설치하기: 가상머신 및 클라우드</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="os-basic" data-lesson-id="1-3" data-lesson-key="os-basic:1-3" data-lesson-title="리눅스 설치하기: 가상머신 및 클라우드" data-lesson-label="운영체제 1-3">
+<body data-course-id="os-basic" data-lesson-id="1-3" data-lesson-title="리눅스 설치하기: 가상머신 및 클라우드" data-lesson-label="운영체제 1-3">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>운영체제 1-3 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="os-basic:1-3" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -127,8 +114,8 @@
             <p>강사는 앞 시간의 <strong>운영체제</strong> 정의를 짧게 복습한 뒤 설치로 넘어간다. 운영체제는 하드웨어를 제어하는 시스템 소프트웨어이므로 원칙적으로는 물리 PC에 직접 설치해야 한다. 그러나 학생들의 PC에는 Windows나 macOS와 개인 데이터가 들어 있으므로, 학습 목적으로 기존 OS를 지우고 Ubuntu를 설치할 수는 없다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0011.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0011.jpg" alt="대표 하이퍼바이저 소프트웨어" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0011.jpg" alt="대표 하이퍼바이저 소프트웨어" loading="lazy">
   </a>
   <figcaption>
     <strong>대표 하이퍼바이저 소프트웨어</strong>
@@ -150,8 +137,8 @@
             <p><strong>VirtualBox</strong>는 공식 다운로드 페이지에서 설치 파일을 내려받는다. 강의 <strong>캡처</strong>는 6.1.4 기준이지만 강사는 최신 7.0 계열을 설치해도 무방하다고 안내한다. 다만 오픈소스 소프트웨어는 메이저 버전이 올라간 직후 버그가 있을 수 있어, 강사는 6.1 계열을 오래 선호했고 7.0은 다소 느리거나 불편한 점이 있었다고 언급한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0021.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0021.jpg" alt="VirtualBox 다운로드와 Extension Pack" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0021.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0021.jpg" alt="VirtualBox 다운로드와 Extension Pack" loading="lazy">
   </a>
   <figcaption>
     <strong>VirtualBox 다운로드와 Extension Pack</strong>
@@ -162,8 +149,8 @@
                 <p>다운로드할 것은 두 가지다. 하나는 VirtualBox 본체이고, 다른 하나는 <strong>Oracle VM VirtualBox Extension Pack</strong>이다. Extension Pack은 <strong>GUI</strong> 사용, USB 장치, 그래픽·해상도 조정 같은 기능을 더 편하게 해 주는 확장 플러그인이다. 설치 과정은 대부분 기본값으로 Next, Yes, Install을 눌러 진행하면 된다. 중간에 <strong>네트워크</strong>·USB 등 가상 장치를 위한 드라이버가 호스트 OS에 설치될 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0035.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0035.jpg" alt="새 가상 머신 생성" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0035.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0035.jpg" alt="새 가상 머신 생성" loading="lazy">
   </a>
   <figcaption>
     <strong>새 가상 머신 생성</strong>
@@ -192,8 +179,8 @@
             <p>가상 머신을 만들 때 디스크 파일 형식은 기본값인 <strong>VDI(VirtualBox Disk Image)</strong>를 사용한다. VHD나 VMDK는 다른 하이퍼바이저와의 호환성을 고려할 때 의미가 있지만, 초급 과정에서는 <strong>VirtualBox</strong> 기본값이 충분하다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0047.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0047.jpg" alt="디스크 종류와 동적 할당" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0047.jpg" alt="디스크 종류와 동적 할당" loading="lazy">
   </a>
   <figcaption>
     <strong>디스크 종류와 동적 할당</strong>
@@ -212,8 +199,8 @@
                 <p>디스크까지 만들면 <strong>CPU</strong>, <strong>메모리</strong>, 저장소 같은 가상 하드웨어 틀은 준비된 것이다. 하지만 아직 Ubuntu가 설치된 것은 아니다. 앞 강의에서 받은 Ubuntu ISO 이미지를 <strong>저장소 &gt; 비어 있음 &gt; CD 아이콘</strong>을 통해 가상 CD-ROM에 넣어야 한다. 강사는 이것을 실제 PC에 설치 CD나 USB를 꽂고 부팅하는 것과 같다고 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0061.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0061.jpg" alt="ISO 삽입과 네트워크 어댑터" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0061.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0061.jpg" alt="ISO 삽입과 네트워크 어댑터" loading="lazy">
   </a>
   <figcaption>
     <strong>ISO 삽입과 네트워크 어댑터</strong>
@@ -234,8 +221,8 @@
             <p>ISO를 넣고 시작 버튼을 누르면 <strong>Ubuntu 설치</strong> 화면으로 부팅된다. 언어 목록에서 한국어를 선택할 수 있다. 여기서 가장 중요한 주의점은 <strong>Ubuntu 체험하기</strong>가 아니라 <strong>Ubuntu 설치</strong>를 눌러야 한다는 것이다. 체험하기를 누르면 설치된 것처럼 보일 수 있지만 실제 디스크에 설치된 것이 아니므로, 이 수업의 목적과 다르다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0070.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0070.jpg" alt="Ubuntu 체험하기가 아니라 설치하기" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0070.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0070.jpg" alt="Ubuntu 체험하기가 아니라 설치하기" loading="lazy">
   </a>
   <figcaption>
     <strong>Ubuntu 체험하기가 아니라 설치하기</strong>
@@ -246,8 +233,8 @@
                 <p>Ubuntu 20.04를 <strong>VirtualBox</strong>에서 설치할 때는 화면 해상도 때문에 오른쪽 아래의 <strong>계속</strong> 또는 <strong>다음</strong> 버튼이 보이지 않을 수 있다. 강사는 이때 당황하지 말고 <code>Alt + F7</code>을 누른 뒤 마우스로 창을 움직이면 아래쪽 버튼을 볼 수 있다고 설명한다. <strong>캡처</strong>의 16.04에서는 버튼이 잘 보이지만, 20.04에서는 이 문제가 더 잘 나타날 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0075.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0075.jpg" alt="기본 사용자 계정 설정" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0075.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0075.jpg" alt="기본 사용자 계정 설정" loading="lazy">
   </a>
   <figcaption>
     <strong>기본 사용자 계정 설정</strong>
@@ -269,8 +256,8 @@
             <p>설치 후 <strong>로그</strong>인 화면이 나오고 <code>user1</code> 비밀번호를 <strong>입력</strong>하면 Ubuntu 데스크톱에 들어갈 수 있다. 20.04 이후에는 22.04 같은 새 버전이 나왔다는 업그레이드 알림이 뜰 수 있다. 강사는 수업 환경을 맞추기 위해 20.04를 설치한 것이므로, 새 배포판 업그레이드는 하지 말라고 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0102.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0102.jpg" alt="업그레이드와 자동 업데이트 설정" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0102.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0102.jpg" alt="업그레이드와 자동 업데이트 설정" loading="lazy">
   </a>
   <figcaption>
     <strong>업그레이드와 자동 업데이트 설정</strong>
@@ -281,8 +268,8 @@
                 <p><strong>패키지</strong> 업데이트 알림도 뜰 수 있다. 물리 서버라면 보안 업데이트를 자주 확인하는 것이 좋지만, 교육용 <strong>VirtualBox</strong> VM에서는 켤 때마다 업데이트가 실행되어 실습을 방해할 수 있다. 그래서 자동 다운로드·자동 설치를 최소화하고, 필요할 때 나중에 터미널이나 GUI에서 수동으로 업데이트하는 흐름을 권장한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0111.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0111.jpg" alt="VirtualBox 종료 옵션" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0111.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0111.jpg" alt="VirtualBox 종료 옵션" loading="lazy">
   </a>
   <figcaption>
     <strong>VirtualBox 종료 옵션</strong>
@@ -303,8 +290,8 @@
             <p><strong>VirtualBox</strong>를 더 편하게 쓰려면 Guest Additions를 설치할 수 있다. Guest Additions는 화면 해상도 자동 조정, 그래픽 드라이버 개선, Drag&amp;Drop, Clipboard, USB 3.0 같은 기능을 더 부드럽게 만들어 준다. 장치 메뉴에서 Guest Additions CD 이미지를 삽입하면 가상 CD가 마운트되고, <strong>실행</strong> 여부를 묻는 창과 관리자 인증 창이 나온다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0123.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0123.jpg" alt="Guest Additions 설치와 build-essential" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0123.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0123.jpg" alt="Guest Additions 설치와 build-essential" loading="lazy">
   </a>
   <figcaption>
     <strong>Guest Additions 설치와 build-essential</strong>
@@ -316,8 +303,8 @@
                 <pre><code class="language-bash">sudo apt install build-essential -y</code></pre>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0126.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0126.jpg" alt="VirtualBox 네트워크 모드" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0126.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0126.jpg" alt="VirtualBox 네트워크 모드" loading="lazy">
   </a>
   <figcaption>
     <strong>VirtualBox 네트워크 모드</strong>
@@ -348,8 +335,8 @@
             <p>강사는 Mac 사용자에 대한 주의도 별도로 설명한다. Intel <strong>CPU</strong>를 쓰는 Mac은 <strong>VirtualBox</strong>를 설치할 수 있지만, 많은 학생이 사용하는 M1·M2 Mac은 VirtualBox 지원이 안정적이지 않거나 제공되지 않을 수 있다. 하이퍼바이저는 하드웨어를 가상화하는 도구이므로 Apple Silicon을 제대로 지원하는지가 중요하다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0136.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0136.jpg" alt="Mac 사용자를 위한 대안" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0136.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0136.jpg" alt="Mac 사용자를 위한 대안" loading="lazy">
   </a>
   <figcaption>
     <strong>Mac 사용자를 위한 대안</strong>
@@ -360,8 +347,8 @@
                 <p>M1·M2 Mac에서는 무료 도구인 <strong>UTM</strong>, 개인용 무료로 사용할 수 있는 <strong>VMware Fusion</strong>, 상용 제품인 <strong>Parallels</strong> 같은 대안을 검토할 수 있다. 강사는 구체 설치 방법은 따로 안내하지 않으므로 직접 찾아서 진행하라고 말하지만, 앞으로 개발·보안 실습을 하려면 자신의 PC에 하이퍼바이저 하나 정도는 갖추는 것이 거의 필수라고 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0141.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0141.jpg" alt="클라우드 대안과 EC2 프리티어" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0141.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0141.jpg" alt="클라우드 대안과 EC2 프리티어" loading="lazy">
   </a>
   <figcaption>
     <strong>클라우드 대안과 EC2 프리티어</strong>

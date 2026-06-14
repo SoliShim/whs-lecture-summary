@@ -6,11 +6,10 @@
   <title>운영체제 기초 1-6 - 사용자 계정 권한 관리</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="os-basic" data-lesson-id="1-6" data-lesson-key="os-basic:1-6" data-lesson-title="사용자 계정 권한 관리" data-lesson-label="운영체제 1-6">
+<body data-course-id="os-basic" data-lesson-id="1-6" data-lesson-title="사용자 계정 권한 관리" data-lesson-label="운영체제 1-6">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>운영체제 1-6 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="os-basic:1-6" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -127,8 +114,8 @@
             <p>강의는 Windows와 Linux의 출발점 차이에서 시작한다. Windows는 MS-DOS와 초기 Windows 시절부터 개인용 PC, 즉 한 사람이 자기 컴퓨터를 쓰는 환경을 중심으로 발전했다. 그래서 과거에는 별도의 <strong>사용자 계정</strong>이나 <strong>권한</strong> 구분이 약했고, “내가 사용자이면서 곧 관리자”라는 관점이 자연스러웠다. 지금의 Windows는 계정과 권한 기능을 갖추었지만, 역사적으로는 개인용 운영체제의 성격이 강했다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0002.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0002.jpg" alt="Windows와 Linux의 사용자 권한 철학" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0002.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0002.jpg" alt="Windows와 Linux의 사용자 권한 철학" loading="lazy">
   </a>
   <figcaption>
     <strong>Windows와 Linux의 사용자 권한 철학</strong>
@@ -150,8 +137,8 @@
             <p><strong>리눅스</strong>의 최상위 관리자는 <strong>root</strong>다. <strong>root</strong>는 superuser라고도 부르며, 그 위에 더 높은 관리자는 없다. root는 권한 검사를 사실상 뛰어넘어 모든 파일을 읽고, 쓰고, 실행하고, 패키지를 설치하고, 시스템 설정을 바꿀 수 있다. 이 힘은 편리하지만 위험하다. 정상 파일인 줄 알고 실행한 것이 악성코드라면, root 권한으로 실행되는 순간 시스템 전체와 다른 사용자 계정까지 피해를 줄 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0016.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0016.jpg" alt="superuser와 sudo" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0016.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0016.jpg" alt="superuser와 sudo" loading="lazy">
       </a>
       <figcaption>
         <strong>superuser와 sudo</strong>
@@ -162,8 +149,8 @@
                     <p>Ubuntu는 초보자와 일반 사용자가 root 계정을 남용하는 문제를 줄이기 위해 root 직접 <strong>로그</strong>인을 기본적으로 막고, <code>sudo</code>를 사용해 필요한 명령 하나에 대해서만 관리자 <strong>권한</strong>을 빌리게 한다. <code>sudo</code>는 superuser 권한으로 do, 즉 “관리자 권한으로 수행한다”는 의미로 이해하면 된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0025.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0025.jpg" alt="whoami와 id로 현재 사용자 확인" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0025.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0025.jpg" alt="whoami와 id로 현재 사용자 확인" loading="lazy">
       </a>
       <figcaption>
         <strong>whoami와 id로 현재 사용자 확인</strong>
@@ -179,8 +166,8 @@ sudo id</code></pre>
                     <p><code>whoami</code>는 현재 명령을 <strong>실행</strong>하는 사용자를 보여 주고, <code>id</code>는 UID, GID, 소속 <strong>그룹</strong>을 보여 준다. 설치할 때 만든 첫 계정 <code>user1</code>은 보통 UID 1000, GID 1000을 가지며, <code>sudo</code>, <code>adm</code>, <code>cdrom</code>, <code>netdev</code>, <code>sambashare</code> 같은 여러 그룹에 들어 있다. 강사는 이 계정이 “유일한 사용자이면서 설치를 수행한 계정”이기 때문에 여러 장치와 관리 기능에 접근할 수 있는 그룹을 기본으로 가진다고 설명한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0029.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0029.jpg" alt="sudo로 root 권한을 잠깐 빌리기" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0029.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0029.jpg" alt="sudo로 root 권한을 잠깐 빌리기" loading="lazy">
       </a>
       <figcaption>
         <strong>sudo로 root 권한을 잠깐 빌리기</strong>
@@ -191,8 +178,8 @@ sudo id</code></pre>
                     <p><code>sudo whoami</code>를 실행하면 그 명령을 수행하는 동안에는 결과가 <code>root</code>로 나온다. 이어서 다시 <code>whoami</code>를 치면 <code>user1</code>로 돌아온다. 즉 <strong>sudo</strong>는 내가 영구히 root가 되는 명령이 아니라, 그 순간만 root 권한을 빌려 오는 장치다. 그래서 권한이 없다고 나올 때마다 습관적으로 sudo를 붙이는 것은 좋지 않은 습관이다. 먼저 “왜 권한이 없는지”, “정말 관리자 권한이 필요한 작업인지”, “내가 지금 어떤 파일을 건드리는지”를 생각해야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0038.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0038.jpg" alt="/etc/sudoers와 sudo 권한" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0038.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0038.jpg" alt="/etc/sudoers와 sudo 권한" loading="lazy">
       </a>
       <figcaption>
         <strong>/etc/sudoers와 sudo 권한</strong>
@@ -215,8 +202,8 @@ sudo cat /etc/sudoers</code></pre>
             <p><strong>리눅스</strong>의 로컬 계정 정보는 대표적으로 세 파일에 나뉘어 저장된다. <code>/etc/passwd</code>는 <strong>사용자 계정</strong> 목록과 기본 정보를 담고, <code>/etc/shadow</code>는 암호 해시와 암호 정책을 담으며, <code>/etc/group</code>은 그룹 정보를 관리한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0044.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0044.jpg" alt="계정 관리 파일 세 가지" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0044.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0044.jpg" alt="계정 관리 파일 세 가지" loading="lazy">
       </a>
       <figcaption>
         <strong>계정 관리 파일 세 가지</strong>
@@ -231,8 +218,8 @@ cat /etc/group</code></pre>
                     <p><code>/etc/passwd</code>라는 이름 때문에 비밀번호가 그대로 들어 있다고 오해하기 쉽다. 과거에는 이 파일 안에 암호 해시가 있었지만, <code>/etc/passwd</code>는 여러 프로그램이 사용자 정보를 확인해야 하므로 누구나 읽을 수 있었다. 해시가 <strong>평문</strong>은 아니더라도, 공격자가 해시를 얻으면 사전 공격이나 크래킹 도구로 약한 패스워드를 맞힐 수 있다. 그래서 민감한 암호 해시는 <code>/etc/shadow</code>로 분리되었고, 일반 사용자는 shadow를 읽지 못한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0045.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0045.jpg" alt="/etc/passwd 필드 구조" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0045.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0045.jpg" alt="/etc/passwd 필드 구조" loading="lazy">
       </a>
       <figcaption>
         <strong>/etc/passwd 필드 구조</strong>
@@ -243,8 +230,8 @@ cat /etc/group</code></pre>
                     <p><code>/etc/passwd</code> 한 줄은 콜론(<code>:</code>)으로 구분된다. 필드는 순서대로 사용자명, 패스워드 자리표시자, UID, GID, 사용자 이름 또는 설명, 홈 디렉토리, <strong>로그</strong>인 셸이다. 현재는 실제 암호가 shadow로 빠져 있으므로 패스워드 칸에는 보통 <code>x</code>가 들어간다. 예를 들어 <code>user1:x:1000:1000:user1,,,:/home/user1:/bin/bash</code> 같은 줄은 user1의 UID와 GID가 1000이고, 홈 디렉토리는 <code>/home/user1</code>, 로그인 셸은 <code>/bin/bash</code>라는 뜻이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0051.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0051.jpg" alt="UID 범위와 시스템 계정" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0051.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0051.jpg" alt="UID 범위와 시스템 계정" loading="lazy">
       </a>
       <figcaption>
         <strong>UID 범위와 시스템 계정</strong>
@@ -255,8 +242,8 @@ cat /etc/group</code></pre>
                     <p>UID 0은 <strong>root</strong>다. 1~99 사이의 낮은 번호는 전통적으로 미리 정의된 시스템 계정에 쓰이고, 100~999는 관리용 또는 시스템 <strong>서비스</strong> 계정에 활용될 수 있도록 남겨 둔 범위로 설명한다. 실제 사용자가 로그인해 작업하는 계정은 보통 1000번부터 시작한다. 화면의 여러 계정 중 <code>/usr/sbin/nologin</code>을 로그인 셸로 가진 계정은 사람이 터미널로 로그인해 쓰는 계정이 아니라, 프린터, 메일, 데몬 같은 시스템 서비스 실행을 위한 계정으로 보면 된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0054.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0054.jpg" alt="/etc/shadow와 epoch 날짜" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0054.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0054.jpg" alt="/etc/shadow와 epoch 날짜" loading="lazy">
       </a>
       <figcaption>
         <strong>/etc/shadow와 epoch 날짜</strong>
@@ -267,8 +254,8 @@ cat /etc/group</code></pre>
                     <p><code>/etc/shadow</code>에는 사용자명, 암호 해시, 마지막 암호 변경일, 최소 사용일, 최대 사용일, 만료 경고일, 비활성 기간, 계정 만료일 같은 정보가 들어간다. 강의에서는 마지막 변경일처럼 보이는 <code>18357</code> 같은 숫자를 설명한다. 리눅스의 시간 계산은 epoch, 즉 1970년 1월 1일 00:00:00 UTC를 기준으로 한다. 1970년 1월 1일에 18,357일을 더하면 2020년 4월 5일이 되므로, shadow의 날짜 숫자도 계산 가능한 값이라는 점을 보여 준다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0062.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0062.jpg" alt="잠긴 root와 해시 알고리즘" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0062.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0062.jpg" alt="잠긴 root와 해시 알고리즘" loading="lazy">
       </a>
       <figcaption>
         <strong>잠긴 root와 해시 알고리즘</strong>
@@ -289,8 +276,8 @@ cat /etc/group</code></pre>
             <p>새 <strong>사용자 계정</strong>은 아무나 만들 수 없다. 회사에서 신입사원이 마음대로 계정을 만들 수 있다면, 퇴사 전에 백도어 계정을 만들거나 <strong>권한</strong> 추적을 어렵게 만들 수 있다. 그래서 계정 생성은 관리자 권한으로 수행한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0064.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0064.jpg" alt="adduser로 user2 생성" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0064.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0064.jpg" alt="adduser로 user2 생성" loading="lazy">
       </a>
       <figcaption>
         <strong>adduser로 user2 생성</strong>
@@ -305,8 +292,8 @@ sudo cat /etc/shadow</code></pre>
                     <p>일반 사용자로 <code>adduser user2</code>를 <strong>실행</strong>하면 실패하고, <code>sudo adduser user2</code>로 실행해야 한다. 생성 과정에서는 user2의 홈 디렉토리를 만들고, 기본 <strong>그룹</strong>을 만들고, 암호와 사용자 정보를 입력한다. 이후 <code>/etc/passwd</code>를 보면 user2 항목이 추가되고, <code>/etc/shadow</code>를 관리자 권한으로 보면 user2의 암호 해시와 날짜 정보도 생긴다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0072.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0072.jpg" alt="passwd와 chage" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0072.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0072.jpg" alt="passwd와 chage" loading="lazy">
       </a>
       <figcaption>
         <strong>passwd와 chage</strong>
@@ -321,8 +308,8 @@ sudo chage -E 2026-12-31 -m 1 -M 90 -W 7 user2</code></pre>
                     <p><code>passwd</code>는 실제 암호를 바꾸는 명령이다. 반면 <code>chage</code>는 암호의 정책을 바꾼다. 예를 들어 외주 직원 계정이 연말까지만 유효해야 한다면 계정 만료일을 지정할 수 있고, 암호를 최소 며칠 사용해야 하는지, 최대 며칠마다 바꿔야 하는지, 만료 며칠 전부터 경고할지도 지정할 수 있다. <code>chage -l user2</code>는 현재 정책을 목록으로 보여 준다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0079.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0079.jpg" alt="deluser와 홈 디렉토리" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0079.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0079.jpg" alt="deluser와 홈 디렉토리" loading="lazy">
       </a>
       <figcaption>
         <strong>deluser와 홈 디렉토리</strong>
@@ -335,8 +322,8 @@ sudo deluser --remove-home user2</code></pre>
                     <p><code>deluser user2</code>는 사용자 계정을 삭제한다. 하지만 기본 삭제는 홈 디렉토리까지 항상 지우지는 않는다. 강사는 새 직원을 받거나 퇴사자를 처리할 때 그 사람의 문서와 작업물을 바로 삭제하면 안 되는 경우가 많기 때문에, 홈 디렉토리 보존 여부가 중요하다고 설명한다. 홈 디렉토리까지 지우려면 <code>--remove-home</code> 같은 옵션을 명시해야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0088.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0088.jpg" alt="addgroup과 delgroup" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0088.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0088.jpg" alt="addgroup과 delgroup" loading="lazy">
       </a>
       <figcaption>
         <strong>addgroup과 delgroup</strong>
@@ -349,8 +336,8 @@ sudo delgroup group1</code></pre>
                     <p>그룹도 별도로 만들고 삭제할 수 있다. 그룹은 파일 권한에서 owner와 other 사이에 있는 중간 범주다. 같은 팀, 같은 역할, 같은 <strong>서비스</strong> 계정을 묶어 권한을 부여할 때 사용한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0092.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0092.jpg" alt="usermod와 deluser로 그룹 구성 변경" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0092.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0092.jpg" alt="usermod와 deluser로 그룹 구성 변경" loading="lazy">
       </a>
       <figcaption>
         <strong>usermod와 deluser로 그룹 구성 변경</strong>
@@ -376,8 +363,8 @@ id user2</code></pre>
             <p><strong>파일 권한</strong>은 <code>ls -l</code>의 첫 열에서 확인한다. 첫 글자는 파일 유형이다. <code>-</code>는 일반 파일, <code>d</code>는 디렉토리, <code>l</code>은 심볼릭 링크다. 그 뒤 9글자는 세 글자씩 나뉘어 <strong>owner</strong>, group, other의 권한을 나타낸다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0098.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0098.jpg" alt="ls -l 권한 표시" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0098.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0098.jpg" alt="ls -l 권한 표시" loading="lazy">
       </a>
       <figcaption>
         <strong>ls -l 권한 표시</strong>
@@ -388,8 +375,8 @@ id user2</code></pre>
                     <p>예를 들어 <code>-rw-r--r--</code>라면 일반 파일이고, 소유자는 읽기·쓰기 가능, <strong>그룹</strong>은 읽기만 가능, 기타 사용자도 읽기만 가능하다. <code>drwxr-xr-x</code>라면 디렉토리이고, 소유자는 읽기·쓰기·진입 가능, 그룹과 기타 사용자는 읽기와 진입이 가능하지만 쓰기는 못 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0108.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0108.jpg" alt="rwx와 4·2·1 권한 계산" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0108.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0108.jpg" alt="rwx와 4·2·1 권한 계산" loading="lazy">
       </a>
       <figcaption>
         <strong>rwx와 4·2·1 권한 계산</strong>
@@ -408,8 +395,8 @@ id user2</code></pre>
                     <p>숫자 <strong>권한</strong>은 read 4, write 2, execute 1을 더해 만든다. <code>7</code>은 4+2+1이므로 <code>rwx</code>, <code>6</code>은 4+2이므로 <code>rw-</code>, <code>5</code>는 4+1이므로 <code>r-x</code>, <code>0</code>은 아무 권한 없음이다. 세 자리 숫자 <code>755</code>는 owner 7, <strong>group</strong> 5, other 5라는 뜻이다. 강사는 이 부분이 정보보안기사 같은 시험에도 자주 나오므로 반드시 익혀야 한다고 강조한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0115.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0115.jpg" alt="umask와 기본 생성 권한" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0115.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0115.jpg" alt="umask와 기본 생성 권한" loading="lazy">
       </a>
       <figcaption>
         <strong>umask와 기본 생성 권한</strong>
@@ -440,8 +427,8 @@ umask 002</code></pre>
             <p><code>chmod</code>는 change mode의 약자이며, 파일이나 디렉토리의 <strong>권한</strong> 모드를 바꾼다. 두 가지 방식이 있다. 첫째는 숫자 모드다. <code>chmod 777 hello.txt</code>는 owner, group, other 모두에게 읽기·쓰기·<strong>실행</strong> 권한을 준다. <code>chmod 700 hello.txt</code>는 owner에게만 모든 권한을 주고 나머지는 모두 막는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0120.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0120.jpg" alt="chmod 숫자 모드" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0120.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0120.jpg" alt="chmod 숫자 모드" loading="lazy">
       </a>
       <figcaption>
         <strong>chmod 숫자 모드</strong>
@@ -456,8 +443,8 @@ chmod 644 note.txt</code></pre>
                     <p>둘째는 문자 모드다. 대상은 <code>u</code>(user/owner), <code>g</code>(group), <code>o</code>(other), <code>a</code>(all)로 지정하고, <code>+</code>는 추가, <code>-</code>는 제거, <code>=</code>는 정확히 설정을 의미한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0123.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0123.jpg" alt="chmod 문자 모드" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0123.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0123.jpg" alt="chmod 문자 모드" loading="lazy">
       </a>
       <figcaption>
         <strong>chmod 문자 모드</strong>
@@ -474,8 +461,8 @@ chmod o-rx hello.txt</code></pre>
                     <p><code>chmod u+x</code>는 소유자에게 실행 권한을 더하고, <code>chmod g-rw</code>는 <strong>그룹</strong>에서 읽기와 쓰기 권한을 제거한다. <code>chmod o+w</code>처럼 other에게 쓰기 권한을 주면 다른 사용자도 파일을 바꿀 수 있으므로 실제 운영 환경에서는 매우 조심해야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0127.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0127.jpg" alt="chown과 chgrp" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0127.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0127.jpg" alt="chown과 chgrp" loading="lazy">
       </a>
       <figcaption>
         <strong>chown과 chgrp</strong>
@@ -490,8 +477,8 @@ sudo chown user1:user1 hello.txt</code></pre>
                     <p><code>chown</code>은 change owner, <code>chgrp</code>는 change group이다. 실무에서는 <code>chown user:group file</code>처럼 한 번에 소유자와 그룹을 바꾸는 형태가 자주 쓰인다. 이 작업은 보통 관리자 권한이 필요하다. 아무 사용자가 파일 소유자를 마음대로 바꿀 수 있으면, 악성 파일을 남의 소유처럼 보이게 하거나 책임 추적을 흐릴 수 있기 때문이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0133.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0133.jpg" alt="특수 권한 SUID, SGID, Sticky bit" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0133.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0133.jpg" alt="특수 권한 SUID, SGID, Sticky bit" loading="lazy">
       </a>
       <figcaption>
         <strong>특수 권한 SUID, SGID, Sticky bit</strong>
@@ -512,8 +499,8 @@ sudo chown user1:user1 hello.txt</code></pre>
             <p>강사는 VirtualBox 안의 글자가 작게 보일 수 있어 원격 터미널 환경으로 큰 글씨를 보여 주지만, 학생들은 Ubuntu <strong>GUI</strong> 터미널에서 같은 명령을 따라 하면 된다. 실습은 <code>ls -l</code>로 현재 파일들의 <strong>권한</strong>과 소유자, 그룹을 확인하는 것부터 시작한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0137.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0137.jpg" alt="실습: ls -l로 권한 확인" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0137.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0137.jpg" alt="실습: ls -l로 권한 확인" loading="lazy">
       </a>
       <figcaption>
         <strong>실습: ls -l로 권한 확인</strong>
@@ -530,8 +517,8 @@ ls -l</code></pre>
                     <p>기존 <code>umask</code>가 <code>002</code>라면 새 파일은 대체로 <code>rw-rw-r--</code>, 새 디렉토리는 <code>rwxrwxr-x</code>처럼 만들어진다. 이후 <code>umask 007</code>처럼 값을 바꾸고 새 파일과 디렉토리를 만들면 other 권한이 빠지는 것을 볼 수 있다. 이 실습은 <strong>umask</strong>가 “권한을 더하는 값”이 아니라 “기본 권한에서 빼는 마스크”라는 점을 확인하게 해 준다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0145.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0145.jpg" alt="실습: umask 변경 결과" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0145.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0145.jpg" alt="실습: umask 변경 결과" loading="lazy">
       </a>
       <figcaption>
         <strong>실습: umask 변경 결과</strong>
@@ -542,8 +529,8 @@ ls -l</code></pre>
                     <p>다음으로 <code>sudo adduser user2</code>를 <strong>실행</strong>해 두 번째 사용자를 만든다. <strong>리눅스</strong>는 멀티유저 운영체제이므로 user1과 user2가 동시에 로그인할 수 있다. 강의에서는 한쪽 터미널은 user1, 다른 한쪽 터미널은 user2로 열어 같은 파일에 대한 접근 결과를 비교한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0149.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0149.jpg" alt="실습: user2 생성과 동시 로그인" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0149.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0149.jpg" alt="실습: user2 생성과 동시 로그인" loading="lazy">
       </a>
       <figcaption>
         <strong>실습: user2 생성과 동시 로그인</strong>
@@ -553,8 +540,8 @@ ls -l</code></pre>
 
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0156.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0156.jpg" alt="user2의 id와 홈 디렉토리" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0156.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0156.jpg" alt="user2의 id와 홈 디렉토리" loading="lazy">
       </a>
       <figcaption>
         <strong>user2의 id와 홈 디렉토리</strong>
@@ -571,8 +558,8 @@ ls</code></pre>
                     <p>user2의 <code>id</code>를 보면 user1처럼 <strong>sudo</strong>, adm, cdrom, netdev 같은 관리·장치 <strong>그룹</strong>에 들어 있지 않다. 또한 터미널에서 만든 계정은 GUI에서 처음 만든 계정과 달리 Downloads, Documents 같은 폴더가 아직 없을 수 있다. 이는 계정 생성 방식과 초기 설정 차이일 뿐, 이상 현상은 아니다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0159.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0159.jpg" alt="echo 리다이렉션과 파일 권한" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0159.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0159.jpg" alt="echo 리다이렉션과 파일 권한" loading="lazy">
       </a>
       <figcaption>
         <strong>echo 리다이렉션과 파일 권한</strong>
@@ -586,8 +573,8 @@ ls -l hello.txt</code></pre>
                     <p><code>echo hello &gt; hello.txt</code>는 <code>hello</code>라는 <strong>문자열</strong>을 표준 <strong>출력</strong>으로 내보내고, <code>&gt;</code> 리다이렉션으로 그 출력을 파일에 저장한다. 리다이렉션 자체는 뒤 배시 쉘 강의에서 더 자세히 다루지만, 여기서는 파일에 내용을 써서 권한 차이를 확인하는 데 사용한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0163.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0163.jpg" alt="user2의 읽기와 쓰기 실패" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0163.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0163.jpg" alt="user2의 읽기와 쓰기 실패" loading="lazy">
       </a>
       <figcaption>
         <strong>user2의 읽기와 쓰기 실패</strong>
@@ -604,8 +591,8 @@ cat hello.txt
 chmod o-w hello.txt</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0171.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0171.jpg" alt="디렉토리 execute 권한" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0171.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0171.jpg" alt="디렉토리 execute 권한" loading="lazy">
       </a>
       <figcaption>
         <strong>디렉토리 execute 권한</strong>
@@ -616,8 +603,8 @@ chmod o-w hello.txt</code></pre>
                     <p>디렉토리 권한은 파일 권한보다 더 헷갈리기 쉽다. 파일에서 <code>x</code>는 실행을 뜻하지만, 디렉토리에서 <code>x</code>는 그 디렉토리에 들어가거나 경로 중간을 통과할 수 있는 권한이다. <code>r</code>은 목록을 볼 수 있는 권한이고, <code>w</code>는 그 안에 항목을 만들거나 삭제하거나 이름을 바꿀 수 있는 권한이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0175.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0175.jpg" alt="chmod로 디렉토리 접근 제어" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0175.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-06-사용자-계정-권한-관리/운영체제 기초-06-사용자-계정-권한-관리 - 0175.jpg" alt="chmod로 디렉토리 접근 제어" loading="lazy">
       </a>
       <figcaption>
         <strong>chmod로 디렉토리 접근 제어</strong>

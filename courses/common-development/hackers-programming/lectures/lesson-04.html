@@ -6,11 +6,10 @@
   <title>해커의 프로그래밍 1-4 - 웹 API와 키 관리</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="hackers-programming" data-lesson-id="1-4" data-lesson-key="hackers-programming:1-4" data-lesson-title="웹 API와 키 관리" data-lesson-label="해커 프로그래밍 1-4">
+<body data-course-id="hackers-programming" data-lesson-id="1-4" data-lesson-title="웹 API와 키 관리" data-lesson-label="해커 프로그래밍 1-4">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>해커 프로그래밍 1-4 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="hackers-programming:1-4" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -117,8 +104,8 @@
             <p><strong>API</strong>는 Application Programming Interface의 약자다. 서로 다른 소프트웨어 애플리케이션이 상호작용하기 위해 정해 둔 인터페이스다. “이 요청을 이런 형식으로 보내면 이런 데이터를 돌려주겠다”는 약속이라고 이해하면 된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0005.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0005.jpg" alt="API의 의미와 Web API 범위" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0005.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0005.jpg" alt="API의 의미와 Web API 범위" loading="lazy">
   </a>
   <figcaption>
     <strong>API의 의미와 Web API 범위</strong>
@@ -139,8 +126,8 @@
             <p>강의는 네이버 뉴스를 웹브라우저로 검색했을 때와 검색 <strong>API</strong>로 호출했을 때를 비교한다. 브라우저 검색 요청에는 사용자가 직접 신경 쓰기 어려운 많은 인자와 헤더가 붙고, 응답에는 검색 결과뿐 아니라 CSS, JavaScript, 버튼, 레이아웃, 광고 등 화면을 꾸미기 위한 요소가 많이 섞인다. 자동화하려면 이 복잡한 HTML에서 필요한 데이터만 다시 파싱해야 한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0013.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0013.jpg" alt="API 사용 시 명료한 요청과 정돈된 응답" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0013.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0013.jpg" alt="API 사용 시 명료한 요청과 정돈된 응답" loading="lazy">
   </a>
   <figcaption>
     <strong>API 사용 시 명료한 요청과 정돈된 응답</strong>
@@ -168,8 +155,8 @@
             <p><strong>API</strong>는 여러 <strong>서비스</strong>에서 제공된다. 일반 포털은 검색, 캘린더, 문서, AI 기능을 API로 제공할 수 있고, 보안 분야에서는 CTI 관련 API가 중요하다. Criminal IP, Shodan, VirusTotal 같은 서비스는 IP 위협 점수, 취약점 정보, 악성코드 관련 정보, 다른 회원사에서 관찰된 활동 같은 보안 데이터를 제공한다. 무료 버전과 유료 버전이 나뉘며, 유료 버전이 더 많은 기능과 한도를 제공하는 경우가 많다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0017.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0017.jpg" alt="네이버 개발자 센터의 API 목록" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0017.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0017.jpg" alt="네이버 개발자 센터의 API 목록" loading="lazy">
   </a>
   <figcaption>
     <strong>네이버 개발자 센터의 API 목록</strong>
@@ -200,8 +187,8 @@
             <p><strong>API</strong>를 사용하는 쪽에서 가장 조심해야 할 것은 <strong>키 관리</strong>다. 공개되는 소스 코드나 설정 파일에 API 키를 그대로 넣어 GitHub에 올리면, 다른 사람이 그 키를 가져가 비용이 발생하는 API를 마음대로 사용할 수 있다. 데이터베이스 접속 정보나 AWS 액세스 키가 노출되면 더 큰 침해로 이어질 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0029.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0029.jpg" alt="API 키 유출 사고 사례" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0029.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0029.jpg" alt="API 키 유출 사고 사례" loading="lazy">
   </a>
   <figcaption>
     <strong>API 키 유출 사고 사례</strong>
@@ -222,8 +209,8 @@
             <p>가장 기본 원칙은 <strong>API 키</strong>를 소스 코드에 하드코딩하지 않는 것이다. 별도 설정 파일이나 <strong>환경 변수</strong>로 분리하고, 그 파일은 공개 저장소나 클라우드 공유 폴더에 올리지 않는다. 사용량 기반으로 비용이 청구되는 API라면 정기적으로 사용량을 확인해 내가 쓰지 않은 호출이 있는지 살펴야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0037.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0037.jpg" alt="외부 API 사용 시 보안수칙" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0037.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0037.jpg" alt="외부 API 사용 시 보안수칙" loading="lazy">
       </a>
       <figcaption>
         <strong>외부 API 사용 시 보안수칙</strong>

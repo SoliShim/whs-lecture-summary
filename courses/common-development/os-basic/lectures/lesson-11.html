@@ -6,11 +6,10 @@
   <title>운영체제 기초 1-11 - 배시 쉘 프로그래밍</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="os-basic" data-lesson-id="1-11" data-lesson-key="os-basic:1-11" data-lesson-title="배시 쉘 프로그래밍" data-lesson-label="운영체제 1-11">
+<body data-course-id="os-basic" data-lesson-id="1-11" data-lesson-title="배시 쉘 프로그래밍" data-lesson-label="운영체제 1-11">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>운영체제 1-11 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="os-basic:1-11" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -142,8 +129,8 @@
             <p>셸은 사용자의 명령어를 <strong>입력</strong>받아 <strong>실행</strong>할 수 있는 공간이자 사용자와 운영체제 사이의 인터페이스다. 사용자가 셸에 명령을 입력하면 셸은 명령을 해석하고, 필요한 경우 시스템 콜을 통해 커널과 상호작용하며, 결과를 다시 사용자에게 보여 준다. 셸 스크립트는 반복적인 명령을 편하고 빠르게 실행하기 위해 짧고 간결한 프로그래밍을 하는 방식이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0002.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0002.jpg" alt="셸의 위치와 역할" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0002.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0002.jpg" alt="셸의 위치와 역할" loading="lazy">
   </a>
   <figcaption>
     <strong>셸의 위치와 역할</strong>
@@ -154,8 +141,8 @@
                 <p>셸에는 Bourne shell, Korn shell, C shell, <strong>Bash</strong>, Zsh 등이 있다. 이 수업은 가장 기본적으로 많이 쓰이는 Bash, 즉 Bourne Again Shell을 기준으로 한다. <strong>로그</strong>인할 때 어느 셸이 뜨는지는 사용자 계정 정보의 마지막 필드에 정의되고, Ubuntu 실습 계정은 보통 <code>/bin/bash</code>를 사용한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0005.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0005.jpg" alt="대표 셸 종류와 기본 로그인 셸" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0005.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0005.jpg" alt="대표 셸 종류와 기본 로그인 셸" loading="lazy">
   </a>
   <figcaption>
     <strong>대표 셸 종류와 기본 로그인 셸</strong>
@@ -164,8 +151,8 @@
 </figure>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0010.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0010.jpg" alt="Oh My Zsh 예시" loading="lazy">
+  <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0010.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0010.jpg" alt="Oh My Zsh 예시" loading="lazy">
   </a>
   <figcaption>
     <strong>Oh My Zsh 예시</strong>
@@ -186,8 +173,8 @@
             <p>프롬프트는 셸이 사용자의 <strong>입력</strong>을 받을 준비가 되었음을 보여 주는 표시다. <strong>우분투</strong>에서는 보통 달러 기호가 보인다. 프롬프트에는 사용자명, 호스트명, 현재 디렉토리, 색상 코드가 포함될 수 있고, 이는 <code>PS1</code> 환경변수로 설정된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0018.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0018.jpg" alt="프롬프트와 PS1 구조" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0018.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0018.jpg" alt="프롬프트와 PS1 구조" loading="lazy">
       </a>
       <figcaption>
         <strong>프롬프트와 PS1 구조</strong>
@@ -202,8 +189,8 @@ PS1=&quot;$default&quot;</code></pre>
                     <p><code>\u</code>는 사용자명, <code>\h</code>는 호스트명, <code>\w</code>는 현재 디렉토리를 의미한다. 복잡한 숫자와 대괄호는 ANSI 색상 코드를 표현하기 위한 특수 문자다. 강사는 기본값을 <code>default</code> <strong>변수</strong>에 저장한 뒤 PS1을 단순한 흰색 프롬프트로 바꾸고, 다시 기본값으로 복구하는 실습을 보여 준다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0024.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0024.jpg" alt="ANSI escape code와 색상" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0024.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0024.jpg" alt="ANSI escape code와 색상" loading="lazy">
       </a>
       <figcaption>
         <strong>ANSI escape code와 색상</strong>
@@ -224,8 +211,8 @@ PS1=&quot;$default&quot;</code></pre>
             <p>셸에서는 값을 임시로 저장해 두기 위해 <strong>변수</strong>를 사용할 수 있다. 변수에 값을 넣을 때는 등호 주변에 공백을 두지 않고, 변수 값을 꺼낼 때는 변수명 앞에 <code>$</code>를 붙인다. <code>echo</code>는 <strong>문자열</strong>과 변수 값을 화면에 출력하는 가장 기본적인 명령이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0029.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0029.jpg" alt="echo와 변수 출력" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0029.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0029.jpg" alt="echo와 변수 출력" loading="lazy">
       </a>
       <figcaption>
         <strong>echo와 변수 출력</strong>
@@ -250,8 +237,8 @@ echo &#x27;hello $name&#x27;</code></pre>
             <p>리디렉션은 명령의 <strong>출력</strong>이나 <strong>입력</strong> 방향을 바꾸는 기능이다. <code>&gt;</code>는 파일에 새로 쓰고, <code>&gt;&gt;</code>는 뒤에 덧붙인다. 표준 출력은 번호 1, 표준 에러는 번호 2로 다룰 수 있다. 성공 출력과 에러 출력을 같은 파일에 모으는 표현도 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0049.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0049.jpg" alt="리디렉션과 표준 출력·표준 에러" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0049.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0049.jpg" alt="리디렉션과 표준 출력·표준 에러" loading="lazy">
       </a>
       <figcaption>
         <strong>리디렉션과 표준 출력·표준 에러</strong>
@@ -272,8 +259,8 @@ cat &lt; hello.txt</code></pre>
                     <p>표준 입력은 0, 표준 출력은 1, 표준 에러는 2로 다룬다. <code>2&gt;</code>는 에러만 저장하고, <code>2&gt;&amp;1</code>은 에러를 표준 출력과 같은 대상으로 보낸다. <code>/dev/null</code>은 버리는 장치라서 <strong>권한</strong> 오류처럼 필요 없는 에러를 숨길 때 자주 쓴다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0058.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0058.jpg" alt="표준 입력과 cat" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0058.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0058.jpg" alt="표준 입력과 cat" loading="lazy">
       </a>
       <figcaption>
         <strong>표준 입력과 cat</strong>
@@ -284,8 +271,8 @@ cat &lt; hello.txt</code></pre>
                     <p>입력 방향을 바꿀 때는 <code>&lt;</code>를 쓴다. 다만 모든 명령이 표준 입력을 읽는 것은 아니다. <code>cat</code>은 표준 입력을 받아 출력하지만, <code>echo</code>는 표준 입력을 읽는 도구가 아니기 때문에 같은 방식으로 동작하지 않는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0127.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0127.jpg" alt="리디렉션 실습 결과" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0127.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0127.jpg" alt="리디렉션 실습 결과" loading="lazy">
       </a>
       <figcaption>
         <strong>리디렉션 실습 결과</strong>
@@ -304,8 +291,8 @@ cat &lt; hello.txt</code></pre>
             <p><strong>파이프</strong>는 한 명령의 <strong>출력</strong>을 다른 명령의 입력으로 넘기는 기능이다. <code>ls -l | grep hello</code>는 목록 출력 중 hello가 포함된 줄만 필터링한다. 파이프는 여러 번 이어 붙일 수도 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0064.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0064.jpg" alt="파이프와 프로세스 연결" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0064.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0064.jpg" alt="파이프와 프로세스 연결" loading="lazy">
       </a>
       <figcaption>
         <strong>파이프와 프로세스 연결</strong>
@@ -325,8 +312,8 @@ alias ll=&#x27;ls -alF&#x27;</code></pre>
                     <p>파이프는 <code>grep</code>, <code>wc</code>, <code>sort</code>, <code>awk</code>, <code>sed</code> 같은 도구와 자주 결합된다. 한 명령의 결과가 다음 명령의 <strong>입력</strong>이 된다는 점만 정확히 이해하면 복잡한 명령도 단계별로 읽을 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0070.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0070.jpg" alt="history와 명령 재실행" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0070.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0070.jpg" alt="history와 명령 재실행" loading="lazy">
       </a>
       <figcaption>
         <strong>history와 명령 재실행</strong>
@@ -347,8 +334,8 @@ alias ll=&#x27;ls -alF&#x27;</code></pre>
             <p><code>PATH</code>는 명령어 이름만 <strong>입력</strong>했을 때 <strong>Bash</strong>가 실행 파일을 찾기 위해 순서대로 검색하는 디렉토리 목록이다. 예를 들어 <code>ls</code>라고만 입력해도 실행되는 이유는 <code>/bin</code>이나 <code>/usr/bin</code> 같은 디렉토리가 PATH에 들어 있기 때문이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0076.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0076.jpg" alt="PATH 환경변수" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0076.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0076.jpg" alt="PATH 환경변수" loading="lazy">
       </a>
       <figcaption>
         <strong>PATH 환경변수</strong>
@@ -360,8 +347,8 @@ export PATH=&quot;$PATH:/home/user1/bin&quot;
 which ls
 which python3</code></pre>
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0080.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0080.jpg" alt="which로 실행 파일 위치 확인" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0080.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0080.jpg" alt="which로 실행 파일 위치 확인" loading="lazy">
       </a>
       <figcaption>
         <strong>which로 실행 파일 위치 확인</strong>
@@ -370,8 +357,8 @@ which python3</code></pre>
     </figure>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0081.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0081.jpg" alt="주요 환경변수 표" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0081.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0081.jpg" alt="주요 환경변수 표" loading="lazy">
       </a>
       <figcaption>
         <strong>주요 환경변수 표</strong>
@@ -387,8 +374,8 @@ echo &quot;$LANG&quot;</code></pre>
                     <p><strong>환경변수</strong>는 셸과 프로그램이 공유하는 설정값이다. 홈 디렉토리, 현재 사용자, 언어 설정, 프롬프트, 색상, 명령 검색 경로가 모두 환경변수로 표현될 수 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0085.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0085.jpg" alt="alias로 긴 명령 줄이기" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0085.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0085.jpg" alt="alias로 긴 명령 줄이기" loading="lazy">
       </a>
       <figcaption>
         <strong>alias로 긴 명령 줄이기</strong>
@@ -403,8 +390,8 @@ unalias ll</code></pre>
                     <p><strong>alias</strong>는 긴 명령을 짧은 이름으로 줄이는 기능이다. 한 번 입력한 alias는 현재 셸에서만 유지되므로 계속 쓰려면 시작 파일에 적어야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0089.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0089.jpg" alt="Bash 시작 파일과 .bashrc" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0089.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0089.jpg" alt="Bash 시작 파일과 .bashrc" loading="lazy">
       </a>
       <figcaption>
         <strong>Bash 시작 파일과 .bashrc</strong>
@@ -425,8 +412,8 @@ unalias ll</code></pre>
             <p><code>find</code>는 파일 이름, 크기, 날짜, 타입 같은 조건으로 파일을 찾는다. <code>grep</code>은 <strong>문자열</strong>이나 패턴을 찾고, <code>awk</code>는 컬럼을 골라 <strong>출력</strong>하며, <code>sed</code>는 스트림 편집기로 문자열 치환에 많이 쓰인다. 보안 로그 분석에서 특정 IP, 계정명, 공격 패턴을 뽑을 때 이런 도구들이 자주 쓰인다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0094.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0094.jpg" alt="find 기본 검색" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0094.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0094.jpg" alt="find 기본 검색" loading="lazy">
       </a>
       <figcaption>
         <strong>find 기본 검색</strong>
@@ -435,8 +422,8 @@ unalias ll</code></pre>
     </figure>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0100.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0100.jpg" alt="find 고급 조건과 -exec" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0100.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0100.jpg" alt="find 고급 조건과 -exec" loading="lazy">
       </a>
       <figcaption>
         <strong>find 고급 조건과 -exec</strong>
@@ -449,8 +436,8 @@ find / -size +100M -exec ls -lh {} \; 2&gt;/dev/null
 find / -name &quot;*.txt&quot; -exec grep &quot;HELP&quot; {} \; -print 2&gt;/dev/null
 find / -mtime -2 -type f</code></pre>
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0104.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0104.jpg" alt="grep 문자열 검색" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0104.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0104.jpg" alt="grep 문자열 검색" loading="lazy">
       </a>
       <figcaption>
         <strong>grep 문자열 검색</strong>
@@ -462,8 +449,8 @@ grep -n &quot;vim&quot; file.txt
 grep -R &quot;password&quot; /etc 2&gt;/dev/null
 history | grep apt</code></pre>
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0108.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0108.jpg" alt="awk 컬럼 처리" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0108.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0108.jpg" alt="awk 컬럼 처리" loading="lazy">
       </a>
       <figcaption>
         <strong>awk 컬럼 처리</strong>
@@ -474,8 +461,8 @@ history | grep apt</code></pre>
 ls -al | awk &#x27;{print &quot;FILENAME:&quot; $9, &quot;SIZE:&quot; $5}&#x27;
 cat /etc/passwd | awk -F &#x27;:&#x27; &#x27;{print $1}&#x27;</code></pre>
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0116.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0116.jpg" alt="sed 스트림 편집" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0116.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0116.jpg" alt="sed 스트림 편집" loading="lazy">
       </a>
       <figcaption>
         <strong>sed 스트림 편집</strong>
@@ -497,8 +484,8 @@ cat /etc/passwd | sed &#x27;s/bin/BIN/g&#x27;</code></pre>
             <p><strong>Bash</strong>가 <strong>실행</strong>될 때 <code>.bashrc</code> 같은 설정 파일이 읽히고, alias, 프롬프트, Anaconda 초기화 스크립트 같은 내용이 적용된다. Anaconda를 삭제할 때 폴더만 지우면 끝나는 것이 아니라, <code>.bashrc</code>에 남아 있는 초기화 코드도 삭제해야 한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0149.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0149.jpg" alt=".bashrc와 Anaconda 초기화 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0149.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0149.jpg" alt=".bashrc와 Anaconda 초기화 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>.bashrc와 Anaconda 초기화 코드</strong>
@@ -525,8 +512,8 @@ conda --version</code></pre>
             <p>셸 스크립트 파일은 보통 첫 줄에 shebang을 넣어 어떤 셸로 <strong>실행</strong>할지 표시한다. 실행 <strong>권한</strong>이 없으면 직접 실행할 수 없으므로 <code>chmod +x</code>로 권한을 준다. 또는 <code>bash script.sh</code>처럼 셸을 명시해 실행할 수도 있다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0154.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0154.jpg" alt="셸 스크립트 첫 줄과 실행 권한" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0154.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0154.jpg" alt="셸 스크립트 첫 줄과 실행 권한" loading="lazy">
       </a>
       <figcaption>
         <strong>셸 스크립트 첫 줄과 실행 권한</strong>
@@ -543,8 +530,8 @@ chmod +x user.sh
 ./user.sh white school</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0164.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0164.jpg" alt="스크립트 인자 변수" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0164.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0164.jpg" alt="스크립트 인자 변수" loading="lazy">
       </a>
       <figcaption>
         <strong>스크립트 인자 변수</strong>
@@ -575,8 +562,8 @@ chmod +x user.sh
             <p>강의 마지막 실습은 숫자를 <strong>출력</strong>하는 셸 스크립트다. 먼저 1부터 10까지 출력하고, 이후 <strong>if</strong>문을 넣어 짝수만 출력하도록 바꾼다. 이 예제는 앞서 배운 변수, 반복문, 조건문, 실행 권한을 하나로 묶는 연습이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0166.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0166.jpg" alt="for와 if를 이용한 숫자 출력" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0166.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0166.jpg" alt="for와 if를 이용한 숫자 출력" loading="lazy">
       </a>
       <figcaption>
         <strong>for와 if를 이용한 숫자 출력</strong>
@@ -603,8 +590,8 @@ echo &quot;짝수 출력 종료&quot;</code></pre>
                     <p><code>for ((...))</code>는 <strong>C 언어</strong>식 <strong>반복문</strong>처럼 초기값, 조건, 증가식을 한 줄에 적는다. <code>$((i % 2))</code>는 산술 확장이고, <code>-eq</code>는 숫자가 같은지 비교하는 조건 연산자다. <code>if</code>를 열었으면 <code>fi</code>로 닫고, <code>for</code>를 열었으면 <code>done</code>으로 닫는다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0173.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0173.jpg" alt="find, sort, while을 결합한 실무형 스크립트" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0173.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0173.jpg" alt="find, sort, while을 결합한 실무형 스크립트" loading="lazy">
       </a>
       <figcaption>
         <strong>find, sort, while을 결합한 실무형 스크립트</strong>
@@ -633,8 +620,8 @@ find . -type f -name &quot;*.${extension}&quot; -size +&quot;$minsize&quot; -pri
                     <p>마지막 예시는 지금까지 배운 내용을 종합한다. 디렉토리와 확장자를 인자로 받고, 해당 디렉토리로 이동하며, 이동 실패 시 종료한다. 그 다음 <code>find</code>로 조건에 맞는 파일을 찾고, <code>ls -lh</code>로 크기를 표시하고, <code>sort</code>로 큰 파일 순서로 정렬한 뒤, <code>while read</code>로 한 줄씩 처리한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0190.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0190.jpg" alt="셸 스크립트 실습 결과" loading="lazy">
+      <a href="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0190.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/os-basic/운영체제 기초-11-배시-쉘-프로그래밍/운영체제 기초-11-배시-쉘-프로그래밍 - 0190.jpg" alt="셸 스크립트 실습 결과" loading="lazy">
       </a>
       <figcaption>
         <strong>셸 스크립트 실습 결과</strong>

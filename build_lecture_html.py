@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html
 import re
+import shutil
 from html.parser import HTMLParser
 from pathlib import Path
 from textwrap import dedent
@@ -21,6 +22,8 @@ ROOT = Path(__file__).resolve().parent
 COURSE_ROOT = ROOT / "courses"
 ASSET_DIR = ROOT / "assets"
 STT_ROOT = ROOT / "stt"
+RAW_VIDEO_ROOT = ROOT / "videos"
+SCREENSHOT_ROOT = ROOT / "screenshots"
 PUBLIC_OPERATIONAL_PATTERNS = [
     "STT",
     "자동 전사",
@@ -407,7 +410,20 @@ def image_figure(src: str, title: str, note: str) -> str:
 
 def screen_figure(course_id: str, lecture_stem: str, image_no: int, title: str, note: str) -> str:
     image_name = f"{lecture_stem} - {image_no:04d}.jpg"
-    src = f"../../../../videos/common-development/{course_id}/{lecture_stem}/{image_name}"
+    source = RAW_VIDEO_ROOT / "common-development" / course_id / lecture_stem / image_name
+    target = SCREENSHOT_ROOT / "common-development" / course_id / lecture_stem / image_name
+    if source.exists():
+        target.parent.mkdir(parents=True, exist_ok=True)
+        source_stat = source.stat()
+        should_copy = not target.exists()
+        if not should_copy:
+            target_stat = target.stat()
+            should_copy = source_stat.st_size != target_stat.st_size or source_stat.st_mtime_ns > target_stat.st_mtime_ns
+        if should_copy:
+            shutil.copy2(source, target)
+    elif not target.exists():
+        raise FileNotFoundError(f"Missing lecture screenshot: {source}")
+    src = f"../../../../screenshots/common-development/{course_id}/{lecture_stem}/{image_name}"
     return image_figure(src, title, note)
 
 
@@ -1917,7 +1933,6 @@ def shared_head(title: str, css_prefix: str = "") -> str:
   <title>{html.escape(title)}</title>
   <link rel="stylesheet" href="{css_prefix}assets/styles.css?v=20260613-hero-kicker">
   <script src="{css_prefix}assets/code-highlight.js" defer></script>
-  <script src="{css_prefix}assets/study-state.js" defer></script>
   <script src="{css_prefix}assets/study-tools.js" defer></script>
 </head>
 """
@@ -2004,11 +2019,6 @@ def render_site_index() -> str:
                     str(course.get("status", "")),
                 ]
             )
-            progress_attr = (
-                f' data-course-total="{lecture_count}" data-course-progress-target="true"'
-                if course["status"] == "ready"
-                else ""
-            )
             action = (
                 f'<a class="button" href="{course_href(course)}">과목 열기</a>'
                 if course["status"] == "ready"
@@ -2016,12 +2026,11 @@ def render_site_index() -> str:
             )
             course_items.append(
                 f"""
-                <article class="course-item course-icon-{html.escape(icon_key)}" data-course-id="{html.escape(str(course['id']))}" data-course-status="{html.escape(str(course['status']))}" data-search-text="{html.escape(course_search.lower())}"{progress_attr}>
+                <article class="course-item course-icon-{html.escape(icon_key)}" data-course-id="{html.escape(str(course['id']))}" data-course-status="{html.escape(str(course['status']))}" data-search-text="{html.escape(course_search.lower())}">
                   <div>
                     <div class="course-item-head">
                       <h3>{html.escape(str(course['title']))}</h3>
                       <span class="status-pill {status_class}">{course_status_label(course)}</span>
-                      {('<span class="course-progress-chip" data-course-progress-label>0/' + str(lecture_count) + ' 완료</span>') if course["status"] == "ready" else ""}
                     </div>
                     <p>{html.escape(str(course['summary']))}</p>
                   </div>
@@ -2117,109 +2126,16 @@ def render_lecture_card_profile(lecture: dict) -> str:
     """
 
 
-def course_overview_stats(course: dict) -> dict[str, int]:
-    lectures = list(course.get("lectures", []))
-    totals = {
-        "lectures": len(lectures),
-        "sections": 0,
-        "checks": 0,
-        "code": 0,
-        "tables": 0,
-        "diagrams": 0,
-        "timelines": 0,
-        "lists": 0,
-        "minutes": 0,
-    }
-    for lecture in lectures:
-        stats = lecture_content_stats(lecture)
-        totals["sections"] += stats["sections"]
-        totals["checks"] += len(lecture.get("checks", []))
-        totals["code"] += stats["code"]
-        totals["tables"] += stats["tables"]
-        totals["diagrams"] += stats["diagrams"]
-        totals["timelines"] += stats["timelines"]
-        totals["lists"] += stats["lists"]
-        totals["minutes"] += max(8, min(65, round(stats["chars"] / 420) + stats["sections"] * 2 + stats["code"] * 3))
-    return totals
-
-
-def course_focus_summary(stats: dict[str, int]) -> list[tuple[str, str]]:
-    items = [
-        ("코드", stats["code"]),
-        ("표", stats["tables"]),
-        ("그림/흐름", stats["diagrams"] + stats["timelines"]),
-        ("목록", stats["lists"]),
-    ]
-    present = [(label, count) for label, count in items if count]
-    if not present:
-        return [("개념 중심", "핵심 문장 위주")]
-    return [(label, f"{count}개") for label, count in present[:4]]
-
-
-def render_course_overview(course: dict) -> str:
-    stats = course_overview_stats(course)
-    focus_items = "".join(
-        f"<span><strong>{html.escape(label)}</strong>{html.escape(str(value))}</span>"
-        for label, value in course_focus_summary(stats)
-    )
-    metric_cards = [
-        ("강의", f"{stats['lectures']}개", "순서대로 듣기"),
-        ("섹션", f"{stats['sections']}개", "나누어 읽기"),
-        ("예상", f"약 {stats['minutes']}분", "2~3회 분할"),
-        ("복습", f"{stats['checks']}문항", "질문으로 확인"),
-    ]
-    metrics = "".join(
-        f"""
-        <article>
-          <span>{html.escape(label)}</span>
-          <strong>{html.escape(value)}</strong>
-          <p>{html.escape(helper)}</p>
-        </article>
-        """
-        for label, value, helper in metric_cards
-    )
-    return f"""
-    <section class="content-wrap course-overview-panel" aria-label="과목 학습 개요">
-      <div class="course-overview-copy">
-        <span class="study-card-kicker">과목 학습 개요</span>
-        <h2>전체 분량을 보고 오늘 들을 양 정하기</h2>
-        <p>강의 목록으로 내려가기 전에 과목 전체의 분량과 학습 유형을 먼저 확인한다.</p>
-        <div class="course-focus-strip" aria-label="주요 학습 유형">
-          {focus_items}
-        </div>
-      </div>
-      <div class="course-overview-metrics">
-        {metrics}
-      </div>
-    </section>
-    """
-
-
 def render_course_index(course: dict) -> str:
     cards = []
     lectures = course.get("lectures", [])
-    unique_tags = sorted({str(tag) for lecture in lectures for tag in lecture.get("tags", [])})
     review_count = sum(len(lecture.get("checks", [])) for lecture in lectures)
     featured_id = course.get("featured_lecture")
     featured = next((lecture for lecture in lectures if lecture["id"] == featured_id), lectures[-1])
     for lecture in lectures:
-        lesson_key = f"{course['id']}:{lecture['id']}"
-        profile_text = " ".join(
-            f"{label} {value}" for label, value in lecture_card_profile_items(lecture)
-        )
-        lecture_search = " ".join(
-            [
-                str(lecture.get("id", "")),
-                str(lecture.get("title", "")),
-                str(lecture.get("subtitle", "")),
-                " ".join(str(tag) for tag in lecture.get("tags", [])),
-                profile_text,
-            ]
-        )
-        lecture_tags = "|||".join(str(tag).lower() for tag in lecture.get("tags", []))
         cards.append(
             f"""
-            <article class="lecture-card" data-course-id="{html.escape(str(course['id']))}" data-lesson-id="{html.escape(str(lecture['id']))}" data-lesson-key="{html.escape(lesson_key)}" data-search-text="{html.escape(lecture_search.lower())}" data-tags="{html.escape(lecture_tags)}">
+            <article class="lecture-card" data-course-id="{html.escape(str(course['id']))}" data-lesson-id="{html.escape(str(lecture['id']))}">
               <div class="card-top">
                 <span class="lecture-id">{html.escape(str(course['short_title']))} {lecture['id']}</span>
                 <div class="tag-row">{tag_list(lecture['tags'])}</div>
@@ -2229,10 +2145,6 @@ def render_course_index(course: dict) -> str:
               {render_lecture_card_profile(lecture)}
               <div class="card-actions">
                 <a class="button" href="lectures/{lecture_html_file(lecture)}">강의 정리 보기</a>
-                <button class="completion-toggle" type="button" data-lesson-key="{html.escape(lesson_key)}" aria-pressed="false">
-                  <span class="completion-dot" aria-hidden="true"></span>
-                  <span class="completion-label">완료 표시</span>
-                </button>
               </div>
             </article>
             """
@@ -2243,10 +2155,6 @@ def render_course_index(course: dict) -> str:
         for item in course.get("map", [])
     )
     flow = "".join(f"<span>{html.escape(item)}</span>" for item in course.get("flow", []))
-    tag_filters = "".join(
-        f'<button class="filter-chip" type="button" data-lecture-tag-filter="{html.escape(tag.lower())}">{html.escape(tag)}</button>'
-        for tag in unique_tags[:18]
-    )
 
     return shared_head(f"{course['title']} 강의 정리", "../../../") + f"""
 <body>
@@ -2278,60 +2186,6 @@ def render_course_index(course: dict) -> str:
   </header>
 
   <main>
-    <section class="content-wrap course-routine" aria-label="과목 학습 루틴">
-      <article>
-        <span>1</span>
-        <strong>전체 흐름 보기</strong>
-        <p>과목에서 어떤 순서로 개념이 이어지는지 먼저 잡는다.</p>
-      </article>
-      <article>
-        <span>2</span>
-        <strong>강의 하나 선택</strong>
-        <p>태그와 설명을 보고 지금 필요한 강의부터 들어간다.</p>
-      </article>
-      <article>
-        <span>3</span>
-        <strong>복습 질문으로 확인</strong>
-        <p>읽고 끝내지 말고 질문에 답하면서 기억을 고정한다.</p>
-      </article>
-    </section>
-
-    {render_course_overview(course)}
-
-    <section class="content-wrap course-progress-panel" data-course-id="{html.escape(str(course['id']))}" data-course-total="{len(lectures)}" aria-label="과목 학습 진행률">
-      <div>
-        <span class="study-card-kicker">나의 과목 진행률</span>
-        <strong><span data-course-completed>0</span> / <span data-course-total-label>{len(lectures)}</span>강 완료</strong>
-        <p>완료 표시는 이 브라우저에 저장된다. 강의를 들은 뒤 카드나 강의 페이지에서 체크하면 된다.</p>
-      </div>
-      <div class="progress-track"><i data-course-bar></i></div>
-    </section>
-
-    <section class="content-wrap finder-panel lecture-finder" data-lecture-finder aria-label="강의 검색과 필터">
-      <div class="finder-copy">
-        <span class="study-card-kicker">강의 찾기</span>
-        <h2>제목, 태그, 완료 상태로 좁히기</h2>
-        <p>복습할 강의만 찾거나 아직 안 본 강의만 남겨서 이어 들을 수 있다.</p>
-      </div>
-      <div class="finder-controls">
-        <label class="search-box">
-          <span>강의 검색</span>
-          <input type="search" data-lecture-search placeholder="예: 포인터, OWASP, TCP">
-        </label>
-        <div class="filter-row" role="group" aria-label="완료 상태 필터">
-          <button class="filter-chip is-active" type="button" data-lecture-status-filter="all">전체</button>
-          <button class="filter-chip" type="button" data-lecture-status-filter="remaining">남은 강의</button>
-          <button class="filter-chip" type="button" data-lecture-status-filter="done">완료한 강의</button>
-        </div>
-        <div class="filter-row tag-filter-row" role="group" aria-label="강의 태그 필터">
-          <button class="filter-chip is-active" type="button" data-lecture-tag-filter="all">모든 태그</button>
-          {tag_filters}
-        </div>
-        <p class="finder-result"><strong data-lecture-result-count>{len(lectures)}</strong>개 강의 표시 중</p>
-        <p class="finder-empty" data-lecture-empty hidden>조건에 맞는 강의가 없다. 검색어를 줄이거나 모든 태그로 바꿔 본다.</p>
-      </div>
-    </section>
-
     <section id="map" class="section-band">
       <div class="content-wrap">
         <h2>전체 흐름</h2>
@@ -2435,11 +2289,10 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
     checks = "".join(f"<li>{emphasize_plain_text(item, lecture_terms)}</li>" for item in lecture["checks"])
     objectives = "".join(f"<li>{emphasize_plain_text(item, lecture_terms)}</li>" for item in lecture["objectives"])
     lecture_label = f"{course['short_title']} {lecture['id']}"
-    lesson_key = f"{course['id']}:{lecture['id']}"
     subtitle = emphasize_plain_text(lecture["subtitle"], lecture_terms)
 
     return shared_head(f"{course['title']} {lecture['id']} - {lecture['title']}", "../../../../") + f"""
-<body data-course-id="{html.escape(str(course['id']))}" data-lesson-id="{html.escape(str(lecture['id']))}" data-lesson-key="{html.escape(lesson_key)}" data-lesson-title="{html.escape(str(lecture['title']))}" data-lesson-label="{html.escape(lecture_label)}">
+<body data-course-id="{html.escape(str(course['id']))}" data-lesson-id="{html.escape(str(lecture['id']))}" data-lesson-title="{html.escape(str(lecture['title']))}" data-lesson-label="{html.escape(lecture_label)}">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -2462,18 +2315,6 @@ def render_lecture(lecture: dict, course: dict, transcripts: dict[str, str] | No
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>{html.escape(lecture_label)} 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="{html.escape(lesson_key)}" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     {render_lecture_control_panel(lecture, transcript_nav)}
 
     <section id="goals" class="content-wrap intro-grid">
@@ -3802,143 +3643,6 @@ def write_code_highlighter() -> None:
     )
 
 
-def write_study_state_script() -> None:
-    ASSET_DIR.mkdir(exist_ok=True)
-    (ASSET_DIR / "study-state.js").write_text(
-        dedent(
-            r"""
-            (() => {
-              const progressStorageKey = "whitehatLectureProgress.v1";
-
-              const safeRead = (key) => {
-                try {
-                  return JSON.parse(localStorage.getItem(key) || "{}");
-                } catch {
-                  return {};
-                }
-              };
-
-              const safeWrite = (key, state) => {
-                try {
-                  localStorage.setItem(key, JSON.stringify(state));
-                } catch {
-                  // The UI still works for the current page even when storage is unavailable.
-                }
-              };
-
-              const getCourseId = (lessonKey) => String(lessonKey || "").split(":")[0];
-
-              const setButtonState = (button, isComplete) => {
-                button.setAttribute("aria-pressed", String(isComplete));
-                button.classList.toggle("is-complete", isComplete);
-                const label = button.querySelector(".completion-label");
-                if (label) {
-                  label.textContent = isComplete ? "완료됨" : "완료 표시";
-                }
-              };
-
-              const knownCourseTotals = () =>
-                [...document.querySelectorAll("[data-course-progress-target], .course-progress-panel")]
-                  .map((element) => ({
-                    courseId: element.dataset.courseId,
-                    total: Number(element.dataset.courseTotal || 0),
-                  }))
-                  .filter((item) => item.courseId && item.total > 0);
-
-              const countCompleted = (state, courseId) =>
-                Object.keys(state).filter((key) => state[key] && (!courseId || getCourseId(key) === courseId)).length;
-
-              const updateCourseProgress = (state) => {
-                for (const item of knownCourseTotals()) {
-                  const completed = Math.min(countCompleted(state, item.courseId), item.total);
-                  const percent = item.total ? Math.round((completed / item.total) * 100) : 0;
-
-                  document
-                    .querySelectorAll(`[data-course-id="${CSS.escape(item.courseId)}"][data-course-progress-target]`)
-                    .forEach((element) => {
-                      element.dataset.progressPercent = String(percent);
-                      const label = element.querySelector("[data-course-progress-label]");
-                      if (label) {
-                        label.textContent = `${completed}/${item.total} 완료`;
-                      }
-                    });
-
-                  document
-                    .querySelectorAll(`.course-progress-panel[data-course-id="${CSS.escape(item.courseId)}"]`)
-                    .forEach((panel) => {
-                      const completedLabel = panel.querySelector("[data-course-completed]");
-                      const totalLabel = panel.querySelector("[data-course-total-label]");
-                      const bar = panel.querySelector("[data-course-bar]");
-                      if (completedLabel) completedLabel.textContent = String(completed);
-                      if (totalLabel) totalLabel.textContent = String(item.total);
-                      if (bar) bar.style.setProperty("--progress", `${percent}%`);
-                    });
-                }
-              };
-
-              const updateOverallProgress = (state) => {
-                const totalElement = document.querySelector("[data-total-lectures]");
-                if (!totalElement) {
-                  return;
-                }
-
-                const total = Number(totalElement.dataset.totalLectures || 0);
-                const completed = Math.min(countCompleted(state), total);
-                const percent = total ? Math.round((completed / total) * 100) : 0;
-                const completedLabel = document.querySelector("[data-overall-completed]");
-                const totalLabel = document.querySelector("[data-overall-total]");
-                const bar = document.querySelector("[data-overall-bar]");
-                if (completedLabel) completedLabel.textContent = String(completed);
-                if (totalLabel) totalLabel.textContent = String(total);
-                if (bar) bar.style.setProperty("--progress", `${percent}%`);
-              };
-
-              const applyState = (state) => {
-                document.querySelectorAll("[data-lesson-key]").forEach((element) => {
-                  const key = element.dataset.lessonKey;
-                  const isComplete = Boolean(state[key]);
-                  element.classList.toggle("is-complete", isComplete);
-                });
-
-                document.querySelectorAll(".completion-toggle[data-lesson-key]").forEach((button) => {
-                  setButtonState(button, Boolean(state[button.dataset.lessonKey]));
-                });
-
-                updateCourseProgress(state);
-                updateOverallProgress(state);
-                document.dispatchEvent(new CustomEvent("whitehat-progress-change"));
-              };
-
-              const bindToggles = (state) => {
-                document.querySelectorAll(".completion-toggle[data-lesson-key]").forEach((button) => {
-                  button.addEventListener("click", () => {
-                    const key = button.dataset.lessonKey;
-                    if (!key) {
-                      return;
-                    }
-                    state[key] = !state[key];
-                    if (!state[key]) {
-                      delete state[key];
-                    }
-                    safeWrite(progressStorageKey, state);
-                    applyState(state);
-                  });
-                });
-              };
-
-              document.addEventListener("DOMContentLoaded", () => {
-                const state = safeRead(progressStorageKey);
-                bindToggles(state);
-                applyState(state);
-              });
-            })();
-            """
-        ).strip()
-        + "\n",
-        encoding="utf-8",
-    )
-
-
 def write_study_tools_script() -> None:
     ASSET_DIR.mkdir(exist_ok=True)
     (ASSET_DIR / "study-tools.js").write_text(
@@ -3998,74 +3702,6 @@ def write_study_tools_script() -> None:
                     setActive(statusButtons, button);
                     apply();
                   });
-                });
-
-                apply();
-              };
-
-              const setupLectureFinder = () => {
-                const root = document.querySelector("[data-lecture-finder]");
-                if (!root) {
-                  return;
-                }
-
-                const input = root.querySelector("[data-lecture-search]");
-                const statusButtons = [...root.querySelectorAll("[data-lecture-status-filter]")];
-                const tagButtons = [...root.querySelectorAll("[data-lecture-tag-filter]")];
-                const countLabel = root.querySelector("[data-lecture-result-count]");
-                const emptyMessage = root.querySelector("[data-lecture-empty]");
-                const lectureCards = [...document.querySelectorAll(".lecture-card[data-lesson-key]")];
-                let activeStatus = "all";
-                let activeTag = "all";
-
-                const apply = () => {
-                  const query = normalize(input?.value);
-                  let visibleCount = 0;
-
-                  lectureCards.forEach((card) => {
-                    const isComplete = card.classList.contains("is-complete");
-                    const matchesQuery = !query || normalize(card.dataset.searchText || card.textContent).includes(query);
-                    const tags = normalize(card.dataset.tags).split("|||");
-                    const matchesTag = activeTag === "all" || tags.includes(activeTag);
-                    const matchesStatus =
-                      activeStatus === "all" ||
-                      (activeStatus === "done" && isComplete) ||
-                      (activeStatus === "remaining" && !isComplete);
-                    const visible = matchesQuery && matchesTag && matchesStatus;
-                    card.hidden = !visible;
-                    card.classList.toggle("is-filtered-out", !visible);
-                    if (visible) visibleCount += 1;
-                  });
-
-                  if (countLabel) {
-                    countLabel.textContent = String(visibleCount);
-                  }
-                  if (emptyMessage) {
-                    emptyMessage.hidden = visibleCount > 0;
-                  }
-                };
-
-                input?.addEventListener("input", apply);
-                statusButtons.forEach((button) => {
-                  button.addEventListener("click", () => {
-                    activeStatus = button.dataset.lectureStatusFilter || "all";
-                    setActive(statusButtons, button);
-                    apply();
-                  });
-                });
-                tagButtons.forEach((button) => {
-                  button.addEventListener("click", () => {
-                    activeTag = button.dataset.lectureTagFilter || "all";
-                    setActive(tagButtons, button);
-                    apply();
-                  });
-                });
-
-                document.addEventListener("whitehat-progress-change", apply);
-                document.addEventListener("click", (event) => {
-                  if (event.target.closest(".completion-toggle")) {
-                    window.setTimeout(apply, 0);
-                  }
                 });
 
                 apply();
@@ -4174,7 +3810,6 @@ def write_study_tools_script() -> None:
 
               const initStudyTools = () => {
                 setupCourseFinder();
-                setupLectureFinder();
                 setupLectureSideGuide();
                 setupLectureControls();
               };
@@ -4196,7 +3831,6 @@ def main() -> None:
     generated_courses = ready_courses()
     write_styles()
     write_code_highlighter()
-    write_study_state_script()
     write_study_tools_script()
     write_public_html(ROOT / "index.html", render_site_index())
     for course in generated_courses:

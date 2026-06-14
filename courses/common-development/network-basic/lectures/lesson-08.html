@@ -6,11 +6,10 @@
   <title>네트워크 기초 1-8 - 소켓 프로그래밍</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="network-basic" data-lesson-id="1-8" data-lesson-key="network-basic:1-8" data-lesson-title="소켓 프로그래밍" data-lesson-label="네트워크 1-8">
+<body data-course-id="network-basic" data-lesson-id="1-8" data-lesson-title="소켓 프로그래밍" data-lesson-label="네트워크 1-8">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>네트워크 1-8 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="network-basic:1-8" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -137,8 +124,8 @@
             <p>마지막 강의는 <strong>socket programming</strong>으로 client/server 애플리케이션을 어떻게 만드는지 소개한다. 우리가 사용하는 대부분의 애플리케이션은 <strong>네트워크</strong>를 거치며, 내부에서는 <strong>TCP</strong> 또는 UDP 기반 소켓을 통해 데이터를 주고받는다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0003.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0003.jpg" alt="소켓 프로그래밍의 이해" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0003.jpg" alt="소켓 프로그래밍의 이해" loading="lazy">
   </a>
   <figcaption>
     <strong>소켓 프로그래밍의 이해</strong>
@@ -160,8 +147,8 @@
             <p><strong>UDP</strong>는 비연결형 <strong>프로토콜</strong>이다. 데이터를 보내기 전에 TCP처럼 handshake로 연결을 설정하지 않는다. Sender는 각 packet에 destination IP와 port를 붙여 보내고, receiver는 수신된 packet에서 보낸 사람의 IP와 port를 추출한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0007.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0007.jpg" alt="UDP socket programming 흐름" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0007.jpg" alt="UDP socket programming 흐름" loading="lazy">
   </a>
   <figcaption>
     <strong>UDP socket programming 흐름</strong>
@@ -190,8 +177,8 @@
             <p>강의 화면의 <strong>UDP</strong> client는 <strong>Python</strong> <code>socket</code> 모듈을 사용한다. <code>serverName</code>에는 server host name 또는 IP가 들어가고, <code>serverPort</code>에는 12000이 들어간다. 그 다음 <code>clientSocket = socket(AF_INET, SOCK_DGRAM)</code>으로 IPv4 기반 UDP socket을 생성한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0011.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0011.jpg" alt="UDPClient.py 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0011.jpg" alt="UDPClient.py 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>UDPClient.py 코드</strong>
@@ -230,8 +217,8 @@ clientSocket.close()</code></pre>
             <p><strong>UDP</strong> server도 마찬가지로 <code>socket(AF_INET, SOCK_DGRAM)</code>으로 UDP <strong>socket</strong>을 만든다. Server는 client가 찾아올 수 있도록 특정 port를 socket에 묶어야 하므로 <code>serverSocket.bind(('', serverPort))</code>를 호출한다. 강의 예시는 12000번 port를 사용한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0015.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0015.jpg" alt="UDPServer.py 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0015.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0015.jpg" alt="UDPServer.py 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>UDPServer.py 코드</strong>
@@ -269,8 +256,8 @@ while True:
             <p><strong>TCP</strong>는 <strong>UDP</strong>와 달리 데이터를 주고받기 전에 연결이 수립되어야 한다. Server에는 client의 연결 요청을 기다리는 <strong>welcome socket</strong>이 열려 있고, client는 server IP와 port로 “연결하고 싶다”고 요청한다. 이 과정에서 TCP 3-way handshake가 수행된다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0019.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0019.jpg" alt="TCP socket programming 개념" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0019.jpg" alt="TCP socket programming 개념" loading="lazy">
   </a>
   <figcaption>
     <strong>TCP socket programming 개념</strong>
@@ -281,8 +268,8 @@ while True:
                 <p>연결이 수립되면 server는 welcome <strong>socket</strong>과 별개의 <strong>connection socket</strong>을 생성한다. 실제 data 송수신은 이 connection socket을 통해 이루어진다. Welcome socket은 계속 열려 있으므로 server는 다음 client의 연결 요청도 받을 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0023.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0023.jpg" alt="TCP socket programming 흐름" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0023.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0023.jpg" alt="TCP socket programming 흐름" loading="lazy">
   </a>
   <figcaption>
     <strong>TCP socket programming 흐름</strong>
@@ -313,8 +300,8 @@ while True:
             <p><strong>TCP</strong> client는 <strong>UDP</strong> client와 마찬가지로 server name과 server port를 지정하지만, socket type이 다르다. <code>socket(AF_INET, SOCK_STREAM)</code>은 IPv4 기반 TCP socket을 의미한다. UDP의 <code>SOCK_DGRAM</code>과 달리 TCP는 <code>SOCK_STREAM</code>을 사용한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0025.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0025.jpg" alt="TCPClient.py 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0025.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0025.jpg" alt="TCPClient.py 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>TCPClient.py 코드</strong>
@@ -353,8 +340,8 @@ clientSocket.close() # 연결 종료</code></pre>
             <p><strong>TCP</strong> server는 먼저 <code>serverSocket = socket(AF_INET, SOCK_STREAM)</code>으로 TCP <strong>socket</strong>을 만든다. 그 다음 <code>bind</code>로 12000번 port에 server socket을 묶고, <code>listen(1)</code>으로 client가 문을 두드리기를 기다린다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0027.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0027.jpg" alt="TCPServer.py 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0027.jpg" alt="TCPServer.py 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>TCPServer.py 코드</strong>

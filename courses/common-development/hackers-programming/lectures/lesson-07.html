@@ -6,11 +6,10 @@
   <title>해커의 프로그래밍 1-7 - 가상자산 믹싱과 거래 그래프</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="hackers-programming" data-lesson-id="1-7" data-lesson-key="hackers-programming:1-7" data-lesson-title="가상자산 믹싱과 거래 그래프" data-lesson-label="해커 프로그래밍 1-7">
+<body data-course-id="hackers-programming" data-lesson-id="1-7" data-lesson-title="가상자산 믹싱과 거래 그래프" data-lesson-label="해커 프로그래밍 1-7">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>해커 프로그래밍 1-7 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="hackers-programming:1-7" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -118,8 +105,8 @@
                 <p><strong>블록체인</strong>은 거래 내역이 공개된다는 특징이 있다. Etherscan 같은 사이트에서는 어떤 지갑에서 어떤 지갑으로 얼마만큼의 코인이나 토큰이 이동하는지 실시간으로 확인할 수 있다. 그래서 “거래가 모두 보이는데 어떻게 숨길 수 있나?”라는 의문이 생긴다. <strong>믹싱</strong>의 핵심은 거래를 숨기는 것이 아니라, 실제 의미 있는 흐름이 무엇인지 알기 어렵게 만드는 것이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0005.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0005.jpg" alt="블록체인 거래 공개와 Etherscan" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0005.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0005.jpg" alt="블록체인 거래 공개와 Etherscan" loading="lazy">
   </a>
   <figcaption>
     <strong>블록체인 거래 공개와 Etherscan</strong>
@@ -130,8 +117,8 @@
                 <p>예를 들어 A가 B에게 1000원을 보내면 누구나 흐름을 이해할 수 있다. 하지만 A가 여러 노드로 나누어 보내고, 중간 노드들이 서로 주고받고, 최종적으로 B에게 비슷한 금액이 모이면 겉보기 흐름은 매우 복잡해진다. 결과적으로 A는 1000원이 줄고 B는 1000원이 늘며, 중간 노드들은 들어온 만큼 다시 내보내 실질 변화가 없을 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0009.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0009.jpg" alt="단순 송금이 복잡한 거래망으로 나뉘는 방식" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0009.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0009.jpg" alt="단순 송금이 복잡한 거래망으로 나뉘는 방식" loading="lazy">
   </a>
   <figcaption>
     <strong>단순 송금이 복잡한 거래망으로 나뉘는 방식</strong>
@@ -159,8 +146,8 @@
                 </table>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0017.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0017.jpg" alt="믹싱 노드 그룹화" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0017.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0017.jpg" alt="믹싱 노드 그룹화" loading="lazy">
   </a>
   <figcaption>
     <strong>믹싱 노드 그룹화</strong>
@@ -181,8 +168,8 @@
             <p>거래 흐름은 <strong>그래프</strong>로 표현하기 좋다. 그래프는 노드와 링크, 즉 정점과 간선으로 연결된 데이터 구조다. SNS 친구 관계, 도시 간 도로망, <strong>네트워크</strong> 인프라처럼 대상과 관계가 있는 문제를 표현할 때 사용한다. 이 강의에서는 지갑 또는 사람을 노드로 보고, 송금 관계를 방향 있는 간선으로 본다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0029.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0029.jpg" alt="그래프 구조: 정점과 간선" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0029.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0029.jpg" alt="그래프 구조: 정점과 간선" loading="lazy">
   </a>
   <figcaption>
     <strong>그래프 구조: 정점과 간선</strong>
@@ -203,8 +190,8 @@
             <p>코드 <strong>출력</strong>만으로는 복잡한 <strong>그래프</strong>를 이해하기 어렵다. 그래서 강의에서는 Graphviz를 소개한다. Graphviz는 노드와 간선을 텍스트 문법으로 적으면 그래프로 그려 주는 범용 시각화 도구다. 설치해서 사용할 수도 있고, 온라인 편집기에서 바로 확인할 수도 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0037.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0037.jpg" alt="Graphviz를 이용한 그래프 시각화" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0037.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0037.jpg" alt="Graphviz를 이용한 그래프 시각화" loading="lazy">
   </a>
   <figcaption>
     <strong>Graphviz를 이용한 그래프 시각화</strong>
@@ -225,8 +212,8 @@
             <p>실습 설정은 범죄 조직 구성원들의 송금 내역을 확보했고, 이를 통해 조직도를 재구성한다는 것이다. 파일에는 송금자, 수취인, 송금액이 한 줄에 하나씩 들어 있다. 조직 특성상 아래 사람이 위 사람에게 수익금을 상납하는 구조를 알고 있다고 가정한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0041.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0041.jpg" alt="실습 미션: 거래 내역으로 조직도 재구성" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0041.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0041.jpg" alt="실습 미션: 거래 내역으로 조직도 재구성" loading="lazy">
       </a>
       <figcaption>
         <strong>실습 미션: 거래 내역으로 조직도 재구성</strong>
@@ -238,8 +225,8 @@
                     <p>먼저 파일을 읽고 쉼표로 나눈 뒤 송금액은 정수로 바꾼다. 그다음 <code>G[src][dst]</code>에 송금액을 누적한다. <code>src</code>가 바깥 딕셔너리에 없으면 <code>G[src] = {}</code>로 새 딕셔너리를 만들고, <code>dst</code>가 안쪽 딕셔너리에 없으면 <code>G[src][dst] = 0</code>으로 시작한다. 같은 방향 거래가 여러 번 나오면 <code>G[src][dst] += amount</code>로 누적된다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0064.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0064.jpg" alt="거래 누적 딕셔너리 구성" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0064.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0064.jpg" alt="거래 누적 딕셔너리 구성" loading="lazy">
       </a>
       <figcaption>
         <strong>거래 누적 딕셔너리 구성</strong>
@@ -268,8 +255,8 @@ for src in G:
         print(f&quot;{src} -&gt; {dst} [{G[src][dst]}]&quot;)</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0069.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0069.jpg" alt="누적 그래프 원본 출력" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0069.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0069.jpg" alt="누적 그래프 원본 출력" loading="lazy">
       </a>
       <figcaption>
         <strong>누적 그래프 원본 출력</strong>
@@ -280,8 +267,8 @@ for src in G:
                     <p>이 단계의 <strong>출력</strong>은 아직 정리되지 않은 원본 그래프다. 예를 들어 A가 B에게 보낸 금액과 B가 A에게 다시 보낸 금액이 따로 남아 있다. 조직도를 보려면 같은 두 사람 사이의 반대 방향 거래를 서로 상쇄해야 한다. 단순히 <code>G[dst][src]</code>를 바로 읽으면 도착 노드가 바깥 딕셔너리에 없을 때 <code>KeyError</code>가 발생한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0077.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0077.jpg" alt="반대 방향 거래 조회와 KeyError" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0077.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0077.jpg" alt="반대 방향 거래 조회와 KeyError" loading="lazy">
       </a>
       <figcaption>
         <strong>반대 방향 거래 조회와 KeyError</strong>
@@ -298,8 +285,8 @@ for src in G:
             print(f&quot;{src} -&gt; {dst} [{amount}]&quot;)</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0079.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0079.jpg" alt="순흐름만 남긴 거래 출력" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0079.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0079.jpg" alt="순흐름만 남긴 거래 출력" loading="lazy">
       </a>
       <figcaption>
         <strong>순흐름만 남긴 거래 출력</strong>
@@ -333,8 +320,8 @@ for src in G:
 print(&quot;}&quot;)</code></pre>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0081.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0081.jpg" alt="정리된 순흐름 그래프" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0081.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0081.jpg" alt="정리된 순흐름 그래프" loading="lazy">
       </a>
       <figcaption>
         <strong>정리된 순흐름 그래프</strong>

@@ -6,11 +6,10 @@
   <title>네트워크 기초 1-5 - 트랜스포트 계층</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="network-basic" data-lesson-id="1-5" data-lesson-key="network-basic:1-5" data-lesson-title="트랜스포트 계층" data-lesson-label="네트워크 1-5">
+<body data-course-id="network-basic" data-lesson-id="1-5" data-lesson-title="트랜스포트 계층" data-lesson-label="네트워크 1-5">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>네트워크 1-5 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="network-basic:1-5" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -142,8 +129,8 @@
             <p>5강은 앞 강의의 계층 복습에서 시작한다. <strong>데이터 링크 계층</strong>은 하나의 로컬 <strong>네트워크</strong> 안에서 frame을 이웃 네트워크 요소로 옮기는 역할을 했고, 네트워크 계층은 transport segment를 datagram으로 캡슐화해 한 host에서 다른 host까지 전달하고 route를 선택하는 역할을 했다. 전송 계층은 이 네트워크 계층 위에서 동작하며, 실제 응용 프로그램이 만든 메시지를 프로세스 단위로 전달하는 계층이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0007.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0007.jpg" alt="Transport Layer 개요" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0007.jpg" alt="Transport Layer 개요" loading="lazy">
   </a>
   <figcaption>
     <strong>Transport Layer 개요</strong>
@@ -165,8 +152,8 @@
             <p>전송 계층을 이해할 때 가장 중요한 표현은 <strong>process-to-process logical communication</strong>이다. <strong>네트워크 계층</strong>은 host-to-host logical communication을 제공한다. 즉, 호스트 A에서 호스트 B까지 <strong>패킷</strong>이 갈 수 있게 해 준다. 하지만 한 호스트 안에는 브라우저, 게임 클라이언트, 백그라운드 서비스, 서버 데몬처럼 여러 프로세스가 동시에 실행된다. 전송 계층은 그중 어떤 프로세스와 어떤 프로세스가 통신하는지를 구분해 준다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0011.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0011.jpg" alt="프로세스 간 논리적 통신" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0011.jpg" alt="프로세스 간 논리적 통신" loading="lazy">
   </a>
   <figcaption>
     <strong>프로세스 간 논리적 통신</strong>
@@ -188,8 +175,8 @@
             <p>목적지 호스트에 segment가 도착하면, 전송 계층은 <strong>네트워크 계층</strong>으로부터 그 segment를 받아 올바른 socket으로 전달한다. socket은 application process와 전송 계층 사이에 있는 통신 출입구다. 강사는 socket을 애플리케이션과 transport/network layer 사이의 중간 인터페이스처럼 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0019.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0019.jpg" alt="다중화와 역다중화" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0019.jpg" alt="다중화와 역다중화" loading="lazy">
   </a>
   <figcaption>
     <strong>다중화와 역다중화</strong>
@@ -220,8 +207,8 @@
             <p><strong>UDP, User Datagram Protocol</strong>은 간소화된 전송 계층 <strong>프로토콜</strong>이다. 강의에서는 <strong>UDP</strong>를 <strong>unreliable</strong>, <strong>connectionless</strong> protocol이라고 정리한다. 즉, TCP처럼 연결을 먼저 맺지 않고, 데이터를 보낸 뒤 수신 확인·재전송·순서 보장을 전송 계층이 책임지지 않는다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0023.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0023.jpg" alt="UDP와 UDP header" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0023.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0023.jpg" alt="UDP와 UDP header" loading="lazy">
   </a>
   <figcaption>
     <strong>UDP와 UDP header</strong>
@@ -242,8 +229,8 @@
                 <p>UDP는 실시간성이 중요한 애플리케이션에서 자주 언급된다. 스트리밍, 음성·영상 통화, 게임처럼 조금의 손실보다 지연이 더 치명적인 경우에는 <strong>TCP</strong>식 재전송과 순서 보장이 오히려 불리할 수 있다. 이런 경우 애플리케이션이 필요한 보정만 직접 구현하고, 전송 계층은 가볍게 가져가는 설계가 가능하다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0027.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0027.jpg" alt="UDP의 장점과 단점" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0027.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0027.jpg" alt="UDP의 장점과 단점" loading="lazy">
   </a>
   <figcaption>
     <strong>UDP의 장점과 단점</strong>
@@ -265,8 +252,8 @@
             <p><strong>TCP, Transmission Control Protocol</strong>은 <strong>UDP</strong>와 반대로 <strong>신뢰성</strong> 있는 데이터 전송과 연결 지향형 서비스를 제공한다. 강사는 TCP가 수신 여부 확인, 재전송, packet 순서 유지에 sequence number와 acknowledgement number를 사용한다고 설명한다. 데이터를 그냥 던지는 것이 아니라, 상대가 받았는지 확인하고 필요하면 다시 보내며, byte stream의 순서를 유지한다는 점이 핵심이다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0035.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0035.jpg" alt="TCP와 TCP header" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0035.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0035.jpg" alt="TCP와 TCP header" loading="lazy">
   </a>
   <figcaption>
     <strong>TCP와 TCP header</strong>
@@ -301,8 +288,8 @@
             <p>전송해야 할 application data가 크면 한 <strong>TCP</strong> segment에 모두 담을 수 없다. TCP는 데이터를 여러 segment로 나누는데, 이때 한 segment의 payload 영역에 담을 수 있는 최대 application data 크기를 <strong>MSS, Maximum Segment Size</strong>라고 한다. 슬라이드의 표기처럼 <strong>MSS</strong>는 header를 포함한 TCP segment 전체 크기가 아니라, application data에 대한 최대 크기다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0043.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0043.jpg" alt="MSS와 MTU" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0043.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0043.jpg" alt="MSS와 MTU" loading="lazy">
   </a>
   <figcaption>
     <strong>MSS와 MTU</strong>
@@ -324,8 +311,8 @@
             <p><strong>TCP</strong>는 byte stream을 기준으로 데이터를 관리한다. <strong>Sequence number</strong>는 어떤 segment에 들어 있는 첫 번째 byte가 전체 byte stream에서 몇 번째 위치인지 나타낸다. 예를 들어 데이터 스트림이 500,000byte이고 MSS를 1,000byte로 가정하면, segment는 총 500개로 구성된다. 첫 번째 segment는 0번 byte부터, 두 번째 segment는 1,000번 byte부터 시작하는 식으로 번호가 붙는다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0047.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0047.jpg" alt="Sequence number와 acknowledgement number" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0047.jpg" alt="Sequence number와 acknowledgement number" loading="lazy">
   </a>
   <figcaption>
     <strong>Sequence number와 acknowledgement number</strong>
@@ -348,8 +335,8 @@
             <p><strong>TCP</strong>가 제공하는 <strong>신뢰성</strong> 있는 데이터 전송은 “중복이 없고 순서가 유지되는 것”을 보장하는 방향으로 설명된다. 이를 위해 TCP는 ACK, sequence number, 재전송을 함께 사용한다. segment를 보냈는데 일정 시간 안에 ACK를 받지 못하면, TCP는 해당 segment가 손실되었을 가능성이 있다고 판단하고 다시 전송할 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0059.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0059.jpg" alt="신뢰성, retransmission timeout, RTT" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0059.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0059.jpg" alt="신뢰성, retransmission timeout, RTT" loading="lazy">
   </a>
   <figcaption>
     <strong>신뢰성, retransmission timeout, RTT</strong>
@@ -371,8 +358,8 @@
             <p><strong>TCP</strong>는 connection-oriented protocol이기 때문에 데이터를 본격적으로 보내기 전에 연결을 먼저 설정한다. 이 연결 시작 과정이 <strong>3-way handshake</strong>다. 강의에서는 client host와 server host 사이의 세 메시지를 순서대로 설명한다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0063.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0063.jpg" alt="TCP 3-way handshake" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0063.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0063.jpg" alt="TCP 3-way handshake" loading="lazy">
   </a>
   <figcaption>
     <strong>TCP 3-way handshake</strong>
@@ -388,8 +375,8 @@
                 <p>연결을 닫을 때는 <strong>4-way termination</strong>, 또는 4-way handshake로 종료한다. 시작과 달리 종료는 두 <strong>프로세스</strong> 중 어느 쪽이든 먼저 시작할 수 있다. 한쪽이 더 이상 보낼 데이터가 없다는 뜻으로 FIN을 보내고, 상대가 ACK로 확인한 뒤, 상대도 FIN을 보내고 마지막 ACK를 받으면 연결이 닫힌다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0067.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0067.jpg" alt="TCP 4-way termination" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0067.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0067.jpg" alt="TCP 4-way termination" loading="lazy">
   </a>
   <figcaption>
     <strong>TCP 4-way termination</strong>
@@ -416,8 +403,8 @@
             <p>마지막 슬라이드는 <strong>TCP</strong>와 <strong>UDP</strong>의 차이를 한 장으로 비교한다. 강의는 이 차이를 정확히 아는 것이 네트워크 프로그래밍과 보안 취약점 분석에서 매우 중요하다고 강조한다. 같은 “데이터 전송”처럼 보여도, TCP와 UDP는 연결을 맺는 방식, 상태를 저장하는 방식, 순서와 신뢰성을 보장하는 방식이 전혀 다르다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0070.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0070.jpg" alt="TCP와 UDP의 차이" loading="lazy">
+  <a href="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0070.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/network-basic/네트워크 기초-05-트랜스포트-계층/네트워크 기초-05-트랜스포트-계층 - 0070.jpg" alt="TCP와 UDP의 차이" loading="lazy">
   </a>
   <figcaption>
     <strong>TCP와 UDP의 차이</strong>

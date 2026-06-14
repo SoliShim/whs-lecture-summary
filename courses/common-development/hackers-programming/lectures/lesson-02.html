@@ -6,11 +6,10 @@
   <title>해커의 프로그래밍 1-2 - 파이썬 환경과 Base64 실습</title>
   <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
-  <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
 </head>
 
-<body data-course-id="hackers-programming" data-lesson-id="1-2" data-lesson-key="hackers-programming:1-2" data-lesson-title="파이썬 환경과 Base64 실습" data-lesson-label="해커 프로그래밍 1-2">
+<body data-course-id="hackers-programming" data-lesson-id="1-2" data-lesson-title="파이썬 환경과 Base64 실습" data-lesson-label="해커 프로그래밍 1-2">
   <header class="site-header lecture-header">
     <nav class="top-nav">
 	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
@@ -33,18 +32,6 @@
   </header>
 
   <main class="lecture-main">
-    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
-      <div>
-        <span class="study-card-kicker">현재 강의</span>
-        <strong>해커 프로그래밍 1-2 완료 상태</strong>
-        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
-      </div>
-      <button class="completion-toggle large" type="button" data-lesson-key="hackers-programming:1-2" aria-pressed="false">
-        <span class="completion-dot" aria-hidden="true"></span>
-        <span class="completion-label">완료 표시</span>
-      </button>
-    </section>
-
     
     <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
       <div class="section-jump-field">
@@ -139,8 +126,8 @@
                     </table>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0011.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0011.jpg" alt="VS Code Code Runner 확장 설치" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0011.jpg" alt="VS Code Code Runner 확장 설치" loading="lazy">
       </a>
       <figcaption>
         <strong>VS Code Code Runner 확장 설치</strong>
@@ -151,8 +138,8 @@
                     <p>설정이 끝나면 바탕화면에 <code>test.py</code>를 만들고 숫자를 입력받아 제곱을 <strong>출력</strong>하는 간단한 코드를 실행한다. Windows에서는 <code>Ctrl + Alt + N</code>, macOS에서는 <code>Command + Option + N</code>으로 실행할 수 있다. 실행 후 터미널을 클릭하고 숫자를 입력했을 때 코드가 그 값을 받아 제곱을 출력하면 환경 설정이 완료된 것이다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0016.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0016.jpg" alt="test.py 실행과 터미널 입력 확인" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0016.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0016.jpg" alt="test.py 실행과 터미널 입력 확인" loading="lazy">
       </a>
       <figcaption>
         <strong>test.py 실행과 터미널 입력 확인</strong>
@@ -175,8 +162,8 @@ print(number ** 2)</code></pre>
                 <p>컴퓨터의 한 <strong>바이트</strong>는 <code>0x00</code>부터 <code>0xFF</code>까지 256가지 값을 가질 수 있다. 하지만 사람이 화면에 그대로 <strong>출력</strong>해서 복사·붙여넣기할 수 있는 ASCII 문자는 훨씬 적다. 모든 바이트 값을 안전하게 문자 형태로 표현하려면 출력 가능한 문자 집합으로 바꾸는 방식이 필요하다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0021.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0021.jpg" alt="Base64 인코딩 원리" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0021.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0021.jpg" alt="Base64 인코딩 원리" loading="lazy">
   </a>
   <figcaption>
     <strong>Base64 인코딩 원리</strong>
@@ -206,8 +193,8 @@ print(number ** 2)</code></pre>
             <p>CyberChef는 영국 정보기관 GCHQ가 공개한 오픈소스 분석 도구다. 강의에서는 “사이버 스위스 아미 나이프”처럼 다양한 변환과 분석을 한 화면에서 조합할 수 있는 도구로 소개한다. <strong>Base64</strong> 인코딩·디코딩, Hex 변환, <strong>AES</strong>·DES 같은 암호화, 해시, HTTP 요청, 문자열 처리 등 많은 기능을 레시피처럼 끌어다 쓸 수 있다.</p>
 
 <figure class="screen-figure">
-  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0036.jpg" target="_blank" rel="noopener">
-    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0036.jpg" alt="CyberChef 화면 구성" loading="lazy">
+  <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0036.jpg" target="_blank" rel="noopener">
+    <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0036.jpg" alt="CyberChef 화면 구성" loading="lazy">
   </a>
   <figcaption>
     <strong>CyberChef 화면 구성</strong>
@@ -230,8 +217,8 @@ print(number ** 2)</code></pre>
                     <p>디코딩 결과 앞에 <code>b</code>가 붙어 보이면 그것은 문자열이 아니라 <code>bytes</code> 타입이라는 뜻이다. <strong>바이트</strong>는 일반 문자뿐 아니라 널 바이트, 공백 문자, 출력되지 않는 데이터까지 포함하는 <strong>자료형</strong>이다. 사람이 읽는 문자열로 다루려면 <code>.decode()</code>를 호출해 <code>str</code> 타입으로 바꾼다. 마지막으로 <code>startswith("WHS")</code> 조건을 걸어 원하는 값만 출력한다.</p>
 
     <figure class="screen-figure">
-      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0065.jpg" target="_blank" rel="noopener">
-        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0065.jpg" alt="Base64 자동 디코딩 최종 코드" loading="lazy">
+      <a href="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0065.jpg" target="_blank" rel="noopener">
+        <img src="../../../../screenshots/common-development/hackers-programming/해커의 프로그래밍-02-파이썬-환경과-Base64-실습/해커의 프로그래밍-02-파이썬-환경과-Base64-실습 - 0065.jpg" alt="Base64 자동 디코딩 최종 코드" loading="lazy">
       </a>
       <figcaption>
         <strong>Base64 자동 디코딩 최종 코드</strong>
