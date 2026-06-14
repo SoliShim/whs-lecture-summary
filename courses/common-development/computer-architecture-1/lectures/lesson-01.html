@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>컴퓨터 구조 I 1-1 - 강의 목차와 학습 방향</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -110,7 +110,19 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 이현재 멘토의 소개로 시작한다. 멘토는 알렙이라는 회사에서 약 3년 동안 보안 제품을 개발하고 있다고 설명한다. 이 과목은 <strong>컴퓨터 구조</strong>를 아주 깊은 전공 과목처럼 끝까지 파고드는 수업이라기보다, 앞으로 개발이나 보안을 배울 때 반드시 마주치는 기본 개념을 학생 눈높이에 맞춰 넓게 훑는 수업이다.</p>
-<p>멘토는 “편하게 들어도 된다”고 강조한다. 다양한 배경의 학생들이 들을 수 있기 때문에 너무 세부적인 하드웨어 회로 이론으로 들어가기보다는, 최소한 알고 있어야 할 핵심 개념을 골라 설명하겠다는 취지다. 부족하거나 더 궁금한 부분은 이후 멘토에게 질문하면 된다고 안내한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-01-강의-목차/컴퓨터 구조 1-01-강의-목차 - 0001.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-01-강의-목차/컴퓨터 구조 1-01-강의-목차 - 0001.jpg" alt="컴퓨터 구조 I 강의 시작" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>컴퓨터 구조 I 강의 시작</strong>
+    <span>이현재 멘토가 WhiteHat School 컴퓨터 구조 기초 과정을 시작하며, 이 과목이 보안·개발 학습을 위한 기초 구조 감각을 만드는 수업임을 안내한다.</span>
+  </figcaption>
+</figure>
+
+                <p>멘토는 “편하게 들어도 된다”고 강조한다. 다양한 배경의 학생들이 들을 수 있기 때문에 너무 세부적인 하드웨어 회로 이론으로 들어가기보다는, 최소한 알고 있어야 할 핵심 개념을 골라 설명하겠다는 취지다. 부족하거나 더 궁금한 부분은 이후 멘토에게 질문하면 된다고 안내한다.</p>
+                <p>따라서 이 강의록을 읽을 때도 각 부품의 세부 회로를 모두 외우려 하기보다, 앞으로 시스템 <strong>해킹</strong>, 리버싱, <strong>운영체제</strong>, C 언어를 공부할 때 계속 만날 단어들을 먼저 익숙하게 만드는 데 초점을 두면 된다.</p>
           </div>
         </details>
         
@@ -121,16 +133,27 @@
           </summary>
           <div class="note-section-body">
             <p><strong>컴퓨터 구조</strong> I는 다섯 덩어리로 진행된다. 처음에는 컴퓨터가 무엇인지부터 시작하고, 그 다음 컴퓨터가 데이터를 어떻게 표현하는지, <strong>CPU</strong>가 명령을 어떻게 처리하는지, 메모리가 어떤 역할을 하는지, 마지막으로 입출력 시스템이 컴퓨터와 외부 세계를 어떻게 연결하는지를 다룬다.</p>
-<table>
-  <thead><tr><th>순서</th><th>주제</th><th>강의에서 잡는 핵심 질문</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>컴퓨터란 무엇인가</td><td>컴퓨터를 단순한 기계가 아니라 명령에 따라 작업하는 전자 장치로 이해한다.</td></tr>
-    <tr><td>2</td><td>데이터 표현</td><td>0과 1, <strong>비트</strong>와 <strong>바이트</strong>, 정수와 실수, 오버플로우를 이해한다.</td></tr>
-    <tr><td>3</td><td>CPU</td><td>프로그램이 명령어가 되고 CPU가 Fetch, Decode, Execute를 반복하는 흐름을 이해한다.</td></tr>
-    <tr><td>4</td><td><strong>메모리</strong></td><td>프로그램 <strong>실행</strong> 중 데이터와 명령어가 저장되고 이동하는 방식을 이해한다.</td></tr>
-    <tr><td>5</td><td><strong>입출력</strong> 시스템</td><td>키보드, 마우스, USB, <strong>버스</strong>, <strong>포트</strong>, 인터럽트처럼 외부와 연결되는 구조를 이해한다.</td></tr>
-  </tbody>
-</table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-01-강의-목차/컴퓨터 구조 1-01-강의-목차 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-01-강의-목차/컴퓨터 구조 1-01-강의-목차 - 0003.jpg" alt="컴퓨터 구조 I 강의 목차" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>컴퓨터 구조 I 강의 목차</strong>
+    <span>강의는 컴퓨터 시스템 개요, 데이터 표현, 중앙처리장치(CPU), 메모리, 입출력 시스템의 다섯 주제로 구성된다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>순서</th><th>주제</th><th>강의에서 잡는 핵심 질문</th></tr></thead>
+                  <tbody>
+                    <tr><td>1</td><td>컴퓨터란 무엇인가</td><td>컴퓨터를 단순한 기계가 아니라 명령에 따라 작업하는 전자 장치로 이해한다.</td></tr>
+                    <tr><td>2</td><td>데이터 표현</td><td>0과 1, <strong>비트</strong>와 <strong>바이트</strong>, 정수와 실수, 오버플로우를 이해한다.</td></tr>
+                    <tr><td>3</td><td>CPU</td><td>프로그램이 명령어가 되고 CPU가 Fetch, Decode, Execute를 반복하는 흐름을 이해한다.</td></tr>
+                    <tr><td>4</td><td><strong>메모리</strong></td><td>프로그램 <strong>실행</strong> 중 데이터와 명령어가 저장되고 이동하는 방식을 이해한다.</td></tr>
+                    <tr><td>5</td><td><strong>입출력</strong> 시스템</td><td>키보드, 마우스, USB, <strong>버스</strong>, <strong>포트</strong>, 인터럽트처럼 외부와 연결되는 구조를 이해한다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -171,6 +194,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>컴퓨터 구조</strong> I에서 다루는 다섯 주제를 순서대로 말할 수 있는가?</li><li>이 강의가 깊은 회로 이론보다 기초 개념의 큰 그림을 잡는 수업이라는 점을 이해했는가?</li><li><strong>CPU</strong>, <strong>메모리</strong>, 입출력 장치가 이후 보안·개발 학습에서 왜 반복적으로 등장하는지 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

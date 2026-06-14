@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>화이트햇 강의 정리</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css?v=20260613-hero-kicker">
   <script src="assets/code-highlight.js" defer></script>
   <script src="assets/study-state.js" defer></script>
   <script src="assets/study-tools.js" defer></script>
@@ -14,119 +14,23 @@
   <header class="site-header">
     <nav class="top-nav">
       <a class="brand" href="index.html">화이트햇 강의 정리</a>
-      <a href="#tracks">트랙</a>
       <a href="#courses">과목</a>
     </nav>
     <section class="index-hero">
       <div>
-        <p class="small-label">이거 언제 다 듣지?</p>
+        <p class="small-label hero-kicker">이거 언제 다 듣지? 혹시 시간 젠슨 황이세요? 아니라면 이 노트를 보십쇼.</p>
         <h1>화이트햇 강의 요약 노트</h1>
         <p class="lead">강의마다 핵심만 뽑아 정리했습니다. 제가 한건 아니고 AI가요. 화이트햇 4기 화이팅!</p>
         <div class="hero-actions">
-          <a class="button primary" href="#tracks">트랙 보기</a>
-          <a class="button secondary" href="courses/common-development/programming-basics-c/index.html">프로그래밍 기초(C) 열기</a><a class="button secondary" href="courses/common-development/computer-architecture-1/index.html">컴퓨터 구조 I 열기</a><a class="button secondary" href="courses/common-development/os-basic/index.html">운영체제 기초 열기</a><a class="button secondary" href="courses/common-development/network-basic/index.html">네트워크 기초 열기</a><a class="button secondary" href="courses/common-development/cryptography-basic/index.html">암호학 기초 열기</a><a class="button secondary" href="courses/common-development/ethics-cyber-security/index.html">정보보안윤리 / 사이버 안보 열기</a><a class="button secondary" href="courses/common-development/latest-security-trend/index.html">최신 보안 동향 열기</a><a class="button secondary" href="courses/common-development/hackers-programming/index.html">해커의 프로그래밍 열기</a><a class="button secondary" href="courses/common-development/secure-coding/index.html">시큐어코딩 열기</a>
+          <a class="button primary" href="#courses">과목 보기</a>
+          <a class="button secondary" href="courses/common-development/programming-basics-c/index.html">프로그래밍 기초(C) 열기</a><a class="button secondary" href="courses/common-development/computer-architecture-1/index.html">컴퓨터 구조 I 열기</a><a class="button secondary" href="courses/common-development/os-basic/index.html">운영체제 기초 열기</a><a class="button secondary" href="courses/common-development/network-basic/index.html">네트워크 기초 열기</a><a class="button secondary" href="courses/common-development/cryptography-basic/index.html">암호학 기초 열기</a><a class="button secondary" href="courses/common-development/ethics-cyber-security/index.html">정보보안윤리 / 사이버 안보 열기</a><a class="button secondary" href="courses/common-development/latest-security-trend/index.html">최신 보안 동향 열기</a><a class="button secondary" href="courses/common-development/hackers-programming/index.html">해커의 프로그래밍 열기</a><a class="button secondary" href="courses/common-development/secure-coding/index.html">시큐어코딩 열기</a><a class="button secondary" href="courses/common-development/modern-web-dev/index.html">모던 웹 개발 및 보안 열기</a>
         </div>
       </div>
-      <aside class="hero-panel">
-        <div class="panel-stat"><strong>4</strong><span>트랙</span></div>
-        <div class="panel-stat"><strong>10</strong><span>등록 과목</span></div>
-        <div class="panel-stat"><strong>72</strong><span>강의</span></div>
-        <div class="panel-stat"><strong>314</strong><span>복습 질문</span></div>
-      </aside>
     </section>
   </header>
 
   <main>
-    <section class="content-wrap student-dashboard" aria-label="학습 시작 가이드">
-      <article class="study-card study-card-strong">
-        <span class="study-card-kicker">오늘의 시작</span>
-        <h2>한 번에 다 보지 말고, 과목 하나만 끝까지 훑기</h2>
-        <p>강의를 실제로 듣는 흐름처럼 과목을 먼저 고르고, 강의 목록에서 순서대로 들어가며 마지막에 복습 질문으로 확인한다.</p>
-        <div class="overall-progress" data-total-lectures="72">
-          <span>내 진행률</span>
-          <strong><span data-overall-completed>0</span>/<span data-overall-total>72</span></strong>
-          <div class="progress-track"><i data-overall-bar></i></div>
-        </div>
-        <a class="button primary" href="#courses">과목 고르기</a>
-      </article>
-      <article class="study-card">
-        <span class="study-step">01</span>
-        <h3>강의 목록</h3>
-        <p>제목과 태그로 오늘 들을 강의를 빠르게 고른다.</p>
-      </article>
-      <article class="study-card">
-        <span class="study-step">02</span>
-        <h3>상세 정리</h3>
-        <p>개념 설명, 표, 예시 코드를 강의 순서대로 읽는다.</p>
-      </article>
-      <article class="study-card">
-        <span class="study-step">03</span>
-        <h3>복습 체크</h3>
-        <p>질문에 답할 수 있는지 확인하고, 필요하면 강의 원문으로 되돌아간다.</p>
-      </article>
-    </section>
-
-    <section class="content-wrap finder-panel site-finder" data-course-finder aria-label="과목 검색">
-      <div class="finder-copy">
-        <span class="study-card-kicker">빠른 탐색</span>
-        <h2>지금 필요한 과목 바로 찾기</h2>
-        <p>과목 이름, 주제, 키워드로 검색하고 정리된 과목만 따로 볼 수 있다.</p>
-      </div>
-      <div class="finder-controls">
-        <label class="search-box">
-          <span>과목 검색</span>
-          <input type="search" data-course-search placeholder="예: 네트워크, 암호학, OWASP">
-        </label>
-        <div class="filter-row" role="group" aria-label="과목 상태 필터">
-          <button class="filter-chip is-active" type="button" data-course-status-filter="all">전체</button>
-          <button class="filter-chip" type="button" data-course-status-filter="ready">정리 완료</button>
-          <button class="filter-chip" type="button" data-course-status-filter="pending">준비 예정</button>
-        </div>
-        <p class="finder-result"><strong data-course-result-count>10</strong>개 과목 표시 중</p>
-        <p class="finder-empty" data-course-empty hidden>조건에 맞는 과목이 없다. 검색어를 줄이거나 전체로 바꿔 본다.</p>
-      </div>
-    </section>
-
-    <section id="tracks" class="content-wrap track-grid-section">
-      <h2>전체 트랙</h2>
-      <p class="section-intro">화이트햇 과정의 주요 학습 범위를 트랙별로 나누고, 각 과목의 강의 노트를 한곳에서 찾을 수 있게 정리한다.</p>
-      <div class="track-grid">
-        
-            <article class="track-card">
-              <span class="small-label">TRACK 01</span>
-              <h3>공통/개발</h3>
-              <strong>90%</strong>
-              <p>9/10 과목 정리 완료</p>
-              <a class="button primary" href="#track-common-development">과목 보기</a>
-            </article>
-            
-            <article class="track-card">
-              <span class="small-label">TRACK 02</span>
-              <h3>취약점</h3>
-              <strong>0%</strong>
-              <p>과목 목록 추가 예정</p>
-              <a class="button primary" href="#track-vulnerability">과목 보기</a>
-            </article>
-            
-            <article class="track-card">
-              <span class="small-label">TRACK 03</span>
-              <h3>포렌식</h3>
-              <strong>0%</strong>
-              <p>과목 목록 추가 예정</p>
-              <a class="button primary" href="#track-forensics">과목 보기</a>
-            </article>
-            
-            <article class="track-card">
-              <span class="small-label">TRACK 04</span>
-              <h3>보안운영관리/인프라/컨설팅</h3>
-              <strong>0%</strong>
-              <p>과목 목록 추가 예정</p>
-              <a class="button primary" href="#track-security-ops-infra-consulting">과목 보기</a>
-            </article>
-            
-      </div>
-    </section>
-
+    <span id="tracks" class="skip-anchor" aria-hidden="true"></span>
     <div id="courses">
       
             <section id="track-common-development" class="track-section">
@@ -248,16 +152,16 @@
                   <a class="button" href="courses/common-development/secure-coding/index.html">과목 열기</a>
                 </article>
                 
-                <article class="course-item course-icon-web" data-course-id="modern-web-dev-security" data-course-status="pending" data-search-text="모던 웹 개발 및 보안 웹 보안 자료가 준비되면 같은 구조로 강의 노트를 추가할 과목. 공통/개발 pending">
+                <article class="course-item course-icon-web" data-course-id="modern-web-dev" data-course-status="ready" data-search-text="모던 웹 개발 및 보안 웹 보안 node.js와 express 기초에서 출발해 라우팅, 미들웨어, ejs, prototype pollution, ejs rce까지 웹 개발과 보안을 함께 정리한 과목. 공통/개발 ready" data-course-total="10" data-course-progress-target="true">
                   <div>
                     <div class="course-item-head">
                       <h3>모던 웹 개발 및 보안</h3>
-                      <span class="status-pill status-pending">준비 예정</span>
-                      
+                      <span class="status-pill status-ready">정리 완료</span>
+                      <span class="course-progress-chip" data-course-progress-label>0/10 완료</span>
                     </div>
-                    <p>자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.</p>
+                    <p>Node.js와 Express 기초에서 출발해 라우팅, 미들웨어, EJS, Prototype Pollution, EJS RCE까지 웹 개발과 보안을 함께 정리한 과목.</p>
                   </div>
-                  <span class="status-note">준비 중</span>
+                  <a class="button" href="courses/common-development/modern-web-dev/index.html">과목 열기</a>
                 </article>
                 
                 </div>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>해커의 프로그래밍 1-3 - HTTP와 웹 스크래핑</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -120,16 +120,27 @@
           </summary>
           <div class="note-section-body">
             <p><strong>HTTP</strong>는 Hypertext Transfer Protocol의 약자이며, 웹브라우저와 웹서버가 데이터를 주고받기 위한 규칙이다. 웹브라우저는 클라이언트로서 요청을 보내고, 서버는 그 요청에 대한 응답을 돌려준다. 이 구조를 request와 response 방식이라고 이해하면 된다.</p>
-<p>요청과 응답은 모두 헤더와 바디로 구성된다. 요청에는 <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code> 같은 메소드가 있고, 응답에는 <code>200</code>, <code>300</code>, <code>400</code>, <code>500</code> 계열 상태 코드가 있다. 강의에서는 특히 요청 쪽에서는 GET과 POST, 응답 쪽에서는 정상 응답인 200과 클라이언트 오류 계열인 400번대를 우선 보면 된다고 설명한다.</p>
-<table>
-  <thead><tr><th>구분</th><th>강의에서 보는 핵심</th></tr></thead>
-  <tbody>
-    <tr><td>GET</td><td>URL과 쿼리 <strong>문자열</strong>에 필요한 인자를 붙여 서버에 데이터를 요청한다.</td></tr>
-    <tr><td>POST</td><td>요청 바디에 데이터를 담아 서버에 보낸다. 폼 데이터나 <strong>JSON</strong>을 보낼 수 있다.</td></tr>
-    <tr><td>200</td><td>요청이 정상 처리되었음을 의미한다.</td></tr>
-    <tr><td>400 계열</td><td>잘못된 요청, <strong>권한</strong> 문제, 존재하지 않는 페이지처럼 클라이언트 쪽 문제가 있음을 나타낸다.</td></tr>
-  </tbody>
-</table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0006.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0006.jpg" alt="HTTP 요청과 응답의 기본 구조" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>HTTP 요청과 응답의 기본 구조</strong>
+    <span>HTTP는 클라이언트 요청과 서버 응답으로 이루어지고, 헤더와 바디, 메소드와 상태 코드로 구분된다는 핵심 개념을 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <p>요청과 응답은 모두 헤더와 바디로 구성된다. 요청에는 <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code> 같은 메소드가 있고, 응답에는 <code>200</code>, <code>300</code>, <code>400</code>, <code>500</code> 계열 상태 코드가 있다. 강의에서는 특히 요청 쪽에서는 GET과 POST, 응답 쪽에서는 정상 응답인 200과 클라이언트 오류 계열인 400번대를 우선 보면 된다고 설명한다.</p>
+                <table>
+                  <thead><tr><th>구분</th><th>강의에서 보는 핵심</th></tr></thead>
+                  <tbody>
+                    <tr><td>GET</td><td>URL과 쿼리 <strong>문자열</strong>에 필요한 인자를 붙여 서버에 데이터를 요청한다.</td></tr>
+                    <tr><td>POST</td><td>요청 바디에 데이터를 담아 서버에 보낸다. 폼 데이터나 <strong>JSON</strong>을 보낼 수 있다.</td></tr>
+                    <tr><td>200</td><td>요청이 정상 처리되었음을 의미한다.</td></tr>
+                    <tr><td>400 계열</td><td>잘못된 요청, <strong>권한</strong> 문제, 존재하지 않는 페이지처럼 클라이언트 쪽 문제가 있음을 나타낸다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -140,7 +151,18 @@
           </summary>
           <div class="note-section-body">
             <p>예를 들어 브라우저가 <code>www.example.com</code>의 <code>index.html</code>을 요청한다면, 요청에는 <strong>HTTP</strong> 버전, User-Agent, Accept-Encoding 같은 정보가 들어간다. 서버는 HTTP 1.1 200 OK 같은 상태 줄과 함께 Content-Type, 문자 인코딩, Content-Length 같은 정보를 돌려주고, 바디에는 실제 <strong>HTML</strong>이 들어간다.</p>
-<p>강의에서는 화이트햇 스쿨 홈페이지에 직접 요청을 보내 본 결과도 보여 준다. 실제 요청은 예시보다 훨씬 많은 헤더를 포함한다. 쿠키, 세션, Accept-Encoding, <code>Sec-</code>로 시작하는 브라우저 보안 관련 헤더들이 붙는다. 응답 역시 HTML을 제외해도 많은 헤더를 포함하며, <code>X-Frame-Options</code>, <code>X-XSS-Protection</code> 같은 보안 관련 헤더가 보인다. 핵심 구조는 예시와 같지만 실제 웹은 상태 유지와 보안을 위해 더 많은 정보를 주고받는다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0011.jpg" alt="화이트햇 스쿨 홈페이지 실제 HTTP 요청" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>화이트햇 스쿨 홈페이지 실제 HTTP 요청</strong>
+    <span>실제 브라우저 요청에는 Host, Cookie, User-Agent, Accept, Sec-Fetch 계열 헤더처럼 예시보다 많은 정보가 포함된다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의에서는 화이트햇 스쿨 홈페이지에 직접 요청을 보내 본 결과도 보여 준다. 실제 요청은 예시보다 훨씬 많은 헤더를 포함한다. 쿠키, 세션, Accept-Encoding, <code>Sec-</code>로 시작하는 브라우저 보안 관련 헤더들이 붙는다. 응답 역시 HTML을 제외해도 많은 헤더를 포함하며, <code>X-Frame-Options</code>, <code>X-XSS-Protection</code> 같은 보안 관련 헤더가 보인다. 핵심 구조는 예시와 같지만 실제 웹은 상태 유지와 보안을 위해 더 많은 정보를 주고받는다.</p>
           </div>
         </details>
         
@@ -151,7 +173,18 @@
           </summary>
           <div class="note-section-body">
             <p><strong>HTTP</strong>로 받아오는 바디에는 대개 <strong>HTML</strong> 코드가 들어 있다. HTML은 Hypertext Markup Language의 약자이며, 웹페이지를 구조화하고 콘텐츠를 표시하는 표준 마크업 언어다. 여는 태그와 닫는 태그가 있고, <code>head</code>, <code>body</code>, <code>p</code>, <code>a</code>, <code>div</code> 같은 태그가 계층적으로 중첩된다.</p>
-<p>웹페이지는 HTML만으로 완성되지 않는다. HTML은 구조를 담당하고, <strong>CSS</strong>는 글자 모양·색상·레이아웃 같은 꾸밈을 담당하며, <strong>JavaScript</strong>는 버튼 클릭, 광고 배너, 동적 표시처럼 기능적 동작을 담당한다. 그래서 웹 스크래핑을 하려면 화면에 보이는 결과뿐 아니라 그 화면을 만든 HTML 구조를 볼 수 있어야 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0021.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0021.jpg" alt="브라우저에서 HTML 소스 보기" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>브라우저에서 HTML 소스 보기</strong>
+    <span>화면에 보이는 웹페이지도 내부적으로는 태그가 중첩된 HTML 문서이며, 소스 보기로 구조를 직접 확인할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>웹페이지는 HTML만으로 완성되지 않는다. HTML은 구조를 담당하고, <strong>CSS</strong>는 글자 모양·색상·레이아웃 같은 꾸밈을 담당하며, <strong>JavaScript</strong>는 버튼 클릭, 광고 배너, 동적 표시처럼 기능적 동작을 담당한다. 그래서 웹 스크래핑을 하려면 화면에 보이는 결과뿐 아니라 그 화면을 만든 HTML 구조를 볼 수 있어야 한다.</p>
           </div>
         </details>
         
@@ -173,7 +206,18 @@
           </summary>
           <div class="note-section-body">
             <p><strong>Python</strong>의 <strong>requests</strong> 패키지는 HTTP 요청을 쉽게 보내고 응답을 객체로 받아오게 해 준다. 설치는 터미널에서 <code>pip install requests</code>로 할 수 있다. 이후 프로젝트가 커지면 virtualenv나 Poetry 같은 가상 환경 도구로 라이브러리 버전을 관리하는 것이 좋다.</p>
-<p>GET 요청에서는 URL 뒤의 쿼리 <strong>문자열</strong>에 들어갈 인자를 <code>params</code> 딕셔너리로 넘긴다. POST 요청에서는 본문에 들어갈 데이터를 <code>data</code> 또는 <code>json</code> 인자로 넘긴다. 폼 전송처럼 <code>a=b&c;=d</code> 형태로 보내는 경우는 <code>data</code>, <strong>JSON</strong> 객체를 보내는 경우는 <code>json</code>을 사용한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0036.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0036.jpg" alt="requests로 GET과 POST 요청 보내기" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>requests로 GET과 POST 요청 보내기</strong>
+    <span>Python requests에서는 GET의 query string을 params로, POST의 본문 데이터를 data나 json으로 구성한다.</span>
+  </figcaption>
+</figure>
+
+                <p>GET 요청에서는 URL 뒤의 쿼리 <strong>문자열</strong>에 들어갈 인자를 <code>params</code> 딕셔너리로 넘긴다. POST 요청에서는 본문에 들어갈 데이터를 <code>data</code> 또는 <code>json</code> 인자로 넘긴다. 폼 전송처럼 <code>a=b&c;=d</code> 형태로 보내는 경우는 <code>data</code>, <strong>JSON</strong> 객체를 보내는 경우는 <code>json</code>을 사용한다.</p>
           </div>
         </details>
         
@@ -186,6 +230,17 @@
             <p>실습 사이트에는 1번부터 100번까지의 노트가 있고, 그중 한 페이지에만 <code>WHS</code> <strong>문자열</strong>이 포함되어 있다. 수동으로 100번 클릭하는 대신 URL의 숫자 부분이 규칙적이라는 점을 이용해 반복 요청을 보낸다.</p>
                     <p>처음 <code>requests.get()</code> 결과를 그대로 <strong>출력</strong>하면 <code>&lt;Response [200]&gt;</code>처럼 상태만 보인다. 실제 <strong>HTML</strong>을 보려면 <code>response.text</code>나 <code>response.content.decode()</code>를 사용한다. 한글이 깨지는 경우에는 바이트로 받은 뒤 적절히 디코딩하면 된다.</p>
                     <p><strong>반복문</strong>으로 1부터 100까지 URL을 만들고, 응답 본문 안에 <code>WHS</code>가 있을 때만 출력한다. 강의에서는 73번 노트에서 <code>congratulations the flag is WHS simple web scraping</code>이라는 결과를 찾는 흐름을 보여 준다. 반복 진행 상황을 보기 위해 <code>tqdm</code>으로 루프를 감싸는 방법도 소개한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0061.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-03-HTTP와-웹-스크래핑/해커의 프로그래밍-03-HTTP와-웹-스크래핑 - 0061.jpg" alt="100개 노트 중 WHS 문자열 찾기" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>100개 노트 중 WHS 문자열 찾기</strong>
+        <span>1번부터 100번까지 반복 요청을 보내고, 응답 본문에 WHS가 들어 있는 페이지를 찾아 출력하는 최종 실습 코드다.</span>
+      </figcaption>
+    </figure>
+
                     <pre><code class="language-python">import requests
 from tqdm import tqdm
 
@@ -207,6 +262,7 @@ for idx in tqdm(range(1, 101)):
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>HTTP</strong> 요청과 응답이 각각 헤더와 바디를 가진다는 점을 설명할 수 있는가?</li><li>GET과 POST의 차이를 params, data, <strong>json</strong> 인자와 연결해 말할 수 있는가?</li><li><strong>HTML</strong>, CSS, JavaScript의 역할을 구분할 수 있는가?</li><li><strong>requests</strong> 응답에서 상태 코드와 페이지 내용을 구분해 확인할 수 있는가?</li><li>반복 요청과 <strong>조건문</strong>으로 100개 노트 중 원하는 페이지를 찾을 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

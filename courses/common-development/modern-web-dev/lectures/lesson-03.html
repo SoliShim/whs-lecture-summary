@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>모던 웹 개발 및 보안 1-3 - ExpressJS 개요와 웹앱 구현</title>
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
+  <script src="../../../../assets/code-highlight.js" defer></script>
+  <script src="../../../../assets/study-state.js" defer></script>
+  <script src="../../../../assets/study-tools.js" defer></script>
+</head>
+
+<body data-course-id="modern-web-dev" data-lesson-id="1-3" data-lesson-key="modern-web-dev:1-3" data-lesson-title="ExpressJS 개요와 웹앱 구현" data-lesson-label="웹 보안 1-3">
+  <header class="site-header lecture-header">
+    <nav class="top-nav">
+	      <a class="brand" href="../../../../index.html">화이트햇 강의 정리</a>
+	      <a href="../index.html#lectures">과목 강의 목록</a>
+	      <a href="#review">복습 체크</a>
+	      <a href="#transcript">강의 원문</a>
+	    </nav>
+    <section class="lecture-hero">
+      <div>
+        <p class="small-label">웹 보안 1-3</p>
+        <h1>ExpressJS 개요와 웹앱 구현</h1>
+        <p class="lead">Node 기본 <strong>http</strong> 모듈과 <strong>Express</strong>를 비교하고, 최소 웹 서버를 구현해 요청과 응답 흐름을 확인한다.</p>
+        <div class="tag-row large"><span>Express</span><span>웹 서버</span><span>실습</span></div>
+      </div>
+      <aside class="toc-box">
+        <strong>페이지 목차</strong>
+        <a href="#section-1">Express의 역할</a><a href="#section-2">최소 Express 서버</a><a href="#section-3">패키지 설치와 실행</a><a href="#section-4">웹앱 구현 실습</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
+      </aside>
+    </section>
+  </header>
+
+  <main class="lecture-main">
+    <section class="content-wrap lesson-status-panel" aria-label="현재 강의 완료 상태">
+      <div>
+        <span class="study-card-kicker">현재 강의</span>
+        <strong>웹 보안 1-3 완료 상태</strong>
+        <p>정리와 복습 질문까지 확인했다면 완료로 표시해 둔다.</p>
+      </div>
+      <button class="completion-toggle large" type="button" data-lesson-key="modern-web-dev:1-3" aria-pressed="false">
+        <span class="completion-dot" aria-hidden="true"></span>
+        <span class="completion-label">완료 표시</span>
+      </button>
+    </section>
+
+    
+    <section class="content-wrap lecture-control-panel" aria-label="강의 탐색 도구">
+      <div class="section-jump-field">
+        <label for="section-jump-1-3">섹션 바로가기</label>
+        <select id="section-jump-1-3" data-section-jump>
+          <option value="">읽을 섹션 선택</option>
+          <option value="#section-1">01. Express의 역할</option><option value="#section-2">02. 최소 Express 서버</option><option value="#section-3">03. 패키지 설치와 실행</option><option value="#section-4">04. 웹앱 구현 실습</option>
+        </select>
+      </div>
+      <div class="lecture-control-actions" aria-label="섹션 보기 방식">
+        <button class="button secondary" type="button" data-section-toggle="collapse">섹션 접기</button>
+        <button class="button secondary" type="button" data-section-toggle="expand">전체 펼치기</button>
+        <a class="button secondary" href="#review">복습 체크</a>
+        <a class="button secondary" href="#transcript">강의 원문</a>
+      </div>
+    </section>
+    
+
+    <section id="goals" class="content-wrap intro-grid">
+      <article class="note-block">
+        <h2>학습 목표</h2>
+        <ul class="check-list"><li><strong>Express</strong>가 Node.js <strong>웹 서버</strong> 개발을 단순화하는 프레임워크임을 이해한다.</li><li><strong>http</strong> 모듈만 쓸 때와 <strong>Express</strong>를 쓸 때의 차이를 비교한다.</li><li>app 객체, route handler, listen 흐름을 작성한다.</li><li>브라우저에서 localhost로 접속해 응답을 확인한다.</li></ul>
+      </article>
+    </section>
+
+    <div class="content-wrap lecture-study-layout">
+      <aside class="lecture-side-guide" data-lecture-side-guide aria-label="상세 정리 섹션 길잡이">
+        <div class="side-guide-head">
+          <span data-side-current>SECTION 01</span>
+          <strong>상세 정리 길잡이</strong>
+          <p>4개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+        </div>
+        <nav class="side-guide-links" aria-label="상세 정리 바로가기">
+          
+        <a class="is-active" href="#section-1" data-side-section-link="section-1">
+          <span>01</span>
+          <strong>Express의 역할</strong>
+        </a>
+        
+        <a href="#section-2" data-side-section-link="section-2">
+          <span>02</span>
+          <strong>최소 Express 서버</strong>
+        </a>
+        
+        <a href="#section-3" data-side-section-link="section-3">
+          <span>03</span>
+          <strong>패키지 설치와 실행</strong>
+        </a>
+        
+        <a href="#section-4" data-side-section-link="section-4">
+          <span>04</span>
+          <strong>웹앱 구현 실습</strong>
+        </a>
+        
+        </nav>
+      </aside>
+      <div class="notes-layout">
+        
+        <details id="section-1" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 01</span>
+            <h2>Express의 역할</h2>
+          </summary>
+          <div class="note-section-body">
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0002.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0002.jpg" alt="Express.js 개요" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Express.js 개요</strong>
+    <span>Express는 Node.js를 위한 빠르고 간결한 웹 프레임워크로 소개된다.</span>
+  </figcaption>
+</figure>
+
+                <p>Express.js는 Node.js에서 웹 애플리케이션과 <strong>API</strong> 서버를 만들 때 자주 쓰는 프레임워크다. Node.js 기본 `<strong>http</strong>` 모듈만으로도 서버를 만들 수 있지만, 요청 URL 분기, 메서드별 처리, 정적 파일, 미들웨어, 에러 처리 등을 직접 많이 작성해야 한다. Express는 이런 반복 작업을 간결한 API로 제공한다.</p>
+                <p>강의 흐름은 먼저 `http` 모듈로 서버가 동작하는 원리를 보고, 그다음 <strong>Express</strong>가 같은 일을 더 읽기 쉬운 형태로 만들어 준다는 점을 확인한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0006.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0006.jpg" alt="http 모듈 기반 서버" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>http 모듈 기반 서버</strong>
+    <span>Node 기본 http 모듈만 사용하면 요청 처리 코드를 직접 구성해야 한다.</span>
+  </figcaption>
+</figure>
+          </div>
+        </details>
+        
+        <details id="section-2" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 02</span>
+            <h2>최소 Express 서버</h2>
+          </summary>
+          <div class="note-section-body">
+            <figure class="screen-figure">
+      <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0011.jpg" alt="Express 기본 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Express 기본 코드</strong>
+        <span>express 모듈을 가져오고 app 객체에 라우트를 등록한 뒤 서버를 연다.</span>
+      </figcaption>
+    </figure>
+    <pre><code class="language-javascript">// index.js
+
+const express = require(&#x27;express&#x27;)
+const app = express()
+const port = 3000
+
+app.get(&#x27;/&#x27;, (req, res) =&gt; {
+  res.send(&#x27;Hello World!&#x27;)
+})
+
+app.listen(port, () =&gt; {
+  console.log(`Example app listening on port ${port}`)
+})</code></pre>
+                    <p>코드의 흐름은 네 단계다. 첫째, `require("<strong>express</strong>")`로 Express 모듈을 가져온다. 둘째, `express()`를 호출해 애플리케이션 객체 `app`을 만든다. 셋째, `app.get("/", handler)`처럼 특정 요청에 응답할 <strong>함수</strong>를 등록한다. 넷째, `app.listen()`으로 포트를 열어 요청을 받는다.</p>
+                    <p>이 구조는 이후 <strong>라우팅</strong>, 미들웨어, 템플릿 렌더링에서도 계속 반복된다. Express 코드를 읽을 때는 “어떤 메서드와 경로에 어떤 handler가 연결되어 있는가”를 먼저 보면 된다.</p>
+          </div>
+        </details>
+        
+        <details id="section-3" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 03</span>
+            <h2>패키지 설치와 실행</h2>
+          </summary>
+          <div class="note-section-body">
+            <figure class="screen-figure">
+      <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0018.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0018.jpg" alt="Express 설치와 실행 순서" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Express 설치와 실행 순서</strong>
+        <span>package.json을 만들고 Express를 설치한 뒤 index.js를 실행하는 실습 순서다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><strong>Express</strong>는 기본 내장 모듈이 아니므로 프로젝트마다 npm으로 설치한다. 설치 후 `node index.js`를 <strong>실행</strong>하면 서버가 켜지고, 브라우저에서 `http://localhost:3000`으로 접속해 결과를 확인한다. 서버가 계속 실행 중인 상태에서는 터미널을 닫거나 중단하지 않는 한 요청을 계속 받을 수 있다.</p>
+                    <pre><code class="language-bash">npm init -y
+npm install express
+node index.js</code></pre>
+          </div>
+        </details>
+        
+        <details id="section-4" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 04</span>
+            <h2>웹앱 구현 실습</h2>
+          </summary>
+          <div class="note-section-body">
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0026.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0026.jpg" alt="실습 1: 웹앱 구현" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>실습 1: 웹앱 구현</strong>
+    <span>강의는 실제 파일을 만들고 localhost에서 결과를 확인하는 실습으로 이어진다.</span>
+  </figcaption>
+</figure>
+
+                <p>실습에서는 <strong>Express</strong> 서버가 브라우저 요청을 받아 <strong>문자열</strong>이나 HTML을 응답하는 과정을 확인한다. 이때 중요한 것은 서버 코드와 브라우저 화면이 분리되어 있다는 점이다. 서버는 요청을 받아 응답을 만들고, 브라우저는 그 응답을 화면에 그린다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0056.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/modern-web-dev/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현/모던 웹 개발 및 보안-03-ExpressJS-개요와-웹앱-구현 - 0056.jpg" alt="브라우저 출력 확인" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>브라우저 출력 확인</strong>
+    <span>작성한 Express 응답이 브라우저에서 표시되는지 확인한다.</span>
+  </figcaption>
+</figure>
+
+                <p>웹 보안에서 이 구조는 매우 중요하다. 서버가 요청을 해석하는 방식, 사용자의 <strong>입력</strong>을 응답에 섞는 방식, 템플릿을 렌더링하는 방식이 모두 <strong>취약점</strong>으로 이어질 수 있기 때문이다.</p>
+          </div>
+        </details>
+        
+      </div>
+    </div>
+
+	    <section id="review" class="content-wrap note-block">
+	      <h2>복습 체크</h2>
+	      <ul class="check-list"><li><strong>Express</strong>가 기본 <strong>http</strong> 모듈보다 편한 이유를 설명할 수 있는가?</li><li>app.get과 app.listen의 역할을 구분할 수 있는가?</li><li>localhost와 <strong>포트</strong> 번호의 의미를 설명할 수 있는가?</li><li>서버 응답이 브라우저 화면으로 나타나는 흐름을 설명할 수 있는가?</li></ul>
+	    </section>
+
+	    
+    <section id="transcript" class="content-wrap transcript-wrap">
+      <details class="reveal-section">
+        <summary>
+          <span>
+            <strong>강의 원문 보기</strong>
+            <small>읽기용 문단 보기와 원문 그대로 보기를 함께 제공한다.</small>
+          </span>
+        </summary>
+        <div class="transcript-reading-panel">
+          <div class="transcript-reading-head">
+            <span class="study-card-kicker">읽기용 문단 보기</span>
+            <p>긴 STT 원문을 문장 흐름에 맞춰 문단으로 나누어 정리본과 비교하기 쉽게 만든 보기다.</p>
+          </div>
+          <div class="readable-transcript">
+            <p>이번 시간에는 모던웹 앱 프레임워크인 ExpressJS에 대해 공부를 해볼 거예요. 앞서 말씀드렸다시피 저희는 이 ExpressJS라는 프레임워크를 이용해서 웹앱을 구현을 해볼 건데요. ExpressJS는 Node.js를 위한 빠르고 간결한 웹 애플리케이션 프레임워크입니다. 이 ExpressJS 프레임워크를 사용하면 따로 복잡한 서버 설정을 할 필요가 없이 저희가 라우팅이나 HTTP, U-Case와 리스폰스를 간단하게 처리할 수 있습니다. 개발 속도가 굉장히 빨라지기 때문에 규모가 큰 회사에서 아이디어를 간단하게 프로토타이핑할 때 정말 많이 사용을 하고요. 실제 운영 목적으로도 사용을 하기도 합니다. 이 Express 프레임워크를 쓰면 빠르고 간결하게 웹앱을 작성할 수 있다고 하는데 만약에 이 ExpressJS 없이 Node.js로 웹앱을 구현을 해본다면 어떨지 저희가 기본 내장되어 있는 HTTP 모듈을 이용해서 개발한 웹앱 예시를 한번 볼게요. 이 Node.js에는 기본적으로 HTTP 요청과 응답을 처리하기 위한 이 HTTP 모듈이 들어가 있는데요.</p><p>이 모듈로 간단하게 퍼스트 데이터를 받고 이를 처리해서 제이슨 응답으로 넘겨주는 코드를 작성을 해보면 이런 식의 코드 형태가 나옵니다. if, else로 URL과 메서드를 직접 확인을 해야 되고요. 이 유저와 같은 추가 경로들을 만날 때마다 저희가 조건문을 추가해줘야 됩니다. 이 제이슨 응답을 보내려면 이 제이슨의 string file라는 메소드를 수동으로 호출을 해야 되고요. 이 퍼스트 요청의 본문, 그러니까 포스트 바디 파라미터들을 처리를 하려면 이렇게 request의 on이라는 메소드로 스트림을 따로 다루어야 돼서 코드가 복잡해집니다. 그리고 스트림 처리와 제이슨 파싱을 또 직접 해야 되고요. 굉장히 불편합니다. 반면에 저희가 이번에 배워볼 모던 웹앱 프레임워크인 express.js를 사용해서 동일한 로직을 구현을 해보면 이렇게 간단한 코드 형태가 됩니다. app.get, 딱 봐도 get 메소드를 뜻하는 것 같죠? app.post, 이렇게 라우팅이 간결하고 직관적이고요. rs, 그러니까 response.send라는 함수로 텍스트나 제이슨 같은 데이터들을 편하게 응답으로 줄 수 있고 rs.json, 그러니까 json middleware만 추가를 해주면 모든 제이슨으로 들어오는 바디 값을 파싱할 수가 있습니다.</p><p>지금 뭐 middleware, rs 객체, 여러가지 새로 보는 용어들이 나오는데 지금 모든 로직을 이해할 필요. 당연히 없고요. 아 이런게 있구나 이 node.js 코드는 이렇게 생겼구나 하고 눈에 익히기만 하고 다음으로 넘어가면 되겠습니다. 잠시 뒤에 실습 때 같이 해볼 내용인데요. 이 package.js는 이제 제가 앞서 설명을 드렸는데 이 node.js 웹 애플리케이션을 작성할 폴더와 이니셜라이저하는 작업들을 간단하게 정리해봤습니다. 웹앱을 작성할 폴더 생성을 하고 mkdr로 그리고 change 디렉터리를 통해서 작업 디렉터리를 들어가줍니다. 다음으로 좀 전에 배웠던 npm init 명령어를 통해서 이 애플리케이션에 대한 package.js, 즉 이니셜라이저를 해주고요. npm install를 통해서 이 익스프레스 모듈을 설치해주는 것만으로도 익스프레스 개발 구축 실습이 끝납니다. 이 package.js에 대해서 좀 더 자세하게 설명을 드릴게요. 이 package.js는요. 이 node.js 프로젝트의 의존성을 관리한다고 말씀드렸죠.</p><p>이건 이 node.js 프로젝트의 필수적인 구성 파일인데요. 이 프로젝트의 의존성 뿐만 아니라 이 프로젝트의 메타데이터, 패키지 목록 그리고 실행될 스크립트 등을 정의를 하는 역할을 하고 있습니다. 이 name이라는 키는 프로젝트 이름을 뜻하고요. 버전은 프로젝트 버전 description은 프로젝트 설명을 간략하게 적을 수 있고 main은 이 node.js 프로젝트의 메인 파일을 뜻합니다. 시작 파일이 되겠죠. 기본값은 index.js고요. 그리고 스크립트는 실행 가능한 명령어를 설정할 수 있습니다. 여기에 start라는 키로 node의 index.js가 되어 있으면 npm start를 통해서 이 명령어를 실행할 수가 있고요. 이건 이제 개발할 때 굉장히 많이 활용을 하고요. 빌드나 개발할 때 밑에 있는 dependencies는 제가 말씀드린 프로덕션 환경에서 필요한 패키지 목록을 뜻하고요. 이 dependency 앞에 dev가 붙어있는 이 부분은 개발 환경에서만 필요한 패키지들 모니터링을 하거나 로깅을 하는 등의 패키지들을 여기다가 추가해 줄 수 있고 dependencies에는 이제 프로덕션 환경에서 필요한 패키지 목록들을 이렇게 버전 관리를 할 수 있습니다.</p><p>그럼 이제 express.js 모듈 실습을 진행해 보도록 하겠습니다. 이번 시간에는 모던 웹 프레임워크 express.js 실습 진행해 보도록 하겠습니다. express.js 모듈을 활용해서 간단한 웹 앱을 한번 만들어 볼 거예요. 실습 파일은 파워포인트 자료, 강의 자료 참고하시면 될 것 같고 그 내용 참고해서 저랑 같이 실습을 해보면 될 것 같습니다. 지난 차수에 이제 npm 패키지를 npm 패키지 매니저를 이용해서 저희가 이니셜 라이저 하고 인스톨 하는 방법을 배웠었어요. 이번에도 똑같이 실습 차시 세 번째 차시에 애플리케이션 폴더를 하나 만들어 줄게요. 삼 익스프레스를 만들어 주고 여기다가 change 디렉토리를 통해서 폴더에 들어가 주고요. 여기서 npm init을 통해서 다시 패키지를 이니셜 라이저 하고 패키지를 이니셜 라이저 해 볼게요. 이렇게 패키지.json을 등록을 해 주고 이번에는 익스프레스 모듈을 사용합니다. 익스프레스 모듈을 사용할 거기 때문에 npm install express를 통해서 익스프레스 모듈을 설치해 줄게요.</p><p>이렇게 설치를 하게 되면 패키지.json에 dependencies에 이제 익스프레스 최신 버전이 추가가 되어 있는 것을 확인하실 수 있어요. 또한 어... 지금 두 가지가 추가가 됐죠. 패키지.lock과 노드 모듈이라는 두 가지 파일들이 추가가 됐는데 이 패키지 이제 이 노드 모듈 익스프레스 모듈에서 사용하고 있는 디펜던시들의 버전을 락해 놓은 거고 이 노드 모듈은 이제 익스프레스 모듈에서 사용하고 있는 그 익스프레스 모듈의 모듈들이에요. 여러 가지 모듈들을 또 사용을 해서 익스프레스라는 모듈로 하나로 합쳐 놓은 거예요. 네 그래서 이렇게 익스프레스를 설치를 해 주고 어... 여기서 이제 빔이라는 에디터로 원래 index.js를 작성해도 되는데 비주얼 스튜디오를 미리 설치를 해 놨다면 굉장히 편리하게 ws, l과 연동을 시킬 수 있는데 여기서 코드라는 명령을 통해서 네 현재 폴더에서 이제 비주얼 스튜디오 코드를 이렇게 에디터를 연결할 수가 있게 됩니다. 여기서 이제 새로운 파일을 만들어 주고 이거를 이제 아... 여기서 이제 새로운 파일을 만들어 주고 index.js라고 파일을 만들어 볼게요.</p><p>이렇게 만들어 보고 어... 여기서 이제 간단한 웹앱을 구현해 볼 건데 먼저 익스프레스 모듈을 임포트 시켜야겠죠. 임포트 시킬 때 노드.js는 어떻게 한다? require라는 함수를 사용을 한다 require를 통해서 익스프레스 모듈을 불러오고요. 어... 이 자바스크립트를 이제 선행했을 거라고 이제 생각이 되는데 let, const, 뭐 뭐든 변수를 선언을 해서 익스프레스 모듈을 담아줄 변수를 선언을 해 주고 익스프레스 모듈을 한번 require 하면은 바뀌지 않을 거니까 const로 이제 상수로 선언을 해 보고 저장을 해 둘게요. 그리고 이 익스프레스도 똑같이 객체이기 때문에 const at 이라는 변수를 만들어서 익스프레스 객체를 새로 만들어 주고요. 그리고 나서 이제 어... 이 서버가 구동될 포트를 정해주면 되는데요. 어... 포트 정해주는 것도 굉장히 간단합니다. 기본적으로는 3000번 포트를 사용을 하는데 이건 본인이 편한 포트로 변경을 하셔도 되고요. 포트도 이번엔 한번 3000으로 한번 작동을 시켜 볼게요. 그 다음에 라우팅을 해야 되는데 get 메소드로 들어왔을 때 라우팅 처리를 한번 해 볼게요.</p><p>get로 들어왔을 때 그냥 get 페이지로 들어왔을 때 콜백 함수를 이제 작성해 주는데 콜백 함수는 function req, res 이런 식으로 작성을 하셔도 되고 또는 이제 자바스크립트 최신 버전 사실 뭐 최신은 아니고 ECMA5부터 등장한 이제 에로우 펑션을 사용을 하셔도 됩니다. 이거와 이것과 이제 이거는 동일한 의미를 뜻하고요. 근데 이제 여기에 좀 더 많이 쓰이는 것 같아요. 노드.js에서는 아무래도 최신 문법이기도 하고 이렇게 똑같이 똑같은 기능을 하는데 저는 밑에 문법을 사용을 해 보도록 할게요. 이렇게 request와 response를 이제 콜백 함수로 받아서 이제 여기서 request를 받았을 때 response로 어떤 데이터를 줄 것이냐를 이제 여기서 선언을 하는 건데 일단 뭐 간단하게 뭐 헬로우 월드를 보내보도록 할게요. 이 사이트에 접속을 하면 그리고 이제 서버를 운용시켜야겠죠. 어떤 포트로 리스닝 할 건지 이제 app.reason 이쪽 첫 번째 인자는 포트가 들어갑니다. 이게 객체에 어떤 인자가 들어간지 모를 때는 이제 그냥 뭐 보통 마우스 갖다 대면 이제 그 연동이 되는데 아마 디버거를 연결시키면 아마 연동이 될 거예요.</p><p>보이거나 여기에 이제 포트를 입력을 해 주고 그리고 여기도 arrow function을 통해서 콜백 함수를 정해주고 콘솔 로그를 하나 찍어 볼게요. 뭐 app.is.is.in.on.port 뭐 여기에 또 재밌는 방법이 하나 있는데 자바스크립트에서는 이제 백워터를 사용을 해서 안에 템플릿 문자를 쓸 수 있어요. 이런 식으로 이런 식으로 변수들을 이렇게 포맷 스트링처럼 사용을 할 수 있거든요. 굉장히 편리하죠. 이렇게 포트 몇 번에서 돌고 있다 콘솔 로그를 찍어 볼게요. 그리고 여기서 컨트롤하고 백택을 누르면 터미널이 여기 나오는데 이걸 사이드바에 한번 옮겨줄게요. 퍼셀이 아니라 이제 지금 우리가 이 실습을 하고 있는 이 터미널 창에서 그 node.js하고 index.js을 실행시킬 건데 이렇게 지금 우리가 작성한 이 웹앱을 이렇게 node.js index.js로 간단하게 실행을 시킬 수가 있어요. 자 코드 리뷰를 한번 잠깐 해 볼게요. 익스프레스라는 모듈을 require를 통해서 인포트를 시켰고 익스프레스라는 변수에 담았어요. 그리고 그 익스프레스라는 객체를 새로 이제 만들었고 인스턴스가 이제 앱에 들어가고 포트는 기본적으로 3000번 포트를 씁니다.</p><p>포트는 기본적으로 3000번 포트를 씁니다. 이 포트는 이제 앱.리슨 익스프레스 앱의 리스닝 포트로 사용이 되고요. 그 다음에 여기는 라우팅이 딱 하나밖에 없네요. 지금 하나만 구현해 놨죠. 그냥 이 서버에 들어오면 헬로월드라는 문자를 리스폰스로 응답으로 준다라는 앱이 될 것 같습니다. 한번 정말 그런지 확인을 해 볼게요. 자 3000번 포트죠. 브라우저를 열고 로컬 호스트 3000번 포트에 적극을 해 줍니다. 정상적으로 헬로월드라는 이제 응답을 준 것을 확인할 수 있습니다. 네 다음 두 번째 실습입니다. 두 번째 웹앱을 구현을 해 볼 건데요. 이제 두 번째는 기본적인 이 슬래시에서 라우팅이 아니라 저희가 인덱스.html을 만들어서 이걸 라우팅하는 방법을 알려드릴 거예요. 자 html 코드에 대해서 대략 배우셨을 텐데 한번 인덱스.html을 작성을 하고 그걸 호스팅을 한번 해 볼게요. 인덱스.html을 작성해 줍니다. 자 html에 기본적으로 head 태그 들어갈 거고요. 보통 head에 뭐가 들어가요? 타이틀이 들어가죠. 타이틀은 My Express App 뭐 여러분들이 하고 싶은 타이틀로 하셔야 됩니다.</p><p>그리고 뭐 메타 찰셋 캐릭터셋을 글로벌 앱이니까 또 utf 8로 선언해 주고 헤드 밑에는 뭐가 들어가요? 바디가 들어가죠. html 바디에 이제 뭐 My First Express App 이거 한번 어 뭐 h1 태그로 묶어 볼게요. h1 태그로 묶어서 이거를 다시 호스팅을 한번 해 볼게요. 자 호스팅을 한번 해 봤습니다. 자 그리고 다시 접속을 하면 인덱스.html이 딱 짜장나고 나올 거 같은데 어? 안 나옵니다. 이게 똑같이 뜨는데 안 나와요. 그럼 이걸 한번 지우고 한번 인덱스.html을 출력을 해 볼게요. 다시 서버를 실행시키고 실행시켰는데 cannot get 하고 슬래시가 나옵니다. 도대체 왜 이런 걸까요? 그 이유는요. 이 인덱스.html은 static 파일이기 때문이에요. 네 static 파일이란 정적 파일을 뜻하죠. 뭐 자바스크립트나 CSS나 HTML 파일 같은 그런 정적인 파일들 서버에서 처리할 필요가 없는 그런 정적 파일들을 뜻하는데 이 노드.js.express 앱에서는요. 이 정적 파일을 사용하기 위해서는 한 가지 규칙을 지켜줘야 합니다.</p><p>그 정적 파일들을 제공할 폴더를 그러니까 static 파일들을 제공할 폴더들을 미리 선언을 해줘야 해요. 어떻게? 이렇게 쓰시면 됩니다. 앱.use 하고 use 그리고 express 앱을 미리 위에 모듈을 가져왔었죠. 익스프레스에 static 이라는 이제 property가 있는데 static에 내가 static 파일들을 담을 파일 그 폴더를 이제 여기다 적어주면 돼요. static 폴더니까 보통 static 이라고 많이들 쓰거든요. static 이라는 폴더를 난 static 폴더로 정적 폴더로 쓰겠어 하고 이렇게 선언을 해주면요. 그리고 여기다가 static 이라는 폴더를 하나 만들어서 이 index.html을 이제 이렇게 넣어주면 그리고 서버를 다시 켜주면 이 구문에 의해 처음에 들어가면 이렇게 이렇게 myFirstExpress앱이라고 이 static에 있는 index.html 파일이 이렇게 렌더링되게 됩니다. 이 index.html 말고 예를 들어서 뭐 test.html을 만들어 보고 여기에는 test.html이라고 그냥 대충 이렇게 작성을 하고 서버를 다시 켜주고 여기서 test.html test.html을 접근하면 똑같이 이제 test.html 내용이 이렇게 정상적으로 라우팅이 되는 것을 알 수 있습니다.</p><p>이렇게 해서 이번 시간에는 Express.js를 이용해서 간단하게 웹앱을 구현을 해봤고요. 라우팅도 연습을 해봤고 그리고 static 폴더를 만들어서 static 파일들을 제공하는 방법을 배워봤습니다</p>
+          </div>
+          <details class="raw-transcript-panel">
+            <summary>
+              <span>
+                <strong>원문 그대로 보기</strong>
+                <small>STT 원문을 수정하지 않은 형태로 확인한다.</small>
+              </span>
+            </summary>
+            <div class="transcript-text raw-transcript-text">이번 시간에는 모던웹 앱 프레임워크인 ExpressJS에 대해 공부를 해볼 거예요 앞서 말씀드렸다시피 저희는 이 ExpressJS라는 프레임워크를 이용해서 웹앱을 구현을 해볼 건데요 ExpressJS는 Node.js를 위한 빠르고 간결한 웹 애플리케이션 프레임워크입니다 이 ExpressJS 프레임워크를 사용하면 따로 복잡한 서버 설정을 할 필요가 없이 저희가 라우팅이나 HTTP, U-Case와 리스폰스를 간단하게 처리할 수 있습니다 개발 속도가 굉장히 빨라지기 때문에 규모가 큰 회사에서 아이디어를 간단하게 프로토타이핑할 때 정말 많이 사용을 하고요 실제 운영 목적으로도 사용을 하기도 합니다 이 Express 프레임워크를 쓰면 빠르고 간결하게 웹앱을 작성할 수 있다고 하는데 만약에 이 ExpressJS 없이 Node.js로 웹앱을 구현을 해본다면 어떨지 저희가 기본 내장되어 있는 HTTP 모듈을 이용해서 개발한 웹앱 예시를 한번 볼게요 이 Node.js에는 기본적으로 HTTP 요청과 응답을 처리하기 위한 이 HTTP 모듈이 들어가 있는데요 이 모듈로 간단하게 퍼스트 데이터를 받고 이를 처리해서 제이슨 응답으로 넘겨주는 코드를 작성을 해보면 이런 식의 코드 형태가 나옵니다 if, else로 URL과 메서드를 직접 확인을 해야 되고요 이 유저와 같은 추가 경로들을 만날 때마다 저희가 조건문을 추가해줘야 됩니다 이 제이슨 응답을 보내려면 이 제이슨의 string file라는 메소드를 수동으로 호출을 해야 되고요 이 퍼스트 요청의 본문, 그러니까 포스트 바디 파라미터들을 처리를 하려면 이렇게 request의 on이라는 메소드로 스트림을 따로 다루어야 돼서 코드가 복잡해집니다 그리고 스트림 처리와 제이슨 파싱을 또 직접 해야 되고요 굉장히 불편합니다 반면에 저희가 이번에 배워볼 모던 웹앱 프레임워크인 express.js를 사용해서 동일한 로직을 구현을 해보면 이렇게 간단한 코드 형태가 됩니다 app.get, 딱 봐도 get 메소드를 뜻하는 것 같죠? app.post, 이렇게 라우팅이 간결하고 직관적이고요 rs, 그러니까 response.send라는 함수로 텍스트나 제이슨 같은 데이터들을 편하게 응답으로 줄 수 있고 rs.json, 그러니까 json middleware만 추가를 해주면 모든 제이슨으로 들어오는 바디 값을 파싱할 수가 있습니다 지금 뭐 middleware, rs 객체, 여러가지 새로 보는 용어들이 나오는데 지금 모든 로직을 이해할 필요 당연히 없고요 아 이런게 있구나 이 node.js 코드는 이렇게 생겼구나 하고 눈에 익히기만 하고 다음으로 넘어가면 되겠습니다 잠시 뒤에 실습 때 같이 해볼 내용인데요 이 package.js는 이제 제가 앞서 설명을 드렸는데 이 node.js 웹 애플리케이션을 작성할 폴더와 이니셜라이저하는 작업들을 간단하게 정리해봤습니다 웹앱을 작성할 폴더 생성을 하고 mkdr로 그리고 change 디렉터리를 통해서 작업 디렉터리를 들어가줍니다 다음으로 좀 전에 배웠던 npm init 명령어를 통해서 이 애플리케이션에 대한 package.js, 즉 이니셜라이저를 해주고요 npm install를 통해서 이 익스프레스 모듈을 설치해주는 것만으로도 익스프레스 개발 구축 실습이 끝납니다 이 package.js에 대해서 좀 더 자세하게 설명을 드릴게요 이 package.js는요 이 node.js 프로젝트의 의존성을 관리한다고 말씀드렸죠 이건 이 node.js 프로젝트의 필수적인 구성 파일인데요 이 프로젝트의 의존성 뿐만 아니라 이 프로젝트의 메타데이터, 패키지 목록 그리고 실행될 스크립트 등을 정의를 하는 역할을 하고 있습니다 이 name이라는 키는 프로젝트 이름을 뜻하고요 버전은 프로젝트 버전 description은 프로젝트 설명을 간략하게 적을 수 있고 main은 이 node.js 프로젝트의 메인 파일을 뜻합니다 시작 파일이 되겠죠 기본값은 index.js고요 그리고 스크립트는 실행 가능한 명령어를 설정할 수 있습니다 여기에 start라는 키로 node의 index.js가 되어 있으면 npm start를 통해서 이 명령어를 실행할 수가 있고요 이건 이제 개발할 때 굉장히 많이 활용을 하고요 빌드나 개발할 때 밑에 있는 dependencies는 제가 말씀드린 프로덕션 환경에서 필요한 패키지 목록을 뜻하고요 이 dependency 앞에 dev가 붙어있는 이 부분은 개발 환경에서만 필요한 패키지들 모니터링을 하거나 로깅을 하는 등의 패키지들을 여기다가 추가해 줄 수 있고 dependencies에는 이제 프로덕션 환경에서 필요한 패키지 목록들을 이렇게 버전 관리를 할 수 있습니다 그럼 이제 express.js 모듈 실습을 진행해 보도록 하겠습니다 이번 시간에는 모던 웹 프레임워크 express.js 실습 진행해 보도록 하겠습니다 express.js 모듈을 활용해서 간단한 웹 앱을 한번 만들어 볼 거예요 실습 파일은 파워포인트 자료, 강의 자료 참고하시면 될 것 같고 그 내용 참고해서 저랑 같이 실습을 해보면 될 것 같습니다 지난 차수에 이제 npm 패키지를 npm 패키지 매니저를 이용해서 저희가 이니셜 라이저 하고 인스톨 하는 방법을 배웠었어요 이번에도 똑같이 실습 차시 세 번째 차시에 애플리케이션 폴더를 하나 만들어 줄게요 삼 익스프레스를 만들어 주고 여기다가 change 디렉토리를 통해서 폴더에 들어가 주고요 여기서 npm init을 통해서 다시 패키지를 이니셜 라이저 하고 패키지를 이니셜 라이저 해 볼게요 이렇게 패키지.json을 등록을 해 주고 이번에는 익스프레스 모듈을 사용합니다 익스프레스 모듈을 사용할 거기 때문에 npm install express를 통해서 익스프레스 모듈을 설치해 줄게요 이렇게 설치를 하게 되면 패키지.json에 dependencies에 이제 익스프레스 최신 버전이 추가가 되어 있는 것을 확인하실 수 있어요 또한 어... 지금 두 가지가 추가가 됐죠 패키지.lock과 노드 모듈이라는 두 가지 파일들이 추가가 됐는데 이 패키지 이제 이 노드 모듈 익스프레스 모듈에서 사용하고 있는 디펜던시들의 버전을 락해 놓은 거고 이 노드 모듈은 이제 익스프레스 모듈에서 사용하고 있는 그 익스프레스 모듈의 모듈들이에요 여러 가지 모듈들을 또 사용을 해서 익스프레스라는 모듈로 하나로 합쳐 놓은 거예요 네 그래서 이렇게 익스프레스를 설치를 해 주고 어... 여기서 이제 빔이라는 에디터로 원래 index.js를 작성해도 되는데 비주얼 스튜디오를 미리 설치를 해 놨다면 굉장히 편리하게 ws, l과 연동을 시킬 수 있는데 여기서 코드라는 명령을 통해서 네 현재 폴더에서 이제 비주얼 스튜디오 코드를 이렇게 에디터를 연결할 수가 있게 됩니다 여기서 이제 새로운 파일을 만들어 주고 이거를 이제 아... 여기서 이제 새로운 파일을 만들어 주고 index.js라고 파일을 만들어 볼게요 이렇게 만들어 보고 어... 여기서 이제 간단한 웹앱을 구현해 볼 건데 먼저 익스프레스 모듈을 임포트 시켜야겠죠 임포트 시킬 때 노드.js는 어떻게 한다? require라는 함수를 사용을 한다 require를 통해서 익스프레스 모듈을 불러오고요 어... 이 자바스크립트를 이제 선행했을 거라고 이제 생각이 되는데 let, const, 뭐 뭐든 변수를 선언을 해서 익스프레스 모듈을 담아줄 변수를 선언을 해 주고 익스프레스 모듈을 한번 require 하면은 바뀌지 않을 거니까 const로 이제 상수로 선언을 해 보고 저장을 해 둘게요 그리고 이 익스프레스도 똑같이 객체이기 때문에 const at 이라는 변수를 만들어서 익스프레스 객체를 새로 만들어 주고요 그리고 나서 이제 어... 이 서버가 구동될 포트를 정해주면 되는데요 어... 포트 정해주는 것도 굉장히 간단합니다 기본적으로는 3000번 포트를 사용을 하는데 이건 본인이 편한 포트로 변경을 하셔도 되고요 포트도 이번엔 한번 3000으로 한번 작동을 시켜 볼게요 그 다음에 라우팅을 해야 되는데 get 메소드로 들어왔을 때 라우팅 처리를 한번 해 볼게요 get로 들어왔을 때 그냥 get 페이지로 들어왔을 때 콜백 함수를 이제 작성해 주는데 콜백 함수는 function req, res 이런 식으로 작성을 하셔도 되고 또는 이제 자바스크립트 최신 버전 사실 뭐 최신은 아니고 ECMA5부터 등장한 이제 에로우 펑션을 사용을 하셔도 됩니다 이거와 이것과 이제 이거는 동일한 의미를 뜻하고요 근데 이제 여기에 좀 더 많이 쓰이는 것 같아요 노드.js에서는 아무래도 최신 문법이기도 하고 이렇게 똑같이 똑같은 기능을 하는데 저는 밑에 문법을 사용을 해 보도록 할게요 이렇게 request와 response를 이제 콜백 함수로 받아서 이제 여기서 request를 받았을 때 response로 어떤 데이터를 줄 것이냐를 이제 여기서 선언을 하는 건데 일단 뭐 간단하게 뭐 헬로우 월드를 보내보도록 할게요 이 사이트에 접속을 하면 그리고 이제 서버를 운용시켜야겠죠 어떤 포트로 리스닝 할 건지 이제 app.reason 이쪽 첫 번째 인자는 포트가 들어갑니다 이게 객체에 어떤 인자가 들어간지 모를 때는 이제 그냥 뭐 보통 마우스 갖다 대면 이제 그 연동이 되는데 아마 디버거를 연결시키면 아마 연동이 될 거예요 보이거나 여기에 이제 포트를 입력을 해 주고 그리고 여기도 arrow function을 통해서 콜백 함수를 정해주고 콘솔 로그를 하나 찍어 볼게요 뭐 app.is.is.in.on.port 뭐 여기에 또 재밌는 방법이 하나 있는데 자바스크립트에서는 이제 백워터를 사용을 해서 안에 템플릿 문자를 쓸 수 있어요 이런 식으로 이런 식으로 변수들을 이렇게 포맷 스트링처럼 사용을 할 수 있거든요 굉장히 편리하죠 이렇게 포트 몇 번에서 돌고 있다 콘솔 로그를 찍어 볼게요 그리고 여기서 컨트롤하고 백택을 누르면 터미널이 여기 나오는데 이걸 사이드바에 한번 옮겨줄게요 퍼셀이 아니라 이제 지금 우리가 이 실습을 하고 있는 이 터미널 창에서 그 node.js하고 index.js을 실행시킬 건데 이렇게 지금 우리가 작성한 이 웹앱을 이렇게 node.js index.js로 간단하게 실행을 시킬 수가 있어요 자 코드 리뷰를 한번 잠깐 해 볼게요 익스프레스라는 모듈을 require를 통해서 인포트를 시켰고 익스프레스라는 변수에 담았어요 그리고 그 익스프레스라는 객체를 새로 이제 만들었고 인스턴스가 이제 앱에 들어가고 포트는 기본적으로 3000번 포트를 씁니다 포트는 기본적으로 3000번 포트를 씁니다 이 포트는 이제 앱.리슨 익스프레스 앱의 리스닝 포트로 사용이 되고요 그 다음에 여기는 라우팅이 딱 하나밖에 없네요 지금 하나만 구현해 놨죠 그냥 이 서버에 들어오면 헬로월드라는 문자를 리스폰스로 응답으로 준다라는 앱이 될 것 같습니다 한번 정말 그런지 확인을 해 볼게요 자 3000번 포트죠 브라우저를 열고 로컬 호스트 3000번 포트에 적극을 해 줍니다 정상적으로 헬로월드라는 이제 응답을 준 것을 확인할 수 있습니다 네 다음 두 번째 실습입니다 두 번째 웹앱을 구현을 해 볼 건데요 이제 두 번째는 기본적인 이 슬래시에서 라우팅이 아니라 저희가 인덱스.html을 만들어서 이걸 라우팅하는 방법을 알려드릴 거예요 자 html 코드에 대해서 대략 배우셨을 텐데 한번 인덱스.html을 작성을 하고 그걸 호스팅을 한번 해 볼게요 인덱스.html을 작성해 줍니다 자 html에 기본적으로 head 태그 들어갈 거고요 보통 head에 뭐가 들어가요? 타이틀이 들어가죠 타이틀은 My Express App 뭐 여러분들이 하고 싶은 타이틀로 하셔야 됩니다 그리고 뭐 메타 찰셋 캐릭터셋을 글로벌 앱이니까 또 utf 8로 선언해 주고 헤드 밑에는 뭐가 들어가요? 바디가 들어가죠 html 바디에 이제 뭐 My First Express App 이거 한번 어 뭐 h1 태그로 묶어 볼게요 h1 태그로 묶어서 이거를 다시 호스팅을 한번 해 볼게요 자 호스팅을 한번 해 봤습니다 자 그리고 다시 접속을 하면 인덱스.html이 딱 짜장나고 나올 거 같은데 어? 안 나옵니다 이게 똑같이 뜨는데 안 나와요 그럼 이걸 한번 지우고 한번 인덱스.html을 출력을 해 볼게요 다시 서버를 실행시키고 실행시켰는데 cannot get 하고 슬래시가 나옵니다 도대체 왜 이런 걸까요? 그 이유는요 이 인덱스.html은 static 파일이기 때문이에요 네 static 파일이란 정적 파일을 뜻하죠 뭐 자바스크립트나 CSS나 HTML 파일 같은 그런 정적인 파일들 서버에서 처리할 필요가 없는 그런 정적 파일들을 뜻하는데 이 노드.js.express 앱에서는요 이 정적 파일을 사용하기 위해서는 한 가지 규칙을 지켜줘야 합니다 그 정적 파일들을 제공할 폴더를 그러니까 static 파일들을 제공할 폴더들을 미리 선언을 해줘야 해요 어떻게? 이렇게 쓰시면 됩니다 앱.use 하고 use 그리고 express 앱을 미리 위에 모듈을 가져왔었죠 익스프레스에 static 이라는 이제 property가 있는데 static에 내가 static 파일들을 담을 파일 그 폴더를 이제 여기다 적어주면 돼요 static 폴더니까 보통 static 이라고 많이들 쓰거든요 static 이라는 폴더를 난 static 폴더로 정적 폴더로 쓰겠어 하고 이렇게 선언을 해주면요 그리고 여기다가 static 이라는 폴더를 하나 만들어서 이 index.html을 이제 이렇게 넣어주면 그리고 서버를 다시 켜주면 이 구문에 의해 처음에 들어가면 이렇게 이렇게 myFirstExpress앱이라고 이 static에 있는 index.html 파일이 이렇게 렌더링되게 됩니다 이 index.html 말고 예를 들어서 뭐 test.html을 만들어 보고 여기에는 test.html이라고 그냥 대충 이렇게 작성을 하고 서버를 다시 켜주고 여기서 test.html test.html을 접근하면 똑같이 이제 test.html 내용이 이렇게 정상적으로 라우팅이 되는 것을 알 수 있습니다 이렇게 해서 이번 시간에는 Express.js를 이용해서 간단하게 웹앱을 구현을 해봤고요 라우팅도 연습을 해봤고 그리고 static 폴더를 만들어서 static 파일들을 제공하는 방법을 배워봤습니다</div>
+          </details>
+        </div>
+      </details>
+    </section>
+        
+
+	    <nav class="content-wrap page-nav">
+	      <a class="button secondary" href="lesson-02.html">이전: 1-2</a><a class="button secondary" href="../index.html">과목 목록으로</a><a class="button secondary" href="lesson-04.html">다음: 1-4</a>
+    </nav>
+  </main>
+</body>
+</html>

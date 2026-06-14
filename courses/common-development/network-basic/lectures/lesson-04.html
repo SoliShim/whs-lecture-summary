@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>네트워크 기초 1-4 - 네트워크 계층</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -125,14 +125,26 @@
           </summary>
           <div class="note-section-body">
             <p>앞 강의에서 <strong>데이터 링크 계층</strong>은 근거리 <strong>네트워크</strong>에서 한 네트워크 요소가 이웃 네트워크 요소로 프레임을 전달하는 계층이라고 배웠다. 데이터 링크 계층은 MAC 주소를 사용한다. 이번 강의에서 다루는 네트워크 계층은 그 위의 3계층이며, 흔히 IP 계층이라고도 부른다.</p>
-<p><strong>네트워크 계층</strong>의 단위는 데이터그램이다. 이 계층은 한 호스트에서 다른 호스트로 데이터가 갈 때 어떤 경로를 선택하고 어떻게 전송할지 다룬다. 쉽게 말하면 <strong>라우팅</strong>을 수행한다. 상위 전송 계층에서 내려온 세그먼트를 데이터그램 안에 담아 운반하는 역할을 한다.</p>
-<div class="diagram">
-  <div><span class="node-title">데이터 링크</span><p>이웃 네트워크 요소로 프레임 전달</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">네트워크</span><p>호스트 대 호스트 데이터그램 전달</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">전송</span><p><strong>프로세스</strong> 대 프로세스 세그먼트 전달</p></div>
-</div>
+                <p><strong>네트워크 계층</strong>의 단위는 데이터그램이다. 이 계층은 한 호스트에서 다른 호스트로 데이터가 갈 때 어떤 경로를 선택하고 어떻게 전송할지 다룬다. 쉽게 말하면 <strong>라우팅</strong>을 수행한다. 상위 전송 계층에서 내려온 세그먼트를 데이터그램 안에 담아 운반하는 역할을 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0007.jpg" alt="Network Layer 개요" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Network Layer 개요</strong>
+    <span>네트워크 계층은 IP 계층이라고도 하며, datagram을 단위로 한 호스트에서 다른 호스트까지 최적 경로를 선택하고 전송한다.</span>
+  </figcaption>
+</figure>
+
+                <p>강사는 계층을 계속 비교하며 설명한다. 데이터 링크 계층은 네트워크 계층의 데이터그램을 프레임에 담아 이웃 네트워크 요소로 전달하고, 네트워크 계층은 전송 계층의 segment를 운반해 출발 호스트에서 목적 호스트까지 보내는 역할을 한다. 따라서 네트워크 계층을 이해할 때는 “<strong>IP 주소</strong>를 기반으로 목적 호스트까지 어떤 경로로 보낼 것인가”를 중심에 두면 된다.</p>
+                <div class="diagram">
+                  <div><span class="node-title">데이터 링크</span><p>이웃 네트워크 요소로 프레임 전달</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">네트워크</span><p>호스트 대 호스트 데이터그램 전달</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">전송</span><p><strong>프로세스</strong> 대 프로세스 세그먼트 전달</p></div>
+                </div>
           </div>
         </details>
         
@@ -143,7 +155,18 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 H1과 H2라는 두 호스트 예시로 <strong>네트워크 계층</strong>의 역할을 설명한다. H1의 전송 계층에서 내려온 세그먼트를 H2의 네트워크 계층까지 전달하고, 다시 H2의 전송 계층으로 올려 주는 것이 네트워크 계층의 큰 역할이다. 그래서 데이터 링크가 이웃 노드 간 전달이라면, 네트워크 계층은 <strong>호스트 대 호스트 전달</strong>을 담당한다고 이해하면 된다.</p>
-<p>이 구분은 뒤 강의까지 계속 반복된다. 링크 계층은 가까운 한 홉, <strong>네트워크</strong> 계층은 출발 호스트에서 목적 호스트까지, 전송 계층은 그 위에서 프로그램 또는 <strong>프로세스</strong>끼리 통신하는 논리적 연결을 담당한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0011.jpg" alt="호스트 대 호스트 전달" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>호스트 대 호스트 전달</strong>
+    <span>네트워크 계층은 H1의 전송 계층 segment를 추출해 H2의 네트워크 계층을 거쳐 전송 계층까지 전달하는 역할을 한다.</span>
+  </figcaption>
+</figure>
+
+                <p>이 구분은 뒤 강의까지 계속 반복된다. 링크 계층은 가까운 한 홉, <strong>네트워크</strong> 계층은 출발 호스트에서 목적 호스트까지, 전송 계층은 그 위에서 프로그램 또는 <strong>프로세스</strong>끼리 통신하는 논리적 연결을 담당한다.</p>
           </div>
         </details>
         
@@ -154,7 +177,18 @@
           </summary>
           <div class="note-section-body">
             <p><strong>네트워크 계층</strong>은 <strong>데이터 평면과 제어 평면</strong>으로 나누어 볼 수 있다. 데이터 평면은 데이터그램을 실제로 전달하는 과정과 IP 프로토콜 관련 내용을 다룬다. 제어 평면은 어떤 라우팅 알고리즘을 사용하고 어떻게 포워딩할지 같은 내용을 다룬다.</p>
-<p>이 강의에서는 자세한 <strong>라우팅</strong> 알고리즘이나 제어 평면 내용은 깊게 다루지 않는다. 멘토는 <strong>패킷</strong> 분석과 해킹에 필요한 네트워크 기초를 목표로 하므로, IP 프로토콜을 이해하는 데 초점을 맞춘다고 설명한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0015.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0015.jpg" alt="라우터의 데이터 평면과 제어 평면" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>라우터의 데이터 평면과 제어 평면</strong>
+    <span>데이터 평면은 입력 링크에서 출력 링크로 datagram을 전달하고, 제어 평면은 로컬 포워딩과 라우터별 포워딩을 다룬다.</span>
+  </figcaption>
+</figure>
+
+                <p>이 강의에서는 자세한 <strong>라우팅</strong> 알고리즘이나 제어 평면 내용은 깊게 다루지 않는다. 멘토는 <strong>패킷</strong> 분석과 해킹에 필요한 네트워크 기초를 목표로 하므로, IP 프로토콜을 이해하는 데 초점을 맞춘다고 설명한다.</p>
           </div>
         </details>
         
@@ -165,8 +199,19 @@
           </summary>
           <div class="note-section-body">
             <p><strong>네트워크 계층</strong>은 이론적으로 여러 <strong>서비스</strong>를 제공할 수 있다. 출발지에서 목적지까지 패킷 도착을 보장하는 보장된 전달, 일정 지연 제한 안의 도착 보장, 보낸 순서대로 도착하는 순서 패킷 전달, 최소 대역 보장, 기밀성 제공 같은 모델을 생각할 수 있다.</p>
-<p>하지만 실제 <strong>인터넷</strong> <strong>네트워크</strong> 계층은 이런 모든 보장을 제공하지 않고 <strong>최선형 서비스(best-effort service)</strong>를 제공한다. 패킷이 보낸 순서대로 도착할 것을 보장하지 않고, 목적지까지 전달될 것도 보장하지 않으며, 종단 시스템 간 지연이나 최소 대역폭도 보장하지 않는다.</p>
-<p>그럼에도 인터넷은 최선형 서비스만으로 충분히 좋은 성능을 내는 것으로 입증되어 왔다고 강의는 설명한다. 단순한 구조는 실시간 애플리케이션이나 성능이 중요한 네트워크에서 오히려 장점이 될 수 있다.</p>
+                <p>하지만 실제 <strong>인터넷</strong> <strong>네트워크</strong> 계층은 이런 모든 보장을 제공하지 않고 <strong>최선형 서비스(best-effort service)</strong>를 제공한다. 패킷이 보낸 순서대로 도착할 것을 보장하지 않고, 목적지까지 전달될 것도 보장하지 않으며, 종단 시스템 간 지연이나 최소 대역폭도 보장하지 않는다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0019.jpg" alt="인터넷 네트워크 계층의 최선형 서비스" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>인터넷 네트워크 계층의 최선형 서비스</strong>
+    <span>인터넷 네트워크 계층은 순서, 전달, 지연, 최소 대역폭을 보장하지 않는 best-effort service를 제공한다.</span>
+  </figcaption>
+</figure>
+
+                <p>그럼에도 인터넷은 최선형 서비스만으로 충분히 좋은 성능을 내는 것으로 입증되어 왔다고 강의는 설명한다. 단순한 구조는 실시간 애플리케이션이나 성능이 중요한 네트워크에서 오히려 장점이 될 수 있다.</p>
           </div>
         </details>
         
@@ -177,18 +222,30 @@
           </summary>
           <div class="note-section-body">
             <p><strong>IP</strong> <strong>프로토콜</strong>을 이해하기 위해 강의는 IPv4 데이터그램 포맷을 소개한다. IPv4 데이터그램은 보통 20바이트 헤더를 가지며, 옵션이 있으면 길이가 달라질 수 있다. 헤더에는 출발지 IP, 목적지 IP, 체크섬, 데이터그램 길이, Type of Service 같은 필드가 들어간다. 데이터 필드에는 상위 전송 계층의 세그먼트가 담긴다.</p>
-<table>
-  <thead><tr><th>필드</th><th>의미</th></tr></thead>
-  <tbody>
-    <tr><td>Source IP</td><td>데이터그램을 보낸 호스트의 <strong>IP 주소</strong>다.</td></tr>
-    <tr><td>Destination IP</td><td>데이터그램이 도착해야 할 호스트의 IP <strong>주소</strong>다.</td></tr>
-    <tr><td>Checksum</td><td><strong>비트</strong> 오류를 탐지하는 데 사용된다.</td></tr>
-    <tr><td>Type of Service</td><td><strong>서비스</strong> 유형이나 처리 우선순위와 관련된 정보를 담는다.</td></tr>
-    <tr><td>Total length</td><td>데이터그램 전체 길이를 나타낸다.</td></tr>
-    <tr><td>Data</td><td>전송 계층 세그먼트가 들어간다.</td></tr>
-  </tbody>
-</table>
-<p>모든 호스트와 라우터는 IP 데이터그램을 송수신할 수 있어야 하므로 IP 주소를 가진다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0027.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0027.jpg" alt="IPv4 데이터그램 포맷" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>IPv4 데이터그램 포맷</strong>
+    <span>IPv4 데이터그램은 보통 20byte 헤더를 가지며 version, header length, type of service, datagram length, TTL, checksum, source/destination IP, data 필드를 포함한다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>필드</th><th>의미</th></tr></thead>
+                  <tbody>
+                    <tr><td>Source IP</td><td>데이터그램을 보낸 호스트의 <strong>IP 주소</strong>다.</td></tr>
+                    <tr><td>Destination IP</td><td>데이터그램이 도착해야 할 호스트의 IP <strong>주소</strong>다.</td></tr>
+                    <tr><td>Checksum</td><td><strong>비트</strong> 오류를 탐지하는 데 사용된다.</td></tr>
+                    <tr><td>Type of Service</td><td><strong>서비스</strong> 유형이나 처리 우선순위와 관련된 정보를 담는다.</td></tr>
+                    <tr><td>Total length</td><td>데이터그램 전체 길이를 나타낸다.</td></tr>
+                    <tr><td>Data</td><td>전송 계층 세그먼트가 들어간다.</td></tr>
+                  </tbody>
+                </table>
+                <p>슬라이드의 포맷은 32비트 폭으로 <strong>배열</strong>되어 있으며, Version, Header length, Type of service, Datagram length, 16-bit identifier, Flags, Fragmentation offset, Time-to-live, Upper-layer protocol, Header checksum, Source IP address, Destination IP address, Options, Data가 차례로 보인다. 강의에서는 특히 checksum을 비트 오류 탐지와 연결하고, Type of Service를 세그먼트가 요구하는 서비스 성격을 명시하는 필드로 설명한다.</p>
+                <p>모든 호스트와 라우터는 IP 데이터그램을 송수신할 수 있어야 하므로 IP 주소를 가진다.</p>
           </div>
         </details>
         
@@ -199,15 +256,37 @@
           </summary>
           <div class="note-section-body">
             <p><strong>IPv4</strong> <strong>주소</strong>는 32비트 길이를 가지며, 보통 4개의 바이트를 점으로 구분한 형식으로 쓴다. 서브넷은 IP 네트워크를 더 작고 관리하기 쉬운 부분으로 나눈 것이다. 강의의 그림에서는 여러 서브넷이 라우터로 연결된 형태가 설명된다.</p>
-<p>강의는 IPv4의 <strong>클래스</strong> 주소 체계도 설명한다. 필요한 호스트 <strong>IP</strong> 개수에 따라 네트워크 영역과 호스트 영역의 크기를 다르게 할당하는 방식이다. 가정용 네트워크에서 자주 보는 192.168.0.1 같은 주소는 C 클래스 사설망 감각과 연결해 이해할 수 있다. C 클래스는 B 클래스보다 호스트 영역이 작고, 대학교나 기업처럼 더 많은 호스트가 필요한 곳에서는 더 큰 주소 영역이 필요할 수 있다.</p>
-<table>
-  <thead><tr><th>개념</th><th>설명</th></tr></thead>
-  <tbody>
-    <tr><td><strong>네트워크</strong> 영역</td><td>어느 네트워크에 속하는지 나타낸다.</td></tr>
-    <tr><td>호스트 영역</td><td>그 네트워크 안의 개별 장치를 구분한다.</td></tr>
-    <tr><td>IP broadcast</td><td>255.255.255.255처럼 <strong>서브넷</strong>의 모든 호스트에게 전달하겠다는 목적 주소다.</td></tr>
-  </tbody>
-</table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0031.jpg" alt="서브넷과 IP 주소" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>서브넷과 IP 주소</strong>
+    <span>모든 호스트와 라우터는 IP 데이터그램을 송수신하기 위해 IP 주소가 필요하고, 서브넷은 IP 네트워크를 더 작고 관리하기 쉬운 부분으로 나눈 것이다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의는 IPv4의 <strong>클래스</strong> 주소 체계도 설명한다. 필요한 호스트 <strong>IP</strong> 개수에 따라 네트워크 영역과 호스트 영역의 크기를 다르게 할당하는 방식이다. 가정용 네트워크에서 자주 보는 192.168.0.1 같은 주소는 C 클래스 사설망 감각과 연결해 이해할 수 있다. C 클래스는 B 클래스보다 호스트 영역이 작고, 대학교나 기업처럼 더 많은 호스트가 필요한 곳에서는 더 큰 주소 영역이 필요할 수 있다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0035.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0035.jpg" alt="IPv4 클래스 주소체계" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>IPv4 클래스 주소체계</strong>
+    <span>클래스 주소체계는 필요한 호스트 IP 개수에 따라 네트워크 영역과 호스트 영역의 크기를 다르게 할당한다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>개념</th><th>설명</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>네트워크</strong> 영역</td><td>어느 네트워크에 속하는지 나타낸다.</td></tr>
+                    <tr><td>호스트 영역</td><td>그 네트워크 안의 개별 장치를 구분한다.</td></tr>
+                    <tr><td>IP broadcast</td><td>255.255.255.255처럼 <strong>서브넷</strong>의 모든 호스트에게 전달하겠다는 목적 주소다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -218,8 +297,31 @@
           </summary>
           <div class="note-section-body">
             <p><strong>NAT, Network Address Translation</strong>는 하나의 공용 <strong>IP 주소</strong>를 사용해 사설 <strong>네트워크</strong> 안의 여러 사설 IP 주소가 외부와 통신할 수 있게 하는 주소 변환 체계로 설명된다. IPv4 주소 고갈 문제를 완화하는 데 중요한 기술이다.</p>
-<p><strong>DHCP</strong>는 <strong>IP</strong> 주소를 수동으로 하나하나 지정하지 않고, 네트워크에 접속한 장치에게 동적으로 IP 주소를 할당하는 프로토콜이다. 공유기나 조직 네트워크에서 장치가 자동으로 IP를 받는 흐름을 떠올리면 된다.</p>
-<p><strong>IPv4</strong> <strong>주소</strong> 공간 고갈 문제는 오래전부터 논의되어 왔고, 이를 해결하기 위해 IPv6가 개발되었다. IPv4가 32비트 주소를 쓰는 것과 달리 IPv6는 128비트 주소를 사용한다. 또 헤더를 간소화하고 flow labeling 같은 흐름 처리 개념을 포함한다. 다만 강의에서는 IPv6가 수용되고 있지만 아직 IPv4만큼 널리 전환되지는 않았다고 설명한다.</p>
+                <p><strong>DHCP, Dynamic Host Configuration Protocol</strong>은 <strong>IP</strong> <strong>주소</strong>를 수동으로 하나하나 지정하지 않고, 네트워크에 접속한 장치에게 동적으로 IP 주소를 할당하는 프로토콜이다. 공유기나 조직 네트워크에서 장치가 자동으로 IP를 받는 흐름을 떠올리면 된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0039.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0039.jpg" alt="Broadcast, NAT, DHCP" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Broadcast, NAT, DHCP</strong>
+    <span>broadcast 주소는 같은 서브넷의 모든 호스트에게 전달하고, NAT는 하나의 공용 IP로 여러 사설 IP가 통신하게 하며, DHCP는 IP 주소와 관련 설정을 자동으로 할당한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>IPv4</strong> 주소 공간 고갈 문제는 오래전부터 논의되어 왔고, 이를 해결하기 위해 <strong>IPv6</strong>가 개발되었다. IPv4가 32비트 주소를 쓰는 것과 달리 IPv6는 128비트 주소를 사용한다. 또 헤더를 간소화하고 flow labeling 같은 흐름 처리 개념을 포함한다. 다만 강의에서는 IPv6가 수용되고 있지만 아직 IPv4만큼 널리 전환되지는 않았다고 설명한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0043.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-04-네트워크-계층/네트워크 기초-04-네트워크-계층 - 0043.jpg" alt="IPv6" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>IPv6</strong>
+    <span>IPv6는 IPv4 주소 공간 고갈에 대응해 128bit 주소, 간소화된 40byte 고정 헤더, flow labeling을 제공한다.</span>
+  </figcaption>
+</figure>
+
+                <p>IPv6 슬라이드는 Source address와 Destination address가 각각 128비트로 확장된 구조를 보여 준다. 또 Traffic class, Flow label, Payload length, Next hdr, Hop limit 같은 필드가 있으며, 강사는 IPv6가 40바이트 고정 헤더를 사용해 헤더를 간소화했다고 설명한다.</p>
           </div>
         </details>
         
@@ -230,6 +332,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>네트워크 계층</strong>이 <strong>데이터 링크 계층</strong>과 다르게 호스트 대 호스트 전달을 담당한다는 점을 설명할 수 있는가?</li><li><strong>인터넷</strong> <strong>네트워크 계층</strong>이 최선형 서비스를 제공한다는 말의 의미를 이해했는가?</li><li><strong>IPv4</strong> 데이터그램 헤더에서 출발지 <strong>IP</strong>, 목적지 IP, 체크섬이 어떤 역할을 하는지 말할 수 있는가?</li><li><strong>서브넷</strong>, NAT, DHCP, IPv6가 <strong>IPv4</strong> 주소 운영과 어떤 관련이 있는지 정리할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

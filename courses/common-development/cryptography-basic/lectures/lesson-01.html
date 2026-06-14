@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>암호학 기초 1-1 - 강의 계획</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -119,8 +119,30 @@
             <h2>멘토 소개와 강의 위치</h2>
           </summary>
           <div class="note-section-body">
-            <p>강의는 2023년도 차세대 보안리더 양성 프로그램 화이트스쿨 수강생을 대상으로 시작한다. <strong>암호학</strong> 기초를 함께 살펴볼 멘토는 이민우 멘토다. 이 첫 강의는 본격적인 개념 설명보다 전체 차시의 방향과 학습 순서를 안내하는 <strong>강의 계획</strong>에 해당한다.</p>
-<p>비대면 강의에서는 암호 기술의 핵심 개념을 차시별로 훑고, 비대면 강의에서 다루지 못한 일부 내용과 실습은 9월 초 예정된 오프라인 강의에서 보완한다고 설명한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-01-강의-계획/암호학 기초-01-강의-계획 - 0001.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-01-강의-계획/암호학 기초-01-강의-계획 - 0001.jpg" alt="암호학 기초 강의 시작" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>암호학 기초 강의 시작</strong>
+    <span>이민우 멘토가 WhiteHat School 암호학 기초 과정을 시작하며 비대면 강의의 전체 흐름을 안내한다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의는 2023년도 차세대 보안리더 양성 프로그램 화이트스쿨 수강생을 대상으로 시작한다. <strong>암호학</strong> 기초를 함께 살펴볼 멘토는 이민우 멘토다. 이 첫 강의는 본격적인 개념 설명보다 전체 차시의 방향과 학습 순서를 안내하는 <strong>강의 계획</strong>에 해당한다.</p>
+                <p>비대면 강의에서는 암호 기술의 핵심 개념을 차시별로 훑고, 비대면 강의에서 다루지 못한 일부 내용과 실습은 9월 초 예정된 오프라인 강의에서 보완한다고 설명한다. 따라서 이 강의는 암호학 전체를 깊게 증명하는 수학 강의라기보다, 이후 실습과 보안 기술 학습을 위한 핵심 용어와 구조를 잡는 입문 강의다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-01-강의-계획/암호학 기초-01-강의-계획 - 0002.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-01-강의-계획/암호학 기초-01-강의-계획 - 0002.jpg" alt="암호학 기초 강의 계획" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>암호학 기초 강의 계획</strong>
+    <span>암호학 기초 개요, 무결성과 인증, 기밀성, 공개키 암호 기술, 암호 기술 활용으로 이어지는 전체 차시 구성을 한 화면에서 확인한다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의 계획 화면에는 다섯 차시가 한 번에 정리되어 있다. 1차시에서는 보안 통신과 암호 기술의 기본 개념을 잡고, 2차시에서는 <strong>무결성</strong>과 <strong>인증</strong>을 해시 함수와 연결한다. 3차시에서는 기밀성을 위해 대칭키와 비대칭키 암호를 비교하고, 4차시에서는 공개키 암호 기술과 PKI를 다룬다. 마지막 5차시에서는 TLS와 하이브리드 암호 기술로 실제 활용을 살펴본다.</p>
           </div>
         </details>
         
@@ -131,7 +153,8 @@
           </summary>
           <div class="note-section-body">
             <p><strong>1차시</strong>에서는 <strong>암호학</strong> 기초에 대한 overview를 다룬다. 보안 통신이 무엇인지, 보안 목표란 무엇인지, 암호 기술의 기본 개념이 무엇인지 살펴본다. 특히 암호 기술을 공부할 때 계속 등장하는 <strong>Kerckhoffs의 원리</strong>를 확인한다.</p>
-<p>또 암호 알고리즘과 키 길이의 관계를 배운다. 강의 전체에서 반복되는 핵심 관점은 암호 알고리즘 자체를 숨기는 것이 아니라, 공개된 알고리즘 위에서 비밀키를 어떻게 안전하게 관리하느냐가 중요하다는 것이다. 마지막으로 암호 기술이 실제로 어디에 활용되는지도 간략히 살펴본다.</p>
+<p>또 암호 알고리즘과 키 길이의 관계를 배운다. 암호 기술에서 알고리즘과 키 길이는 따로 생각할 수 없다. 같은 알고리즘이라도 키 길이에 따라 완전 탐색에 필요한 계산량이 달라지고, 시대에 따라 권장되는 보안 강도도 달라진다. 강의 전체에서 반복되는 핵심 관점은 암호 알고리즘 자체를 숨기는 것이 아니라, 공개된 알고리즘 위에서 비밀키를 어떻게 안전하게 관리하느냐가 중요하다는 것이다.</p>
+<p>마지막으로 암호 기술이 실제로 어디에 활용되는지도 간략히 살펴본다. 이 1차시가 이후 <strong>무결성</strong>, <strong>인증</strong>, 기밀성, 공개키, TLS 강의의 용어 기반을 만든다.</p>
           </div>
         </details>
         
@@ -186,6 +209,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>암호학</strong> 기초 비대면 강의가 몇 개의 주제 흐름으로 구성되는지 설명할 수 있는가?</li><li><strong>무결성</strong>, <strong>인증</strong>, 기밀성, 공개키, TLS 활용이 어떤 순서로 이어지는지 말할 수 있는가?</li><li>비대면 강의와 오프라인 강의에서 각각 어떤 역할을 맡는지 이해했는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

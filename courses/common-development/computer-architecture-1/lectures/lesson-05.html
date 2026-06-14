@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>컴퓨터 구조 I 1-5 - 메모리와 시스템</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -129,9 +129,32 @@
             <h2>메모리는 무엇을 저장하는가</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>메모리</strong>는 <strong>실행</strong> 중인 프로그램의 명령어, 명령어에 사용되는 데이터, 실행 중간 결과를 저장하는 공간이다. 하드웨어적으로는 트랜지스터 같은 물리 구조 위에 있지만, 프로그래머 입장에서는 디버거를 통해 메모리 주소와 값을 관찰할 수 있다.</p>
-<p>멘토는 <strong>C 언어</strong>가 메모리를 보기 좋은 언어라고 설명한다. <strong>파이썬</strong>이나 자바스크립트도 디버거를 붙일 수 있지만, C는 메모리 주소와 값, 포인터, 변수 배치가 비교적 직접적으로 드러난다. 그래서 시스템 해킹, 어셈블리어, 디버깅 입문에서 C가 자주 쓰인다.</p>
-<div class="callout">핵심은 “메모리는 눈에 보이지 않는 하드웨어”이면서 동시에 “디버거로 관찰할 수 있는 프로그램 실행의 현장”이라는 점이다.</div>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0001.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0001.jpg" alt="메모리와 시스템 강의 시작" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>메모리와 시스템 강의 시작</strong>
+    <span>5강은 메모리를 실행 중인 프로그램의 명령어, 데이터, 중간 결과가 저장되는 공간으로 보고 디버거와 시스템 해킹 관점까지 연결한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>메모리</strong>는 <strong>실행</strong> 중인 프로그램의 명령어, 명령어에 사용되는 데이터, 실행 중간 결과를 저장하는 공간이다. CPU 강의에서 본 것처럼 CPU는 명령어를 가져와 해석하고 실행하는데, 그 명령어와 데이터가 놓이는 주요 공간이 메모리다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0002.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0002.jpg" alt="메모리의 역할" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>메모리의 역할</strong>
+    <span>메모리는 실행 중인 프로그램, 중간 결과, 다양한 데이터를 저장하는 공간이라는 정의에서 강의가 시작된다.</span>
+  </figcaption>
+</figure>
+
+                <p>하드웨어적으로 메모리는 트랜지스터와 회로 위에 존재하지만, 프로그래머가 그 물리 구조를 눈으로 직접 확인하기는 어렵다. 대신 소프트웨어 관점에서는 메모리를 볼 수 있다. 이때 쓰는 도구가 <strong>디버거</strong>다. <strong>디버거</strong>는 프로그램이 멈춘 특정 시점의 <strong>변수</strong> 값, 메모리 주소, 레지스터 상태를 보여 준다.</p>
+                <p>멘토는 <strong>C 언어</strong>가 메모리를 보기 좋은 언어라고 설명한다. <strong>파이썬</strong>이나 자바스크립트도 디버거를 붙일 수 있지만, C는 메모리 주소와 값, 포인터, 변수 배치가 비교적 직접적으로 드러난다. 그래서 시스템 해킹, 어셈블리어, 디버깅 입문에서 C가 자주 쓰인다.</p>
+                <p>강사는 managed language와 unmanaged language의 차이도 짧게 언급한다. 메모리를 직접 다루고 관리하는 언어일수록 메모리 <strong>주소</strong>와 값의 변화를 직접 관찰하기 쉽다. C는 자료도 많고 실습 예제가 많아 메모리와 디버거를 처음 익히기에 적합하다고 설명한다.</p>
+                <div class="callout">핵심은 “메모리는 눈에 보이지 않는 하드웨어”이면서 동시에 “디버거로 관찰할 수 있는 프로그램 실행의 현장”이라는 점이다.</div>
           </div>
         </details>
         
@@ -142,16 +165,31 @@
           </summary>
           <div class="note-section-body">
             <p><strong>디버거</strong>를 사용할 때 중요한 개념이 <strong>중단점</strong>, 즉 breakpoint다. 프로그램이 <strong>실행</strong>되는 흐름 중 어디에서 멈출지 지정하면, 디버거는 그 시점의 변수 값, 메모리 값, 레지스터 상태를 보여 준다. 문제가 생긴 지점을 좁혀 가려면 어디서 멈출지 정하는 감각이 중요하다.</p>
-                    <p>강의에서는 초기화되지 않은 <strong>변수</strong>에 쓰레기값이 들어 있을 수 있다는 예를 든다. <strong>메모리</strong>는 처음부터 모두 0으로 정돈되어 있는 공간이 아니다. 이전에 쓰이던 값이나 의미 없는 데이터가 남아 있을 수 있다. 그래서 변수를 선언한 뒤 사용하기 전에 원하는 값으로 초기화해야 한다.</p>
-                    <pre><code class="language-c">int x;
-int y;
-char z;
 
-// 이 시점에서 x, y, z에는 의도하지 않은 쓰레기값이 보일 수 있다.
-x = 0;
-y = 1;
-z = &#x27;A&#x27;;</code></pre>
-                    <p>디버거에서 한 줄씩 실행해 보면, 특정 라인이 지나간 뒤 변수 값이 실제로 어떻게 바뀌는지 확인할 수 있다. 이 경험을 해 보면 “왜 초기화가 필요한가”를 문법 암기가 아니라 메모리 상태로 이해하게 된다.</p>
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0004.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0004.jpg" alt="VS Code 디버거와 변수 상태" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>VS Code 디버거와 변수 상태</strong>
+        <span>중단점에서 멈춘 순간 Locals 창에 x, y, z 값이 표시되고, 아직 실행되지 않은 대입문 때문에 쓰레기값을 관찰할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>화면의 예시에서는 VS Code 디버거가 중단점에서 멈춰 있고, 왼쪽 Locals 창에 <code>x</code>, <code>y</code>, <code>z</code> 값이 보인다. 코드에는 <code>int x = 0;</code>이 있지만, 노란 실행 위치가 아직 그 줄을 실행하기 전이므로 <code>x</code>에는 의도하지 않은 값이 표시될 수 있다. 이런 값을 강의에서는 <strong>쓰레기값</strong>이라고 설명한다.</p>
+                    <pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main()
+{
+    int x = 0;
+    int y;
+    char z = &#x27;a&#x27;;
+    printf(&quot;HELLO ! \n&quot;);
+
+    return 0;
+}</code></pre>
+                    <p><strong>메모리</strong>는 처음부터 모두 0으로 정돈되어 있는 공간이 아니다. 이전에 쓰이던 값이나 의미 없는 데이터가 남아 있을 수 있다. 그래서 <strong>변수</strong>를 선언한 뒤 사용하기 전에 원하는 값으로 초기화해야 한다. 디버거에서 한 줄씩 실행해 보면, 특정 라인이 지나간 뒤 <code>x</code>가 0으로 바뀌고, <code>z</code>에 <code>'a'</code>가 들어가는 과정을 직접 볼 수 있다.</p>
+                    <p>이 경험을 해 보면 “왜 초기화가 필요한가”를 문법 암기가 아니라 메모리 상태로 이해하게 된다. 프로그램이 의도와 다르게 동작할 때도 마찬가지다. 어느 순간 어떤 값이 잘못 들어갔는지 확인하고, 그 값이 왜 바뀌었는지 거꾸로 따라가면 원인을 좁힐 수 있다.</p>
           </div>
         </details>
         
@@ -162,12 +200,36 @@ z = &#x27;A&#x27;;</code></pre>
           </summary>
           <div class="note-section-body">
             <p>멘토는 GDB 같은 <strong>디버거</strong>를 예로 든다. GDB에서는 명령어 단위로 프로그램을 멈추고, 어셈블리어, <strong>메모리</strong> 주소, 레지스터 값을 확인할 수 있다. <code>disassemble</code>은 기계어를 사람이 읽을 수 있는 어셈블리어 형태로 거꾸로 풀어 보여 주는 명령으로 이해하면 된다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0023.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0023.jpg" alt="GDB disassemble main" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>GDB disassemble main</strong>
+        <span>GDB의 disassemble 명령은 main 함수의 기계어를 어셈블리어 형태로 풀어 보여 주며, 주소와 명령어가 함께 표시된다.</span>
+      </figcaption>
+    </figure>
+
                     <pre><code class="language-bash">break main       # main 함수에 중단점 설정
 run              # 프로그램 실행
 disassemble main # main 함수의 어셈블리 확인
 info registers   # 레지스터 상태 확인
 x/16x $esp       # 특정 주소 주변 메모리를 16진수로 확인</code></pre>
+                    <p>화면의 <code>disassemble main</code> 결과를 보면 왼쪽에는 <code>0x08048374</code> 같은 메모리 <strong>주소</strong>가 있고, 오른쪽에는 <code>push %ebp</code>, <code>mov %esp,%ebp</code>, <code>sub $0x8,%esp</code> 같은 어셈블리 명령이 있다. “이 주소에는 이런 명령어가 저장되어 있다”는 사실을 디버거가 보여 주는 것이다.</p>
                     <p>어셈블리에서 <code>push ebp</code> 같은 명령이 보일 수 있다. 강의에서는 자세히 설명하지 않지만, <strong>함수</strong> 스택 프레임, 함수 <strong>실행</strong> 과정, 프로로그와 에필로그를 배울 때 매우 중요한 패턴이라고 언급한다. 함수가 시작될 때 기준점을 잡고, 함수가 끝날 때 원래 상태로 돌아가기 위한 규칙이 있기 때문이다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0038.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0038.jpg" alt="GDB 메모리 표현 방식" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>GDB 메모리 표현 방식</strong>
+        <span>같은 주소의 값을 8진수, 16진수, 10진수, 2진수처럼 다른 형식으로 표현할 수 있음을 보여 준다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>GDB는 같은 메모리 값을 여러 형식으로 보여 줄 수 있다. 화면에서는 <code>x/o</code>로 8진수, <code>x/x</code>로 <strong>16진수</strong>, <code>x/u</code>로 부호 없는 <strong>10진수</strong>, <code>x/t</code>로 2진수 표현을 확인한다. 명령어를 모두 외울 필요는 없지만, “디버거는 특정 주소의 값을 원하는 형식으로 표현해 볼 수 있다”는 기능을 기억해 두면 된다.</p>
           </div>
         </details>
         
@@ -178,7 +240,19 @@ x/16x $esp       # 특정 주소 주변 메모리를 16진수로 확인</code></
           </summary>
           <div class="note-section-body">
             <p><strong>레지스터</strong>는 <strong>CPU</strong> 안에 있는 아주 작은 메모리로 생각하면 된다. CPU와 RAM은 속도와 거리 면에서 차이가 크기 때문에, CPU는 매번 멀리 있는 RAM에서 값을 가져오기보다 아주 가까운 레지스터와 캐시를 활용한다.</p>
-<p>GDB에서 레지스터 값을 보면 CPU가 지금 어떤 값을 들고 명령을 처리하는지 확인할 수 있다. 예를 들어 <code>EBP</code>는 베이스 <strong>포인터</strong>로, <strong>함수</strong> 실행 과정에서 기준점 역할을 한다. 이후 시스템 해킹과 어셈블리어를 배우면 레지스터마다 어떤 역할이 있는지 더 자세히 익히게 된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0031.jpg" alt="GDB 레지스터 확인" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>GDB 레지스터 확인</strong>
+    <span>break main, run 이후 info register로 eax, esp, ebp, eip 같은 레지스터 값을 확인하는 화면이다.</span>
+  </figcaption>
+</figure>
+
+                <p>GDB에서 레지스터 값을 보면 CPU가 지금 어떤 값을 들고 명령을 처리하는지 확인할 수 있다. 화면에는 <code>eax</code>, <code>ecx</code>, <code>edx</code>, <code>esp</code>, <code>ebp</code>, <code>eip</code> 같은 레지스터가 보인다. <code>eip</code>는 현재 <strong>실행</strong> 위치와 연결되고, <code>ebp</code>는 베이스 <strong>포인터</strong>로 함수 실행 과정에서 기준점 역할을 한다.</p>
+                <p>강사는 이 단계에서 레지스터 각각의 역할을 모두 외우라고 하지는 않는다. 대신 나중에 시스템 <strong>해킹</strong>, 어셈블리어, <strong>함수</strong> 스택 프레임을 배울 때 “CPU 안의 작은 저장 공간을 디버거로 볼 수 있다”는 감각을 다시 떠올리면 된다.</p>
           </div>
         </details>
         
@@ -189,14 +263,39 @@ x/16x $esp       # 특정 주소 주변 메모리를 16진수로 확인</code></
           </summary>
           <div class="note-section-body">
             <p><strong>엔디안</strong>은 여러 <strong>바이트</strong>로 이루어진 데이터를 메모리에 어떤 순서로 저장하고 읽을지에 대한 약속이다. 사람이 왼쪽에서 오른쪽으로 <code>12 34 56 78</code>을 읽는 것과, 컴퓨터가 낮은 주소부터 어떤 바이트를 먼저 저장하는지는 다를 수 있다.</p>
-<table>
-  <thead><tr><th>방식</th><th>저장 감각</th><th>강의에서의 포인트</th></tr></thead>
-  <tbody>
-    <tr><td>빅 엔디안</td><td>큰 자리 바이트가 낮은 <strong>주소</strong>에 먼저 저장된다.</td><td><strong>네트워크</strong> 통신에서 순서를 맞추는 약속으로 자주 언급된다.</td></tr>
-    <tr><td>리틀 엔디안</td><td>작은 자리 바이트가 낮은 주소에 먼저 저장된다.</td><td>x86 계열 실습에서 자주 마주치며, <strong>디버거</strong>에서 값이 거꾸로 보일 수 있다.</td></tr>
-  </tbody>
-</table>
-<p>예를 들어 사람이 <code>ABCD</code>라고 <strong>입력</strong>했다고 해서 <strong>메모리</strong>에서 항상 같은 순서로 보이는 것은 아니다. 리틀 엔디안 환경에서는 바이트 단위 저장 순서가 사람이 기대한 순서와 다르게 보일 수 있다. C 언어 입출력 프로그램을 만들고 디버거로 실제 메모리를 보면 이 감각이 빠르게 잡힌다고 설명한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0043.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0043.jpg" alt="빅 엔디안 저장 순서" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>빅 엔디안 저장 순서</strong>
+    <span>0x12345678에서 큰 자리 바이트 0x12가 낮은 주소에 먼저 저장되는 방식을 도식으로 보여 준다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>빅 엔디안(Big Endian)</strong>은 큰 자리 바이트, 즉 MSB가 낮은 <strong>주소</strong>에 먼저 저장되는 방식이다. 예를 들어 <code>0x12345678</code>을 저장하면 낮은 주소부터 <code>0x12</code>, <code>0x34</code>, <code>0x56</code>, <code>0x78</code> 순서로 놓인다. 사람이 숫자를 읽는 방향과 비교적 비슷해 보인다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0047.jpg" alt="리틀 엔디안 저장 순서" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>리틀 엔디안 저장 순서</strong>
+    <span>0x12345678에서 작은 자리 바이트 0x78이 낮은 주소에 먼저 저장되어 디버거에서 값이 거꾸로 보일 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>리틀 엔디안(Little Endian)</strong>은 작은 자리 바이트, 즉 LSB가 낮은 주소에 먼저 저장되는 방식이다. 같은 <code>0x12345678</code>이 낮은 주소부터 <code>0x78</code>, <code>0x56</code>, <code>0x34</code>, <code>0x12</code>처럼 보일 수 있다. 그래서 <strong>디버거</strong>에서 값을 보면 사람이 <strong>입력</strong>한 순서와 반대로 보이는 느낌을 받을 수 있다.</p>
+                <table>
+                  <thead><tr><th>방식</th><th>저장 감각</th><th>강의에서의 포인트</th></tr></thead>
+                  <tbody>
+                    <tr><td>빅 엔디안</td><td>큰 자리 바이트가 낮은 주소에 먼저 저장된다.</td><td><strong>네트워크</strong> 통신에서 순서를 맞추는 약속으로 자주 언급된다.</td></tr>
+                    <tr><td>리틀 엔디안</td><td>작은 자리 바이트가 낮은 주소에 먼저 저장된다.</td><td>x86 계열 실습에서 자주 마주치며, 디버거에서 값이 거꾸로 보일 수 있다.</td></tr>
+                  </tbody>
+                </table>
+                <p>예를 들어 사람이 <code>ABCD</code>라고 입력했다고 해서 <strong>메모리</strong>에서 항상 같은 순서로 보이는 것은 아니다. 리틀 엔디안 환경에서는 바이트 단위 저장 순서가 사람이 기대한 순서와 다르게 보일 수 있다. <strong>C 언어</strong> 입출력 프로그램을 만들고 디버거로 실제 메모리를 한 번만 확인해 보면 이 감각이 빠르게 잡힌다고 설명한다.</p>
+                <p>강사는 빅 엔디안이 네트워크에서 자주 쓰인다고 덧붙인다. 서로 다른 컴퓨터가 통신할 때 한쪽은 뒤에서부터 읽고 다른 쪽은 앞에서부터 읽으면 값 해석이 어긋날 수 있으므로, 통신에서는 순서를 맞추는 약속이 필요하다.</p>
           </div>
         </details>
         
@@ -215,7 +314,8 @@ x/16x $esp       # 특정 주소 주변 메모리를 16진수로 확인</code></
   <span class="arrow">→</span>
   <div><span class="node-title">실행 흐름 조작</span><p><strong>주소</strong>, 셸코드, <strong>레지스터</strong> 상태를 이용한다.</p></div>
 </div>
-<p>멘토는 나중에 스택, 힙, BSS, 데이터 영역을 배우면 이 구조가 퍼즐처럼 맞춰진다고 설명한다. 결국 시스템 해킹은 메모리를 보고, 조작 가능한 영역을 찾고, 원하는 <strong>실행</strong> 흐름을 구성하는 작업이다.</p>
+<p>강사는 “입력값이 넘치면 메모리가 덮인다”는 말을 더 구체적으로 이해해야 한다고 강조한다. 메모리가 덮인다는 것은 특정 주소에 있던 데이터가 오염된다는 뜻이고, 이 오염을 이용해 원하는 명령이나 주소로 <strong>실행</strong> 흐름을 돌릴 수 있는지가 시스템 해킹의 중요한 출발점이다.</p>
+<p>멘토는 나중에 스택, 힙, BSS, 데이터 영역을 배우면 이 구조가 퍼즐처럼 맞춰진다고 설명한다. 어떤 영역은 명령어가 있고, 어떤 영역은 데이터가 있고, 어떤 영역은 사용자가 접근할 수 있으며, 어떤 영역은 보호된다. 결국 시스템 해킹은 메모리를 보고, 조작 가능한 영역을 찾고, 원하는 실행 흐름을 구성하는 작업이다.</p>
           </div>
         </details>
         
@@ -226,14 +326,26 @@ x/16x $esp       # 특정 주소 주변 메모리를 16진수로 확인</code></
           </summary>
           <div class="note-section-body">
             <p><strong>메모리</strong>라고 하면 가장 먼저 <strong>RAM과 ROM</strong>이 나온다. 멘토는 가장 큰 차이를 <strong>휘발성</strong>과 <strong>비휘발성</strong>으로 설명한다. RAM은 전원이 꺼지면 내용이 사라지는 임시 저장 공간이고, ROM은 읽기 중심의 비휘발성 저장 공간으로 설명된다.</p>
-<table>
-  <thead><tr><th>구분</th><th>성격</th><th>강의에서의 설명</th></tr></thead>
-  <tbody>
-    <tr><td><strong>RAM</strong></td><td>휘발성, 읽기·쓰기 가능</td><td>프로그램 <strong>실행</strong> 중 임시로 데이터를 올려 두는 공간이다.</td></tr>
-    <tr><td><strong>ROM</strong></td><td>비휘발성, 읽기 중심</td><td>전원이 꺼져도 유지되는 저장 성격을 가진다.</td></tr>
-  </tbody>
-</table>
-<p>휘발성은 불편해 보이지만 중요하다. 프로그램이 잘못된 상태가 되었을 때 전원을 끄고 다시 시작하면 실행 중 상태가 초기화된다. 매번 잘못된 데이터를 영원히 들고 있는 것보다, 실행 환경을 새로 시작할 수 있다는 점이 장점이 된다. 강의에서는 RAM, DRAM, SRAM, ROM, Flash, PROM 같은 이름도 자격증 시험에서 나올 수 있으니 한 번쯤 기억해 두라고 말한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0072.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0072.jpg" alt="RAM과 ROM 비교" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>RAM과 ROM 비교</strong>
+    <span>RAM은 읽기·쓰기 가능하고 휘발성이며, ROM은 읽기 중심이고 비휘발성이라는 차이를 표로 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>구분</th><th>성격</th><th>강의에서의 설명</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>RAM</strong></td><td>휘발성, 읽기·쓰기 가능</td><td>프로그램 <strong>실행</strong> 중 임시로 데이터를 올려 두는 공간이다.</td></tr>
+                    <tr><td><strong>ROM</strong></td><td>비휘발성, 읽기 중심</td><td>전원이 꺼져도 유지되는 저장 성격을 가진다.</td></tr>
+                  </tbody>
+                </table>
+                <p>휘발성은 불편해 보이지만 중요하다. 프로그램이 잘못된 상태가 되었을 때 전원을 끄고 다시 시작하면 실행 중 상태가 초기화된다. 매번 잘못된 데이터를 영원히 들고 있는 것보다, 실행 환경을 새로 시작할 수 있다는 점이 장점이 된다. 반대로 전원이 꺼져도 유지되어야 하는 데이터는 비휘발성 저장 장치에 있어야 한다.</p>
+                <p>강의에서는 RAM, DRAM, SRAM, ROM, Flash, PROM, EPROM 같은 이름도 자격증 시험에서 나올 수 있으니 한 번쯤 기억해 두라고 말한다. 깊은 전자공학 수준으로 들어가기보다, 읽기·쓰기 가능 여부, 속도, 휘발성, 제품 예시, 용도 차이를 표처럼 정리해 두면 된다.</p>
           </div>
         </details>
         
@@ -244,26 +356,38 @@ x/16x $esp       # 특정 주소 주변 메모리를 16진수로 확인</code></
           </summary>
           <div class="note-section-body">
             <p><strong>CPU</strong>에 가까운 저장 공간일수록 빠르고 비싸며 용량이 작다. CPU에서 멀어질수록 느리지만 싸고 용량이 커진다. 이 구조를 <strong>메모리 계층 구조</strong>라고 한다. 강의에서는 CPU 레지스터, 캐시 메모리, 메인 메모리(RAM), 저장 장치(SSD/HDD), 더 느린 보조 저장 매체 순서로 설명한다.</p>
-<table>
-  <thead><tr><th>계층</th><th>위치와 성격</th><th>특징</th></tr></thead>
-  <tbody>
-    <tr><td><strong>레지스터</strong></td><td>CPU 내부</td><td>가장 빠르지만 매우 작다.</td></tr>
-    <tr><td>캐시</td><td>CPU 가까이</td><td><strong>RAM</strong>에서 자주 쓸 데이터를 미리 가져와 둔다.</td></tr>
-    <tr><td>RAM</td><td>메인 <strong>메모리</strong></td><td><strong>실행</strong> 중인 프로그램과 데이터를 올려 둔다.</td></tr>
-    <tr><td>SSD/HDD</td><td>저장 장치</td><td>프로그램과 파일을 비교적 큰 용량으로 보관한다.</td></tr>
-  </tbody>
-</table>
-<p>RAM 1TB가 SSD 1TB보다 훨씬 비싼 이유도 이 <strong>계층 구조</strong>로 이해할 수 있다. CPU가 너무 빠르기 때문에, 느린 저장 장치에서 매번 데이터를 가져오면 CPU가 기다리게 된다. 그래서 실행할 프로그램은 저장 장치에서 RAM으로 올라오고, RAM의 일부는 캐시에 미리 들어가며, CPU는 레지스터로 값을 가져와 빠르게 처리한다.</p>
-<div class="diagram">
-  <div><span class="node-title">SSD/HDD</span><p>프로그램과 파일 보관</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">RAM</span><p>실행 중 데이터 적재</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">Cache</span><p>자주 쓸 데이터 미리 준비</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">Register</span><p>CPU가 즉시 사용할 값</p></div>
-</div>
-<p>이 구조는 성능뿐 아니라 관리 측면에서도 유리하다. RAM이 부족하면 RAM을 늘리고, 저장 공간이 부족하면 SSD나 HDD를 늘리는 식으로 계층별 역할이 나뉘기 때문이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0087.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/computer-architecture-1/컴퓨터 구조 1-05-메모리-메모리와-시스템/컴퓨터 구조 1-05-메모리-메모리와-시스템 - 0087.jpg" alt="메모리 계층 구조" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>메모리 계층 구조</strong>
+    <span>CPU 레지스터, 캐시, 메인 메모리, 디스크 저장 장치로 내려갈수록 용량은 커지고 싸지지만 접근 시간은 느려진다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>계층</th><th>위치와 성격</th><th>특징</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>레지스터</strong></td><td>CPU 내부</td><td>가장 빠르지만 매우 작다.</td></tr>
+                    <tr><td>캐시</td><td>CPU 가까이</td><td><strong>RAM</strong>에서 자주 쓸 데이터를 미리 가져와 둔다.</td></tr>
+                    <tr><td>RAM</td><td>메인 <strong>메모리</strong></td><td><strong>실행</strong> 중인 프로그램과 데이터를 올려 둔다.</td></tr>
+                    <tr><td>SSD/HDD</td><td>저장 장치</td><td>프로그램과 파일을 비교적 큰 용량으로 보관한다.</td></tr>
+                  </tbody>
+                </table>
+                <p>RAM 1TB가 SSD 1TB보다 훨씬 비싼 이유도 이 <strong>계층 구조</strong>로 이해할 수 있다. CPU가 너무 빠르기 때문에, 느린 저장 장치에서 매번 데이터를 가져오면 CPU가 기다리게 된다. 그래서 실행할 프로그램은 저장 장치에서 RAM으로 올라오고, RAM의 일부는 캐시에 미리 들어가며, CPU는 레지스터로 값을 가져와 빠르게 처리한다.</p>
+                <div class="diagram">
+                  <div><span class="node-title">SSD/HDD</span><p>프로그램과 파일 보관</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">RAM</span><p>실행 중 데이터 적재</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">Cache</span><p>자주 쓸 데이터 미리 준비</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">Register</span><p>CPU가 즉시 사용할 값</p></div>
+                </div>
+                <p>계층 구조가 필요한 이유는 CPU가 너무 빠르기 때문이다. CPU가 명령을 다 처리했는데 RAM이나 저장 장치에서 데이터가 아직 도착하지 않으면 CPU는 기다리게 된다. 그래서 하드디스크나 SSD에 있는 프로그램 전체를 매번 직접 읽지 않고, 실행할 프로그램을 RAM으로 올리고, 자주 쓸 데이터는 캐시에 미리 가져오며, CPU는 레지스터에 값을 넣고 빠르게 처리한다.</p>
+                <p>이 구조는 성능뿐 아니라 경제성과 관리 측면에서도 유리하다. 모든 저장 공간을 레지스터처럼 빠르게 만들면 너무 비싸고 용량도 작아진다. 반대로 모든 저장 공간을 디스크처럼 크게만 만들면 CPU가 계속 기다린다. RAM이 부족하면 RAM을 늘리고, 저장 공간이 부족하면 SSD나 HDD를 늘리는 식으로 계층별 역할이 나뉘는 것도 이 구조 덕분이다.</p>
           </div>
         </details>
         
@@ -274,6 +398,7 @@ x/16x $esp       # 특정 주소 주변 메모리를 16진수로 확인</code></
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>디버거</strong>의 중단점이 왜 필요한지 설명할 수 있는가?</li><li>초기화되지 않은 <strong>변수</strong>에 쓰레기값이 들어갈 수 있는 이유를 이해했는가?</li><li>GDB에서 어셈블리, <strong>레지스터</strong>, <strong>메모리</strong> 주소를 볼 수 있다는 점을 설명할 수 있는가?</li><li>리틀 <strong>엔디안</strong>과 빅 엔디안의 차이를 말할 수 있는가?</li><li><strong>버퍼 오버플로우</strong>와 셸코드 설명에서 <strong>엔디안</strong>이 왜 중요한지 이해했는가?</li><li><strong>RAM</strong>과 <strong>ROM</strong>, 메모리 계층 구조의 핵심 차이를 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>운영체제 기초 1-5 - 리눅스 기초 명령어</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -22,12 +22,12 @@
       <div>
         <p class="small-label">운영체제 1-5</p>
         <h1>리눅스 기초 명령어</h1>
-        <p class="lead"><strong>CLI</strong>에서 파일, 디렉토리, 경로, 복사·이동·삭제, 매뉴얼, 편집기를 다루는 기본 명령어를 익힌다.</p>
-        <div class="tag-row large"><span>CLI 명령어</span><span>파일 시스템</span><span>Vim</span></div>
+        <p class="lead"><strong>리눅스</strong> 파일시스템 구조를 이해하고, 터미널에서 파일과 디렉토리를 다루는 기본 명령어를 실습한다.</p>
+        <div class="tag-row large"><span>CLI 명령어</span><span>파일 시스템</span><span>Vim</span><span>Nano</span></div>
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">목록 보기와 숨김 파일</a><a href="#section-2">파일 만들기와 내용 보기</a><a href="#section-3">디렉토리 만들기와 삭제</a><a href="#section-4">경로 이동과 특수 경로</a><a href="#section-5">복사, 이동, 파일 속성, 매뉴얼</a><a href="#section-6">편집기 숙제: Vim과 Nano</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
+        <a href="#section-1">리눅스 파일시스템을 먼저 봐야 하는 이유</a><a href="#section-2">/boot, /home, /root, /etc, /var/log</a><a href="#section-3">터미널 프롬프트와 clear</a><a href="#section-4">ls: 파일 목록 보기와 숨김 파일</a><a href="#section-5">touch와 cat: 파일 만들기와 내용 보기</a><a href="#section-6">more, less, rm: 긴 파일 보기와 삭제</a><a href="#section-7">mkdir, rmdir, cd: 디렉토리 만들기와 이동</a><a href="#section-8">cp와 mv: 복사, 이동, 이름 변경</a><a href="#section-9">ln, 하드링크, 심볼릭 링크, inode</a><a href="#section-10">file과 man: 속성 확인과 도움말</a><a href="#section-11">Vim과 Nano: GUI 없는 서버에서 편집하기</a><a href="#section-12">강의 실습 환경과 실제 따라 하기</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
@@ -51,7 +51,7 @@
         <label for="section-jump-1-5">섹션 바로가기</label>
         <select id="section-jump-1-5" data-section-jump>
           <option value="">읽을 섹션 선택</option>
-          <option value="#section-1">01. 목록 보기와 숨김 파일</option><option value="#section-2">02. 파일 만들기와 내용 보기</option><option value="#section-3">03. 디렉토리 만들기와 삭제</option><option value="#section-4">04. 경로 이동과 특수 경로</option><option value="#section-5">05. 복사, 이동, 파일 속성, 매뉴얼</option><option value="#section-6">06. 편집기 숙제: Vim과 Nano</option>
+          <option value="#section-1">01. 리눅스 파일시스템을 먼저 봐야 하는 이유</option><option value="#section-2">02. /boot, /home, /root, /etc, /var/log</option><option value="#section-3">03. 터미널 프롬프트와 clear</option><option value="#section-4">04. ls: 파일 목록 보기와 숨김 파일</option><option value="#section-5">05. touch와 cat: 파일 만들기와 내용 보기</option><option value="#section-6">06. more, less, rm: 긴 파일 보기와 삭제</option><option value="#section-7">07. mkdir, rmdir, cd: 디렉토리 만들기와 이동</option><option value="#section-8">08. cp와 mv: 복사, 이동, 이름 변경</option><option value="#section-9">09. ln, 하드링크, 심볼릭 링크, inode</option><option value="#section-10">10. file과 man: 속성 확인과 도움말</option><option value="#section-11">11. Vim과 Nano: GUI 없는 서버에서 편집하기</option><option value="#section-12">12. 강의 실습 환경과 실제 따라 하기</option>
         </select>
       </div>
       <div class="lecture-control-actions" aria-label="섹션 보기 방식">
@@ -66,7 +66,7 @@
     <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
         <h2>학습 목표</h2>
-        <ul class="check-list"><li>터미널에서 현재 위치, 파일 목록, 숨김 파일, 파일 내용을 확인하는 명령어를 사용한다.</li><li>파일과 디렉토리를 생성·삭제·이동·복사하는 기본 명령어를 이해한다.</li><li>man, vimtutor, nano를 통해 스스로 도움말과 편집기를 익히는 방법을 안다.</li></ul>
+        <ul class="check-list"><li><strong>리눅스</strong> 표준 파일시스템 구조와 /boot, /etc, /var/log 같은 주요 디렉토리의 역할을 설명한다.</li><li>clear, ls, touch, cat, more, less, rm, mkdir, rmdir, cd, cp, mv, ln, file, man의 기본 의미와 옵션을 이해한다.</li><li>숨김 파일, 프롬프트, 홈 디렉토리, 현재/부모/이전 디렉토리, <strong>권한</strong> 오류 같은 <strong>CLI</strong> 사용 감각을 익힌다.</li><li>vimtutor와 <strong>nano</strong>를 통해 <strong>GUI</strong>가 없는 서버에서도 파일을 편집할 준비를 한다.</li></ul>
       </article>
     </section>
 
@@ -75,38 +75,68 @@
         <div class="side-guide-head">
           <span data-side-current>SECTION 01</span>
           <strong>상세 정리 길잡이</strong>
-          <p>6개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+          <p>12개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
         </div>
         <nav class="side-guide-links" aria-label="상세 정리 바로가기">
           
         <a class="is-active" href="#section-1" data-side-section-link="section-1">
           <span>01</span>
-          <strong>목록 보기와 숨김 파일</strong>
+          <strong>리눅스 파일시스템을 먼저 봐야 하는 이유</strong>
         </a>
         
         <a href="#section-2" data-side-section-link="section-2">
           <span>02</span>
-          <strong>파일 만들기와 내용 보기</strong>
+          <strong>/boot, /home, /root, /etc, /var/log</strong>
         </a>
         
         <a href="#section-3" data-side-section-link="section-3">
           <span>03</span>
-          <strong>디렉토리 만들기와 삭제</strong>
+          <strong>터미널 프롬프트와 clear</strong>
         </a>
         
         <a href="#section-4" data-side-section-link="section-4">
           <span>04</span>
-          <strong>경로 이동과 특수 경로</strong>
+          <strong>ls: 파일 목록 보기와 숨김 파일</strong>
         </a>
         
         <a href="#section-5" data-side-section-link="section-5">
           <span>05</span>
-          <strong>복사, 이동, 파일 속성, 매뉴얼</strong>
+          <strong>touch와 cat: 파일 만들기와 내용 보기</strong>
         </a>
         
         <a href="#section-6" data-side-section-link="section-6">
           <span>06</span>
-          <strong>편집기 숙제: Vim과 Nano</strong>
+          <strong>more, less, rm: 긴 파일 보기와 삭제</strong>
+        </a>
+        
+        <a href="#section-7" data-side-section-link="section-7">
+          <span>07</span>
+          <strong>mkdir, rmdir, cd: 디렉토리 만들기와 이동</strong>
+        </a>
+        
+        <a href="#section-8" data-side-section-link="section-8">
+          <span>08</span>
+          <strong>cp와 mv: 복사, 이동, 이름 변경</strong>
+        </a>
+        
+        <a href="#section-9" data-side-section-link="section-9">
+          <span>09</span>
+          <strong>ln, 하드링크, 심볼릭 링크, inode</strong>
+        </a>
+        
+        <a href="#section-10" data-side-section-link="section-10">
+          <span>10</span>
+          <strong>file과 man: 속성 확인과 도움말</strong>
+        </a>
+        
+        <a href="#section-11" data-side-section-link="section-11">
+          <span>11</span>
+          <strong>Vim과 Nano: GUI 없는 서버에서 편집하기</strong>
+        </a>
+        
+        <a href="#section-12" data-side-section-link="section-12">
+          <span>12</span>
+          <strong>강의 실습 환경과 실제 따라 하기</strong>
         </a>
         
         </nav>
@@ -116,97 +146,457 @@
         <details id="section-1" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 01</span>
-            <h2>목록 보기와 숨김 파일</h2>
+            <h2>리눅스 파일시스템을 먼저 봐야 하는 이유</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>CLI</strong>에서 가장 먼저 익히는 것은 현재 위치와 파일 목록을 보는 일이다. <code>ls</code>는 현재 디렉토리의 파일을 보여 주고, <code>ls -l</code>은 긴 형식으로 <strong>권한</strong>, 소유자, 크기, 시간 정보를 함께 보여 준다. <code>ls -al</code>은 숨김 파일까지 보여 준다.</p>
-                    <p><strong>리눅스</strong>에서 숨김 파일은 이름이 점(<code>.</code>)으로 시작한다. <code>.hello.txt</code>는 <code>hello.txt</code>를 숨긴 것이 아니라 완전히 다른 파일이며, 점으로 시작하기 때문에 기본 목록에 보이지 않을 뿐이다. <code>.</code>은 현재 디렉토리, <code>..</code>은 상위 디렉토리를 의미한다.</p>
-                    <pre><code class="language-bash">pwd
-ls
-ls -l
-ls -al
-clear</code></pre>
+            <p>5강은 박소연 멘토가 진행하는 <strong>리눅스</strong> 기초 명령어 수업이다. 오늘의 핵심은 파일과 디렉토리를 다루는 법이다. 명령어 자체를 외우기 전에, 리눅스 안에서 파일과 디렉토리가 어떤 구조로 놓이는지 알아야 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0003.jpg" alt="Filesystem Hierarchy Standard 구조" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Filesystem Hierarchy Standard 구조</strong>
+    <span>리눅스 파일시스템은 최상위 루트 디렉토리 / 아래에 bin, boot, dev, etc, home, lib, media, mnt, proc, root, sbin, tmp, usr, var 같은 표준 디렉토리를 둔다.</span>
+  </figcaption>
+</figure>
+
+                <p>리눅스 파일시스템은 <strong>FHS, Filesystem Hierarchy Standard</strong>라는 표준 구조를 따른다. 최상단에는 루트 디렉토리 <code>/</code>가 있고, 그 아래에 <code>/bin</code>, <code>/boot</code>, <code>/dev</code>, <code>/etc</code>, <code>/home</code>, <code>/lib</code>, <code>/media</code>, <code>/mnt</code>, <code>/proc</code>, <code>/root</code>, <code>/sbin</code>, <code>/tmp</code>, <code>/usr</code>, <code>/var</code> 같은 디렉토리가 놓인다. 처음에는 복잡해 보이지만 모든 리눅스의 기본 표준이므로 자주 보는 위치는 암기하는 것이 좋다.</p>
+                <table>
+                  <thead><tr><th>디렉토리</th><th>강의에서 강조한 의미</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>/</code></td><td>모든 디렉토리의 최상단인 루트 디렉토리다.</td></tr>
+                    <tr><td><code>/bin</code></td><td>일반 사용자가 <strong>실행</strong>하는 기본 명령어 바이너리가 놓인다.</td></tr>
+                    <tr><td><code>/boot</code></td><td>부트로더, <strong>커널</strong>, initrd처럼 부팅에 필요한 파일이 있다.</td></tr>
+                    <tr><td><code>/dev</code></td><td>디스크, 터미널 같은 시스템 장치를 파일처럼 표현하는 장치 파일이 있다.</td></tr>
+                    <tr><td><code>/etc</code></td><td>각종 시스템 설정 파일이 모이는 매우 중요한 위치다.</td></tr>
+                    <tr><td><code>/home</code></td><td><code>user1</code>, <code>user2</code> 같은 일반 사용자 홈 디렉토리가 놓인다.</td></tr>
+                    <tr><td><code>/root</code></td><td>최상위 관리자 <strong>root</strong> 사용자의 홈 디렉토리다.</td></tr>
+                    <tr><td><code>/sbin</code></td><td>super user, 즉 관리자용 시스템 명령어가 놓이는 위치다.</td></tr>
+                    <tr><td><code>/tmp</code></td><td>임시 파일 저장소다.</td></tr>
+                    <tr><td><code>/usr</code></td><td>일반 사용자를 위한 공통 프로그램과 라이브러리가 많이 놓인다.</td></tr>
+                    <tr><td><code>/var</code></td><td>시스템 운용 중 계속 변하는 임시 데이터, <strong>로그</strong>, 캐시 등이 저장된다.</td></tr>
+                  </tbody>
+                </table>
+                <p>강사는 특히 <code>/etc</code>와 <code>/var</code>를 반드시 알고 있어야 한다고 강조한다. 서버를 운영하고 문제를 분석할 때 가장 많이 들어가게 되는 곳이 설정 파일이 모인 <code>/etc</code>와 로그가 쌓이는 <code>/var/log</code>이기 때문이다.</p>
           </div>
         </details>
         
         <details id="section-2" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 02</span>
-            <h2>파일 만들기와 내용 보기</h2>
+            <h2>/boot, /home, /root, /etc, /var/log</h2>
           </summary>
           <div class="note-section-body">
-            <p><code>touch</code>는 원래 파일의 수정 시간을 현재 시간으로 바꾸는 명령이다. 하지만 파일이 없으면 새 파일을 만들기 때문에 실무에서는 빈 파일을 만들 때도 자주 쓴다. <code>cat</code>은 파일 내용을 화면에 <strong>출력</strong>한다.</p>
-                    <pre><code class="language-bash">touch hello.txt
-touch test1 test2 test3
-touch .hello.txt
-cat /etc/passwd</code></pre>
-                    <p>시스템 파일을 지우려 하거나 민감한 파일을 건드리면 <strong>권한</strong> 때문에 실패할 수 있다. 이 경험을 통해 <strong>리눅스</strong>에는 사용자와 권한이 있고, 권한이 시스템을 보호한다는 점을 느끼게 된다.</p>
+            <p>강의는 표준 구조를 설명한 뒤 실제 디렉토리를 몇 군데 들어가 본다. 먼저 <code>/boot</code>는 <strong>리눅스</strong>가 부팅될 때 필요한 파일이 있는 곳이다. <code>ls -al /boot</code>로 보면 grub, initrd, memtest, vmlinuz 같은 파일이 보인다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0015.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0015.jpg" alt="/boot 디렉토리와 커널 파일" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>/boot 디렉토리와 커널 파일</strong>
+    <span>ls -al /boot 결과에서 grub, initrd 이미지, memtest 도구, vmlinuz 커널 파일을 확인하며, 커널이 운영체제 핵심 기능을 담는 작은 파일임을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p><code>vmlinuz</code>로 보이는 파일들이 Linux <strong>커널</strong>이다. 강사는 Ubuntu 16.04 기준 커널 파일 하나가 약 8MB 정도에 불과하다고 설명한다. <strong>운영체제</strong>의 핵심 기능, 즉 프로세스 관리, 네트워크 관리, 파일시스템 관리, 하드웨어 관리 같은 핵심이 이 작은 커널에 담겨 있다. 다만 사용자 프로그램과 부팅에 필요한 나머지 도구는 initrd 같은 별도 파일에 포함된다.</p>
+                <p><code>/home</code>에는 일반 사용자 홈 디렉토리가 있다. 수업에서는 <code>user1</code>만 있으면 감이 덜 오므로 <code>user2</code>도 만들어 여러 사용자가 한 시스템 안에 공존할 수 있음을 보여 준다. 반대로 <code>/root</code>는 <strong>root</strong> 사용자의 홈 디렉토리라 일반 사용자가 그냥 보려고 하면 <strong>권한</strong>이 없어 접근이 제한된다. <code>sudo ls -l /root</code>처럼 관리자 권한을 빌리면 볼 수 있는데, 이 <code>sudo</code>와 권한 개념은 뒤 강의에서 자세히 배운다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0032.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0032.jpg" alt="/etc 설정 파일 디렉토리" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>/etc 설정 파일 디렉토리</strong>
+    <span>/etc에는 네트워크, 보안 기능, 패키지 관리자, 웹 서버, 사용자 계정 등 시스템 프로세스의 각종 설정 파일이 모여 있다.</span>
+  </figcaption>
+</figure>
+
+                <p><code>/etc</code>는 설정 파일 디렉토리다. 화면에는 “설명 파일”이라고 적힌 부분이 있지만 강사가 바로 “설정 파일”이 맞다고 고쳐 설명한다. 이곳에는 <strong>네트워크</strong> 설정, AppArmor 같은 <strong>보안 기능</strong> 설정, APT 패키지 관리자 설정, 웹 서버 설정, 사용자 계정 정보가 들어 있는 <code>passwd</code> 파일 등 시스템을 움직이는 핵심 설정이 모인다. 잘못 바꾸면 시스템에 치명적인 문제가 생길 수 있으므로 의미를 알고 조심해서 다뤄야 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0036.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0036.jpg" alt="/var와 /var/log" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>/var와 /var/log</strong>
+    <span>/var는 시스템 운용 중 생성되는 임시 데이터와 변동 데이터를 담고, /var/log에는 오류 분석과 운영 점검에 필요한 로그 파일이 저장된다.</span>
+  </figcaption>
+</figure>
+
+                <p><code>/var</code>는 시스템 운용 중 변하는 파일이 쌓이는 위치다. 웹 서버를 설치하면 웹 콘텐츠가 들어갈 수 있고, 캐시, crash 파일, lock 파일, 임시 데이터도 생긴다. 그중 가장 중요한 곳은 <code>/var/log</code>다. 프로그램을 설치했는데 잘 되었는지 모르거나, 오류가 났거나, 어떤 일이 있었는지 분석해야 할 때 <strong>로그</strong> 파일을 본다. 서버 운영자는 <code>/var/log</code>를 자주 확인하게 된다.</p>
           </div>
         </details>
         
         <details id="section-3" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 03</span>
-            <h2>디렉토리 만들기와 삭제</h2>
+            <h2>터미널 프롬프트와 clear</h2>
           </summary>
           <div class="note-section-body">
-            <p><code>mkdir</code>은 디렉토리를 만들고, <code>rmdir</code>은 빈 디렉토리를 삭제한다. 디렉토리 안에 파일이 있으면 <code>rmdir</code>로 삭제되지 않는다. 많은 파일과 하위 디렉토리를 한 번에 지우려면 <code>rm -r</code>을 사용할 수 있지만 매우 위험하므로 주의해야 한다.</p>
-                    <pre><code class="language-bash">mkdir dir1
-mkdir dir2 dir3
-mkdir dir1/sub1
-mkdir -p dir2/sub1
-rmdir dir3
-rm -r dir2</code></pre>
+            <p>파일시스템을 훑은 뒤 기본 명령어로 들어간다. 앞으로 실습은 별도 설명이 없어도 터미널을 띄운 뒤 그 안에서 명령어를 <strong>입력</strong>한다고 보면 된다. 가장 먼저 보는 명령은 <code>clear</code>다. 터미널에 명령어 <strong>출력</strong>이 많이 쌓여 지저분할 때 <code>clear</code>를 입력하면 화면이 깨끗해진다. 데이터가 삭제되는 것이 아니라 화면 출력만 지워지는 것이다.</p>
+<pre><code class="language-bash">clear</code></pre>
+<p>터미널 맨 끝의 <code>$</code> 표시는 <strong>프롬프트(prompt)</strong>다. <strong>운영체제</strong>가 “명령어를 기다리고 있다”는 뜻으로 보여 주는 표시다. 프롬프트 앞에 보이는 <code>~</code>는 틸드라고 부르며, 현재 사용자의 홈 디렉토리를 의미한다. 이 수업의 <code>user1</code> 기준으로는 <code>/home/user1</code>을 짧게 <code>~</code>로 보여 주는 것이다.</p>
+<p>Windows에도 파일 탐색기뿐 아니라 명령 프롬프트가 있고, 숨김 파일 표시 옵션이 있다. Linux도 마찬가지로 <strong>GUI</strong> 없이 터미널 명령어만으로 파일과 디렉토리를 만들고, 보고, 옮기고, 지울 수 있다. 이 강의는 그 기본 명령어들을 하나씩 익히는 시간이다.</p>
           </div>
         </details>
         
         <details id="section-4" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 04</span>
-            <h2>경로 이동과 특수 경로</h2>
+            <h2>ls: 파일 목록 보기와 숨김 파일</h2>
           </summary>
           <div class="note-section-body">
-            <p><code>cd</code>는 Change Directory의 약자다. <code>cd dir1</code>로 하위 디렉토리에 들어가고, <code>cd ..</code>으로 상위 디렉토리로 올라간다. <code>~</code>는 홈 디렉토리, <code>-</code>는 직전에 있었던 디렉토리를 의미한다.</p>
-                    <pre><code class="language-bash">cd dir1
-cd ..
-cd ../..
-cd ~
-cd -
-cd /etc
-cd /var/log
-cd</code></pre>
-                    <p>강의는 터미널에서 원하는 경로로 자유롭게 이동하는 연습을 반드시 해 보라고 강조한다. <strong>리눅스</strong> <strong>CLI</strong>를 쓸 때 경로 감각이 없으면 모든 실습이 어려워진다.</p>
+            <p><code>ls</code>는 list의 약자다. 오래된 UNIX 계열 명령어는 역사적으로 짧은 약어가 많다. 예전에는 글자 하나하나도 <strong>메모리</strong>와 <strong>입력</strong> 비용이었고, 명령어를 길게 치는 것이 비효율적이었다. 그래서 오늘날에도 <code>list</code>가 아니라 <code>ls</code>처럼 짧은 형태가 남아 있다. 강사는 약자를 풀어 외우면 나중에 기억하기 쉽다고 설명한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0050.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0050.jpg" alt="ls로 파일 목록 보기" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>ls로 파일 목록 보기</strong>
+        <span>ls는 list의 약자이며, -l, -a, -al, -la, -a -l, *.txt 같은 옵션과 패턴으로 목록 표시 범위를 조정한다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">ls
+ls -l
+ls -a
+ls -al
+ls -la
+ls -a -l
+ls *.txt</code></pre>
+                    <table>
+                      <thead><tr><th>명령</th><th>의미</th></tr></thead>
+                      <tbody>
+                        <tr><td><code>ls</code></td><td>현재 디렉토리의 파일과 디렉토리 목록을 보여 준다.</td></tr>
+                        <tr><td><code>ls -l</code></td><td><strong>long</strong> list. <strong>권한</strong>, 소유자, 크기, 시간 같은 상세 정보를 함께 보여 준다.</td></tr>
+                        <tr><td><code>ls -a</code></td><td>all. 점으로 시작하는 숨김 파일까지 보여 준다.</td></tr>
+                        <tr><td><code>ls -al</code>, <code>ls -la</code>, <code>ls -a -l</code></td><td>숨김 파일까지 긴 형식으로 보여 준다. 옵션 순서는 바뀌어도 된다.</td></tr>
+                        <tr><td><code>ls *.txt</code></td><td>확장자가 <code>.txt</code>인 파일만 패턴으로 골라 보여 준다.</td></tr>
+                      </tbody>
+                    </table>
+                    <p><code>ls -al</code> 결과의 첫 줄에는 <code>.</code>과 <code>..</code>이 보인다. <code>.</code>은 현재 디렉토리, <code>..</code>은 부모 디렉토리다. 그 외에 <code>.bashrc</code>처럼 점으로 시작하는 파일은 숨김 파일이다.</p>
           </div>
         </details>
         
         <details id="section-5" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 05</span>
-            <h2>복사, 이동, 파일 속성, 매뉴얼</h2>
+            <h2>touch와 cat: 파일 만들기와 내용 보기</h2>
           </summary>
           <div class="note-section-body">
-            <p><code>cp</code>는 파일을 <strong>복사</strong>하고, <code>mv</code>는 파일을 <strong>이동</strong>하거나 이름을 바꾼다. <code>file</code>은 대상이 텍스트 파일인지, 디렉토리인지, 실행 파일인지, 심볼릭 링크인지 같은 속성을 알려 준다. 명령어 옵션을 모두 외울 수 없기 때문에 <code>man</code>으로 매뉴얼을 보는 습관이 중요하다.</p>
-                    <pre><code class="language-bash">cp hello.txt hello2.txt
-cp hello.txt dir1/
-mv hello2.txt renamed.txt
-file hello.txt
-man ls
-man file
-man man</code></pre>
+            <p><code>touch</code>는 원래 “파일을 툭 건드린다”는 의미에 가깝다. 정확한 기본 기능은 파일의 수정 시간을 현재 시간으로 바꾸는 것이다. 하지만 존재하지 않는 파일을 touch하면 해당 이름의 0바이트 파일이 만들어진다. 그래서 실무에서도 빈 파일을 빠르게 만들 때 자주 사용한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0059.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0059.jpg" alt="touch와 숨김 파일" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>touch와 숨김 파일</strong>
+        <span>touch는 원래 타임스탬프를 갱신하는 명령이지만, 없는 파일을 지정하면 0바이트 파일을 만들며, 점으로 시작하는 파일명은 숨김 파일이 된다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">touch hello.txt
+touch test1 test2 test3
+touch .hello.txt
+ls -l
+ls -al
+rm .hello.txt</code></pre>
+                    <p><code>touch .hello.txt</code>는 기존 <code>hello.txt</code>를 숨기는 명령이 아니다. <code>hello.txt</code>와 <code>.hello.txt</code>는 서로 다른 파일이고, <code>.hello.txt</code>는 파일명이 점으로 시작하기 때문에 기본 <code>ls -l</code>에서는 보이지 않을 뿐이다. <code>ls -al</code>로 보면 숨김 파일까지 확인할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0073.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0073.jpg" alt="cat으로 파일 내용 보기" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>cat으로 파일 내용 보기</strong>
+        <span>cat은 concatenate에서 온 이름으로, 파일 입력을 표준 출력으로 연결해 내용을 보여 주며 -e, -n 옵션으로 숨은 문자나 줄 번호를 확인할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><code>cat</code>은 concatenate에서 온 이름이다. 연결한다는 뜻인데, 여기서는 파일이라는 <strong>입력</strong>(input)을 화면의 표준 <strong>출력</strong>(standard output)으로 연결해 내용을 보여 준다고 이해하면 된다. <code>cat /etc/passwd</code>는 사용자 계정 정보가 들어 있는 파일을 보여 주고, <code>cat /var/log/syslog</code>는 시스템 로그를 바로 출력한다.</p>
+                    <pre><code class="language-bash">cat hello.txt
+cat /etc/passwd
+cat /var/log/syslog
+cat -e /etc/passwd
+cat -n /etc/passwd</code></pre>
+                    <p><code>cat -e</code>는 줄 끝에 <code>$</code>를 붙여 공백이나 숨은 문자를 확인하는 데 쓸 수 있고, <code>cat -n</code>은 줄 번호를 붙여 보여 준다. 다만 아주 긴 <strong>로그</strong> 파일을 무작정 <code>cat</code>으로 보면 화면이 한 번에 지나가 버리므로, 뒤에서 소개하는 <code>more</code>나 <code>less</code>가 더 적합할 때가 많다.</p>
           </div>
         </details>
         
         <details id="section-6" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 06</span>
-            <h2>편집기 숙제: Vim과 Nano</h2>
+            <h2>more, less, rm: 긴 파일 보기와 삭제</h2>
           </summary>
           <div class="note-section-body">
-            <p>강의 마지막 숙제는 편집기를 익히는 것이다. <strong>GUI</strong>가 없는 서버에서도 파일을 수정할 수 있어야 하므로 <strong>Vim</strong> 또는 Nano 같은 터미널 편집기를 알아야 한다. Vim은 기능이 강력하지만 처음에는 어렵기 때문에 <code>vimtutor</code>를 따라 하라고 권한다. Nano는 비교적 단순하고, 화면 아래에 <code>^O</code>, <code>^X</code>처럼 단축키 안내가 나오는데 여기서 <code>^</code>는 Control 키를 의미한다.</p>
+            <p><code>more</code>와 <code>less</code>는 긴 파일을 한 화면씩 넘겨 보게 해 주는 명령이다. <code>cat</code>은 파일 전체를 한 번에 <strong>출력</strong>하지만, <strong>로그</strong>처럼 긴 파일은 한 번에 지나가 버려 읽기 어렵다. <code>more</code>는 아래로 내려가며 보고, <code>less</code>는 위아래 이동이 더 자유롭고 파일 전체를 메모리에 올리지 않아 큰 파일을 볼 때 속도도 유리하다.</p>
+                    <pre><code class="language-bash">more hello.txt
+more /etc/passwd
+more /var/log/syslog
+less hello.txt
+less /etc/passwd
+less /var/log/syslog</code></pre>
+                    <p><code>rm</code>은 remove의 약자로 파일을 삭제한다. 강사는 <code>rm hello.txt</code>, <code>rm test1 test2 test3</code>처럼 여러 파일을 삭제하는 예를 설명한다. 하지만 시스템 파일은 일반 사용자가 삭제할 수 없다. <code>rm /etc/passwd</code>처럼 중요한 파일을 지우려 하면 <strong>권한</strong> 문제로 실패한다. 이는 <strong>리눅스</strong>에 사용자와 권한 체계가 있고, 시스템 파일이 보호된다는 사실을 미리 보여 주는 예다.</p>
+                    <pre><code class="language-bash">rm hello.txt
+rm test1 test2 test3
+rm /etc/passwd</code></pre>
+          </div>
+        </details>
+        
+        <details id="section-7" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 07</span>
+            <h2>mkdir, rmdir, cd: 디렉토리 만들기와 이동</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><code>mkdir</code>은 make directory의 약자이고, <code>rmdir</code>은 remove directory의 약자다. <code>mkdir dir1</code>은 <code>dir1</code>을 만들고, <code>mkdir dir2 dir3</code>은 여러 디렉토리를 한 번에 만든다. <code>mkdir dir1/sub1</code>처럼 하위 디렉토리를 만들 수 있고, 부모 디렉토리까지 함께 만들려면 <code>-p</code> 옵션을 사용한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0092.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0092.jpg" alt="mkdir, rmdir, rm -r" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>mkdir, rmdir, rm -r</strong>
+        <span>mkdir은 디렉토리를 만들고 rmdir은 빈 디렉토리를 삭제하며, rm -r은 재귀 삭제라 위험하므로 사용할 때 주의해야 한다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">mkdir dir1
+mkdir dir2 dir3
+mkdir dir1/sub1
+mkdir -p dir2/sub1
+rmdir dir1
+rmdir dir2 dir3
+rmdir -p dir2
+rm -r dir1</code></pre>
+                    <p><code>rmdir</code>은 빈 디렉토리만 삭제할 수 있다. 안에 파일이나 하위 디렉토리가 있으면 실패한다. 반대로 <code>rm -r</code>은 recursive, 즉 재귀적으로 안쪽 파일과 디렉토리까지 지우므로 매우 위험하다. 실수로 중요한 위치에서 <strong>실행</strong>하면 큰 사고가 날 수 있어 반드시 주의해야 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0103.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0103.jpg" alt="cd와 특수 경로" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>cd와 특수 경로</strong>
+        <span>cd는 change directory의 약자이고, ., .., ~, -는 각각 현재 디렉토리, 부모 디렉토리, 홈 디렉토리, 이전 디렉토리를 의미한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><code>cd</code>는 change directory의 약자다. <code>cd dir1</code>로 하위 디렉토리에 들어가고, <code>cd ..</code>으로 부모 디렉토리로 올라간다. <code>cd ../..</code>은 부모의 부모로 이동하고, <code>cd ~</code> 또는 인자 없이 <code>cd</code>만 <strong>입력</strong>하면 홈 디렉토리로 돌아간다. <code>cd -</code>는 직전에 있던 디렉토리로 돌아간다. <code>cd -</code>를 반복하면 두 위치를 왔다 갔다 할 수 있다.</p>
+                    <pre><code class="language-bash">cd dir1
+cd ..
+cd dir1/sub1
+cd .
+cd ../..
+cd ~
+cd
+cd -
+cd /etc
+cd /var/log</code></pre>
+                    <p>강사는 <code>cd /etc</code>, <code>cd /var/log</code>, <code>cd</code>로 홈에 돌아오기처럼 여러 경로를 직접 이동해 보라고 한다. 터미널에서 원하는 폴더로 자유롭게 이동할 수 있어야 이후 모든 <strong>CLI</strong> 실습이 가능하다.</p>
+          </div>
+        </details>
+        
+        <details id="section-8" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 08</span>
+            <h2>cp와 mv: 복사, 이동, 이름 변경</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><code>cp</code>는 copy, <code>mv</code>는 move의 약자다. <code>cp hello.txt hello2.txt</code>는 파일을 복제하고, <code>cp test1 dir1</code>처럼 목적지가 존재하는 디렉토리라면 그 안으로 파일을 <strong>복사</strong>한다. 목적지가 디렉토리가 아니라 없는 이름이면, 그 이름의 새 파일로 복사될 수 있다. 이 차이를 알고 써야 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0112.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0112.jpg" alt="cp와 mv" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>cp와 mv</strong>
+        <span>cp는 파일과 디렉토리를 복사하고, mv는 파일을 이동하거나 이름을 바꾸며, 목적지가 디렉토리인지 파일명인지에 따라 결과가 달라진다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">touch hello.txt test1 test2
+mkdir dir1
+cp hello.txt hello2.txt
+cp test1 dir1
+cp test2 dir1
+cp -r dir1 dir2
+mv hello.txt hello2.txt
+mv test1 dir1
+mv test2 dir1
+rm -r dir1 dir2
+rm hello2.txt</code></pre>
+                    <p>디렉토리를 복사하려면 <code>cp -r</code>처럼 recursive 옵션이 필요하다. 강의 화면의 cleanup 명령은 실습 중 만든 <code>dir1</code>, <code>dir2</code>, <code>hello2.txt</code>를 정리하기 위한 예다. 복사와 <strong>이동</strong> 명령은 파일명을 바꾸는 데도 쓰이므로, “목적지가 파일인지 디렉토리인지”를 항상 확인해야 한다.</p>
+          </div>
+        </details>
+        
+        <details id="section-9" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 09</span>
+            <h2>ln, 하드링크, 심볼릭 링크, inode</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><code>ln</code>은 link를 만드는 명령이다. Windows의 바로가기처럼 특정 파일을 다른 위치에서 빠르게 가리키는 기능을 떠올리면 이해하기 쉽다. 강의에서는 초급 단계에서 <strong>하드링크</strong>는 개념만 알고, 실무에서 자주 쓰는 <strong>심볼릭 링크</strong>를 꼭 알아야 한다고 설명한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0124.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0124.jpg" alt="하드링크와 심볼릭 링크" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>하드링크와 심볼릭 링크</strong>
+        <span>ln은 링크를 만들며, 하드링크는 같은 파일 데이터를 가리키고, ln -s로 만드는 심볼릭 링크는 Windows 바로가기처럼 다른 파일 경로를 가리킨다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">touch hello.txt
+ln hello.txt hellolink
+ln -s hello.txt hellosymlink
+ls -ali</code></pre>
+                    <p>하드링크는 두 파일명이 같은 실제 파일 데이터를 가리키는 구조다. 복사와 달리 데이터를 두 배로 차지하지 않고, 한쪽 이름으로 내용을 바꾸면 같은 데이터를 바라보는 다른 이름에서도 바뀐 내용이 보인다. 심볼릭 링크는 <code>ln -s</code>로 만들며, 실제 파일 데이터가 아니라 다른 파일 경로를 가리킨다. 그래서 Windows 바로가기와 더 비슷하다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0134.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0134.jpg" alt="inode와 파일 메타데이터" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>inode와 파일 메타데이터</strong>
+        <span>파일명은 실제 데이터 자체가 아니라 inode로 이어지는 이름이고, inode는 소유자, 크기, 시간, 권한, 데이터 블록 위치 같은 메타데이터를 가진다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>이 설명은 <strong>inode</strong> 개념과 이어진다. 우리가 파일명 자체가 파일이라고 생각하기 쉽지만, 실제 데이터는 inode를 거쳐 접근된다. inode에는 소유자, <strong>권한</strong>(mode), 파일 크기, 생성·변경 시간(timestamp), 직접/간접 블록 위치 같은 메타데이터가 들어 있다. <code>ls -ali</code>를 보면 하드링크가 같은 inode 번호를 공유하고, 심볼릭 링크는 별도 inode를 갖고 대상 경로를 가리키는 모습을 확인할 수 있다.</p>
+          </div>
+        </details>
+        
+        <details id="section-10" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 10</span>
+            <h2>file과 man: 속성 확인과 도움말</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><code>file</code> 명령은 대상 파일이 무엇인지 판별한다. 빈 텍스트 파일인지, <code>/etc/passwd</code> 같은 <strong>ASCII</strong> text인지, 디렉토리인지, <strong>실행</strong> 파일인지, 심볼릭 링크인지 확인할 수 있다. 파일 확장자만 믿지 않고 실제 내용을 보고 유형을 추정한다는 점이 중요하다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0135.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0135.jpg" alt="file 명령으로 파일 속성 확인" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>file 명령으로 파일 속성 확인</strong>
+        <span>file 명령은 대상이 텍스트, 디렉토리, 실행 파일, 심볼릭 링크인지 같은 파일 유형을 판별해 보여 준다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">file hello.txt
+file /etc/passwd
+file dir1
+file /usr/bin/file
+file hellosymlink</code></pre>
+                    <p>명령어와 옵션을 전부 외울 수는 없다. 예전에는 구글이나 <strong>인터넷</strong>이 없었으므로, 시스템 안에서 바로 도움말을 볼 수 있는 매뉴얼이 필요했다. 그 도구가 <code>man</code>이다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0139.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0139.jpg" alt="man 매뉴얼" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>man 매뉴얼</strong>
+        <span>man은 명령어 설명과 옵션을 확인하는 내장 매뉴얼이며, man ls, man file, man man처럼 명령어별 도움말을 확인할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">man ls
+man file
+man man</code></pre>
+                    <p><code>man ls</code>는 <code>ls</code> 명령의 설명과 옵션을 보여 주고, <code>man file</code>은 <code>file</code> 명령의 설명을 보여 준다. 심지어 <code>man man</code>처럼 매뉴얼 자체의 매뉴얼도 볼 수 있다. 강사는 모르는 옵션을 그때그때 검색만 하기보다, <strong>리눅스</strong> 안의 매뉴얼을 읽는 습관을 들이라고 설명한다.</p>
+          </div>
+        </details>
+        
+        <details id="section-11" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 11</span>
+            <h2>Vim과 Nano: GUI 없는 서버에서 편집하기</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>강의 마지막 이론 파트는 편집기 숙제다. 서버에는 <strong>GUI</strong>가 없을 수 있으므로, 터미널 안에서 파일을 편집할 수 있어야 한다. 대표 도구는 <strong>vi/vim</strong>과 <strong>nano</strong>다. <strong>Vim</strong>은 기능이 강력하지만 처음에는 어렵기 때문에, 강사는 <code>vimtutor</code>를 꼭 따라 해 보라고 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0148.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0148.jpg" alt="Vim, vimtutor, Nano" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Vim, vimtutor, Nano</strong>
+        <span>GUI가 없는 서버에서도 파일을 편집할 수 있도록 vi/vim과 nano를 익혀야 하며, vimtutor는 Vim 기본 조작을 단계적으로 연습하게 해 준다.</span>
+      </figcaption>
+    </figure>
+
                     <pre><code class="language-bash">sudo apt install vim
 vimtutor
-nano memo.txt
-# nano: Ctrl+O 저장, Ctrl+X 종료</code></pre>
+nano hello.txt
+nano /etc/passwd</code></pre>
+                    <p>Ubuntu 20.04에서는 Vim이 이미 설치되어 있어 <code>sudo apt install vim</code>을 하지 않아도 <code>vimtutor</code>가 바로 <strong>실행</strong>될 수 있다. 설치 방법 자체는 뒤 <strong>패키지</strong> 강의에서 다시 배우므로, 여기서는 “편집기를 익혀야 한다”는 목적에 집중하면 된다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0174.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0174.jpg" alt="vimtutor 실행" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>vimtutor 실행</strong>
+        <span>vimtutor는 이동, 종료, 저장 같은 Vim 기본 조작을 직접 따라 하도록 구성되어 있어 최소 한 번 끝까지 실행해 보는 것이 좋다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><code>vimtutor</code>는 약 30분 정도면 끝까지 따라 할 수 있다. 한 번 했다고 바로 익숙해지지는 않으므로, 앞부분 5분 분량만이라도 며칠 반복해서 이동, <strong>입력</strong>, 저장, 종료를 몸에 익히는 것이 좋다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0177.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0177.jpg" alt="Nano 편집기와 Control 단축키" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Nano 편집기와 Control 단축키</strong>
+        <span>Nano 화면 아래의 ^O, ^X 같은 표기는 Control 조합을 뜻하며, ^O는 저장, ^X는 종료처럼 기본 단축키를 화면에서 바로 확인할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><strong>Nano</strong>는 Vim보다 단순하다. 화면 아래에 <code>^O</code>, <code>^X</code> 같은 단축키가 보이는데, 여기서 <code>^</code>는 Control 키를 의미한다. 즉 <code>^O</code>는 <code>Ctrl+O</code>로 저장, <code>^X</code>는 <code>Ctrl+X</code>로 종료한다는 뜻이다. 강의 실습에서는 저장하지 않고 나가기 위해 <code>Ctrl+X</code> 후 <code>N</code>을 선택하는 흐름도 보여 준다.</p>
+          </div>
+        </details>
+        
+        <details id="section-12" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 12</span>
+            <h2>강의 실습 환경과 실제 따라 하기</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>강사는 VirtualBox <strong>GUI</strong> 안의 터미널 글자가 학생들에게 작게 보일 수 있어, 자신은 원격 접속 환경을 따로 만들어 글자를 크게 보여 주겠다고 설명한다. 이를 위해 <code>openssh-server</code>를 설치하고 Windows 터미널에서 원격 접속한다. 하지만 학생들은 지금 이 과정을 따라 할 필요가 없다. 각자 Ubuntu GUI 안에서 터미널을 열고 같은 명령을 <strong>입력</strong>해 보면 된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0158.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0158.jpg" alt="강의자용 원격 접속 실습 환경" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>강의자용 원격 접속 실습 환경</strong>
+    <span>강사는 학생들이 화면을 보기 쉽도록 OpenSSH Server를 설치하고 원격 터미널로 접속해 글자를 크게 키운 환경에서 실습을 진행한다.</span>
+  </figcaption>
+</figure>
+
+                <pre><code class="language-bash">sudo apt install openssh-server</code></pre>
+                <p>강사가 설치 중 보이는 오류 메시지는 <strong>패키지</strong>를 받으려는 경로가 오래되었거나 로컬 패키지 목록이 맞지 않는다는 의미에 가깝다. 이 부분은 뒤 패키지 강의에서 배울 내용이므로, 지금은 “강의자 화면을 크게 보여 주기 위한 준비”로만 이해하면 된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0170.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-05-리눅스-기초-명령어/운영체제 기초-05-리눅스-기초-명령어 - 0170.jpg" alt="실습: /etc/passwd 확인과 보호된 파일 삭제 실패" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>실습: /etc/passwd 확인과 보호된 파일 삭제 실패</strong>
+    <span>실습에서는 cat /etc/passwd로 계정 파일을 보고, rm /etc/passwd가 권한 문제로 실패하는 것을 통해 시스템 파일 보호와 권한 개념을 미리 확인한다.</span>
+  </figcaption>
+</figure>
+
+                <p>실습에서는 <code>clear</code>, <code>ls</code>, <code>ls -l</code>, <code>ls -al</code>을 실제로 입력해 보고, <code>touch hello.txt</code>와 <code>touch .hello.txt</code>의 차이를 확인한다. <code>.hello.txt</code>는 <code>hello.txt</code>를 숨긴 것이 아니라 별개의 숨김 파일이다. <code>mkdir dir1</code>, <code>cd dir1</code>, <code>cd ..</code>, <code>cd ~</code>, <code>cd -</code>로 경로 이동도 직접 해 본다.</p>
+                <p><code>cat /etc/passwd</code>로 계정 정보 파일을 읽고, <code>rm /etc/passwd</code>가 실패하는 것도 확인한다. 이 실패는 실습 오류가 아니라 정상적인 보호 동작이다. 중요한 시스템 파일은 일반 사용자가 삭제할 수 없으며, 이것이 뒤에서 배울 사용자·<strong>권한</strong> 개념의 출발점이다.</p>
+                <p>마지막으로 강사는 시간이 부족해 모든 실습을 길게 진행하지 못하므로, 학생들이 각자 교안의 명령어를 복습하고 <code>vimtutor</code>와 <code>nano</code>를 직접 <strong>실행</strong>해 보라고 숙제로 남긴다.</p>
           </div>
         </details>
         
@@ -215,8 +605,9 @@ nano memo.txt
 
 	    <section id="review" class="content-wrap note-block">
 	      <h2>복습 체크</h2>
-	      <ul class="check-list"><li>숨김 파일이 점으로 시작한다는 점과 `ls -al`의 의미를 설명할 수 있는가?</li><li>`touch`, `cat`, `mkdir`, `rmdir`, `rm -r`의 역할을 구분할 수 있는가?</li><li>`cd ..`, `cd ~`, `cd -`가 각각 어디로 이동하는지 이해했는가?</li><li>명령어 옵션을 모를 때 `man`을 찾아볼 수 있는가?</li><li><strong>Vim</strong>과 Nano를 왜 배워야 하는지 설명할 수 있는가?</li></ul>
+	      <ul class="check-list"><li>FHS 구조에서 `/`, `/boot`, `/etc`, `/home`, `/root`, `/var/log`의 역할을 설명할 수 있는가?</li><li>`clear`, 프롬프트 `$`, 틸드 `~`가 각각 무엇을 의미하는지 이해했는가?</li><li>`ls -l`, `ls -a`, `ls -al`, `ls *.txt`의 차이를 설명할 수 있는가?</li><li>`touch hello.txt`와 `touch .hello.txt`가 서로 다른 파일을 만든다는 점을 이해했는가?</li><li>`cat`, `more`, `less`를 긴 파일 보기 상황에 맞게 구분할 수 있는가?</li><li>`mkdir -p`, `rmdir`, `rm -r`의 차이와 삭제 위험성을 설명할 수 있는가?</li><li>`cd .`, `cd ..`, `cd ~`, `cd -`, `cd /etc`, `cd /var/log`로 경로를 이동할 수 있는가?</li><li>`cp`, `mv`, `ln`, `ln -s`, inode, `file`, `man`의 역할을 말할 수 있는가?</li><li>`vimtutor`와 `<strong>nano</strong>`를 왜 익혀야 하는지, Nano의 `^O`와 `^X`가 무엇인지 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

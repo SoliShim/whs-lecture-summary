@@ -1,6 +1,64 @@
+# macOS / editor
 .DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Python
 __pycache__/
 *.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
 
-# Raw lecture videos are large local source files and exceed normal GitHub limits.
+# Node / frontend tooling
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+.pnpm-store/
+playwright-report/
+test-results/
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+
+# Local scratch output
+.cache/
+.tmp/
+tmp/
+logs/
+/python *.html
+*.log
+*.bak
+*.orig
+
+# Raw lecture media. Keep generated site images in assets/generated/.
 videos/
+*.mp4
+*.mov
+*.m4v
+*.mkv
+*.avi
+*.wmv
+*.flv
+*.webm
+*.wav
+*.mp3
+*.m4a
+*.aac

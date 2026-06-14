@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>암호학 기초 1-3 - 무결성과 인증</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -160,8 +160,18 @@
             <h2>물리 서명과 사이버 공간의 해시</h2>
           </summary>
           <div class="note-section-body">
-            <p>물리 공간에서는 문서에 직접 서명해 문서 내용과 서명자의 의사를 결합한다. 계약서, 확인서, 신용카드 사용 후 서명처럼 물리 문서와 서명은 쉽게 분리되기 어렵고, 문서에 새로운 서명을 위조해 붙이는 것도 어렵다.</p>
-<p>사이버 공간에서는 <strong>해시 함수</strong>가 메시지 다이제스트(message digest)를 만든다. 원본 메시지와 메시지 다이제스트는 모두 디지털 정보이므로 전자적으로 분리되어 존재할 수 있다. 그러나 어떤 메시지에 대응하는 다이제스트는 그 메시지의 지문처럼 동작해야 한다. 메시지가 바뀌면 다이제스트도 바뀌어야 한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0004.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0004.jpg" alt="암호 해시 함수의 역할" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>암호 해시 함수의 역할</strong>
+    <span>물리 공간의 서명과 사이버 공간의 메시지 다이제스트를 비교하며, 해시가 데이터 무결성 확인에 사용됨을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p>물리 공간에서는 문서에 직접 서명해 문서 내용과 서명자의 의사를 결합한다. 계약서, 확인서, 신용카드 사용 후 서명처럼 물리 문서와 서명은 쉽게 분리되기 어렵고, 문서에 새로운 서명을 위조해 붙이는 것도 어렵다.</p>
+                <p>사이버 공간에서는 <strong>해시 함수</strong>가 메시지 다이제스트(message digest)를 만든다. 원본 메시지와 메시지 다이제스트는 모두 디지털 정보이므로 전자적으로 분리되어 존재할 수 있다. 그러나 어떤 메시지에 대응하는 다이제스트는 그 메시지의 지문처럼 동작해야 한다. 메시지가 바뀌면 다이제스트도 바뀌어야 한다.</p>
           </div>
         </details>
         
@@ -171,8 +181,18 @@
             <h2>메시지 다이제스트와 fingerprint</h2>
           </summary>
           <div class="note-section-body">
-            <p>메시지를 <strong>해시 함수</strong>에 <strong>입력</strong>하면 출력으로 메시지 다이제스트가 나온다. 이것을 fingerprint 또는 digital fingerprint라고도 부른다. 사람마다 지문이 다르듯, 서로 다른 메시지는 서로 다른 다이제스트를 가져야 한다는 감각으로 이해하면 된다.</p>
-<p>해시 <strong>함수</strong>는 다양한 길이의 메시지를 입력받아 일정한 고정 길이의 값을 <strong>출력</strong>한다. 입력 메시지는 100바이트일 수도 있고 1MB일 수도 있지만, 출력 다이제스트는 128비트, 256비트처럼 고정 길이의 비트열로 나온다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0029.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0029.jpg" alt="메시지 다이제스트와 일방향성" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>메시지 다이제스트와 일방향성</strong>
+    <span>메시지와 다이제스트는 전자적으로 분리될 수 있으며, 해시값에서 원래 값을 찾기는 매우 어렵다는 점을 필기로 강조한다.</span>
+  </figcaption>
+</figure>
+
+                <p>메시지를 <strong>해시 함수</strong>에 <strong>입력</strong>하면 출력으로 메시지 다이제스트가 나온다. 이것을 fingerprint 또는 digital fingerprint라고도 부른다. 사람마다 지문이 다르듯, 서로 다른 메시지는 서로 다른 다이제스트를 가져야 한다는 감각으로 이해하면 된다.</p>
+                <p>해시 <strong>함수</strong>는 다양한 길이의 메시지를 입력받아 일정한 고정 길이의 값을 <strong>출력</strong>한다. 입력 메시지는 100바이트일 수도 있고 1MB일 수도 있지만, 출력 다이제스트는 128비트, 256비트처럼 고정 길이의 비트열로 나온다.</p>
           </div>
         </details>
         
@@ -212,8 +232,18 @@
             <h2>비둘기집 원리와 충돌</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>해시 함수</strong>와 관련된 수학적 원리 중 하나가 비둘기집 원리다. n+1마리의 비둘기가 n개의 비둘기집에 들어가면 적어도 한 집에는 두 마리 이상의 비둘기가 들어간다.</p>
-<p>해시 <strong>함수</strong>에 적용하면, <strong>입력</strong> 가능한 메시지 수가 출력 가능한 다이제스트 수보다 많을 때 충돌이 반드시 존재한다. 예를 들어 메시지 길이가 6비트라면 가능한 메시지는 2의 6승, 즉 64개다. 그런데 메시지 다이제스트가 4비트라면 가능한 출력은 2의 4승, 즉 16개뿐이다. 64개의 메시지가 16개의 출력 공간에 들어가야 하므로, 같은 다이제스트를 갖는 서로 다른 메시지가 생긴다. 이것이 충돌(collision)이다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0042.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0042.jpg" alt="비둘기집 원리와 해시 충돌" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>비둘기집 원리와 해시 충돌</strong>
+    <span>6비트 메시지 64개가 4비트 다이제스트 16개로 매핑될 때 충돌이 필연적으로 생기는 이유를 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>해시 함수</strong>와 관련된 수학적 원리 중 하나가 비둘기집 원리다. n+1마리의 비둘기가 n개의 비둘기집에 들어가면 적어도 한 집에는 두 마리 이상의 비둘기가 들어간다.</p>
+                <p>해시 <strong>함수</strong>에 적용하면, <strong>입력</strong> 가능한 메시지 수가 출력 가능한 다이제스트 수보다 많을 때 충돌이 반드시 존재한다. 예를 들어 메시지 길이가 6비트라면 가능한 메시지는 2의 6승, 즉 64개다. 그런데 메시지 다이제스트가 4비트라면 가능한 출력은 2의 4승, 즉 16개뿐이다. 64개의 메시지가 16개의 출력 공간에 들어가야 하므로, 같은 다이제스트를 갖는 서로 다른 메시지가 생긴다. 이것이 충돌(collision)이다.</p>
           </div>
         </details>
         
@@ -223,17 +253,27 @@
             <h2>생일 문제</h2>
           </summary>
           <div class="note-section-body">
-            <p>또 하나의 중요한 원리는 <strong>생일 문제</strong>(Birthday Problem)다. 강의에서는 학생을 메시지, 생일을 메시지 다이제스트로 비유한다. 어떤 특정 생일과 같은 생일을 가진 학생이 있을 확률, 어떤 특정 학생과 생일이 같은 학생이 있을 확률은 많은 학생이 필요하지만, 임의의 두 학생이 같은 생일을 가질 확률은 생각보다 적은 인원으로도 50%를 넘는다.</p>
-<table>
-  <thead><tr><th>상황</th><th>강의에서 언급한 숫자</th></tr></thead>
-  <tbody>
-    <tr><td>특정 생일과 같은 생일을 가진 학생이 있을 확률 50% 이상</td><td>약 253명</td></tr>
-    <tr><td>특정 학생과 같은 생일을 가진 학생이 있을 확률 50% 이상</td><td>약 254명</td></tr>
-    <tr><td>임의의 한 학생이 다른 학생과 생일이 같을 확률 50% 이상</td><td>약 23명</td></tr>
-    <tr><td>한 교실 학생이 다른 교실 학생 중 누군가와 생일이 같을 확률 50% 이상</td><td>약 16명</td></tr>
-  </tbody>
-</table>
-<p>이 예시는 해시 충돌이 직관보다 훨씬 적은 시도로도 문제가 될 수 있음을 보여 준다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0047.jpg" alt="생일 문제와 충돌 확률" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>생일 문제와 충돌 확률</strong>
+    <span>지정된 생일과 같은 사람을 찾는 문제보다 임의의 두 사람이 같은 생일을 갖는 문제가 훨씬 적은 표본으로 50%에 도달함을 보여 준다.</span>
+  </figcaption>
+</figure>
+
+                <p>또 하나의 중요한 원리는 <strong>생일 문제</strong>(Birthday Problem)다. 강의에서는 학생을 메시지, 생일을 메시지 다이제스트로 비유한다. 어떤 특정 생일과 같은 생일을 가진 학생이 있을 확률, 어떤 특정 학생과 생일이 같은 학생이 있을 확률은 많은 학생이 필요하지만, 임의의 두 학생이 같은 생일을 가질 확률은 생각보다 적은 인원으로도 50%를 넘는다.</p>
+                <table>
+                  <thead><tr><th>상황</th><th>강의에서 언급한 숫자</th></tr></thead>
+                  <tbody>
+                    <tr><td>특정 생일과 같은 생일을 가진 학생이 있을 확률 50% 이상</td><td>약 253명</td></tr>
+                    <tr><td>특정 학생과 같은 생일을 가진 학생이 있을 확률 50% 이상</td><td>약 254명</td></tr>
+                    <tr><td>임의의 한 학생이 다른 학생과 생일이 같을 확률 50% 이상</td><td>약 23명</td></tr>
+                    <tr><td>한 교실 학생이 다른 교실 학생 중 누군가와 생일이 같을 확률 50% 이상</td><td>약 16명</td></tr>
+                  </tbody>
+                </table>
+                <p>이 예시는 해시 충돌이 직관보다 훨씬 적은 시도로도 문제가 될 수 있음을 보여 준다.</p>
           </div>
         </details>
         
@@ -243,14 +283,24 @@
             <h2>해시 함수의 동작</h2>
           </summary>
           <div class="note-section-body">
-            <p>수학적으로 <strong>해시 함수</strong>는 대문자 H로 표현하고, <strong>입력</strong> 메시지는 X, 출력 해시값은 소문자 h로 표현할 수 있다. 즉 H(X) = h다. 해시 함수 H는 입력 메시지 X를 받아 고정 길이의 해시값 h를 출력한다.</p>
-<ul class="check-list">
-  <li>입력 메시지 길이는 고정되어 있지 않다.</li>
-  <li><strong>출력</strong> 해시값 길이는 고정되어 있다.</li>
-  <li>입력 메시지 X로 해시값 H(X)를 계산하는 것은 상대적으로 쉽다.</li>
-  <li>해시값에서 입력 메시지를 역으로 계산하는 것은 어렵다.</li>
-  <li>암호 해시 <strong>함수</strong>는 충돌이 실질적으로 발생하기 어렵도록 설계되어야 한다.</li>
-</ul>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0059.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0059.jpg" alt="암호 해시 동작" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>암호 해시 동작</strong>
+    <span>H(x)=h 형태로 해시 동작을 표현하고, 임의 길이 입력에서 고정 길이 해시값을 출력하는 특성을 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <p>수학적으로 <strong>해시 함수</strong>는 대문자 H로 표현하고, <strong>입력</strong> 메시지는 X, 출력 해시값은 소문자 h로 표현할 수 있다. 즉 H(X) = h다. 해시 함수 H는 입력 메시지 X를 받아 고정 길이의 해시값 h를 출력한다.</p>
+                <ul class="check-list">
+                  <li>입력 메시지 길이는 고정되어 있지 않다.</li>
+                  <li><strong>출력</strong> 해시값 길이는 고정되어 있다.</li>
+                  <li>입력 메시지 X로 해시값 H(X)를 계산하는 것은 상대적으로 쉽다.</li>
+                  <li>해시값에서 입력 메시지를 역으로 계산하는 것은 어렵다.</li>
+                  <li>암호 해시 <strong>함수</strong>는 충돌이 실질적으로 발생하기 어렵도록 설계되어야 한다.</li>
+                </ul>
           </div>
         </details>
         
@@ -260,9 +310,19 @@
             <h2>송금 예시와 해시의 한계</h2>
           </summary>
           <div class="note-section-body">
-            <p>강의는 “Alex에게 100달러를 송금한다”는 메시지를 예로 든다. 송신자는 송금 메시지를 <strong>해시 함수</strong>에 <strong>입력</strong>해 해시값을 얻고, 이 해시값을 메시지에 붙여 수신자에게 보낸다. 이때 메시지와 해시값이 평문이어도 상관없다. 목표가 기밀성이 아니라 무결성이기 때문이다.</p>
-<p>수신자는 메시지와 해시값을 분리하고, 받은 메시지를 같은 해시 <strong>함수</strong>에 넣어 새 다이제스트를 계산한다. 계산한 값과 받은 해시값이 같으면 변조가 없다고 판단하고, 다르면 <strong>무결성</strong>을 신뢰할 수 없다.</p>
-<p>하지만 여기에는 중요한 한계가 있다. 해시 함수 자체에는 송신자를 식별하는 유일한 정보가 들어 있지 않다. 누구나 메시지에 대한 해시값을 만들 수 있으므로, 단순 해시만으로는 송신자 확인, 즉 출처 <strong>인증</strong>을 보장할 수 없다. 중간자 공격에 취약한 이유도 여기에 있다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0062.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0062.jpg" alt="송금 메시지 변조와 단순 해시의 한계" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>송금 메시지 변조와 단순 해시의 한계</strong>
+    <span>Alex에게 100달러를 보내는 메시지가 Jeremy에게 1000달러를 보내는 메시지로 바뀌면 해시값이 달라져 무결성 위반을 탐지할 수 있음을 보여 준다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의는 “Alex에게 100달러를 송금한다”는 메시지를 예로 든다. 송신자는 송금 메시지를 <strong>해시 함수</strong>에 <strong>입력</strong>해 해시값을 얻고, 이 해시값을 메시지에 붙여 수신자에게 보낸다. 이때 메시지와 해시값이 평문이어도 상관없다. 목표가 기밀성이 아니라 무결성이기 때문이다.</p>
+                <p>수신자는 메시지와 해시값을 분리하고, 받은 메시지를 같은 해시 <strong>함수</strong>에 넣어 새 다이제스트를 계산한다. 계산한 값과 받은 해시값이 같으면 변조가 없다고 판단하고, 다르면 <strong>무결성</strong>을 신뢰할 수 없다.</p>
+                <p>하지만 여기에는 중요한 한계가 있다. 해시 함수 자체에는 송신자를 식별하는 유일한 정보가 들어 있지 않다. 누구나 메시지에 대한 해시값을 만들 수 있으므로, 단순 해시만으로는 송신자 확인, 즉 출처 <strong>인증</strong>을 보장할 수 없다. 중간자 공격에 취약한 이유도 여기에 있다.</p>
           </div>
         </details>
         
@@ -272,10 +332,20 @@
             <h2>HMAC과 출처 인증</h2>
           </summary>
           <div class="note-section-body">
-            <p>출처 <strong>인증</strong>을 위해 강의는 <strong>HMAC</strong>을 소개한다. HMAC은 keyed-hash message authentication code다. 메시지와 비밀키를 함께 해시 함수에 입력해 만든 값을 메시지 인증 코드로 사용하는 방식이다.</p>
-<p>수신자는 받은 메시지에서 HMAC 값을 분리하고, 메시지와 같은 비밀키를 다시 <strong>해시 함수</strong>에 <strong>입력</strong>한다. 계산한 값과 수신한 HMAC 값이 같으면 메시지가 수정되지 않았고, 비밀키를 가진 송신자가 보낸 것이라고 판단할 수 있다. 이 방식은 무결성과 인증을 모두 제공한다.</p>
-<div class="callout">HMAC이 성립하려면 송신자와 수신자가 같은 비밀키를 안전하게 사전에 공유하고 있어야 한다. 이 “비밀키를 어떻게 공유할 것인가”가 뒤의 대칭키·비대칭키 강의로 이어지는 질문이다.</div>
-<p>강의는 HMAC이 SSL, IPsec, SSH 등에서 인증을 위해 사용된다고 설명한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0083.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0083.jpg" alt="HMAC을 이용한 출처 인증" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>HMAC을 이용한 출처 인증</strong>
+    <span>메시지와 비밀키를 함께 해시 함수에 넣어 HMAC을 만들고, 같은 비밀키를 가진 수신자가 무결성과 출처를 확인하는 흐름을 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <p>출처 <strong>인증</strong>을 위해 강의는 <strong>HMAC</strong>을 소개한다. HMAC은 keyed-hash message authentication code다. 메시지와 비밀키를 함께 해시 함수에 입력해 만든 값을 메시지 인증 코드로 사용하는 방식이다.</p>
+                <p>수신자는 받은 메시지에서 HMAC 값을 분리하고, 메시지와 같은 비밀키를 다시 <strong>해시 함수</strong>에 <strong>입력</strong>한다. 계산한 값과 수신한 HMAC 값이 같으면 메시지가 수정되지 않았고, 비밀키를 가진 송신자가 보낸 것이라고 판단할 수 있다. 이 방식은 무결성과 인증을 모두 제공한다.</p>
+                <div class="callout">HMAC이 성립하려면 송신자와 수신자가 같은 비밀키를 안전하게 사전에 공유하고 있어야 한다. 이 “비밀키를 어떻게 공유할 것인가”가 뒤의 대칭키·비대칭키 강의로 이어지는 질문이다.</div>
+                <p>강의는 HMAC이 SSL, IPsec, SSH 등에서 인증을 위해 사용된다고 설명한다.</p>
           </div>
         </details>
         
@@ -285,8 +355,18 @@
             <h2>잘 알려진 해시 함수</h2>
           </summary>
           <div class="note-section-body">
-            <p>강의는 Message Digest 계열과 SHA 계열을 소개한다. MD4, MD5, RIPEMD-160 같은 <strong>해시 함수</strong>가 있고, MD5는 여전히 시스템에서 보이지만 충돌 방법이 알려져 있어 사용을 권장하지 않는다고 설명한다.</p>
-<p>SHA는 Secure Hash Algorithm의 약어다. SHA-1은 사용해서는 안 되고, SHA-2는 현재 많이 사용되며, 강의는 최신 선택으로 SHA-3 사용을 강하게 권장한다. SHA-1은 160비트 다이제스트를 만들고, SHA-2는 256·384·512비트, SHA-3는 224·256·384·512비트 다이제스트를 만들 수 있다고 설명한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0088.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0088.jpg" alt="SHA 계열 해시 함수" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>SHA 계열 해시 함수</strong>
+    <span>SHA-1, SHA-2, SHA-3의 생성 시기, 출력 길이, 구조 차이를 비교한다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의는 Message Digest 계열과 SHA 계열을 소개한다. MD4, MD5, RIPEMD-160 같은 <strong>해시 함수</strong>가 있고, MD5는 여전히 시스템에서 보이지만 충돌 방법이 알려져 있어 사용을 권장하지 않는다고 설명한다.</p>
+                <p>SHA는 Secure Hash Algorithm의 약어다. SHA-1은 사용해서는 안 되고, SHA-2는 현재 많이 사용되며, 강의는 최신 선택으로 SHA-3 사용을 강하게 권장한다. SHA-1은 160비트 다이제스트를 만들고, SHA-2는 256·384·512비트, SHA-3는 224·256·384·512비트 다이제스트를 만들 수 있다고 설명한다. SHA-3는 SHA-2와 구조가 다른 스펀지 구조를 사용하며, 다양한 디바이스에서 동작하고 하드웨어 구현 시 성능 장점도 기대할 수 있다고 정리한다.</p>
           </div>
         </details>
         
@@ -296,9 +376,19 @@
             <h2>해시와 HMAC의 한계</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>해시 함수</strong>는 메시지 조작이나 변경을 검출할 수 있지만, 거짓 행세, 제3자 증명, <strong>부인방지</strong>에는 한계가 있다. HMAC은 비밀키를 사용해 인증을 어느 정도 제공하지만, 제3자에게 증명하기는 어렵다.</p>
-<p>예를 들어 Alice와 Bob이 같은 비밀키를 공유하고 Bob이 Alice에게서 메시지를 받았다고 하자. Bob이 제3자인 Victor에게 “이 메시지는 Alice가 보낸 것”이라고 증명하려 해도, Victor는 Alice와 Bob의 비밀키를 갖고 있지 않다. 설령 키를 알게 되더라도 그 키는 Alice와 Bob이 둘 다 갖고 있으므로 Bob이 직접 만든 것인지 Alice가 보낸 것인지 제3자는 구분하기 어렵다.</p>
-<p>부인방지도 마찬가지다. Alice가 “나는 보낸 적 없다”고 말하면, Bob도 같은 비밀키를 갖고 있기 때문에 <strong>HMAC</strong>만으로는 Alice가 실제 송신자였음을 제3자에게 강하게 증명하기 어렵다. 이 문제를 해결하려면 <strong>공개키 암호</strong> 기술과 해시 함수를 결합한 디지털 서명이 필요하다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0099.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-03-무결성과-인증/암호학 기초-03-무결성과-인증 - 0099.jpg" alt="해시 함수의 한계" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>해시 함수의 한계</strong>
+    <span>해시와 HMAC은 조작 검출과 메시지 인증에 쓰일 수 있지만, 제3자 증명과 부인방지에는 공개키 기반 디지털 서명이 필요함을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>해시 함수</strong>는 메시지 조작이나 변경을 검출할 수 있지만, 거짓 행세, 제3자 증명, <strong>부인방지</strong>에는 한계가 있다. HMAC은 비밀키를 사용해 인증을 어느 정도 제공하지만, 제3자에게 증명하기는 어렵다.</p>
+                <p>예를 들어 Alice와 Bob이 같은 비밀키를 공유하고 Bob이 Alice에게서 메시지를 받았다고 하자. Bob이 제3자인 Victor에게 “이 메시지는 Alice가 보낸 것”이라고 증명하려 해도, Victor는 Alice와 Bob의 비밀키를 갖고 있지 않다. 설령 키를 알게 되더라도 그 키는 Alice와 Bob이 둘 다 갖고 있으므로 Bob이 직접 만든 것인지 Alice가 보낸 것인지 제3자는 구분하기 어렵다.</p>
+                <p>부인방지도 마찬가지다. Alice가 “나는 보낸 적 없다”고 말하면, Bob도 같은 비밀키를 갖고 있기 때문에 <strong>HMAC</strong>만으로는 Alice가 실제 송신자였음을 제3자에게 강하게 증명하기 어렵다. 이 문제를 해결하려면 <strong>공개키 암호</strong> 기술과 해시 함수를 결합한 디지털 서명이 필요하다.</p>
           </div>
         </details>
         
@@ -309,6 +399,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>메시지 다이제스트가 왜 fingerprint라고 불리는지 설명할 수 있는가?</li><li>preimage, second preimage, collision resistance의 차이를 말할 수 있는가?</li><li>비둘기집 원리와 생일 문제가 해시 충돌과 어떻게 연결되는지 이해했는가?</li><li><strong>HMAC</strong>이 <strong>무결성</strong>과 인증을 제공하는 방식과 그 한계를 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

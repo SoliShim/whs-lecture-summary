@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>시큐어코딩 1-7 - 에러 처리, 코드 오류, API 오용</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -119,16 +119,52 @@
             <h2>오류 메시지 노출</h2>
           </summary>
           <div class="note-section-body">
-            <p>프로그램 개발 과정에서는 오류가 발생한다. 문제는 그 오류 메시지가 서버 관리자만 보는 것이 아니라 일반 사용자에게 노출될 때다. SQL 오류 메시지나 Django 기본 오류 페이지에는 어떤 SQL문이 실패했는지, 어떤 경로와 코드가 문제인지, <code>admin</code> 같은 내부 경로가 무엇인지 드러날 수 있다.</p>
-                    <p>공격자는 이런 정보를 힌트로 삼아 다음 공격을 준비한다. 따라서 400, 403, 500 같은 오류 응답이 발생했을 때는 개발자가 직접 설정한 오류 페이지로 연결해야 한다. 사용자에게는 필요한 최소 정보만 보여 주고, 자세한 내부 정보는 서버 <strong>로그</strong>에만 남기는 방식이 적절하다.</p>
-                    <pre><code class="language-python">def handler500(request):
-    return render(request, &quot;errors/500.html&quot;, status=500)
+            <p>7강은 <strong>시큐어 코딩</strong> 기법 중 마지막 묶음인 <strong>에러 처리, 코드 오류, API 오용</strong>을 다룬다. 첫 번째 주제는 <strong>오류 메시지 노출</strong>이다. 프로그램을 개발하고 운영하면 SQL 오류, URL 라우팅 오류, 서버 내부 예외처럼 다양한 문제가 발생한다. 문제 자체보다 더 위험한 것은 그 오류 메시지가 서버 관리자만 보는 로그에 남는 것이 아니라 일반 사용자 화면에 그대로 표시되는 상황이다.</p>
 
-def download(request):
-    filename = request.GET.get(&quot;filename&quot;)
-    if not filename or not filename.strip():
-        return HttpResponseBadRequest(&quot;파일 이름이 필요합니다.&quot;)
-    return safe_download(filename)</code></pre>
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0003.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0003.jpg" alt="오류 메시지 노출 공격 흐름" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>오류 메시지 노출 공격 흐름</strong>
+        <span>SQL 오류 메시지처럼 내부 쿼리와 실패 지점이 드러나는 응답은 공격자가 다음 공격을 설계하는 힌트가 된다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강의의 첫 화면은 SQL 오류 메시지가 외부에 노출되는 흐름을 보여 준다. 공격자가 <strong>로그</strong>인이나 게시판 기능에 비정상 <strong>입력</strong>을 보냈을 때, 서버가 “어떤 SQL문이 실패했는지”, “어떤 조건에서 오류가 났는지”를 사용자 화면에 그대로 보여 주면 공격자는 데이터베이스 구조와 쿼리 작성 방식을 추정할 수 있다. 이 정보는 단순한 오류 안내가 아니라 다음 공격을 설계하는 힌트가 된다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0007.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0007.jpg" alt="Django 기본 오류 페이지의 정보 노출" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Django 기본 오류 페이지의 정보 노출</strong>
+        <span>사용자 정의 오류 페이지를 설정하지 않으면 admin 경로, URL 패턴, DEBUG 상태 같은 내부 정보가 일반 사용자에게 보일 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>Django의 기본 오류 페이지도 같은 위험을 가진다. 사용자 정의 오류 페이지를 따로 설정하지 않으면 URL 패턴, <code>admin/</code> 경로, 코드 위치, DEBUG 상태처럼 일반 사용자가 알 필요가 없는 내부 정보가 보일 수 있다. 강사는 공격자가 이런 화면을 보고 “관리자 경로가 존재한다”, “어떤 <strong>라우팅</strong> 구조를 쓴다”는 사실을 알아낼 수 있다고 설명했다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0011.jpg" alt="사용자 정의 오류 페이지 설정" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>사용자 정의 오류 페이지 설정</strong>
+        <span>400, 403, 404, 500 오류를 직접 만든 오류 페이지로 연결해 사용자에게 내부 코드와 경로가 노출되지 않도록 한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>따라서 오류 응답은 개발자가 직접 만든 안전한 오류 페이지로 연결해야 한다. 400, 403, 404, 500 같은 오류가 발생했을 때 사용자에게는 내부 코드와 경로를 보여 주지 않고, 필요한 최소 안내만 보여 주어야 한다. 자세한 원인은 서버 로그에 남겨 관리자가 확인하고, 외부 화면에는 공격자가 참고할 수 있는 데이터가 없어야 한다.</p>
+                    <pre><code class="language-python">from django.conf.urls import handler400, handler403, handler404, handler500
+
+# 사용자 정의 에러 페이지를 지정하고
+# views.py에 사용자 정의 에러 페이지에 대한 코드를 구현하여 사용한다.
+handler400 = &quot;blog.views.error400&quot;
+handler403 = &quot;blog.views.error403&quot;
+handler404 = &quot;blog.views.error404&quot;
+handler500 = &quot;blog.views.error500&quot;</code></pre>
+                    <p>위 설정은 Django에서 400, 403, 404, 500 오류를 각각 <code>blog.views.error400</code> 같은 사용자 정의 뷰로 연결한다. 핵심은 “오류를 숨긴다”가 아니라 “사용자에게 보여 줄 정보와 관리자에게 남길 정보를 분리한다”는 점이다.</p>
           </div>
         </details>
         
@@ -138,8 +174,87 @@ def download(request):
             <h2>부적절한 예외 처리</h2>
           </summary>
           <div class="note-section-body">
-            <p>예외가 발생해도 프로그램이 안전하게 동작하도록 설계해야 한다. <strong>예외 처리</strong>가 없으면 프로그램이 종료되거나 서버가 중단될 수 있다. 예외 처리를 했더라도 오류 데이터나 경로를 그대로 보여 주면 공격자에게 힌트가 된다.</p>
-<p>강의에서는 <strong>암호화</strong> 과정의 예외 처리를 예로 든다. 키 아이디가 인덱스를 넘어 오류가 발생했는데 단순히 <code>pass</code>로 넘어가면, 코드가 기본 키로 암호화를 수행할 수 있다. 기본 키가 노출되거나 쉽게 추측되면 <strong>평문</strong> 데이터가 노출될 수 있다. 예외 상황에서는 취약한 기본 동작으로 빠지지 말고, 안전한 새 키를 만들거나 요청을 실패 처리해야 한다.</p>
+            <p>오류 메시지를 가리는 것만으로 충분하지 않다. 예외가 발생했을 때 프로그램이 어떤 상태로 이어지는지도 중요하다. 공격자뿐 아니라 일반 사용자도 개발자가 예상하지 못한 값을 <strong>입력</strong>할 수 있고, 그 값이 예외를 발생시킬 수 있다. <strong>예외 처리</strong>가 없으면 프로그램이 종료되거나 서버 기능이 멈출 수 있고, 예외 처리가 있더라도 내부 경로나 데이터를 그대로 보여 주면 공격자에게 힌트가 된다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0015.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0015.jpg" alt="오류 상황 처리와 예외 입력" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>오류 상황 처리와 예외 입력</strong>
+        <span>예외를 발생시키는 입력을 받았을 때 프로그램이 종료되거나 경로와 데이터를 노출하면 공격자가 이를 활용할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강의는 예외 처리의 나쁜 예를 <strong>암호화</strong> 코드로 설명한다. 암호화 <strong>함수</strong>는 <code>key_id</code>를 받아 <code>static_keys</code> 목록에서 키와 IV를 선택한다. 그런데 사용자가 목록 범위를 벗어난 <code>key_id</code>를 주면 <code>IndexError</code>가 발생한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0019.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0019.jpg" alt="예외 발생 시 기본 암호화 키 사용" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>예외 발생 시 기본 암호화 키 사용</strong>
+        <span>키 인덱스 오류를 pass로 넘기면 0000000000000000 같은 기본 키로 암호화가 수행되어 평문 노출 위험이 커진다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>취약 코드에서는 예외가 발생했을 때 <code>except IndexError:</code> 아래에서 아무 조치 없이 <code>pass</code>로 넘어간다. 그 결과 함수 시작 부분에 선언된 기본 키 <code>0000000000000000</code>과 기본 IV가 그대로 사용된다. 강사는 이런 디폴트 키는 유출되는 순간 모든 데이터가 위험해지고, 유출되지 않아도 공격자가 쉽게 추측할 수 있다고 설명했다.</p>
+                    <pre><code class="language-python">import base64
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+
+static_keys = [
+    {
+        &quot;key&quot;: b&quot;\xb9\xfd\xa9\xd2\xefD\x0b\x7f\xb2\xbc\x9c\xf7\x9c&quot;,
+        &quot;iv&quot;: b&quot;\xf1BZ\x06\xe3TP\xd1\x8a\xad\xdc\xc3\x08\x88\xda&quot;,
+    },
+    {
+        &quot;key&quot;: b&quot;Z\x01$..:\xd4u3~\xb6TS\x08\xcc\xfc&quot;,
+        &quot;iv&quot;: b&quot;\xa1a=:\xba\xfczv]\xca\x83\x9485\x14\x17&quot;,
+    },
+]
+
+def encryption(key_id, plain_text):
+    static_key = {&quot;key&quot;: b&quot;0000000000000000&quot;, &quot;iv&quot;: b&quot;0000000000000000&quot;}
+    try:
+        static_key = static_keys[key_id]
+    except IndexError:
+        # key 선택 중 오류 발생 시 기본으로 설정된 암호화 키인
+        # &quot;0000000000000000&quot;으로 암호화가 수행된다.
+        pass
+
+    cipher_aes = AES.new(static_key[&quot;key&quot;], AES.MODE_CBC, static_key[&quot;iv&quot;])
+    encrypted_data = base64.b64encode(cipher_aes.encrypt(pad(plain_text.encode(), 32)))
+    return encrypted_data.decode(&quot;ASCII&quot;)</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0021.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0021.jpg" alt="예외 발생 시 랜덤 키 생성" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>예외 발생 시 랜덤 키 생성</strong>
+        <span>오류가 발생했을 때 취약한 기본 키로 빠지지 않고 secrets.token_bytes로 새 키와 IV를 생성하도록 처리한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>방어 코드는 예외 상황을 취약한 기본 동작으로 흘려보내지 않는다. 키 선택에 실패하면 <code>secrets.token_bytes(16)</code>으로 새로운 키와 IV를 만들고, 이를 키 목록에 추가한 뒤 암호화를 수행한다. 실제 <strong>서비스</strong>에서는 상황에 따라 요청을 실패 처리할 수도 있다. 중요한 기준은 예외가 발생했을 때 <strong>약한 기본값, 내부 정보 노출, 비정상 상태 유지</strong>로 이어지지 않게 하는 것이다.</p>
+                    <pre><code class="language-python">import base64
+import secrets
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+
+def encryption(key_id, plain_text):
+    static_key = {&quot;key&quot;: b&quot;0000000000000000&quot;, &quot;iv&quot;: b&quot;0000000000000000&quot;}
+    try:
+        static_key = static_keys[key_id]
+    except IndexError:
+        # key 선택 중 오류 발생 시 랜덤으로 암호화 키를 생성하도록 설정
+        static_key = {&quot;key&quot;: secrets.token_bytes(16), &quot;iv&quot;: secrets.token_bytes(16)}
+        static_keys.append(static_key)
+
+    cipher_aes = AES.new(static_key[&quot;key&quot;], AES.MODE_CBC, static_key[&quot;iv&quot;])
+    encrypted_data = base64.b64encode(cipher_aes.encrypt(pad(plain_text.encode(), 32)))
+    return encrypted_data.decode(&quot;ASCII&quot;)</code></pre>
           </div>
         </details>
         
@@ -149,8 +264,91 @@ def download(request):
             <h2>널 참조와 코드 오류</h2>
           </summary>
           <div class="note-section-body">
-            <p>코드 작성 과정의 논리 오류도 <strong>취약점</strong>이 된다. 공격자나 일반 사용자가 객체 값을 비워 둘 수 있는데, 서버가 항상 값이 있다고 가정하면 널 값 처리에서 오류가 발생한다. <strong>Python</strong>에서는 <code>None</code> 값을 문자열처럼 다루거나, 파일 이름이 없는데 <code>count()</code> 같은 메서드를 호출하면 에러가 발생할 수 있다.</p>
-<p>방어하려면 값이 존재하는지, 공백만 들어온 것은 아닌지, 확장자가 의도한 것인지 먼저 확인해야 한다. 값이 없으면 “파일 이름이 필요합니다”처럼 안전한 오류 응답으로 처리하고, 이후 로직으로 넘어가지 않도록 해야 한다.</p>
+            <p>코드 오류는 단순 버그로 끝나지 않고 <strong>보안 약점</strong>이 될 수 있다. 대표 사례가 <strong>Null Pointer 역참조</strong>다. 공격자나 일반 사용자가 객체 값, 파일명, 파라미터 값을 비워 둘 수 있는데 서버 코드가 “값은 항상 존재한다”고 가정하면, 비어 있는 값을 처리하는 순간 예외가 발생한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0023.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0023.jpg" alt="Null Pointer 역참조 공격 흐름" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Null Pointer 역참조 공격 흐름</strong>
+        <span>공격자가 객체 값을 Null로 설정하면 서버가 예상하지 못한 오류를 내고 비정상 경로나 내부 정보를 노출할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강의 화면은 공격자가 객체 값을 Null로 설정하고, 서버가 이를 예상하지 못해 비정상 경로나 오류 정보를 노출하는 흐름을 보여 준다. 공격자는 그 정보를 바탕으로 추가 공격을 시도할 수 있다. <strong>Python</strong>에서는 C/C++의 널 <strong>포인터</strong>와 표현은 다르지만, <code>None</code>을 문자열처럼 다루거나 메서드를 호출하면 같은 종류의 오류가 발생한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0027.jpg" alt="filename None 검사 누락 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>filename None 검사 누락 코드</strong>
+        <span>filename이 None인지 확인하지 않고 count 메서드를 호출하면 Python 예외가 발생해 정상 로직이 중단될 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>취약 예시는 <code>request.POST.get("filename")</code>으로 파일 이름을 가져온 뒤 곧바로 <code>filename.count(".")</code>를 호출한다. 사용자가 <code>filename</code>을 보내지 않으면 값은 <code>None</code>이 되고, <code>None</code>에는 <code>count()</code> 메서드가 없으므로 예외가 발생한다. 이 예외가 처리되지 않으면 XML 파싱 기능뿐 아니라 서버 전체 동작에도 영향을 줄 수 있다.</p>
+                    <pre><code class="language-python">import os
+from django.shortcuts import render
+from xml.sax import make_parser
+from xml.sax.handler import feature_namespaces
+
+def parse_xml(request):
+    filename = request.POST.get(&quot;filename&quot;)
+
+    # filename의 None 체크를 하지 않아 에러 발생 가능
+    if filename.count(&quot;.&quot;) &gt; 0:
+        name, ext = os.path.splitext(filename)
+    else:
+        ext = &quot;&quot;
+
+    if ext == &quot;.xml&quot;:
+        parser = make_parser()
+        parser.setFeature(feature_namespaces, True)
+        handler = Handler()
+        parser.setContentHandler(handler)
+        parser.parse(filename)
+        result = handler.root
+        return render(request, &quot;/success.html&quot;, {&quot;result&quot;: result})</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0029.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0029.jpg" alt="filename None 및 빈 문자열 검사" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>filename None 및 빈 문자열 검사</strong>
+        <span>filename이 None이거나 공백뿐이면 안전한 오류 페이지를 반환하고 XML 처리 로직으로 넘어가지 않는다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>방어 코드는 먼저 <code>filename is None</code>인지 확인하고, 값이 있더라도 <code>strip()</code> 결과가 빈 <strong>문자열</strong>이면 오류 페이지를 반환한다. 즉 값이 없거나 공백뿐인 경우에는 XML 처리 로직으로 들어가지 않는다. 이후에도 확장자가 <code>.xml</code>인지 확인해 의도한 파일 형식만 처리한다.</p>
+                    <pre><code class="language-python">import os
+from django.shortcuts import render
+from xml.sax import make_parser
+from xml.sax.handler import feature_namespaces
+
+def parse_xml(request):
+    filename = request.POST.get(&quot;filename&quot;)
+
+    # filename이 None인지 먼저 확인
+    if filename is None or filename.strip() == &quot;&quot;:
+        return render(request, &quot;/error.html&quot;, {&quot;error&quot;: &quot;파일 이름이 없습니다.&quot;})
+
+    if filename.count(&quot;.&quot;) &gt; 0:
+        name, ext = os.path.splitext(filename)
+    else:
+        ext = &quot;&quot;
+
+    if ext == &quot;.xml&quot;:
+        parser = make_parser()
+        parser.setFeature(feature_namespaces, True)
+        handler = Handler()
+        parser.setContentHandler(handler)
+        parser.parse(filename)
+        result = handler.root
+        return render(request, &quot;/success.html&quot;, {&quot;result&quot;: result})</code></pre>
+                    <p>이 주제에서 기억해야 할 점은 “오류가 나지 않게 하자”보다 넓다. 외부에서 들어오는 값은 항상 없을 수 있고, 비어 있을 수 있고, 의도한 형식이 아닐 수 있다. 이런 경우를 먼저 막아야 오류 메시지 노출, <strong>서비스</strong> 중단, 추가 정보 노출을 함께 줄일 수 있다.</p>
           </div>
         </details>
         
@@ -160,19 +358,77 @@ def download(request):
             <h2>역직렬화와 무결성 검증</h2>
           </summary>
           <div class="note-section-body">
-            <p>직렬화된 데이터는 사람이 바로 읽기 어려운 형태로 저장되며, <strong>Python</strong>의 pickle 파일처럼 로드 과정에서 코드 <strong>실행</strong>과 비슷한 효과가 날 수 있다. 공격자가 보낸 pickle 파일에 공격 코드가 들어 있는데 무결성 검증 없이 바로 로드하면 서버에서 악성 행위가 실행될 수 있다.</p>
-                    <p>강의는 신뢰할 수 없는 직렬화 데이터는 바로 <strong>역직렬화</strong>하지 말고, 공식적으로 제공된 해시값과 비교하거나, 데이터가 변조되지 않았는지 먼저 확인해야 한다고 설명한다. 해시값이 다르면 변조된 데이터로 보고 실행하지 않아야 한다.</p>
-                    <pre><code class="language-python">import hashlib
+            <p>다음 주제는 초반 강의에서도 언급했던 <strong>역직렬화</strong>다. 직렬화된 데이터는 사람이 보는 <strong>평문</strong>이 아니라 프로그램이 다시 읽어 객체로 복원할 수 있는 형태다. Python의 <code>pickle</code> 데이터처럼 역직렬화 과정에서 객체 복원 이상의 동작이 일어날 수 있는 형식은 특히 위험하다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0031.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0031.jpg" alt="신뢰할 수 없는 역직렬화 흐름" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>신뢰할 수 없는 역직렬화 흐름</strong>
+        <span>공격자가 코드가 포함된 직렬화 데이터를 보내고 서버가 이를 그대로 역직렬화하면 원격 코드 실행과 시스템 장악으로 이어질 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>공격자가 공격 코드가 포함된 직렬화 데이터를 서버로 보내고, 서버가 이를 검증 없이 역직렬화하면 원격 코드 <strong>실행</strong>과 시스템 장악으로 이어질 수 있다. 강사는 사람이 바로 해석하기 어려운 데이터 안에 공격 코드가 숨어 있을 수 있고, 이를 그대로 로드하면 서버가 공격 코드를 실행하게 된다고 설명했다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0033.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0033.jpg" alt="무검증 pickle 역직렬화 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>무검증 pickle 역직렬화 코드</strong>
+        <span>사용자 입력을 pickle.loads로 바로 복원하면 직렬화 데이터 내부에 숨은 악성 동작을 서버에서 실행할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>취약 코드는 사용자 <strong>입력</strong>을 <code>pickle.dumps()</code>로 직렬화한 뒤 바로 <code>pickle.loads()</code>로 복원한다. 이 예시 자체는 짧지만 핵심은 명확하다. 신뢰할 수 없는 데이터를 “객체로 복원해도 되는 데이터”라고 가정하면 안 된다.</p>
+                    <pre><code class="language-python">import pickle
+from django.shortcuts import render
+
+def load_user_object(request):
+    # 사용자로부터 입력받은 알 수 없는 데이터를 역직렬화
+    pickled_userinfo = pickle.dumps(request.POST.get(&quot;userinfo&quot;, &quot;&quot;))
+    user_obj = pickle.loads(pickled_userinfo)
+
+    return render(request, &quot;/load_user_obj.html&quot;, {&quot;obj&quot;: user_obj})</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0035.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0035.jpg" alt="HMAC 기반 pickle 무결성 검증" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>HMAC 기반 pickle 무결성 검증</strong>
+        <span>전달받은 해시값과 서버가 계산한 HMAC 값을 비교한 뒤 일치할 때만 pickle 데이터를 로드한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>방어 예시는 HMAC을 사용한다. 서버는 사용자 입력을 직렬화한 뒤 비밀키 <code>secret_key</code>와 <code>hashlib.sha512</code>를 사용해 HMAC 값을 계산한다. 그리고 사용자가 함께 보낸 <code>hashed_pickle</code> 값과 서버가 계산한 값을 <code>hmac.compare_digest()</code>로 비교한다. 값이 같을 때만 <code>pickle.loads()</code>를 수행하고, 다르면 “신뢰할 수 없는 데이터입니다.”라는 오류 페이지를 반환한다.</p>
+                    <pre><code class="language-python">import hmac
+import hashlib
 import pickle
+from django.shortcuts import render
 
-expected_hash = &quot;공식적으로 제공된 SHA-256 해시값&quot;
-data = request.body
-actual_hash = hashlib.sha256(data).hexdigest()
+def load_user_object(request):
+    # 데이터 변조를 확인하기 위한 해시값
+    hashed_pickle = request.POST.get(&quot;hashed_pickle&quot;, &quot;&quot;)
 
-if actual_hash != expected_hash:
-    return HttpResponseBadRequest(&quot;변조된 데이터입니다.&quot;)
+    # 사용자로부터 입력받은 데이터를 직렬화
+    pickled_userinfo = pickle.dumps(request.POST.get(&quot;userinfo&quot;, &quot;&quot;))
 
-obj = pickle.loads(data)</code></pre>
+    # HMAC 검증을 위한 비밀키로 생성
+    m = hmac.new(key=&quot;secret_key&quot;.encode(&quot;utf-8&quot;), digestmod=hashlib.sha512)
+
+    # 직렬화된 사용자 입력값을 해싱
+    m.update(pickled_userinfo)
+
+    # 전달받은 해시값과 직렬화 데이터의 해시값을 비교하여 검증
+    if hmac.compare_digest(str(m.digest()), hashed_pickle):
+        user_obj = pickle.loads(pickled_userinfo)
+        return render(request, &quot;/load_user_obj.html&quot;, {&quot;obj&quot;: user_obj})
+    else:
+        return render(request, &quot;/error.html&quot;, {&quot;error&quot;: &quot;신뢰할 수 없는 데이터입니다.&quot;})</code></pre>
+                    <p>해시나 HMAC 검증은 데이터가 중간에 변조되었는지 확인하기 위한 절차다. 해시값이 다르면 직렬화 데이터가 원본과 다르거나 공격자가 조작했을 가능성이 있으므로 실행하지 않아야 한다. 더 나아가 가능하면 신뢰할 수 없는 입력에는 pickle 자체를 쓰지 않고 <strong>JSON</strong>처럼 코드 실행 의미가 없는 형식을 선택하는 것이 좋다.</p>
           </div>
         </details>
         
@@ -182,8 +438,54 @@ obj = pickle.loads(data)</code></pre>
             <h2>DNS Lookup 오용</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>API 오용</strong>의 대표 예로 <strong>DNS</strong> lookup이 소개된다. 사용자가 <code>www.bank.kr</code> 같은 URL을 입력하면 정상적으로는 DNS 서버가 해당 URL에 맞는 IP를 돌려준다. 하지만 중간에서 공격자가 개입해 다른 IP를 알려 주면, 사용자는 원래 은행 서버가 아니라 공격자의 서버에 접속할 수 있다.</p>
-<p>고정된 대상에 접속해야 하는 기능이라면 URL 기반으로만 처리하지 말고, 필요한 경우 신뢰할 수 있는 고정 IP나 <strong>인증서</strong> 검증 등 더 안전한 확인 절차를 사용해야 한다. 강의에서는 URL보다 <strong>IP 주소</strong>를 직접 사용하는 방식이 변조 여지를 줄일 수 있다고 설명한다.</p>
+            <p><strong>API 오용</strong>은 웹서버가 외부 API를 호출하거나 자체 API를 제공할 때 잘못된 방식으로 보안 결정을 내리는 문제다. 강의의 대표 예시는 <strong>DNS Lookup에 의존한 보안 결정</strong>이다. 사용자가 <code>www.bank.kr</code> 같은 URL을 <strong>입력</strong>하면, 정상적으로는 DNS가 이 도메인에 맞는 IP를 돌려주고 사용자는 정상 은행 서버에 접속한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0043.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0043.jpg" alt="DNS Lookup에 의존한 보안 결정" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>DNS Lookup에 의존한 보안 결정</strong>
+        <span>DNS 응답이 조작되면 www.bank.kr이 정상 IP가 아니라 공격자 IP로 해석되어 사용자가 위장 사이트에 접속할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>하지만 <strong>DNS</strong> 해석 과정에 공격자가 개입하면 상황이 달라진다. 화면에서는 정상 웹 서버의 IP가 <code>10.10.10.10</code>이고 공격자 서버의 IP가 <code>192.168.1.1</code>로 표시된다. 공격자가 DNS 캐시나 응답을 조작해 <code>www.bank.kr</code>의 <strong>주소</strong>가 공격자 IP라고 속이면, 사용자는 원래 은행 서버가 아니라 위장 사이트에 접속할 수 있다.</p>
+                    <p>강사는 URL 기반으로 DNS를 검색하고 그 결과에만 의존해 보안 판단을 하면, 중간에서 잘못된 IP로 연결하는 공격에 노출될 수 있다고 설명했다. 특히 고정된 대상에 접속해야 하는 기능이라면 도메인 <strong>문자열</strong>만 믿는 방식은 충분하지 않다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0047.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0047.jpg" alt="도메인 비교 대신 IP 비교" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>도메인 비교 대신 IP 비교</strong>
+        <span>도메인 문자열만 비교하는 방식은 DNS 변조에 취약하므로 실제 해석된 IP를 신뢰할 수 있는 IP와 비교한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>코드 화면의 위쪽 예시는 <code>trusted_host == host_name</code>처럼 호스트 이름 비교에 의존한다. 주석처럼 공격자에 의해 <strong>실행</strong>되는 서버의 DNS가 변경될 수 있으므로 안전하지 않다. 아래쪽 예시는 <code>socket.gethostbyname(host_domain_name)</code>으로 실제 해석된 IP를 얻고, 이를 신뢰할 수 있는 IP와 비교한다. 강의에서는 고정 대상에 접속해야 할 때 URL보다 IP 기반 확인이 변조 여지를 줄일 수 있다고 설명했다.</p>
+                    <pre><code class="language-python">def is_trust(host_domain_name):
+    trusted = False
+    trusted_host = &quot;trust.example.com&quot;
+    # 공격자에 의해 실행되는 서버의 DNS가 변경될 수 있으므로
+    # 안전하지 않다
+    if trusted_host == host_name:
+        trusted = True
+    return trusted
+
+
+import socket
+
+def is_trust(host_domain_name):
+    trusted = False
+    trusted_ip = &quot;192.168.10.7&quot;
+    # 실제 서버의 IP 주소를 비교하여 DNS 변조에 대응
+    dns_resolved_ip = socket.gethostbyname(host_domain_name)
+
+    if trusted_ip == dns_resolved_ip:
+        trusted = True
+    return trusted</code></pre>
+                    <p>실제 <strong>서비스</strong>에서는 IP 비교만으로 모든 보안 문제가 해결되는 것은 아니다. HTTPS <strong>인증서</strong> 검증, 신뢰할 수 있는 DNS 설정, 핀ning, 내부 allowlist 등 상황에 맞는 검증이 함께 필요하다. 이 강의에서의 핵심은 DNS 해석 결과를 아무 검증 없이 신뢰해 보안 판단을 내리면 안 된다는 점이다.</p>
           </div>
         </details>
         
@@ -193,8 +495,22 @@ obj = pickle.loads(data)</code></pre>
             <h2>취약한 API와 라이브러리 사용</h2>
           </summary>
           <div class="note-section-body">
-            <p>웹서버는 여러 <strong>API</strong>와 라이브러리를 사용한다. 사용하는 API 자체나 그 내부 <strong>패키지</strong>에 취약점이 있다면, API를 호출하는 것만으로도 보안 위험에 노출될 수 있다. 그래서 새로운 API, 패키지, 라이브러리를 사용하기 전에 알려진 취약점이 있는지 확인해야 한다.</p>
-<p>가능하면 최신 버전을 사용해야 한다. 업데이트가 계속되는 라이브러리는 <strong>취약점</strong>이 발견되면 패치가 나오므로, 최신 버전을 유지하는 것 자체가 중요한 <strong>시큐어 코딩</strong> 습관이다.</p>
+            <p>마지막 주제는 <strong>취약한 API와 라이브러리 사용</strong>이다. 웹서버는 직접 작성한 코드만으로 동작하지 않는다. 외부 API, 오픈소스 <strong>패키지</strong>, 프레임워크, 라이브러리를 가져와 사용한다. 그런데 그 API나 패키지 자체에 취약점이 있다면, 개발자가 직접 취약한 코드를 작성하지 않았더라도 호출하는 순간 위험이 애플리케이션으로 들어온다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0051.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-07-에러-처리-코드-오류-API-오용/시큐어코딩-07-에러-처리-코드-오류-API-오용 - 0051.jpg" alt="취약한 API와 패키지 사용" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>취약한 API와 패키지 사용</strong>
+    <span>취약한 패키지를 API로 호출하면 버퍼 오버플로우, XML 취약점, 임의 코드 실행 같은 보안 문제가 프로그램으로 전파될 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>화면은 <code>import vuln_pkg</code> 후 <code>vuln_pkg.vuln_func()</code>를 호출하는 프로그램을 보여 준다. 취약한 패키지 내부에서 <strong>버퍼 오버플로우</strong>, XML <strong>취약점</strong>, 임의 코드 실행 같은 문제가 발생할 수 있고, API를 호출한 애플리케이션도 그 영향을 받는다. 즉 “내 코드가 짧고 단순하다”는 사실만으로 안전하다고 볼 수 없다.</p>
+                <p>강사는 <strong>API</strong>, 패키지, 라이브러리를 사용하기 전에 알려진 취약점이 있는지 확인해야 한다고 설명했다. 슬라이드에는 NIST의 National Vulnerability Database와 CVE Details 같은 취약점 검색 <strong>서비스</strong>가 예시로 나온다. 새 라이브러리를 도입할 때는 해당 이름과 버전으로 공개 취약점이 있는지 확인하고, 취약점이 알려졌다면 패치 버전을 사용해야 한다.</p>
+                <p>가능하면 최신 버전을 유지하는 것도 중요하다. 활발히 관리되는 라이브러리는 취약점이 발견되면 보안 패치를 배포하므로, 업데이트를 적용하는 것만으로도 위험을 줄일 수 있다. 반대로 오래 방치된 패키지나 더 이상 유지보수되지 않는 API는 취약점이 발견되어도 고쳐지지 않을 수 있으므로 사용 자체를 재검토해야 한다.</p>
+                <p>7강 전체를 관통하는 결론은 “예외적 상황을 정상 흐름만큼 중요하게 다루어야 한다”는 것이다. 오류, 빈 값, 변조된 직렬화 데이터, 조작된 <strong>DNS</strong> 응답, 취약한 라이브러리는 모두 정상 사용 시나리오 바깥에서 발생한다. <strong>시큐어 코딩</strong>은 이런 비정상 입력과 실패 상황을 안전하게 처리하는 습관이다.</p>
           </div>
         </details>
         
@@ -205,6 +521,7 @@ obj = pickle.loads(data)</code></pre>
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>오류 메시지가 내부 경로와 코드 정보를 노출하면 왜 위험한지 설명할 수 있는가?</li><li>예외 발생 시 기본 키로 <strong>암호화</strong>하는 방식이 왜 위험한지 이해했는가?</li><li>None이나 빈 <strong>문자열</strong> <strong>입력</strong>을 먼저 검사해야 하는 이유를 말할 수 있는가?</li><li>pickle <strong>역직렬화</strong> 전에 <strong>무결성</strong> 검증이 필요한 이유를 설명할 수 있는가?</li><li><strong>DNS</strong> lookup과 취약 라이브러리 사용이 <strong>API 오용</strong>으로 이어지는 이유를 이해했는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

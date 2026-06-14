@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>암호학 기초 1-4 - 기밀성</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -134,8 +134,18 @@
             <h2>데이터 기밀성</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>기밀성</strong>(confidentiality)은 인가받은 사용자만 메시지를 읽을 수 있도록 보장하는 보안 <strong>서비스</strong>이자 보안 목표다. 데이터 기밀성을 제공하기 위해 암호 기술이 사용된다. Kerckhoffs 원리에 따르면 암호 알고리즘은 공개될 수 있다는 것을 전제하고, 안전성은 비밀키를 어떻게 보관하고 관리하느냐에 따라 보장되어야 한다.</p>
-<p>이 키를 기준으로 암호 기술은 크게 <strong>대칭키 암호</strong> 기술과 <strong>비대칭키</strong> 암호 기술로 나뉜다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0002.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0002.jpg" alt="데이터 기밀성과 암호 기술 분류" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>데이터 기밀성과 암호 기술 분류</strong>
+    <span>인가받은 사용자만 메시지를 읽을 수 있다는 기밀성 목표와 대칭키·비대칭키 암호 기술의 기본 차이를 비교한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>기밀성</strong>(confidentiality)은 인가받은 사용자만 메시지를 읽을 수 있도록 보장하는 보안 <strong>서비스</strong>이자 보안 목표다. 데이터 기밀성을 제공하기 위해 암호 기술이 사용된다. Kerckhoffs 원리에 따르면 암호 알고리즘은 공개될 수 있다는 것을 전제하고, 안전성은 비밀키를 어떻게 보관하고 관리하느냐에 따라 보장되어야 한다.</p>
+                <p>이 키를 기준으로 암호 기술은 크게 <strong>대칭키 암호</strong> 기술과 <strong>비대칭키</strong> 암호 기술로 나뉜다.</p>
           </div>
         </details>
         
@@ -165,8 +175,18 @@
             <h2>키 길이와 성능</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>대칭키 암호</strong> 기술은 일반적으로 키 길이가 짧다. 강의에서는 40비트에서 256비트 범위를 설명하면서, 현대 암호에서는 최소 128비트 이상을 요구한다고 말한다. <strong>비대칭키</strong> 암호 기술은 상대적으로 키 길이가 길고, 강의에서는 512비트에서 4096비트 범위를 언급하며 현대 비대칭키 암호는 최소 1024비트 이상을 요구한다고 설명한다.</p>
-<p>키 길이와 수학적 연산 특성 때문에 <strong>대칭키</strong> 암호는 빠르고 <strong>CPU</strong> 리소스를 덜 사용한다. 그래서 VPN 트래픽처럼 대량 데이터를 암호화하는 데 일반적으로 사용된다. 비대칭키 암호는 느리기 때문에 일반 메시지 전체를 암호화하기보다, 대칭키 암호에 필요한 짧은 비밀키를 암호화해 보내는 데 적합하다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0033.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0033.jpg" alt="대칭키 암호화 구조" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>대칭키 암호화 구조</strong>
+    <span>동일한 사전 공유 키를 사용해 암호화와 복호화를 수행하며, 보통 112비트에서 256비트 사이의 키를 선택한다고 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>대칭키 암호</strong> 기술은 일반적으로 키 길이가 짧다. 강의에서는 40비트에서 256비트 범위를 설명하면서, 현대 암호에서는 최소 128비트 이상을 요구한다고 말한다. <strong>비대칭키</strong> 암호 기술은 상대적으로 키 길이가 길고, 강의에서는 512비트에서 4096비트 범위를 언급하며 현대 비대칭키 암호는 최소 1024비트 이상을 요구한다고 설명한다.</p>
+                <p>키 길이와 수학적 연산 특성 때문에 <strong>대칭키</strong> 암호는 빠르고 <strong>CPU</strong> 리소스를 덜 사용한다. 그래서 VPN 트래픽처럼 대량 데이터를 암호화하는 데 일반적으로 사용된다. 비대칭키 암호는 느리기 때문에 일반 메시지 전체를 암호화하기보다, 대칭키 암호에 필요한 짧은 비밀키를 암호화해 보내는 데 적합하다.</p>
           </div>
         </details>
         
@@ -176,9 +196,19 @@
             <h2>대칭키 암호 기술의 용도</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>대칭키 암호</strong> 기술은 공개 채널로 전달되는 메시지를 <strong>암호화</strong>해 기밀성을 보장한다. 또한 노트북이나 저장장치에 저장된 데이터를 암호화해 저장 데이터의 기밀성도 보장할 수 있다.</p>
-<p>강의는 <strong>대칭키</strong> 암호가 <strong>기밀성</strong> 외에도 인증과 무결성에 사용될 수 있다고 설명한다. 인증 예시로는 nonce 기반 challenge-response가 나온다. Bob이 매번 바뀌는 랜덤 값인 nonce를 Alice에게 보내고, Alice가 사전 공유한 키로 그 nonce를 암호화해 돌려보내면 Bob은 Alice가 같은 키를 갖고 있음을 확인할 수 있다. 이렇게 개체 인증에 사용할 수 있다.</p>
-<p><strong>무결성</strong> 측면에서는 <strong>메시지 인증 코드</strong>(MAC)를 만들 때 대칭키 블록 암호와 CBC 모드 같은 기술을 사용할 수 있다고 언급한다. 자세한 내용은 오프라인 강의에서 더 다룬다고 설명한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0047.jpg" alt="대칭키 암호의 용도" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>대칭키 암호의 용도</strong>
+    <span>대칭키 암호가 기밀성뿐 아니라 nonce 기반 개체 인증과 MAC 생성에도 쓰일 수 있음을 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>대칭키 암호</strong> 기술은 공개 채널로 전달되는 메시지를 <strong>암호화</strong>해 기밀성을 보장한다. 또한 노트북이나 저장장치에 저장된 데이터를 암호화해 저장 데이터의 기밀성도 보장할 수 있다.</p>
+                <p>강의는 <strong>대칭키</strong> 암호가 <strong>기밀성</strong> 외에도 인증과 무결성에 사용될 수 있다고 설명한다. 인증 예시로는 nonce 기반 challenge-response가 나온다. Bob이 매번 바뀌는 랜덤 값인 nonce를 Alice에게 보내고, Alice가 사전 공유한 키로 그 nonce를 암호화해 돌려보내면 Bob은 Alice가 같은 키를 갖고 있음을 확인할 수 있다. 이렇게 개체 인증에 사용할 수 있다.</p>
+                <p><strong>무결성</strong> 측면에서는 <strong>메시지 인증 코드</strong>(MAC)를 만들 때 대칭키 블록 암호와 CBC 모드 같은 기술을 사용할 수 있다고 언급한다. 자세한 내용은 오프라인 강의에서 더 다룬다고 설명한다.</p>
           </div>
         </details>
         
@@ -188,8 +218,18 @@
             <h2>스트림 암호와 블록 암호</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>대칭키 암호</strong> 기술은 <strong>암호화</strong> 방식에 따라 stream 암호와 block 암호로 나뉜다. Stream 암호는 평문을 한 번에 1바이트 또는 1비트씩 암호화한다. 블록 크기가 매우 작기 때문에 데이터가 지속적으로 입력되는 순간 암호화할 수 있고, 일반적으로 빠른 처리가 가능하다. 음성 통신이나 셀룰러 휴대폰 통신에서 사용되는 예로 RC4와 A5 시리즈가 언급된다.</p>
-<p>Block 암호는 정해진 블록 단위로 데이터를 암호화한다. 과거 <strong>DES</strong>는 64비트 블록을 사용했고, 현대 암호인 <strong>AES</strong>는 128비트 블록을 사용한다고 설명한다. 현대 암호에서는 효율성과 활용성 때문에 블록 암호가 많이 사용된다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0051.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0051.jpg" alt="스트림 암호" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>스트림 암호</strong>
+    <span>평문을 1바이트 또는 1비트씩 계속 암호화하는 스트림 암호의 동작과 RC4, A5 예시를 보여 준다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>대칭키 암호</strong> 기술은 <strong>암호화</strong> 방식에 따라 stream 암호와 block 암호로 나뉜다. Stream 암호는 평문을 한 번에 1바이트 또는 1비트씩 암호화한다. 블록 크기가 매우 작기 때문에 데이터가 지속적으로 입력되는 순간 암호화할 수 있고, 일반적으로 빠른 처리가 가능하다. 음성 통신이나 셀룰러 휴대폰 통신에서 사용되는 예로 RC4와 A5 시리즈가 언급된다.</p>
+                <p>Block 암호는 정해진 블록 단위로 데이터를 암호화한다. 과거 <strong>DES</strong>는 64비트 블록을 사용했고, 현대 암호인 <strong>AES</strong>는 128비트 블록을 사용한다고 설명한다. 현대 암호에서는 효율성과 활용성 때문에 블록 암호가 많이 사용된다.</p>
           </div>
         </details>
         
@@ -199,8 +239,18 @@
             <h2>비대칭키 암호 기술의 기본 구조</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>비대칭키</strong> 암호 기술은 공개키와 개인키 한 쌍을 사용한다. 공개키는 외부에 공개할 수 있고, 개인키는 절대로 외부에 공개하지 않고 개인 또는 호스트가 보관해야 한다. 공개키와 개인키는 서로 다르지만 수학적으로 한 쌍을 이룬다.</p>
-<p>공개키로 <strong>암호화</strong>한 데이터는 그 공개키와 짝을 이루는 개인키로만 <strong>복호화</strong>할 수 있다. 반대로 개인키로 암호화한 데이터는 그 개인키와 짝을 이루는 공개키로 복호화할 수 있다. 두 방향 모두 가능하지만, 어떤 키로 암호화하느냐에 따라 달성되는 보안 목표가 다르다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0062.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0062.jpg" alt="비대칭키 암호화 기본 구조" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>비대칭키 암호화 기본 구조</strong>
+    <span>공개키 알고리즘은 공개키와 개인키를 사용하며, 두 키 모두 암호화 과정에 쓰일 수 있지만 복호화에는 짝이 되는 키가 필요하다는 점을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>비대칭키</strong> 암호 기술은 공개키와 개인키 한 쌍을 사용한다. 공개키는 외부에 공개할 수 있고, 개인키는 절대로 외부에 공개하지 않고 개인 또는 호스트가 보관해야 한다. 공개키와 개인키는 서로 다르지만 수학적으로 한 쌍을 이룬다.</p>
+                <p>공개키로 <strong>암호화</strong>한 데이터는 그 공개키와 짝을 이루는 개인키로만 <strong>복호화</strong>할 수 있다. 반대로 개인키로 암호화한 데이터는 그 개인키와 짝을 이루는 공개키로 복호화할 수 있다. 두 방향 모두 가능하지만, 어떤 키로 암호화하느냐에 따라 달성되는 보안 목표가 다르다.</p>
           </div>
         </details>
         
@@ -210,15 +260,25 @@
             <h2>공개키로 암호화하면 기밀성</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>비대칭키</strong> 암호 기술로 <strong>기밀성</strong>을 제공하려면 수신자의 공개키로 암호화한다. Alice가 Bob에게 짧은 메시지를 안전하게 보내려면 Bob의 공개키를 획득해 그 공개키로 메시지를 암호화한다. 이 암호문은 Bob의 개인키로만 복호화할 수 있다. Bob의 개인키는 오직 Bob만 갖고 있으므로 메시지 기밀성이 보장된다.</p>
-<div class="diagram">
-  <div><span class="node-title">Alice</span><p>Bob의 공개키로 <strong>암호화</strong></p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">암호문</span><p>공개 채널로 전송 가능</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">Bob</span><p>자신의 개인키로 <strong>복호화</strong></p></div>
-</div>
-<p>핵심은 “수신자의 공개키로 암호화하고, 수신자가 자신의 개인키로 복호화한다”는 것이다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0073.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0073.jpg" alt="공개키로 암호화하면 기밀성" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>공개키로 암호화하면 기밀성</strong>
+    <span>Alice가 Bob의 공개키로 메시지를 암호화하고 Bob이 개인키로 복호화하면, Bob만 읽을 수 있어 기밀성이 확보된다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>비대칭키</strong> 암호 기술로 <strong>기밀성</strong>을 제공하려면 수신자의 공개키로 암호화한다. Alice가 Bob에게 짧은 메시지를 안전하게 보내려면 Bob의 공개키를 획득해 그 공개키로 메시지를 암호화한다. 이 암호문은 Bob의 개인키로만 복호화할 수 있다. Bob의 개인키는 오직 Bob만 갖고 있으므로 메시지 기밀성이 보장된다.</p>
+                <div class="diagram">
+                  <div><span class="node-title">Alice</span><p>Bob의 공개키로 <strong>암호화</strong></p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">암호문</span><p>공개 채널로 전송 가능</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">Bob</span><p>자신의 개인키로 <strong>복호화</strong></p></div>
+                </div>
+                <p>핵심은 “수신자의 공개키로 암호화하고, 수신자가 자신의 개인키로 복호화한다”는 것이다.</p>
           </div>
         </details>
         
@@ -228,8 +288,18 @@
             <h2>개인키로 암호화하면 인증과 부인방지</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>비대칭키</strong> 암호 기술로 <strong>인증</strong>과 부인방지를 제공하려면 송신자의 개인키로 암호화한다. 송신자의 개인키는 오직 송신자만 갖고 있으므로, 그 개인키로 암호화된 데이터가 송신자의 공개키로 정상 복호화된다면 해당 송신자가 만든 것임을 확인할 수 있다.</p>
-<p>이 경우 <strong>기밀성</strong>은 제공되지 않는다. 공개키는 누구나 가질 수 있기 때문이다. 대신 인증과 <strong>부인방지</strong>를 제공한다. 송신자의 개인키로 암호화했다는 사실은 송신자만 할 수 있는 행위이므로, 송신자가 나중에 그 행위를 부정하기 어려워진다. 강의는 암호 기술로 부인방지를 제공할 수 있는 것은 비대칭키 암호 기술이 유일하다고 강조한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0084.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0084.jpg" alt="개인키로 암호화하면 인증과 부인방지" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>개인키로 암호화하면 인증과 부인방지</strong>
+    <span>Alice가 개인키로 암호화한 메시지를 Bob이 Alice의 공개키로 복호화하면 송신자 인증과 부인방지가 가능함을 보여 준다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>비대칭키</strong> 암호 기술로 <strong>인증</strong>과 부인방지를 제공하려면 송신자의 개인키로 암호화한다. 송신자의 개인키는 오직 송신자만 갖고 있으므로, 그 개인키로 암호화된 데이터가 송신자의 공개키로 정상 복호화된다면 해당 송신자가 만든 것임을 확인할 수 있다.</p>
+                <p>이 경우 <strong>기밀성</strong>은 제공되지 않는다. 공개키는 누구나 가질 수 있기 때문이다. 대신 인증과 <strong>부인방지</strong>를 제공한다. 송신자의 개인키로 암호화했다는 사실은 송신자만 할 수 있는 행위이므로, 송신자가 나중에 그 행위를 부정하기 어려워진다. 강의는 암호 기술로 부인방지를 제공할 수 있는 것은 비대칭키 암호 기술이 유일하다고 강조한다.</p>
           </div>
         </details>
         
@@ -239,8 +309,18 @@
             <h2>기밀성, 인증, 무결성의 결합</h2>
           </summary>
           <div class="note-section-body">
-            <p>강의는 <strong>비대칭키</strong> <strong>프로세스</strong>와 해시를 결합하면 기밀성, 인증, 무결성을 함께 제공할 수 있다고 설명한다. 메시지는 수신자인 Bob의 공개키로 암호화해 기밀성을 제공한다. 메시지의 해시값은 송신자인 Alice의 개인키로 암호화해 디지털 서명처럼 사용한다. Bob은 자신의 개인키로 메시지를 복호화하고, Alice의 공개키로 서명을 확인한 뒤, 직접 계산한 해시값과 비교한다.</p>
-<p>이 흐름은 뒤에서 배우는 디지털 서명과 하이브리드 암호 기술의 기반이다. 다시 정리하면 수신자 공개키는 <strong>기밀성</strong>, 송신자 개인키는 <strong>인증</strong>과 부인방지, 해시는 무결성과 연결된다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0106.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-04-기밀성/암호학 기초-04-기밀성 - 0106.jpg" alt="기밀성 강의 요약" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>기밀성 강의 요약</strong>
+    <span>대칭키는 사전 공유 키를 기반으로 기밀성·인증·무결성을 제공하고, 비대칭키는 공개키·개인키로 기밀성·인증·부인방지·무결성과 연결된다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의는 <strong>비대칭키</strong> <strong>프로세스</strong>와 해시를 결합하면 기밀성, 인증, 무결성을 함께 제공할 수 있다고 설명한다. 메시지는 수신자인 Bob의 공개키로 암호화해 기밀성을 제공한다. 메시지의 해시값은 송신자인 Alice의 개인키로 암호화해 디지털 서명처럼 사용한다. Bob은 자신의 개인키로 메시지를 복호화하고, Alice의 공개키로 서명을 확인한 뒤, 직접 계산한 해시값과 비교한다.</p>
+                <p>이 흐름은 뒤에서 배우는 디지털 서명과 하이브리드 암호 기술의 기반이다. 다시 정리하면 수신자 공개키는 <strong>기밀성</strong>, 송신자 개인키는 <strong>인증</strong>과 부인방지, 해시는 무결성과 연결된다.</p>
           </div>
         </details>
         
@@ -251,6 +331,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>대칭키</strong>와 <strong>비대칭키</strong>의 키 사용 방식, 속도, 주요 용도를 비교할 수 있는가?</li><li>stream 암호와 block 암호의 <strong>암호화</strong> 단위 차이를 설명할 수 있는가?</li><li>수신자의 공개키로 <strong>암호화</strong>할 때 <strong>기밀성</strong>이 제공되는 이유를 말할 수 있는가?</li><li>송신자의 개인키로 <strong>암호화</strong>할 때 <strong>인증</strong>과 부인방지가 제공되는 이유를 이해했는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

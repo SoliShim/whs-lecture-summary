@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>해커의 프로그래밍 1-7 - 가상자산 믹싱과 거래 그래프</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -115,8 +115,29 @@
           </summary>
           <div class="note-section-body">
             <p><strong>가상자산</strong> 거래소 <strong>해킹</strong> 기사에서는 비트코인이나 다른 가상화폐가 탈취되었다는 말과 함께 믹싱이라는 단어가 자주 나온다. 믹싱은 흔히 돈세탁이라고도 하며, 자금 추적을 어렵게 하기 위해 여러 거래 내역을 섞고 흐름을 복잡하게 엮는 작업이다.</p>
-<p><strong>블록체인</strong>은 거래 내역이 공개된다는 특징이 있다. Etherscan 같은 사이트에서는 어떤 지갑에서 어떤 지갑으로 얼마만큼의 코인이나 토큰이 이동하는지 실시간으로 확인할 수 있다. 그래서 “거래가 모두 보이는데 어떻게 숨길 수 있나?”라는 의문이 생긴다. <strong>믹싱</strong>의 핵심은 거래를 숨기는 것이 아니라, 실제 의미 있는 흐름이 무엇인지 알기 어렵게 만드는 것이다.</p>
-<p>예를 들어 A가 B에게 1000원을 보내면 누구나 흐름을 이해할 수 있다. 하지만 A가 여러 노드로 나누어 보내고, 중간 노드들이 서로 주고받고, 최종적으로 B에게 비슷한 금액이 모이면 겉보기 흐름은 매우 복잡해진다. 결과적으로 A는 1000원이 줄고 B는 1000원이 늘며, 중간 노드들은 들어온 만큼 다시 내보내 실질 변화가 없을 수 있다.</p>
+                <p><strong>블록체인</strong>은 거래 내역이 공개된다는 특징이 있다. Etherscan 같은 사이트에서는 어떤 지갑에서 어떤 지갑으로 얼마만큼의 코인이나 토큰이 이동하는지 실시간으로 확인할 수 있다. 그래서 “거래가 모두 보이는데 어떻게 숨길 수 있나?”라는 의문이 생긴다. <strong>믹싱</strong>의 핵심은 거래를 숨기는 것이 아니라, 실제 의미 있는 흐름이 무엇인지 알기 어렵게 만드는 것이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0005.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0005.jpg" alt="블록체인 거래 공개와 Etherscan" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>블록체인 거래 공개와 Etherscan</strong>
+    <span>Etherscan처럼 실시간 트랜잭션을 볼 수 있는 사이트가 있어도, 거래가 여러 노드로 쪼개지면 실제 의미 있는 흐름은 흐려질 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>예를 들어 A가 B에게 1000원을 보내면 누구나 흐름을 이해할 수 있다. 하지만 A가 여러 노드로 나누어 보내고, 중간 노드들이 서로 주고받고, 최종적으로 B에게 비슷한 금액이 모이면 겉보기 흐름은 매우 복잡해진다. 결과적으로 A는 1000원이 줄고 B는 1000원이 늘며, 중간 노드들은 들어온 만큼 다시 내보내 실질 변화가 없을 수 있다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0009.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0009.jpg" alt="단순 송금이 복잡한 거래망으로 나뉘는 방식" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>단순 송금이 복잡한 거래망으로 나뉘는 방식</strong>
+    <span>A가 B에게 1000원을 보낸 단순 흐름과, 중간 노드 C·D·E·F를 거치지만 최종 효과는 같은 흐름을 비교해 믹싱의 직관을 보여 준다.</span>
+  </figcaption>
+</figure>
           </div>
         </details>
         
@@ -127,16 +148,27 @@
           </summary>
           <div class="note-section-body">
             <table>
-  <thead><tr><th>방법</th><th>설명</th></tr></thead>
-  <tbody>
-    <tr><td>중복 거래 제거</td><td>두 노드 사이에 오간 여러 거래의 플러스·마이너스를 합산해 최종 순거래 한 건으로 간소화한다.</td></tr>
-    <tr><td><strong>믹싱</strong> 노드 <strong>그룹</strong>화</td><td>알려진 믹싱 <strong>서비스</strong> 지갑을 하나의 그룹으로 묶고, 그룹 안팎의 자금 유입·유출에 집중한다.</td></tr>
-    <tr><td>서비스 패턴 역분석</td><td>특정 믹싱 업체의 난독화 패턴을 알고 있으면 그 패턴을 거꾸로 분석한다.</td></tr>
-    <tr><td>시간·금액 매칭</td><td>비슷한 시간대에 비슷한 규모의 금액이 빠져나가고 들어오는 흐름을 연결해 추정한다.</td></tr>
-    <tr><td>현실 금융 접점</td><td><strong>가상자산</strong>을 원화, 달러, 금 같은 현실 자산과 교환하는 지점에서 은행·거래소 협조를 통해 추적한다.</td></tr>
-  </tbody>
-</table>
-<p>이 강의의 실습은 데이터 분석이 목적이므로 첫 번째 방법, 즉 A와 B 사이에 오간 여러 건의 거래를 하나로 합치는 방식에 집중한다.</p>
+                  <thead><tr><th>방법</th><th>설명</th></tr></thead>
+                  <tbody>
+                    <tr><td>중복 거래 제거</td><td>두 노드 사이에 오간 여러 거래의 플러스·마이너스를 합산해 최종 순거래 한 건으로 간소화한다.</td></tr>
+                    <tr><td><strong>믹싱</strong> 노드 <strong>그룹</strong>화</td><td>알려진 믹싱 <strong>서비스</strong> 지갑을 하나의 그룹으로 묶고, 그룹 안팎의 자금 유입·유출에 집중한다.</td></tr>
+                    <tr><td>서비스 패턴 역분석</td><td>특정 믹싱 업체의 난독화 패턴을 알고 있으면 그 패턴을 거꾸로 분석한다.</td></tr>
+                    <tr><td>시간·금액 매칭</td><td>비슷한 시간대에 비슷한 규모의 금액이 빠져나가고 들어오는 흐름을 연결해 추정한다.</td></tr>
+                    <tr><td>현실 금융 접점</td><td><strong>가상자산</strong>을 원화, 달러, 금 같은 현실 자산과 교환하는 지점에서 은행·거래소 협조를 통해 추적한다.</td></tr>
+                  </tbody>
+                </table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0017.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0017.jpg" alt="믹싱 노드 그룹화" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>믹싱 노드 그룹화</strong>
+    <span>믹싱 서비스에 속한 여러 노드를 하나의 그룹 X로 묶으면 그룹 내부 거래보다 그룹 바깥에서 들어오고 나가는 자금 흐름에 집중할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>이 강의의 실습은 데이터 분석이 목적이므로 첫 번째 방법, 즉 A와 B 사이에 오간 여러 건의 거래를 하나로 합치는 방식에 집중한다.</p>
           </div>
         </details>
         
@@ -147,7 +179,18 @@
           </summary>
           <div class="note-section-body">
             <p>거래 흐름은 <strong>그래프</strong>로 표현하기 좋다. 그래프는 노드와 링크, 즉 정점과 간선으로 연결된 데이터 구조다. SNS 친구 관계, 도시 간 도로망, <strong>네트워크</strong> 인프라처럼 대상과 관계가 있는 문제를 표현할 때 사용한다. 이 강의에서는 지갑 또는 사람을 노드로 보고, 송금 관계를 방향 있는 간선으로 본다.</p>
-<p><strong>Python</strong>으로 그래프를 표현하는 방식에는 인접행렬과 인접리스트가 있다. 강의에서는 Python 딕셔너리를 이용해 두 방식의 장점을 절충한다. 바깥 딕셔너리의 키는 출발 노드이고, 그 값은 다시 딕셔너리다. 안쪽 딕셔너리의 키는 도착 노드, 값은 송금액이다. 즉 <code>graph["A"]["B"] = 10</code>은 A가 B에게 10을 보냈다는 뜻이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0029.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0029.jpg" alt="그래프 구조: 정점과 간선" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>그래프 구조: 정점과 간선</strong>
+    <span>거래 주체를 정점, 송금 방향과 금액을 간선으로 보면 자금 흐름을 방향 그래프로 표현할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>Python</strong>으로 그래프를 표현하는 방식에는 인접행렬과 인접리스트가 있다. 강의에서는 Python 딕셔너리를 이용해 두 방식의 장점을 절충한다. 바깥 딕셔너리의 키는 출발 노드이고, 그 값은 다시 딕셔너리다. 안쪽 딕셔너리의 키는 도착 노드, 값은 송금액이다. 즉 <code>graph["A"]["B"] = 10</code>은 A가 B에게 10을 보냈다는 뜻이다.</p>
           </div>
         </details>
         
@@ -158,7 +201,18 @@
           </summary>
           <div class="note-section-body">
             <p>코드 <strong>출력</strong>만으로는 복잡한 <strong>그래프</strong>를 이해하기 어렵다. 그래서 강의에서는 Graphviz를 소개한다. Graphviz는 노드와 간선을 텍스트 문법으로 적으면 그래프로 그려 주는 범용 시각화 도구다. 설치해서 사용할 수도 있고, 온라인 편집기에서 바로 확인할 수도 있다.</p>
-<p>가장 기본 문법은 <code>"A" -&gt; "B" [label="1000"];</code>처럼 출발 노드, 도착 노드, 간선 라벨을 한 줄로 적는 방식이다. 이번 실습에서는 송금자, 수취인, 송금액을 <strong>Graphviz</strong> 문법으로 출력해 거래 흐름을 눈으로 확인한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0037.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0037.jpg" alt="Graphviz를 이용한 그래프 시각화" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Graphviz를 이용한 그래프 시각화</strong>
+    <span>Graphviz는 텍스트로 작성한 노드와 간선 정의를 그래프로 렌더링하며, 온라인 편집기에서 바로 결과를 확인할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>가장 기본 문법은 <code>"A" -&gt; "B" [label="1000"];</code>처럼 출발 노드, 도착 노드, 간선 라벨을 한 줄로 적는 방식이다. 이번 실습에서는 송금자, 수취인, 송금액을 <strong>Graphviz</strong> 문법으로 출력해 거래 흐름을 눈으로 확인한다.</p>
           </div>
         </details>
         
@@ -169,25 +223,125 @@
           </summary>
           <div class="note-section-body">
             <p>실습 설정은 범죄 조직 구성원들의 송금 내역을 확보했고, 이를 통해 조직도를 재구성한다는 것이다. 파일에는 송금자, 수취인, 송금액이 한 줄에 하나씩 들어 있다. 조직 특성상 아래 사람이 위 사람에게 수익금을 상납하는 구조를 알고 있다고 가정한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0041.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0041.jpg" alt="실습 미션: 거래 내역으로 조직도 재구성" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>실습 미션: 거래 내역으로 조직도 재구성</strong>
+        <span>transactions.txt에는 송금자, 수취인, 송금액이 한 줄씩 들어 있고, 상하 관계가 아닌 조직원끼리 주고받은 금액의 총합은 0이라는 조건이 주어진다.</span>
+      </figcaption>
+    </figure>
+
                     <p>하지만 거래 내역을 숨기기 위해 관련 없는 조직원끼리 돈을 주고받는 거래도 섞여 있다. 예를 들어 A가 F에게 100원을 보내고, F가 A에게 50원씩 두 번 보내면 전체 순효과는 0이다. 이런 거래를 그대로 그리면 <strong>그래프</strong>가 매우 복잡해진다. 목표는 플러스와 마이너스를 정리해 실제 순흐름만 남기는 것이다.</p>
-                    <p>먼저 파일을 읽고 쉼표로 나눈 뒤 송금액은 정수로 바꾼다. 그다음 <code>graph[src][dst]</code>에 송금액을 누적한다. 이후 <code>graph.get(dst, {}).get(src, 0)</code>으로 반대 방향 송금액을 가져오고, 순금액이 0보다 클 때만 <strong>Graphviz</strong> 간선을 <strong>출력</strong>한다. <code>get()</code>을 쓰면 반대 방향 키가 없을 때 KeyError 대신 0을 사용할 수 있다.</p>
-                    <pre><code class="language-python">graph = {}
+                    <p>먼저 파일을 읽고 쉼표로 나눈 뒤 송금액은 정수로 바꾼다. 그다음 <code>G[src][dst]</code>에 송금액을 누적한다. <code>src</code>가 바깥 딕셔너리에 없으면 <code>G[src] = {}</code>로 새 딕셔너리를 만들고, <code>dst</code>가 안쪽 딕셔너리에 없으면 <code>G[src][dst] = 0</code>으로 시작한다. 같은 방향 거래가 여러 번 나오면 <code>G[src][dst] += amount</code>로 누적된다.</p>
 
-with open(&quot;transactions.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
-    for line in file:
-        src, dst, amount = line.strip().split(&quot;,&quot;)
-        amount = int(amount)
-        graph.setdefault(src, {})
-        graph[src][dst] = graph[src].get(dst, 0) + amount
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0064.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0064.jpg" alt="거래 누적 딕셔너리 구성" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>거래 누적 딕셔너리 구성</strong>
+        <span>각 거래 줄을 송금자, 수취인, 금액으로 나누고 G[src][dst]에 금액을 누적해 방향 그래프의 기본 자료구조를 만든다.</span>
+      </figcaption>
+    </figure>
 
-print(&quot;digraph G {&quot;)
-for src, edges in graph.items():
-    for dst, amount in edges.items():
-        reverse = graph.get(dst, {}).get(src, 0)
-        net = amount - reverse
-        if net &gt; 0:
-            print(f&#x27;  &quot;{src}&quot; -&gt; &quot;{dst}&quot; [label=&quot;{net}&quot;];&#x27;)
+                    <pre><code class="language-python">G = {}
+
+lines = open(&quot;./transactions.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;).readlines()
+
+for line in lines:
+    src, dst, amount = line.strip().split(&quot;,&quot;)
+    amount = int(amount)
+
+    if src not in G:
+        G[src] = {}
+
+    if dst not in G[src]:
+        G[src][dst] = 0
+
+    G[src][dst] += amount
+
+for src in G:
+    for dst in G[src]:
+        print(f&quot;{src} -&gt; {dst} [{G[src][dst]}]&quot;)</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0069.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0069.jpg" alt="누적 그래프 원본 출력" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>누적 그래프 원본 출력</strong>
+        <span>누적한 딕셔너리를 그대로 출력하면 양방향 거래와 잡음 거래가 모두 남아 있어 실제 상납 구조가 잘 보이지 않는다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>이 단계의 <strong>출력</strong>은 아직 정리되지 않은 원본 그래프다. 예를 들어 A가 B에게 보낸 금액과 B가 A에게 다시 보낸 금액이 따로 남아 있다. 조직도를 보려면 같은 두 사람 사이의 반대 방향 거래를 서로 상쇄해야 한다. 단순히 <code>G[dst][src]</code>를 바로 읽으면 도착 노드가 바깥 딕셔너리에 없을 때 <code>KeyError</code>가 발생한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0077.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0077.jpg" alt="반대 방향 거래 조회와 KeyError" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>반대 방향 거래 조회와 KeyError</strong>
+        <span>반대 방향 거래를 빼려 할 때 도착 노드가 바깥 딕셔너리에 없을 수 있으므로 단순 인덱싱 대신 get()으로 기본값을 주어야 한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>그래서 강의에서는 <code>get()</code>을 사용한다. <code>G.get(dst, {}).get(src, 0)</code>은 반대 방향 거래가 있으면 그 금액을 가져오고, 없으면 0으로 처리한다. 그런 다음 <code>G[src][dst] - reverse_amount</code>가 0보다 큰 경우만 출력하면 순흐름만 남는다.</p>
+                    <pre><code class="language-python">for src in G:
+    for dst in G[src]:
+        reverse_amount = G.get(dst, {}).get(src, 0)
+        amount = G[src][dst] - reverse_amount
+        if amount &gt; 0:
+            print(f&quot;{src} -&gt; {dst} [{amount}]&quot;)</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0079.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0079.jpg" alt="순흐름만 남긴 거래 출력" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>순흐름만 남긴 거래 출력</strong>
+        <span>G[src][dst]에서 반대 방향 금액을 뺀 값이 0보다 클 때만 출력하면 중복·상쇄 거래가 사라지고 핵심 흐름만 남는다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>마지막 단계에서는 같은 순흐름 계산을 <strong>Graphviz</strong> 문법으로 출력한다. <code>label</code>에는 순금액을 적고, 노드 이름과 간선을 붙여 넣으면 온라인 Graphviz 편집기에서 바로 조직도처럼 볼 수 있다.</p>
+                    <pre><code class="language-python">G = {}
+
+lines = open(&quot;./transactions.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;).readlines()
+
+for line in lines:
+    src, dst, amount = line.strip().split(&quot;,&quot;)
+    amount = int(amount)
+
+    if src not in G:
+        G[src] = {}
+
+    if dst not in G[src]:
+        G[src][dst] = 0
+
+    G[src][dst] += amount
+
+print(&quot;digraph BookingWorkflow {&quot;)
+for src in G:
+    for dst in G[src]:
+        amount = G[src][dst] - G.get(dst, {}).get(src, 0)
+        if amount &gt; 0:
+            print(f&#x27;  &quot;{src}&quot; -&gt; &quot;{dst}&quot; [label=&quot;{amount}&quot;]&#x27;)
 print(&quot;}&quot;)</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0081.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프/해커의 프로그래밍-07-가상자산-믹싱과-거래-그래프 - 0081.jpg" alt="정리된 순흐름 그래프" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>정리된 순흐름 그래프</strong>
+        <span>양방향 거래를 상쇄한 뒤 Graphviz에 붙이면 복잡한 거래망에서 홍길동으로 돈이 모이는 조직 구조가 드러난다.</span>
+      </figcaption>
+    </figure>
+
                     <p>정리 전 그래프는 여러 사람이 얽히고설킨 모습이지만, 순흐름만 남기면 돈이 모이는 최상위 위치가 드러난다. 강의 예시에서는 홍길동이 가장 위에 있고, 그 아래 김철수와 다른 인물들이 이어지는 구조로 재구성된다. 핵심은 복잡한 거래 내역을 그대로 보는 것이 아니라, 분석 목적에 맞게 순효과를 계산해 구조를 단순화하는 것이다.</p>
           </div>
         </details>
@@ -199,6 +353,7 @@ print(&quot;}&quot;)</code></pre>
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>블록체인</strong> 거래가 공개되어도 <strong>믹싱</strong>이 추적을 어렵게 만드는 이유를 설명할 수 있는가?</li><li>중복 거래 제거와 <strong>믹싱</strong> 노드 <strong>그룹</strong>화의 차이를 말할 수 있는가?</li><li><strong>Python</strong> 딕셔너리로 방향 <strong>그래프</strong>를 표현하는 방식을 이해했는가?</li><li>graph.get(dst, {}).get(src, 0)이 왜 필요한지 설명할 수 있는가?</li><li><strong>Graphviz</strong> 문법으로 송금 흐름을 시각화할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

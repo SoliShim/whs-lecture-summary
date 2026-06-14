@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>해커의 프로그래밍 1-4 - 웹 API와 키 관리</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -115,7 +115,18 @@
           </summary>
           <div class="note-section-body">
             <p><strong>API</strong>는 Application Programming Interface의 약자다. 서로 다른 소프트웨어 애플리케이션이 상호작용하기 위해 정해 둔 인터페이스다. “이 요청을 이런 형식으로 보내면 이런 데이터를 돌려주겠다”는 약속이라고 이해하면 된다.</p>
-<p>API에는 <strong>운영체제</strong>의 POSIX API, 데이터베이스 API, 모바일 SDK API, 웹서비스 업체가 제공하는 자체 API 등 여러 종류가 있다. 이 강의에서는 <strong>HTTP</strong> 또는 HTTPS로 요청과 응답을 주고받는 웹 API에 집중한다. 클라이언트가 HTTP 프로토콜로 요청을 보내면 서버는 사전에 정한 형식에 따라 데이터를 처리하고 반환한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0005.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0005.jpg" alt="API의 의미와 Web API 범위" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>API의 의미와 Web API 범위</strong>
+    <span>API는 서로 다른 소프트웨어가 약속된 방식으로 상호작용하는 인터페이스이며, 이 강의에서는 HTTP와 JSON 기반 Web API에 집중한다.</span>
+  </figcaption>
+</figure>
+
+                <p>API에는 <strong>운영체제</strong>의 POSIX API, 데이터베이스 API, 모바일 SDK API, 웹서비스 업체가 제공하는 자체 API 등 여러 종류가 있다. 이 강의에서는 <strong>HTTP</strong> 또는 HTTPS로 요청과 응답을 주고받는 웹 API에 집중한다. 클라이언트가 HTTP 프로토콜로 요청을 보내면 서버는 사전에 정한 형식에 따라 데이터를 처리하고 반환한다.</p>
           </div>
         </details>
         
@@ -126,14 +137,25 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 네이버 뉴스를 웹브라우저로 검색했을 때와 검색 <strong>API</strong>로 호출했을 때를 비교한다. 브라우저 검색 요청에는 사용자가 직접 신경 쓰기 어려운 많은 인자와 헤더가 붙고, 응답에는 검색 결과뿐 아니라 CSS, JavaScript, 버튼, 레이아웃, 광고 등 화면을 꾸미기 위한 요소가 많이 섞인다. 자동화하려면 이 복잡한 HTML에서 필요한 데이터만 다시 파싱해야 한다.</p>
-<p>반면 검색 API는 내가 어떤 인자로 검색하는지 명확하고, 응답도 대개 <strong>JSON</strong>처럼 프로그램이 바로 읽기 좋은 형태로 온다. 검색 결과의 제목, 링크, 요약, 작성 시각 같은 값이 구조화되어 있기 때문에 코드가 간결하고 로직이 분명해진다.</p>
-<table>
-  <thead><tr><th>방식</th><th>특징</th><th>자동화 관점</th></tr></thead>
-  <tbody>
-    <tr><td>브라우저 화면</td><td>사람이 보기 좋게 디자인된 HTML, CSS, JavaScript가 함께 온다.</td><td>필요한 값을 따로 찾아 파싱해야 한다.</td></tr>
-    <tr><td>웹 API</td><td>정해진 요청 인자와 JSON 같은 구조화된 응답을 제공한다.</td><td>프로그램이 바로 처리하기 쉽다.</td></tr>
-  </tbody>
-</table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0013.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0013.jpg" alt="API 사용 시 명료한 요청과 정돈된 응답" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>API 사용 시 명료한 요청과 정돈된 응답</strong>
+    <span>브라우저 검색 화면과 달리 API는 요청 인자와 응답 구조가 명확하고, JSON 같은 형태로 필요한 데이터만 받기 쉽다.</span>
+  </figcaption>
+</figure>
+
+                <p>반면 검색 API는 내가 어떤 인자로 검색하는지 명확하고, 응답도 대개 <strong>JSON</strong>처럼 프로그램이 바로 읽기 좋은 형태로 온다. 검색 결과의 제목, 링크, 요약, 작성 시각 같은 값이 구조화되어 있기 때문에 코드가 간결하고 로직이 분명해진다.</p>
+                <table>
+                  <thead><tr><th>방식</th><th>특징</th><th>자동화 관점</th></tr></thead>
+                  <tbody>
+                    <tr><td>브라우저 화면</td><td>사람이 보기 좋게 디자인된 HTML, CSS, JavaScript가 함께 온다.</td><td>필요한 값을 따로 찾아 파싱해야 한다.</td></tr>
+                    <tr><td>웹 API</td><td>정해진 요청 인자와 JSON 같은 구조화된 응답을 제공한다.</td><td>프로그램이 바로 처리하기 쉽다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -144,17 +166,28 @@
           </summary>
           <div class="note-section-body">
             <p><strong>API</strong>는 여러 <strong>서비스</strong>에서 제공된다. 일반 포털은 검색, 캘린더, 문서, AI 기능을 API로 제공할 수 있고, 보안 분야에서는 CTI 관련 API가 중요하다. Criminal IP, Shodan, VirusTotal 같은 서비스는 IP 위협 점수, 취약점 정보, 악성코드 관련 정보, 다른 회원사에서 관찰된 활동 같은 보안 데이터를 제공한다. 무료 버전과 유료 버전이 나뉘며, 유료 버전이 더 많은 기능과 한도를 제공하는 경우가 많다.</p>
-<p>메신저 API도 있다. Telegram, Slack, Discord 같은 서비스는 봇을 만들어 메시지를 보내거나 특정 명령에 반응하게 하는 기능을 제공한다. AI API는 ChatGPT나 Claude 같은 모델에 프롬프트를 보내고 결과만 받아와 자체 서비스에 붙이는 데 쓰인다. <strong>클라우드</strong> API는 AWS, Azure, GCP 같은 클라우드 자원을 콘솔 클릭 없이 코드로 관리하기 위해 사용되며, 이때는 <strong>API 키</strong>보다 액세스 키라는 표현을 많이 쓴다.</p>
-<table>
-  <thead><tr><th>분야</th><th>예시</th><th>할 수 있는 일</th></tr></thead>
-  <tbody>
-    <tr><td>포털·일반 서비스</td><td>검색, 캘린더, 시트, 클로바</td><td>검색 결과 수집, 일정·문서 자동화</td></tr>
-    <tr><td>사이버보안 CTI</td><td>Criminal IP, Shodan, VirusTotal</td><td>IP 평판, <strong>취약점</strong>, 악성 여부 확인</td></tr>
-    <tr><td>메신저</td><td>Telegram, Slack, Discord</td><td>봇 응답, 채널 알림, 명령 자동화</td></tr>
-    <tr><td>AI</td><td>ChatGPT, Claude</td><td>프롬프트 처리 결과를 자체 코드에서 활용</td></tr>
-    <tr><td>클라우드</td><td>AWS, Azure, GCP</td><td>리소스 생성, <strong>권한 관리</strong>, 운영 자동화</td></tr>
-  </tbody>
-</table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0017.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0017.jpg" alt="네이버 개발자 센터의 API 목록" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>네이버 개발자 센터의 API 목록</strong>
+    <span>검색, 로그인, 회원 프로필, CLOVA, 데이터랩, 캡차, 캘린더처럼 서비스별 API가 제공되고 호출 제한도 함께 관리된다.</span>
+  </figcaption>
+</figure>
+
+                <p>메신저 API도 있다. Telegram, Slack, Discord 같은 서비스는 봇을 만들어 메시지를 보내거나 특정 명령에 반응하게 하는 기능을 제공한다. AI API는 ChatGPT나 Claude 같은 모델에 프롬프트를 보내고 결과만 받아와 자체 서비스에 붙이는 데 쓰인다. <strong>클라우드</strong> API는 AWS, Azure, GCP 같은 클라우드 자원을 콘솔 클릭 없이 코드로 관리하기 위해 사용되며, 이때는 <strong>API 키</strong>보다 액세스 키라는 표현을 많이 쓴다.</p>
+                <table>
+                  <thead><tr><th>분야</th><th>예시</th><th>할 수 있는 일</th></tr></thead>
+                  <tbody>
+                    <tr><td>포털·일반 서비스</td><td>검색, 캘린더, 시트, 클로바</td><td>검색 결과 수집, 일정·문서 자동화</td></tr>
+                    <tr><td>사이버보안 CTI</td><td>Criminal IP, Shodan, VirusTotal</td><td>IP 평판, <strong>취약점</strong>, 악성 여부 확인</td></tr>
+                    <tr><td>메신저</td><td>Telegram, Slack, Discord</td><td>봇 응답, 채널 알림, 명령 자동화</td></tr>
+                    <tr><td>AI</td><td>ChatGPT, Claude</td><td>프롬프트 처리 결과를 자체 코드에서 활용</td></tr>
+                    <tr><td>클라우드</td><td>AWS, Azure, GCP</td><td>리소스 생성, <strong>권한 관리</strong>, 운영 자동화</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -165,7 +198,18 @@
           </summary>
           <div class="note-section-body">
             <p><strong>API</strong>를 사용하는 쪽에서 가장 조심해야 할 것은 <strong>키 관리</strong>다. 공개되는 소스 코드나 설정 파일에 API 키를 그대로 넣어 GitHub에 올리면, 다른 사람이 그 키를 가져가 비용이 발생하는 API를 마음대로 사용할 수 있다. 데이터베이스 접속 정보나 AWS 액세스 키가 노출되면 더 큰 침해로 이어질 수 있다.</p>
-<p>한 번 공개된 키는 여러 곳으로 퍼질 수 있다. 공개 저장소, 블로그 글, 설정 파일, 이후 수집된 LLM 학습 데이터셋까지 흘러갈 수 있다. 또 최근에는 오류가 난 코드를 그대로 AI 대화창에 붙여 넣는 경우가 많다. 그 코드 안에 비밀키, <strong>로그</strong>, 설정값이 포함되어 있으면 AI <strong>서비스</strong> 자체가 침해되거나 대화 내용이 노출될 때 함께 새어 나갈 수 있다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0029.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0029.jpg" alt="API 키 유출 사고 사례" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>API 키 유출 사고 사례</strong>
+    <span>공개 저장소나 설정 파일에 남은 API 키와 env 파일은 대규모 침해나 무단 사용으로 이어질 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>한 번 공개된 키는 여러 곳으로 퍼질 수 있다. 공개 저장소, 블로그 글, 설정 파일, 이후 수집된 LLM 학습 데이터셋까지 흘러갈 수 있다. 또 최근에는 오류가 난 코드를 그대로 AI 대화창에 붙여 넣는 경우가 많다. 그 코드 안에 비밀키, <strong>로그</strong>, 설정값이 포함되어 있으면 AI <strong>서비스</strong> 자체가 침해되거나 대화 내용이 노출될 때 함께 새어 나갈 수 있다.</p>
           </div>
         </details>
         
@@ -176,6 +220,17 @@
           </summary>
           <div class="note-section-body">
             <p>가장 기본 원칙은 <strong>API 키</strong>를 소스 코드에 하드코딩하지 않는 것이다. 별도 설정 파일이나 <strong>환경 변수</strong>로 분리하고, 그 파일은 공개 저장소나 클라우드 공유 폴더에 올리지 않는다. 사용량 기반으로 비용이 청구되는 API라면 정기적으로 사용량을 확인해 내가 쓰지 않은 호출이 있는지 살펴야 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0037.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-04-웹-API와-키-관리/해커의 프로그래밍-04-웹-API와-키-관리 - 0037.jpg" alt="외부 API 사용 시 보안수칙" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>외부 API 사용 시 보안수칙</strong>
+        <span>API 키는 코드에 하드코딩하지 않고 별도 설정으로 관리하며, 업로드 전 포함 여부를 확인하고 유출 시 즉시 만료·재발급해야 한다.</span>
+      </figcaption>
+    </figure>
+
                     <p>유출이 의심되거나 사용 이력이 이상하면 키를 즉시 만료하고 새로 발급한다. 비밀번호가 유출되면 바꾸는 것과 같은 대응이다. 강의에서는 별도 문제를 제공하지 않지만, 네이버 검색 <strong>API</strong>는 네이버 계정으로 무료 발급이 가능하고 한도도 비교적 넉넉하므로, 키워드를 <strong>입력</strong>받아 블로그나 뉴스 글을 검색하는 Python 스크립트를 작성해 보라고 안내한다.</p>
                     <pre><code class="language-python">import os
 import requests
@@ -206,6 +261,7 @@ for item in response.json()[&quot;items&quot;]:
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>웹 <strong>API</strong>가 브라우저 화면보다 자동화에 적합한 이유를 <strong>JSON</strong> 응답과 연결해 설명할 수 있는가?</li><li>CTI <strong>API</strong>와 메신저 봇 API, AI API, <strong>클라우드</strong> API의 차이를 말할 수 있는가?</li><li><strong>API 키</strong>를 GitHub나 AI 대화창에 넣으면 어떤 위험이 생기는지 이해했는가?</li><li><strong>환경 변수</strong>나 별도 설정 파일로 키를 분리하고, 이상 사용 시 키를 폐기해야 하는 이유를 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

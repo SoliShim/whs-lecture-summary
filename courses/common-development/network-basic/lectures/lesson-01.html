@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>네트워크 기초 1-1 - 네트워크와 인터넷 기초</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -120,14 +120,26 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 이효민 멘토의 소개로 시작한다. 멘토는 BoB 9기 <strong>취약점</strong> 분석 트랙 Best 10 수료생이며, 고려대학교 사이버국방 관련 전공에서 공부하고 있고, CYKor <strong>해킹</strong> 동아리 부회장 역할을 맡고 있다고 설명한다. 주 관심사는 offensive security, 해킹 기술, 최근의 AI 모델 공격이다.</p>
-<p><strong>네트워크</strong> 기초 과목은 <strong>보안</strong>을 공부할 때 반드시 필요한 TCP/IP 기반 네트워크 지식을 실용적으로 정리하는 수업이다. 강의의 기준 교재로는 <strong>Computer Networking: A Top-Down Approach 8판</strong>이 언급된다. 다만 이 수업은 모든 네트워크 이론 모델을 깊게 다루기보다, 실제 패킷 분석과 네트워크 프로그래밍에서 자주 마주치는 TCP/IP 계층 모델을 중심으로 진행된다.</p>
-<div class="timeline">
-  <div><strong>1</strong><p>네트워크와 <strong>인터넷</strong>의 의미를 잡는다.</p></div>
-  <div><strong>2</strong><p><strong>TCP/IP</strong> <strong>프로토콜</strong> 계층 구조를 이해한다.</p></div>
-  <div><strong>3</strong><p>각 계층의 역할을 데이터 단위와 함께 본다.</p></div>
-  <div><strong>4</strong><p><strong>Wireshark</strong>로 실제 <strong>패킷</strong>을 확인한다.</p></div>
-  <div><strong>5</strong><p>TCP/UDP <strong>소켓</strong> 프로그래밍으로 서버와 클라이언트를 구현한다.</p></div>
-</div>
+                <p><strong>네트워크</strong> 기초 과목은 <strong>보안</strong>을 공부할 때 반드시 필요한 TCP/IP 기반 네트워크 지식을 실용적으로 정리하는 수업이다. 강의의 기준 교재로는 <strong>Computer Networking: A Top-Down Approach 8판</strong>이 언급된다. 다만 이 수업은 모든 네트워크 이론 모델을 깊게 다루기보다, 실제 패킷 분석과 네트워크 프로그래밍에서 자주 마주치는 TCP/IP 계층 모델을 중심으로 진행된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0003.jpg" alt="네트워크 기초 과목 전체 목차" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>네트워크 기초 과목 전체 목차</strong>
+    <span>강의는 네트워크와 인터넷 기초에서 시작해 TCP/IP 계층, 데이터 링크·네트워크·트랜스포트·응용 계층, 와이어샤크 실습, 소켓 프로그래밍으로 이어진다.</span>
+  </figcaption>
+</figure>
+
+                <div class="timeline">
+                  <div><strong>1</strong><p>네트워크와 <strong>인터넷</strong> 기초를 이해한다.</p></div>
+                  <div><strong>2</strong><p><strong>프로토콜</strong> <strong>계층 구조</strong>와 TCP/IP 모델을 이해한다.</p></div>
+                  <div><strong>3-6</strong><p>데이터 링크, 네트워크, 트랜스포트, 응용 계층을 차례로 본다.</p></div>
+                  <div><strong>7</strong><p><strong>Wireshark</strong>로 실제 <strong>패킷</strong>을 분석한다.</p></div>
+                  <div><strong>8</strong><p>TCP/UDP <strong>소켓</strong> 프로그래밍으로 서버와 클라이언트를 구현한다.</p></div>
+                </div>
+                <p>강사는 네트워크 이론에는 여러 모델과 설명 방식이 있지만, 이 강의에서는 보안 실습에 바로 연결되는 <strong>TCP/IP</strong> 레이어 모델을 중심으로 다룬다고 설명한다. 따라서 학생은 각 개념을 단순 암기하기보다 “나중에 패킷을 볼 때 어디에 해당하는가”, “공격자가 어느 계층을 건드리는가”라는 관점으로 읽으면 좋다.</p>
           </div>
         </details>
         
@@ -138,16 +150,28 @@
           </summary>
           <div class="note-section-body">
             <p>멘토는 현대 사회가 <strong>네트워크</strong>로 이루어져 있다고 설명한다. <strong>인터넷</strong> 뱅킹 앱, 소셜 네트워크 서비스, 웹 서비스, 모바일 앱처럼 일상에서 사용하는 대부분의 서비스가 네트워크를 통해 동작한다. 따라서 네트워크 시스템이 위협을 받으면 개인정보 유출, 기업의 금전적 손실, 서비스 마비 같은 심각한 결과가 발생할 수 있다.</p>
-<p><strong>해킹</strong>도 네트워크와 분리해서 생각하기 어렵다. 정보 탈취, 시스템 침입, 원격 <strong>취약점</strong> 공격, 방어 전략 수립이 모두 네트워크 통신 흐름을 기반으로 한다. 그래서 네트워크를 이해한다는 것은 단순히 인터넷이 연결되는 방식을 아는 것이 아니라, 취약점이 어디에서 생기고 공격자가 어떤 통로로 접근하며 방어자가 무엇을 관찰해야 하는지 이해하는 일이다.</p>
-<table>
-  <thead><tr><th>공격 유형</th><th>강의에서의 설명</th><th>학습 포인트</th></tr></thead>
-  <tbody>
-    <tr><td>MITM</td><td>공격자가 통신 중간에 위치해 <strong>패킷</strong>을 감청하거나 도청한다.</td><td><strong>평문</strong> 통신, <strong>인증</strong>, 암호화의 중요성을 이해한다.</td></tr>
-    <tr><td><strong>ARP</strong> spoofing</td><td>ARP <strong>프로토콜</strong> 동작을 조작해 기대와 다른 네트워크 흐름을 만든다.</td><td>링크 계층 <strong>주소</strong> 변환과 신뢰 모델을 이해한다.</td></tr>
-    <tr><td>DDoS</td><td>대량의 트래픽이나 부하로 서버와 네트워크를 마비시킨다.</td><td>가용성, 트래픽 처리, 방어 전략을 이해한다.</td></tr>
-    <tr><td>무선 네트워크 공격</td><td>Wi-Fi 사용이 보편화되면서 무선 구간 <strong>보안</strong>도 중요해졌다.</td><td>유선뿐 아니라 무선 매체도 공격면임을 기억한다.</td></tr>
-  </tbody>
-</table>
+                <p><strong>해킹</strong>도 네트워크와 분리해서 생각하기 어렵다. 정보 탈취, 시스템 침입, 원격 <strong>취약점</strong> 공격, 방어 전략 수립이 모두 네트워크 통신 흐름을 기반으로 한다. 그래서 네트워크를 이해한다는 것은 단순히 인터넷이 연결되는 방식을 아는 것이 아니라, 취약점이 어디에서 생기고 공격자가 어떤 통로로 접근하며 방어자가 무엇을 관찰해야 하는지 이해하는 일이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0011.jpg" alt="보안 학습에서 네트워크 지식이 필요한 이유" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>보안 학습에서 네트워크 지식이 필요한 이유</strong>
+    <span>해킹은 대부분 네트워크를 통해 정보 탈취나 시스템 침입을 수행하므로 기본 이해, 공격 벡터 파악, 방어 전략 수립에 네트워크 지식이 필요하다.</span>
+  </figcaption>
+</figure>
+
+                <p>슬라이드는 네트워크 지식이 필요한 이유를 세 단계로 정리한다. 첫째, 네트워크 기본 이해가 필요하다. 해킹은 대부분 네트워크를 통해 정보를 탈취하거나 시스템에 침입한다. 둘째, 공격 벡터를 파악해야 한다. 네트워크에는 <strong>프로토콜</strong> 자체의 취약점, 설정 실수, 신뢰 관계 문제처럼 다양한 취약점이 존재한다. 셋째, 방어 전략 수립이 가능해야 한다. 네트워크 흐름을 알아야 어떤 지점에서 <strong>모니터링</strong>하고 차단할지 결정할 수 있다.</p>
+                <table>
+                  <thead><tr><th>공격 유형</th><th>강의에서의 설명</th><th>학습 포인트</th></tr></thead>
+                  <tbody>
+                    <tr><td>MITM</td><td>공격자가 통신 중간에 위치해 <strong>패킷</strong>을 감청하거나 도청한다.</td><td><strong>평문</strong> 통신, <strong>인증</strong>, 암호화의 중요성을 이해한다.</td></tr>
+                    <tr><td><strong>ARP</strong> spoofing</td><td>ARP 프로토콜 동작을 조작해 기대와 다른 네트워크 흐름을 만든다.</td><td>링크 계층 <strong>주소</strong> 변환과 신뢰 모델을 이해한다.</td></tr>
+                    <tr><td>DDoS</td><td>대량의 트래픽이나 부하로 서버와 네트워크를 마비시킨다.</td><td>가용성, 트래픽 처리, 방어 전략을 이해한다.</td></tr>
+                    <tr><td>무선 네트워크 공격</td><td>Wi-Fi 사용이 보편화되면서 무선 구간 <strong>보안</strong>도 중요해졌다.</td><td>유선뿐 아니라 무선 매체도 공격면임을 기억한다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -158,8 +182,20 @@
           </summary>
           <div class="note-section-body">
             <p><strong>네트워크</strong> 자체를 직접 공격하는 경우도 있지만, 네트워크를 통로로 삼아 애플리케이션 <strong>취약점</strong>을 공격하는 경우도 많다. 강의에서는 이후 수업에서 다룰 클라이언트 사이드 공격, 서버 사이드 공격, 웹 애플리케이션 공격을 예로 든다. SQL injection 같은 웹 공격은 HTTP 요청을 통해 서버 애플리케이션으로 전달되고, 비디오 플레이어·데스크톱 프로그램·모바일 앱의 RCE 취약점도 네트워크로 입력을 받아 발생할 수 있다.</p>
-<p>사례로는 2009년 7월 7일 국내 주요 정부기관, 포털, 은행 사이트가 마비된 7.7 DDoS 공격이 언급된다. 또 Stuxnet은 이란 핵시설 같은 물리 시스템을 노린 공격 사례로 소개된다. 이 두 사례는 네트워크 공격이 단순한 화면 오류를 넘어 사회 기반 시설과 실제 물리 시스템에도 영향을 줄 수 있음을 보여 준다.</p>
-<div class="callout">강의의 결론은 명확하다. 보안을 공부하려면 네트워크를 “인터넷 연결 설정” 정도가 아니라 공격과 방어가 실제로 지나가는 경로로 이해해야 한다.</div>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0015.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0015.jpg" alt="네트워크 관련 공격 시나리오" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>네트워크 관련 공격 시나리오</strong>
+    <span>MITM, ARP Spoofing, DDoS, Wireless attack처럼 네트워크 자체를 노리는 공격과 SQL Injection, RCE처럼 네트워크를 거치는 공격이 함께 존재한다.</span>
+  </figcaption>
+</figure>
+
+                <p>직접적인 네트워크 공격에는 MITM Attack, <strong>ARP</strong> Spoofing, DDoS, Wireless attack이 있다. MITM은 공격자가 통신 중간에 위치해 <strong>패킷</strong>을 감청하거나 조작하는 공격이다. ARP Spoofing은 ARP 프로토콜 동작을 속여 원래 기대한 흐름과 다른 경로로 트래픽이 가게 만든다. DDoS는 네트워크 트래픽과 시스템 부하를 과도하게 발생시켜 서비스를 마비시키는 공격이다. 무선 네트워크 공격은 Wi-Fi 같은 무선 구간이 보편화되면서 중요해진 영역이다.</p>
+                <p>사례로는 2009년 7월 7일 국내 주요 정부기관, 포털, 은행 사이트가 마비된 7.7 DDoS 공격이 언급된다. 또 Stuxnet은 이란 핵시설 같은 물리 시스템을 노린 공격 사례로 소개된다. 이 두 사례는 네트워크 공격이 단순한 화면 오류를 넘어 사회 기반 시설과 실제 물리 시스템에도 영향을 줄 수 있음을 보여 준다.</p>
+                <div class="callout">강의의 결론은 명확하다. 보안을 공부하려면 네트워크를 “인터넷 연결 설정” 정도가 아니라 공격과 방어가 실제로 지나가는 경로로 이해해야 한다.</div>
           </div>
         </details>
         
@@ -170,16 +206,39 @@
           </summary>
           <div class="note-section-body">
             <p><strong>네트워크</strong>라는 단어는 컴퓨터에만 쓰이지 않는다. 사람, 기기, 시스템, 조직이 서로 연결되어 정보를 주고받는 구조를 넓게 네트워크라고 부른다. 택배 시스템, 인간관계망도 넓은 의미의 네트워크가 될 수 있다. 이 과목에서 다루는 컴퓨터 네트워크는 여러 컴퓨팅 장치가 서로 연결되어 정보를 공유하는 시스템이다.</p>
-<table>
-  <thead><tr><th>용어</th><th>의미</th><th>강의에서의 감각</th></tr></thead>
-  <tbody>
-    <tr><td><strong>LAN</strong></td><td>Local Area Network</td><td>물리적·논리적으로 제한된 영역의 근거리 네트워크다.</td></tr>
-    <tr><td><strong>WAN</strong></td><td>Wide Area Network</td><td>여러 LAN이 연결되어 도시, 국가, 대륙 규모로 커진 네트워크다.</td></tr>
-    <tr><td><strong>인터넷</strong></td><td>network of networks</td><td>전 세계의 수많은 네트워크와 컴퓨팅 장치가 연결된 거대한 네트워크다.</td></tr>
-    <tr><td>호스트·엔드 시스템</td><td>통신의 끝점</td><td>PC, 스마트폰, 서버처럼 데이터를 보내고 받는 종단 장치다.</td></tr>
-  </tbody>
-</table>
-<p>인터넷이라는 이름은 1973년에 명명되었다고 강의에서 설명한다. 인터넷은 오래된 기술처럼 느껴지지만, 그 이름 자체는 50여 년의 역사 속에서 빠르게 발전했고 그동안 <strong>해킹</strong> 기술과 방어 기술도 함께 고도화되었다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0023.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0023.jpg" alt="네트워크와 컴퓨터 네트워크의 정의" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>네트워크와 컴퓨터 네트워크의 정의</strong>
+    <span>네트워크는 여러 객체가 연결되어 정보를 교환하는 구조이고, 컴퓨터 네트워크는 컴퓨터 기기들이 연결되어 정보를 공유하는 시스템이다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>용어</th><th>의미</th><th>강의에서의 감각</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>LAN</strong></td><td>Local Area Network</td><td>물리적·논리적으로 제한된 영역의 근거리 네트워크다.</td></tr>
+                    <tr><td><strong>WAN</strong></td><td>Wide Area Network</td><td>여러 LAN이 연결되어 도시, 국가, 대륙 규모로 커진 네트워크다.</td></tr>
+                    <tr><td><strong>인터넷</strong></td><td>network of networks</td><td>전 세계의 수많은 네트워크와 컴퓨팅 장치가 연결된 거대한 네트워크다.</td></tr>
+                    <tr><td>호스트·엔드 시스템</td><td>통신의 끝점</td><td>PC, 스마트폰, 서버처럼 데이터를 보내고 받는 종단 장치다.</td></tr>
+                  </tbody>
+                </table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0027.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0027.jpg" alt="LAN과 WAN의 관계" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>LAN과 WAN의 관계</strong>
+    <span>LAN은 제한된 영역의 근거리 네트워크이고, WAN은 여러 LAN이 도시·국가·대륙 단위로 확장되어 연결된 네트워크다.</span>
+  </figcaption>
+</figure>
+
+                <p>LAN은 집, 학교, 회사의 한 구역처럼 물리적 또는 논리적으로 제한된 영역 안의 네트워크다. WAN은 이런 LAN들이 더 넓게 연결된 형태로, 도시와 국가, 대륙 간 연결까지 포함한다. 슬라이드의 그림처럼 작은 LAN들이 더 큰 WAN 구조의 일부가 되고, 그 WAN들이 연결되면서 인터넷이라는 더 큰 구조가 만들어진다.</p>
+                <p>인터넷이라는 이름은 1973년에 명명되었다고 강의에서 설명한다. 인터넷은 오래된 기술처럼 느껴지지만, 그 이름 자체는 50여 년의 역사 속에서 빠르게 발전했고 그동안 <strong>해킹</strong> 기술과 방어 기술도 함께 고도화되었다.</p>
           </div>
         </details>
         
@@ -190,17 +249,39 @@
           </summary>
           <div class="note-section-body">
             <p><strong>패킷</strong>은 송신 엔드 시스템에서 수신 엔드 시스템으로 보내지는 데이터 단위다. 큰 데이터를 한 번에 통째로 보내지 않고, 세그먼트 같은 작은 단위로 나눈 뒤 헤더를 붙여 전송한다. 목적지에서는 이 조각들을 다시 조립해 원래 데이터를 복원한다.</p>
-<p>패킷 <strong>스위치</strong>는 도착한 패킷을 광케이블, 구리선 같은 <strong>출력</strong> 통신 링크로 전달하는 장비다. 패킷이 어떤 장비를 거쳐 목적지까지 가는 전체 흐름을 경로, route, path라고 부른다. 이후 네트워크 계층에서 이 경로를 선택하는 라우팅이 중요한 개념으로 다시 등장한다.</p>
-<p><strong>인터넷</strong>이 전 세계 규모로 연결되려면 <strong>ISP</strong>, 즉 Internet Service Provider가 필요하다. 국내 예로는 LG U+, SKT, KT 같은 사업자를 들 수 있다. 가정과 회사는 지역 또는 국가 ISP에 연결되고, 이 ISP들은 다시 상위 티어 ISP와 연결되어 더 넓은 인터넷을 구성한다.</p>
-<div class="diagram">
-  <div><span class="node-title">가정·회사 네트워크</span><p>사용자 호스트와 공유기</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">지역·국가 ISP</span><p>KT, SKT, LG U+ 같은 접속망</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">상위 ISP</span><p>국가와 대륙을 잇는 더 큰 망</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">인터넷</span><p><strong>네트워크</strong>들의 네트워크</p></div>
-</div>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0031.jpg" alt="패킷과 경로" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>패킷과 경로</strong>
+    <span>데이터는 segment 단위로 나뉘고 header가 붙어 packet으로 전달되며, 패킷이 목적지까지 거쳐 가는 일련의 링크와 스위치를 route 또는 path라고 부른다.</span>
+  </figcaption>
+</figure>
+
+                <p>패킷 <strong>스위치</strong>는 도착한 패킷을 광케이블, 구리선 같은 <strong>출력</strong> 통신 링크로 전달하는 장비다. 패킷이 어떤 장비를 거쳐 목적지까지 가는 전체 흐름을 경로, route, path라고 부른다. 이후 네트워크 계층에서 이 경로를 선택하는 라우팅이 중요한 개념으로 다시 등장한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0035.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0035.jpg" alt="ISP와 인터넷 접속 구조" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>ISP와 인터넷 접속 구조</strong>
+    <span>ISP는 end system에게 가정용 접속, 고속 LAN, 이동통신 같은 네트워크 접속을 제공하고 하위 ISP는 국가·국제 상위 ISP를 통해 서로 연결된다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>인터넷</strong>이 전 세계 규모로 연결되려면 <strong>ISP</strong>, 즉 Internet Service Provider가 필요하다. 국내 예로는 LG U+, SKT, KT 같은 사업자를 들 수 있다. 가정과 회사는 지역 또는 국가 ISP에 연결되고, 이 ISP들은 다시 상위 티어 ISP와 연결되어 더 넓은 인터넷을 구성한다.</p>
+                <div class="diagram">
+                  <div><span class="node-title">가정·회사 네트워크</span><p>사용자 호스트와 공유기</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">지역·국가 ISP</span><p>KT, SKT, LG U+ 같은 접속망</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">상위 ISP</span><p>국가와 대륙을 잇는 더 큰 망</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">인터넷</span><p><strong>네트워크</strong>들의 네트워크</p></div>
+                </div>
           </div>
         </details>
         
@@ -211,7 +292,30 @@
           </summary>
           <div class="note-section-body">
             <p><strong>프로토콜</strong>은 서로 다른 컴퓨터와 디지털 장치가 통신하기 위해 지켜야 하는 규칙이다. 어떤 메시지를 어떤 형식으로 보내고, 받는 쪽은 그것을 어떻게 해석하며, 응답은 어떻게 보내야 하는지를 미리 정해 둔 약속이라고 이해하면 된다. <strong>HTTP</strong>, TCP/IP, 802.11 같은 이름이 모두 프로토콜 또는 프로토콜 묶음의 예다.</p>
-<p>이 과목에서는 <strong>TCP/IP</strong>를 중심으로 다룬다. <strong>TCP</strong>는 데이터 전송의 제어와 관리를 담당하는 전송 계층 프로토콜이고, IP는 네트워크와 네트워크 사이에서 패킷이 어떤 경로로 전달될지 라우팅하는 핵심 프로토콜이다. 실제 인터넷 시스템 대부분이 TCP/IP를 기반으로 움직이기 때문에, 이 구조를 이해하는 것이 이후 패킷 분석과 소켓 프로그래밍의 출발점이 된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0039.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0039.jpg" alt="프로토콜의 의미" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>프로토콜의 의미</strong>
+    <span>프로토콜은 메시지 형식, 순서, 전송과 수신 시 수행할 작업을 정한 통신 규약이며 TCP, IP, HTTP, 802.11 등이 대표 예다.</span>
+  </figcaption>
+</figure>
+
+                <p>이 과목에서는 <strong>TCP/IP</strong>를 중심으로 다룬다. <strong>TCP</strong>는 데이터 전송의 제어와 관리를 담당하는 전송 계층 프로토콜이고, IP는 네트워크와 네트워크 사이에서 패킷이 어떤 경로로 전달될지 라우팅하는 핵심 프로토콜이다. 실제 인터넷 시스템 대부분이 TCP/IP를 기반으로 움직이기 때문에, 이 구조를 이해하는 것이 이후 패킷 분석과 소켓 프로그래밍의 출발점이 된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0043.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-01-네트워크와-인터넷-기초/네트워크 기초-01-네트워크와-인터넷-기초 - 0043.jpg" alt="TCP와 IP" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>TCP와 IP</strong>
+    <span>TCP는 데이터 전송의 제어와 관리를 담당하고, IP는 라우터와 end system 사이에서 송수신되는 패킷 포맷과 라우팅 역할을 담당한다.</span>
+  </figcaption>
+</figure>
+
+                <p>TCP는 Transmission Control Protocol로, 데이터가 <strong>신뢰성</strong> 있게 전달되도록 전송 제어와 관리를 담당한다. IP는 Internet Protocol로, 라우터와 엔드 시스템 사이에서 송수신되는 <strong>패킷</strong> 포맷과 경로 전달을 다룬다. 강사는 이 두 프로토콜이 인터넷에서 가장 중요한 프로토콜이며, 이후 강의에서 TCP/IP 계층 구조를 자세히 다룰 것이라고 예고한다.</p>
           </div>
         </details>
         
@@ -222,6 +326,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>네트워크</strong>를 모르면 MITM, <strong>ARP</strong> spoofing, DDoS 같은 공격을 이해하기 어려운 이유를 설명할 수 있는가?</li><li>LAN, WAN, <strong>인터넷</strong>의 차이를 예시와 함께 말할 수 있는가?</li><li><strong>패킷</strong>, 패킷 스위치, 경로, ISP가 <strong>인터넷</strong> 통신에서 어떤 역할을 하는지 정리할 수 있는가?</li><li><strong>프로토콜</strong>이 단순한 이름이 아니라 통신 규칙이라는 점을 이해했는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

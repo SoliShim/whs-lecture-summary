@@ -1255,6 +1255,12 @@ body {
   text-transform: none;
 }
 
+.index-hero .hero-kicker {
+  max-width: 980px;
+  font-size: calc(15px + 7pt);
+  line-height: 1.45;
+}
+
 h1,
 h2,
 h3 {
@@ -3686,8 +3692,47 @@ h2 {
 .note-section-body > pre,
 .note-section-body > .diagram,
 .note-section-body > .timeline,
-.note-section-body > .callout {
+.note-section-body > .callout,
+.note-section-body > .screen-figure {
   max-width: 100%;
+}
+
+.screen-figure {
+  margin: 20px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--soft-line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(23, 32, 51, 0.07);
+}
+
+.screen-figure a {
+  display: block;
+  background: #f7f8fa;
+}
+
+.screen-figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.screen-figure figcaption {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px 16px;
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+.screen-figure figcaption strong {
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.screen-figure figcaption span {
+  color: var(--muted);
 }
 
 .note-section-body > p + p {

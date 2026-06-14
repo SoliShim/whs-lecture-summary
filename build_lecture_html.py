@@ -11,6 +11,7 @@ from course_data.cryptography_basic import build_cryptography_basic_lectures
 from course_data.ethics_cyber_security import build_ethics_cyber_security_lectures
 from course_data.hackers_programming import build_hackers_programming_lectures
 from course_data.latest_security_trend import build_latest_security_trend_lectures
+from course_data.modern_web_dev_security import build_modern_web_dev_security_lectures
 from course_data.network_basic import build_network_basic_lectures
 from course_data.os_basic import build_os_basic_lectures
 from course_data.secure_coding import build_secure_coding_lectures
@@ -388,6 +389,26 @@ EMPHASIS_STOPWORDS = {
 
 def code_block(source: str, lang: str = "c") -> str:
     return f'<pre><code class="language-{lang}">{html.escape(dedent(source).strip())}</code></pre>'
+
+
+def image_figure(src: str, title: str, note: str) -> str:
+    return f"""
+    <figure class="screen-figure">
+      <a href="{html.escape(src, quote=True)}" target="_blank" rel="noopener">
+        <img src="{html.escape(src, quote=True)}" alt="{html.escape(title, quote=True)}" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>{html.escape(title)}</strong>
+        <span>{html.escape(note)}</span>
+      </figcaption>
+    </figure>
+    """
+
+
+def screen_figure(course_id: str, lecture_stem: str, image_no: int, title: str, note: str) -> str:
+    image_name = f"{lecture_stem} - {image_no:04d}.jpg"
+    src = f"../../../../videos/common-development/{course_id}/{lecture_stem}/{image_name}"
+    return image_figure(src, title, note)
 
 
 def clean_transcript_text(text: str) -> str:
@@ -1555,14 +1576,15 @@ LECTURES = [
 ]
 
 
-COMPUTER_ARCHITECTURE_1_LECTURES = build_computer_architecture_1_lectures(code_block)
-OS_BASIC_LECTURES = build_os_basic_lectures(code_block)
-NETWORK_BASIC_LECTURES = build_network_basic_lectures(code_block)
-CRYPTOGRAPHY_BASIC_LECTURES = build_cryptography_basic_lectures(code_block)
-ETHICS_CYBER_SECURITY_LECTURES = build_ethics_cyber_security_lectures(code_block)
-HACKERS_PROGRAMMING_LECTURES = build_hackers_programming_lectures(code_block)
-LATEST_SECURITY_TREND_LECTURES = build_latest_security_trend_lectures(code_block)
-SECURE_CODING_LECTURES = build_secure_coding_lectures(code_block)
+COMPUTER_ARCHITECTURE_1_LECTURES = build_computer_architecture_1_lectures(code_block, screen_figure, image_figure)
+OS_BASIC_LECTURES = build_os_basic_lectures(code_block, screen_figure)
+NETWORK_BASIC_LECTURES = build_network_basic_lectures(code_block, screen_figure)
+CRYPTOGRAPHY_BASIC_LECTURES = build_cryptography_basic_lectures(code_block, screen_figure)
+ETHICS_CYBER_SECURITY_LECTURES = build_ethics_cyber_security_lectures(code_block, screen_figure)
+HACKERS_PROGRAMMING_LECTURES = build_hackers_programming_lectures(code_block, screen_figure)
+LATEST_SECURITY_TREND_LECTURES = build_latest_security_trend_lectures(code_block, screen_figure)
+SECURE_CODING_LECTURES = build_secure_coding_lectures(code_block, screen_figure)
+MODERN_WEB_DEV_SECURITY_LECTURES = build_modern_web_dev_security_lectures(code_block, screen_figure)
 
 
 TRACKS = [
@@ -1775,13 +1797,28 @@ COURSES = [
         "lectures": SECURE_CODING_LECTURES,
     },
     {
-        "id": "modern-web-dev-security",
+        "id": "modern-web-dev",
         "track_id": "common-development",
         "title": "모던 웹 개발 및 보안",
         "short_title": "웹 보안",
-        "status": "pending",
-        "summary": "자료가 준비되면 같은 구조로 강의 노트를 추가할 과목.",
-        "lectures": [],
+        "status": "ready",
+        "summary": "Node.js와 Express 기초에서 출발해 라우팅, 미들웨어, EJS, Prototype Pollution, EJS RCE까지 웹 개발과 보안을 함께 정리한 과목.",
+        "featured_lecture": "1-9",
+        "flow": ["Node.js", "개발환경", "Express", "HTTP 요청", "라우팅", "미들웨어", "EJS", "Prototype Pollution", "EJS RCE"],
+        "map_intro": "강의는 Node.js의 실행 모델과 개발환경 구축에서 시작해 Express 웹앱 구현, HTTP 요청 처리, 라우팅과 미들웨어, Node 내장 객체, EJS 템플릿을 거친 뒤 Prototype Pollution과 EJS 템플릿 원격 코드 실행 분석으로 이어진다.",
+        "map": [
+            ("1-1", "Node.js 개요", "런타임, 비동기, 논블로킹 I/O, 싱글 스레드, 이벤트 기반 구조"),
+            ("1-2", "개발환경 구축", "Node.js LTS, npm, VS Code, package.json, Express 설치"),
+            ("1-3", "Express 웹앱", "http 모듈 비교, app.get, app.listen, localhost 실습"),
+            ("1-4", "HTTP 요청 처리", "req.query, req.params, req.body, 본문 파싱 미들웨어"),
+            ("1-5", "라우팅", "기본 라우팅, 정적 파일, CRUD, express.Router"),
+            ("1-6", "미들웨어", "req, res, next, 에러 처리, 인증 미들웨어"),
+            ("1-7", "Node 내장 객체", "global, process, require, __dirname, fs, path, child_process"),
+            ("1-8", "EJS 템플릿", "view engine, res.render, include, 조건문, 반복문, 출력 보안"),
+            ("1-9", "Prototype Pollution", "Prototype chain, __proto__, 안전하지 않은 merge, 방어 방법"),
+            ("1-10", "EJS RCE", "템플릿/옵션/데이터 경계, Prototype Pollution 연계, 안전한 렌더링"),
+        ],
+        "lectures": MODERN_WEB_DEV_SECURITY_LECTURES,
     },
 ]
 
@@ -1829,6 +1866,7 @@ COURSE_ICON_BY_ID = {
     "hacker-programming": "code",
     "hackers-programming": "code",
     "secure-coding": "secure-code",
+    "modern-web-dev": "web",
     "modern-web-dev-security": "web",
     "modern-web-security": "web",
 }
@@ -1877,7 +1915,7 @@ def shared_head(title: str, css_prefix: str = "") -> str:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(title)}</title>
-  <link rel="stylesheet" href="{css_prefix}assets/styles.css">
+  <link rel="stylesheet" href="{css_prefix}assets/styles.css?v=20260613-hero-kicker">
   <script src="{css_prefix}assets/code-highlight.js" defer></script>
   <script src="{css_prefix}assets/study-state.js" defer></script>
   <script src="{css_prefix}assets/study-tools.js" defer></script>
@@ -1944,37 +1982,14 @@ def lecture_content_stats(lecture: dict) -> dict[str, int]:
 
 
 def render_site_index() -> str:
-    total_ready_lectures = sum(len(course.get("lectures", [])) for course in ready_courses())
-    total_review_questions = sum(
-        len(lecture.get("checks", []))
-        for course in ready_courses()
-        for lecture in course.get("lectures", [])
-    )
     ready_course_buttons = "".join(
         f'<a class="button secondary" href="{course_href(course)}">{html.escape(str(course["title"]))} 열기</a>'
         for course in ready_courses()
     )
 
-    track_cards = []
     track_sections = []
     for index, track in enumerate(TRACKS, start=1):
         courses = track_courses(str(track["id"]))
-        ready_count = sum(1 for course in courses if course["status"] == "ready")
-        total_count = len(courses)
-        percent = round((ready_count / total_count) * 100) if total_count else 0
-        summary = f"{ready_count}/{total_count} 과목 정리 완료" if total_count else "과목 목록 추가 예정"
-        track_cards.append(
-            f"""
-            <article class="track-card">
-              <span class="small-label">TRACK {index:02d}</span>
-              <h3>{html.escape(str(track['title']))}</h3>
-              <strong>{percent}%</strong>
-              <p>{html.escape(summary)}</p>
-              <a class="button primary" href="#track-{html.escape(str(track['id']))}">과목 보기</a>
-            </article>
-            """
-        )
-
         course_items = []
         for course_position, course in enumerate(courses, start=1):
             status_class = "status-ready" if course["status"] == "ready" else "status-pending"
@@ -2041,87 +2056,23 @@ def render_site_index() -> str:
   <header class="site-header">
     <nav class="top-nav">
       <a class="brand" href="index.html">화이트햇 강의 정리</a>
-      <a href="#tracks">트랙</a>
       <a href="#courses">과목</a>
     </nav>
     <section class="index-hero">
       <div>
-        <p class="small-label">이거 언제 다 듣지?</p>
+        <p class="small-label hero-kicker">이거 언제 다 듣지? 혹시 시간 젠슨 황이세요? 아니라면 이 노트를 보십쇼.</p>
         <h1>화이트햇 강의 요약 노트</h1>
         <p class="lead">강의마다 핵심만 뽑아 정리했습니다. 제가 한건 아니고 AI가요. 화이트햇 4기 화이팅!</p>
         <div class="hero-actions">
-          <a class="button primary" href="#tracks">트랙 보기</a>
+          <a class="button primary" href="#courses">과목 보기</a>
           {ready_course_buttons}
         </div>
       </div>
-      <aside class="hero-panel">
-        <div class="panel-stat"><strong>{len(TRACKS)}</strong><span>트랙</span></div>
-        <div class="panel-stat"><strong>{len(COURSES)}</strong><span>등록 과목</span></div>
-        <div class="panel-stat"><strong>{total_ready_lectures}</strong><span>강의</span></div>
-        <div class="panel-stat"><strong>{total_review_questions}</strong><span>복습 질문</span></div>
-      </aside>
     </section>
   </header>
 
   <main>
-    <section class="content-wrap student-dashboard" aria-label="학습 시작 가이드">
-      <article class="study-card study-card-strong">
-        <span class="study-card-kicker">오늘의 시작</span>
-        <h2>한 번에 다 보지 말고, 과목 하나만 끝까지 훑기</h2>
-        <p>강의를 실제로 듣는 흐름처럼 과목을 먼저 고르고, 강의 목록에서 순서대로 들어가며 마지막에 복습 질문으로 확인한다.</p>
-        <div class="overall-progress" data-total-lectures="{total_ready_lectures}">
-          <span>내 진행률</span>
-          <strong><span data-overall-completed>0</span>/<span data-overall-total>{total_ready_lectures}</span></strong>
-          <div class="progress-track"><i data-overall-bar></i></div>
-        </div>
-        <a class="button primary" href="#courses">과목 고르기</a>
-      </article>
-      <article class="study-card">
-        <span class="study-step">01</span>
-        <h3>강의 목록</h3>
-        <p>제목과 태그로 오늘 들을 강의를 빠르게 고른다.</p>
-      </article>
-      <article class="study-card">
-        <span class="study-step">02</span>
-        <h3>상세 정리</h3>
-        <p>개념 설명, 표, 예시 코드를 강의 순서대로 읽는다.</p>
-      </article>
-      <article class="study-card">
-        <span class="study-step">03</span>
-        <h3>복습 체크</h3>
-        <p>질문에 답할 수 있는지 확인하고, 필요하면 강의 원문으로 되돌아간다.</p>
-      </article>
-    </section>
-
-    <section class="content-wrap finder-panel site-finder" data-course-finder aria-label="과목 검색">
-      <div class="finder-copy">
-        <span class="study-card-kicker">빠른 탐색</span>
-        <h2>지금 필요한 과목 바로 찾기</h2>
-        <p>과목 이름, 주제, 키워드로 검색하고 정리된 과목만 따로 볼 수 있다.</p>
-      </div>
-      <div class="finder-controls">
-        <label class="search-box">
-          <span>과목 검색</span>
-          <input type="search" data-course-search placeholder="예: 네트워크, 암호학, OWASP">
-        </label>
-        <div class="filter-row" role="group" aria-label="과목 상태 필터">
-          <button class="filter-chip is-active" type="button" data-course-status-filter="all">전체</button>
-          <button class="filter-chip" type="button" data-course-status-filter="ready">정리 완료</button>
-          <button class="filter-chip" type="button" data-course-status-filter="pending">준비 예정</button>
-        </div>
-        <p class="finder-result"><strong data-course-result-count>{len(COURSES)}</strong>개 과목 표시 중</p>
-        <p class="finder-empty" data-course-empty hidden>조건에 맞는 과목이 없다. 검색어를 줄이거나 전체로 바꿔 본다.</p>
-      </div>
-    </section>
-
-    <section id="tracks" class="content-wrap track-grid-section">
-      <h2>전체 트랙</h2>
-      <p class="section-intro">화이트햇 과정의 주요 학습 범위를 트랙별로 나누고, 각 과목의 강의 노트를 한곳에서 찾을 수 있게 정리한다.</p>
-      <div class="track-grid">
-        {''.join(track_cards)}
-      </div>
-    </section>
-
+    <span id="tracks" class="skip-anchor" aria-hidden="true"></span>
     <div id="courses">
       {''.join(track_sections)}
     </div>
@@ -2668,6 +2619,12 @@ def write_styles() -> None:
               font-size: 13px;
               font-weight: 800;
               text-transform: uppercase;
+            }
+
+            .index-hero .hero-kicker {
+              max-width: 980px;
+              font-size: calc(15px + 7pt);
+              line-height: 1.45;
             }
 
             h1, h2, h3 {

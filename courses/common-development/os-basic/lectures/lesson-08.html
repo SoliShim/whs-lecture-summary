@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>운영체제 기초 1-8 - 데몬서비스 관리</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -22,12 +22,12 @@
       <div>
         <p class="small-label">운영체제 1-8</p>
         <h1>데몬서비스 관리</h1>
-        <p class="lead"><strong>systemd</strong>, <strong>systemctl</strong>, journalctl을 통해 리눅스 데몬 서비스를 시작·중지·상태확인·자동시작 관리하는 방법을 익힌다.</p>
+        <p class="lead">백그라운드 <strong>데몬</strong>과 <strong>서비스</strong> 개념에서 출발해 systemd, systemctl, journalctl, target, start/stop, enable/disable, Nginx 실습까지 연결한다.</p>
         <div class="tag-row large"><span>systemd</span><span>systemctl</span><span>Nginx</span></div>
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">데몬 서비스와 systemd</a><a href="#section-2">런레벨과 타겟</a><a href="#section-3">systemctl 기본 명령</a><a href="#section-4">enable과 disable</a><a href="#section-5">journalctl과 로그</a><a href="#section-6">Nginx 실습 흐름</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
+        <a href="#section-1">데몬과 서비스: 백그라운드에서 요청을 기다리는 프로그램</a><a href="#section-2">service 명령에서 systemctl로</a><a href="#section-3">init, systemd, target, unit</a><a href="#section-4">journalctl과 로그 레벨</a><a href="#section-5">실습 준비: SSH 상태와 Nginx 설치</a><a href="#section-6">Nginx 응답 확인: curl과 브라우저</a><a href="#section-7">stop, start, active, inactive</a><a href="#section-8">enable과 disable: 지금 켜짐과 부팅 시 자동 시작은 다르다</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
@@ -51,7 +51,7 @@
         <label for="section-jump-1-8">섹션 바로가기</label>
         <select id="section-jump-1-8" data-section-jump>
           <option value="">읽을 섹션 선택</option>
-          <option value="#section-1">01. 데몬 서비스와 systemd</option><option value="#section-2">02. 런레벨과 타겟</option><option value="#section-3">03. systemctl 기본 명령</option><option value="#section-4">04. enable과 disable</option><option value="#section-5">05. journalctl과 로그</option><option value="#section-6">06. Nginx 실습 흐름</option>
+          <option value="#section-1">01. 데몬과 서비스: 백그라운드에서 요청을 기다리는 프로그램</option><option value="#section-2">02. service 명령에서 systemctl로</option><option value="#section-3">03. init, systemd, target, unit</option><option value="#section-4">04. journalctl과 로그 레벨</option><option value="#section-5">05. 실습 준비: SSH 상태와 Nginx 설치</option><option value="#section-6">06. Nginx 응답 확인: curl과 브라우저</option><option value="#section-7">07. stop, start, active, inactive</option><option value="#section-8">08. enable과 disable: 지금 켜짐과 부팅 시 자동 시작은 다르다</option>
         </select>
       </div>
       <div class="lecture-control-actions" aria-label="섹션 보기 방식">
@@ -66,7 +66,7 @@
     <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
         <h2>학습 목표</h2>
-        <ul class="check-list"><li><strong>데몬</strong> <strong>서비스</strong>와 systemd의 역할을 이해한다.</li><li><strong>systemctl</strong>의 start, stop, restart, status, enable, disable을 구분한다.</li><li><strong>Nginx</strong> 예제로 <strong>서비스</strong> 상태와 웹 응답을 확인한다.</li></ul>
+        <ul class="check-list"><li><strong>데몬</strong>과 <strong>서비스</strong>의 의미, 그리고 두 개념이 실제 서버 프로그램에서 어떻게 겹치는지 이해한다.</li><li>과거 System V init/service 명령과 현재 systemd/systemctl 방식의 차이를 설명한다.</li><li>runlevel과 <strong>systemd</strong> target의 대응 관계, systemd unit의 기본 종류를 파악한다.</li><li><strong>systemctl</strong>의 status, start, stop, restart, reload, enable, disable, mask, unmask를 구분한다.</li><li>journalctl로 <strong>서비스</strong> <strong>로그</strong>를 확인하고 로그 레벨과 로그 용량 관리 필요성을 이해한다.</li><li><strong>Nginx</strong>를 설치해 active/inactive 상태, curl/브라우저 응답, <strong>sudo</strong> 권한, 자동 시작 여부를 실습한다.</li></ul>
       </article>
     </section>
 
@@ -75,38 +75,48 @@
         <div class="side-guide-head">
           <span data-side-current>SECTION 01</span>
           <strong>상세 정리 길잡이</strong>
-          <p>6개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+          <p>8개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
         </div>
         <nav class="side-guide-links" aria-label="상세 정리 바로가기">
           
         <a class="is-active" href="#section-1" data-side-section-link="section-1">
           <span>01</span>
-          <strong>데몬 서비스와 systemd</strong>
+          <strong>데몬과 서비스: 백그라운드에서 요청을 기다리는 프로그램</strong>
         </a>
         
         <a href="#section-2" data-side-section-link="section-2">
           <span>02</span>
-          <strong>런레벨과 타겟</strong>
+          <strong>service 명령에서 systemctl로</strong>
         </a>
         
         <a href="#section-3" data-side-section-link="section-3">
           <span>03</span>
-          <strong>systemctl 기본 명령</strong>
+          <strong>init, systemd, target, unit</strong>
         </a>
         
         <a href="#section-4" data-side-section-link="section-4">
           <span>04</span>
-          <strong>enable과 disable</strong>
+          <strong>journalctl과 로그 레벨</strong>
         </a>
         
         <a href="#section-5" data-side-section-link="section-5">
           <span>05</span>
-          <strong>journalctl과 로그</strong>
+          <strong>실습 준비: SSH 상태와 Nginx 설치</strong>
         </a>
         
         <a href="#section-6" data-side-section-link="section-6">
           <span>06</span>
-          <strong>Nginx 실습 흐름</strong>
+          <strong>Nginx 응답 확인: curl과 브라우저</strong>
+        </a>
+        
+        <a href="#section-7" data-side-section-link="section-7">
+          <span>07</span>
+          <strong>stop, start, active, inactive</strong>
+        </a>
+        
+        <a href="#section-8" data-side-section-link="section-8">
+          <span>08</span>
+          <strong>enable과 disable: 지금 켜짐과 부팅 시 자동 시작은 다르다</strong>
         </a>
         
         </nav>
@@ -116,48 +126,299 @@
         <details id="section-1" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 01</span>
-            <h2>데몬 서비스와 systemd</h2>
+            <h2>데몬과 서비스: 백그라운드에서 요청을 기다리는 프로그램</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>리눅스</strong>에는 사용자가 직접 <strong>실행</strong>한 프로그램 외에도 백그라운드에서 계속 동작하는 서비스가 많다. SSH, 웹 서버, 데이터베이스 서버처럼 시스템 시작과 함께 올라오고 계속 요청을 기다리는 프로그램을 데몬 서비스로 이해하면 된다.</p>
-<p>과거에는 init <strong>프로세스</strong>가 이런 <strong>서비스</strong>를 띄웠고, 지금 우분투에서는 systemd가 그 역할을 한다. systemd가 서비스, 소켓, 마운트, 부팅 타겟을 관리하고, 사용자는 <code>systemctl</code>로 제어한다.</p>
+            <p>강의는 온라인 <strong>운영체제</strong> 기초 강의의 마지막 범위로, 앞에서 설치한 여러 서버 프로그램과 <strong>데몬</strong> 서비스를 관리하는 방법을 다룬다. 데몬(daemon)은 사용자가 직접 화면에서 조작하지 않아도 백그라운드에서 계속 돌면서 특정 작업을 수행하는 프로그램이다. 서비스(service)는 주로 서버-클라이언트 모델에서 사용자의 요청을 기다렸다가 응답하는 프로그램을 뜻한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0004.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0004.jpg" alt="데몬과 서비스" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>데몬과 서비스</strong>
+    <span>데몬은 사용자가 직접 제어하지 않아도 백그라운드에서 계속 동작하는 프로그램이고, 서비스는 사용자의 요청에 응답하는 서버 성격의 프로그램을 뜻한다.</span>
+  </figcaption>
+</figure>
+
+                <p>둘은 완전히 분리된 개념이라기보다 많이 겹친다. 웹 서버는 사용자가 언제 접속할지 모르기 때문에 백그라운드에서 계속 대기하고, 요청이 들어오면 응답한다. FTP 파일 서버도 마찬가지다. <strong>네트워크</strong> <strong>서비스</strong>가 아니어도 프린터 서비스처럼 사용자가 문서에서 인쇄를 누를 때까지 백그라운드에서 기다렸다가 프린터 하드웨어로 작업을 전달하는 프로그램도 있다.</p>
+                <p>이런 서비스는 <strong>리눅스</strong>에만 있는 것이 아니다. Windows 작업 관리자에서도 서비스 탭을 보면 수많은 서비스가 백그라운드에서 <strong>실행</strong> 중인 것을 볼 수 있다. 리눅스 운영을 하려면 이런 백그라운드 서비스가 현재 켜져 있는지, 꺼져 있는지, 부팅 때 자동으로 올라오는지, 로그는 어디에 남는지 다룰 수 있어야 한다.</p>
           </div>
         </details>
         
         <details id="section-2" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 02</span>
-            <h2>런레벨과 타겟</h2>
+            <h2>service 명령에서 systemctl로</h2>
           </summary>
           <div class="note-section-body">
-            <p>고전적인 init 시스템에서는 runlevel 0, 1, 3, 5, 6 같은 숫자로 부팅 상태를 표현했다. 예를 들어 0은 종료, 1은 복구 모드, 3은 멀티유저 텍스트 모드, 5는 그래픽 모드처럼 이해할 수 있다. <strong>systemd</strong>에서는 이를 poweroff.target, rescue.target, multi-user.target, graphical.target처럼 글자로 표현한다.</p>
-<p>기초 강의에서는 타겟을 깊게 다루지 않지만, systemd가 단순히 <strong>서비스</strong> 하나만 관리하는 것이 아니라 시스템 부팅 상태 전체를 관리한다는 점은 기억해야 한다.</p>
+            <p>고전적인 <strong>리눅스</strong> 배포판에서는 System V init 방식과 <code>service</code> 명령으로 <strong>서비스</strong>를 관리했다. 인터넷에서 오래된 블로그를 검색하면 <code>service ssh status</code>, <code>service nginx restart</code> 같은 명령을 많이 볼 수 있다. 지금도 호환성을 위해 동작하는 경우가 있지만, Ubuntu 16.04 이후의 현대적인 관리 방식은 <code>systemctl</code>이다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0012.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0012.jpg" alt="구방식 service 명령" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>구방식 service 명령</strong>
+        <span>System V init 시절에는 service 명령으로 데몬을 관리했지만, 현재 Ubuntu에서는 systemctl을 표준으로 사용한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강사는 <code>service</code> 명령만 소개하는 자료는 오래된 자료일 가능성이 높으므로, 현재 Ubuntu 기준으로는 <code>systemctl</code>을 중심으로 공부하라고 말한다. 서비스 이름의 정식 단위는 <code>sshd.service</code>, <code>nginx.service</code>처럼 <code>.service</code>가 붙지만, 실무 명령에서는 보통 <code>systemctl status nginx</code>처럼 접미사를 생략해도 동작한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0016.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0016.jpg" alt="systemctl 기본 명령" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>systemctl 기본 명령</strong>
+        <span>systemctl status, start, stop, restart로 서비스 상태 확인과 시작·중지·재시작을 수행하며, .service 접미사는 생략할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">systemctl status ssh.service
+systemctl status ssh
+sudo systemctl start nginx
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+sudo systemctl reload nginx</code></pre>
+                    <p><code>status</code>는 상태 확인, <code>start</code>는 시작, <code>stop</code>은 중지, <code>restart</code>는 재시작이다. 설정 파일만 다시 읽어도 되는 서비스는 <code>reload</code>를 쓸 수 있다. <strong>실행</strong> 상태를 바꾸는 명령은 시스템 전체에 영향을 줄 수 있으므로 보통 관리자 <strong>권한</strong>이 필요하다.</p>
           </div>
         </details>
         
         <details id="section-3" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 03</span>
-            <h2>systemctl 기본 명령</h2>
+            <h2>init, systemd, target, unit</h2>
           </summary>
           <div class="note-section-body">
-            <p><code>systemctl status sshd</code>처럼 <strong>서비스</strong> 상태를 볼 수 있다. 정식 이름은 <code>sshd.service</code>지만, <code>.service</code>는 생략해도 동작한다. 서비스 제어에는 관리자 <strong>권한</strong>이 필요하므로 start, stop, restart 같은 명령에는 보통 sudo가 필요하다.</p>
-                    <pre><code class="language-bash">systemctl status ssh
-sudo systemctl start nginx
-sudo systemctl stop nginx
-sudo systemctl restart nginx
-systemctl status nginx</code></pre>
-                    <p><strong>리눅스</strong> 명령이 성공했을 때는 별도 메시지가 없는 경우가 많다. 오류가 나오지 않았으면 정상적으로 처리되었다고 보고, 상태 확인 명령으로 다시 확인한다.</p>
+            <p>그렇다면 많은 <strong>데몬</strong> <strong>서비스</strong>는 누가 처음 실행해 줄까? 과거에는 <code>init</code> 프로세스가 시스템 부팅 과정에서 여러 서비스를 순서대로 띄웠다. 현재 Ubuntu에서는 그 역할을 <code>systemd</code>가 맡는다. systemd가 서비스를 실행하고, 사용자는 <code>systemctl</code> 명령으로 systemd에게 시작·중지·상태 확인을 요청한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0020.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0020.jpg" alt="init에서 systemd로" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>init에서 systemd로</strong>
+        <span>과거 init이 수행하던 서비스 실행과 부팅 관리 역할을 현재는 systemd가 맡고, 사용자는 systemctl로 제어한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>고전적인 <strong>init</strong> 시스템에는 runlevel이라는 숫자 개념이 있었다. <code>init 0</code>은 전원 끄기, <code>init 1</code>은 복구 모드, <code>init 3</code>은 멀티유저 텍스트 모드, <code>init 5</code>는 <strong>GUI</strong> 모드처럼 이해한다. 숫자만 보면 직관적이지 않기 때문에 systemd에서는 이를 글자 기반 target으로 표현한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0024.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0024.jpg" alt="systemd target 구조" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>systemd target 구조</strong>
+        <span>고전적 runlevel 숫자는 systemd에서 poweroff, rescue, multi-user, graphical 같은 target 이름으로 표현된다.</span>
+      </figcaption>
+    </figure>
+
+                    <table>
+                      <thead><tr><th>고전 runlevel</th><th>systemd target</th><th>의미</th></tr></thead>
+                      <tbody>
+                        <tr><td>0</td><td>poweroff.target</td><td>전원 끄기</td></tr>
+                        <tr><td>1</td><td>rescue.target</td><td>복구 모드</td></tr>
+                        <tr><td>3</td><td>multi-user.target</td><td>여러 사용자 텍스트 기반 서버 모드</td></tr>
+                        <tr><td>5</td><td>graphical.target</td><td>GUI 포함 일반 사용자 모드</td></tr>
+                        <tr><td>6</td><td>reboot.target</td><td>재부팅</td></tr>
+                      </tbody>
+                    </table>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0029.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0029.jpg" alt="systemd 유닛 종류" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>systemd 유닛 종류</strong>
+        <span>systemd는 service뿐 아니라 socket, device, mount, automount, swap, target, path, timer, slice, scope 같은 다양한 unit을 관리한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><strong>systemd</strong>는 서비스만 관리하지 않는다. <code>service</code> 외에도 <code>socket</code>, <code>device</code>, <code>mount</code>, <code>automount</code>, <code>swap</code>, <code>target</code>, <code>path</code>, <code>timer</code>, <code>slice</code>, <code>scope</code> 같은 <strong>unit</strong>을 다룬다. 기초반에서는 이 모든 unit을 깊게 다루지는 않지만, systemd가 “서비스 하나 켜고 끄는 도구”보다 더 넓은 시스템 관리 프레임워크라는 점을 기억하면 된다.</p>
+                    <pre><code class="language-bash">systemctl list-units
+systemctl list-units --type=service
+systemctl get-default
+sudo systemctl set-default multi-user.target
+sudo systemctl set-default graphical.target</code></pre>
           </div>
         </details>
         
         <details id="section-4" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 04</span>
-            <h2>enable과 disable</h2>
+            <h2>journalctl과 로그 레벨</h2>
           </summary>
           <div class="note-section-body">
-            <p><code>start</code>와 <code>stop</code>은 현재 <strong>실행</strong> 상태를 바꾼다. 반면 <code>enable</code>과 <code>disable</code>은 부팅 시 자동 시작 여부를 바꾼다. 따라서 현재 active이면서 disabled일 수도 있고, inactive이면서 enabled일 수도 있다.</p>
+            <p><strong>서비스</strong>는 <strong>실행</strong> 중에 상태 변화와 오류를 로그로 남긴다. systemd 환경에서는 <code>journalctl</code>로 journal 로그를 볼 수 있다. 서비스가 왜 시작되지 않았는지, 언제 중지되었는지, 어떤 포트에서 대기 중인지 같은 정보가 로그에 남는다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0033.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0033.jpg" alt="journalctl과 로그 레벨" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>journalctl과 로그 레벨</strong>
+        <span>journalctl은 systemd journal 로그를 조회하며, 로그에는 emergency부터 debug까지 심각도 레벨이 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">journalctl
+journalctl -u nginx
+journalctl -u nginx --since today
+journalctl -xe
+journalctl --disk-usage</code></pre>
+                    <p><code>-u nginx</code>는 특정 unit의 <strong>로그</strong>만 보는 옵션이고, <code>--since today</code>는 오늘 이후 로그만 보는 식으로 시간을 제한한다. <code>-xe</code>는 최근 오류와 설명을 보는 데 자주 등장한다. 로그는 장애 분석에 매우 중요하지만 계속 쌓이면 디스크를 차지한다. 장애가 많이 나서 로그가 폭증하고, 그 로그 때문에 디스크가 꽉 차 2차 장애가 날 수도 있으므로 로그 용량도 관리 대상이다.</p>
+                    <p>로그 레벨은 심각도에 따라 나뉜다. 강의 화면은 <code>emerg</code>, <code>alert</code>, <code>crit</code>, <code>err</code>, <code>warning</code>, <code>notice</code>, <code>info</code>, <code>debug</code> 같은 레벨을 보여 준다. 운영자는 단순 정보 로그인지, 즉시 대응해야 하는 장애 로그인지 구분해서 읽어야 한다.</p>
+          </div>
+        </details>
+        
+        <details id="section-5" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 05</span>
+            <h2>실습 준비: SSH 상태와 Nginx 설치</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>실습은 앞 시간에 설치한 SSH <strong>데몬</strong>의 상태를 확인하는 것에서 시작한다. <code>systemctl status ssh.service</code> 또는 <code>systemctl status ssh</code>를 <strong>실행</strong>하면 서비스가 loaded 되었는지, active running 상태인지, 어떤 PID로 떠 있는지, 최근 로그가 무엇인지 한 화면에서 확인할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0037.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0037.jpg" alt="SSH 서비스 상태 확인" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>SSH 서비스 상태 확인</strong>
+        <span>systemctl status ssh.service로 SSH 데몬이 loaded, active, running 상태인지 확인하고 최근 로그도 함께 볼 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">systemctl status ssh.service
+systemctl status ssh</code></pre>
+                    <p>다음으로 웹 서버 <strong>Nginx</strong>를 설치한다. 설치 과정에서 추가 의존 <strong>패키지</strong>가 함께 설치된다. 리눅스에서 <code>Y/n</code> 또는 <code>y/N</code> 질문이 나오면 대문자로 표시된 값이 기본값이다. 즉 <code>Y/n</code>에서 그냥 Enter를 누르면 yes가 선택된다. 이 질문을 생략하려고 앞 강의에서 배운 <code>-y</code> 옵션을 붙일 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0041.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0041.jpg" alt="Nginx 설치와 의존 패키지" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Nginx 설치와 의존 패키지</strong>
+        <span>sudo apt install nginx를 실행하면 Nginx와 함께 필요한 의존 패키지가 설치되며, Y/n 질문에서 대문자가 기본값이다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo apt install nginx
+sudo apt install -y nginx
+systemctl status nginx</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0047.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0047.jpg" alt="Nginx active 상태" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Nginx active 상태</strong>
+        <span>Nginx 설치 뒤 systemctl status nginx를 보면 웹 서버가 active running 상태로 올라온 것을 확인할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>설치가 끝난 뒤 <code>systemctl status nginx</code>를 실행하면 <code>active (running)</code> 상태를 확인할 수 있다. 상태 화면에는 <strong>서비스</strong> 파일 위치, enabled/disabled 여부, Main PID, <strong>프로세스</strong> 트리, 최근 로그가 함께 표시된다. 강의 중 오타가 한 번 나오지만, 올바른 명령은 <code>systemctl status nginx</code>다.</p>
+          </div>
+        </details>
+        
+        <details id="section-6" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 06</span>
+            <h2>Nginx 응답 확인: curl과 브라우저</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>Nginx</strong>가 <strong>실행</strong> 중이면 로컬 웹 서버가 80번 포트에서 HTTP 요청을 기다린다. GUI 브라우저에서 <code>localhost</code>를 열어도 되고, 서버 환경처럼 GUI가 없는 곳에서는 <code>curl localhost</code>로 HTML 응답을 확인할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0051.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0051.jpg" alt="curl localhost와 브라우저 확인" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>curl localhost와 브라우저 확인</strong>
+        <span>curl localhost로 CLI에서 웹 서버 응답 HTML을 확인하고, 브라우저에서 localhost를 열어 같은 Nginx 기본 페이지를 볼 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo apt install curl
+curl localhost
+# 브라우저 주소창에서도 localhost 입력</code></pre>
+                    <p><code>curl localhost</code> 결과는 보기 좋은 웹페이지가 아니라 HTML 코드로 나온다. 브라우저도 실제로는 이 HTML을 받아 태그를 해석하고, 색상과 크기와 배치를 적용해 사람이 보기 좋은 페이지로 렌더링한다. 브라우저에서 페이지 소스 보기를 하면 curl로 받은 내용과 같은 HTML을 확인할 수 있다.</p>
+          </div>
+        </details>
+        
+        <details id="section-7" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 07</span>
+            <h2>stop, start, active, inactive</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>이제 잘 동작하는 웹 서버를 중지해 본다. 일반 사용자가 아무 <strong>서비스</strong>나 마음대로 끄면 안 되므로, <code>systemctl stop nginx</code>를 일반 <strong>권한</strong>으로 실행하면 권한 문제가 발생한다. 관리자 권한을 빌려 <code>sudo systemctl stop nginx</code>를 실행해야 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0057.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0057.jpg" alt="서비스 중지에는 관리자 권한 필요" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>서비스 중지에는 관리자 권한 필요</strong>
+        <span>일반 사용자로 systemctl stop nginx를 실행하면 권한 문제가 나며, sudo systemctl stop nginx로 관리자 권한을 빌려야 한다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">systemctl status nginx
+sudo systemctl stop nginx
+systemctl status nginx
+curl localhost</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0059.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0059.jpg" alt="Nginx inactive 상태" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Nginx inactive 상태</strong>
+        <span>서비스를 중지하면 status가 inactive로 바뀌고, curl localhost와 브라우저 요청도 응답을 받지 못한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><strong>리눅스</strong> 명령은 성공했을 때 별도 메시지를 주지 않는 경우가 많다. <code>sudo systemctl stop nginx</code> 뒤 아무 메시지가 없으면 보통 성공한 것으로 보고, <code>systemctl status nginx</code>로 확인한다. 중지된 서비스는 <code>inactive</code> 상태가 되고, <code>curl localhost</code>는 연결할 서버가 없어 실패한다. 브라우저에서 새로고침해도 <strong>Nginx</strong> 기본 페이지가 뜨지 않는다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0064.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0064.jpg" alt="Nginx 다시 시작" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Nginx 다시 시작</strong>
+        <span>sudo systemctl start nginx로 서비스를 다시 시작하면 active running으로 돌아오고 웹 응답도 다시 살아난다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo systemctl start nginx
+systemctl status nginx
+curl localhost</code></pre>
+                    <p><code>sudo systemctl start nginx</code>로 다시 켜면 상태가 <code>active (running)</code>으로 돌아오고, curl과 브라우저 응답도 다시 살아난다. 이 실습의 핵심은 “서비스 상태”와 “실제 <strong>네트워크</strong> 응답”을 함께 확인하는 것이다. 상태만 보지 말고 실제 요청이 성공하는지도 확인해야 한다.</p>
+          </div>
+        </details>
+        
+        <details id="section-8" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 08</span>
+            <h2>enable과 disable: 지금 켜짐과 부팅 시 자동 시작은 다르다</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><code>start</code>와 <code>stop</code>은 현재 <strong>실행</strong> 상태를 바꾼다. 반면 <code>enable</code>과 <code>disable</code>은 부팅할 때 자동으로 시작할지 여부를 바꾼다. 그래서 현재 실행 중이지만 disabled일 수 있고, 현재 꺼져 있지만 enabled일 수도 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0069.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0069.jpg" alt="enable과 disable" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>enable과 disable</strong>
+        <span>start/stop은 현재 실행 상태를 바꾸고, enable/disable은 부팅 시 자동 시작 여부를 바꾼다.</span>
+      </figcaption>
+    </figure>
+
                     <table>
                       <thead><tr><th>상태 조합</th><th>의미</th></tr></thead>
                       <tbody>
@@ -169,38 +430,23 @@ systemctl status nginx</code></pre>
                     </table>
                     <pre><code class="language-bash">sudo systemctl enable nginx
 sudo systemctl disable nginx
-systemctl status nginx</code></pre>
-          </div>
-        </details>
-        
-        <details id="section-5" class="note-section section-disclosure" data-note-section open>
-          <summary>
-            <span>SECTION 05</span>
-            <h2>journalctl과 로그</h2>
-          </summary>
-          <div class="note-section-body">
-            <p><strong>서비스</strong>가 <strong>실행</strong>되며 남긴 로그는 <code>journalctl</code>로 확인할 수 있다. 특정 서비스의 로그를 보거나, 특정 시간 이후의 로그를 볼 수 있다. 로그는 장애 분석에 중요하지만 계속 쌓이면 디스크를 차지하므로 관리가 필요하다.</p>
-                    <p><strong>로그</strong>에는 emergency, alert, critical, error, warning, notice, info, debug처럼 심각도 레벨이 있다. 단순 정보인지, 실제 장애인지 구분해서 읽을 수 있어야 한다.</p>
-                    <pre><code class="language-bash">journalctl -u nginx
-journalctl -u nginx --since today
-journalctl -xe</code></pre>
-          </div>
-        </details>
-        
-        <details id="section-6" class="note-section section-disclosure" data-note-section open>
-          <summary>
-            <span>SECTION 06</span>
-            <h2>Nginx 실습 흐름</h2>
-          </summary>
-          <div class="note-section-body">
-            <p>실습에서는 <code>sudo apt install nginx</code>로 웹 서버를 설치하고 <code>systemctl status nginx</code>로 상태를 확인한다. <code>curl localhost</code>나 브라우저에서 <code>localhost</code>를 열어 웹 서버가 응답하는지 본다. <strong>Nginx</strong>를 stop하면 curl과 브라우저 요청이 실패하고, 다시 start하면 응답이 돌아온다.</p>
-                    <pre><code class="language-bash">sudo apt install nginx
 systemctl status nginx
-curl localhost
-sudo systemctl stop nginx
-curl localhost
-sudo systemctl start nginx
-curl localhost</code></pre>
+sudo systemctl restart nginx
+sudo systemctl mask nginx
+sudo systemctl unmask nginx</code></pre>
+                    <p><code>enable</code>은 부팅 시 자동 시작을 등록하고, <code>disable</code>은 자동 시작 등록을 해제한다. <code>restart</code>는 stop 후 start를 한 번에 하는 명령이다. <code>mask</code>는 <strong>서비스</strong>를 숨기거나 실행되지 못하게 강하게 막는 기능이고, <code>unmask</code>는 다시 풀어 준다. 기초 실습에서는 start/stop/status/enable/disable을 확실히 구분하는 것이 우선이다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0072.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-08-데몬서비스-관리/운영체제 기초-08-데몬서비스-관리 - 0072.jpg" alt="재부팅 후 서비스 상태 확인" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>재부팅 후 서비스 상태 확인</strong>
+        <span>disable된 서비스는 현재 실행 중이어도 재부팅 후 자동으로 올라오지 않을 수 있으며, enable 여부와 active 여부를 구분해야 한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강의 마지막 실습은 재부팅 후 상태 확인으로 이어진다. disable된 서비스는 지금 active로 실행 중이어도 재부팅하면 자동으로 올라오지 않을 수 있다. 반대로 enabled인 서비스는 지금 stop되어 있어도 다음 부팅 때 자동으로 시작될 수 있다. 서비스 운영에서는 “현재 상태”와 “부팅 정책”을 반드시 따로 확인해야 한다.</p>
           </div>
         </details>
         
@@ -209,8 +455,9 @@ curl localhost</code></pre>
 
 	    <section id="review" class="content-wrap note-block">
 	      <h2>복습 체크</h2>
-	      <ul class="check-list"><li><strong>데몬</strong> <strong>서비스</strong>와 일반 실행 프로그램의 차이를 설명할 수 있는가?</li><li><strong>systemd</strong>와 <strong>systemctl</strong>의 관계를 이해했는가?</li><li>`start/stop`과 `enable/disable`의 차이를 말할 수 있는가?</li><li><strong>Nginx</strong> <strong>서비스</strong>가 active인지 inactive인지 확인할 수 있는가?</li><li>journalctl로 특정 <strong>서비스</strong> <strong>로그</strong>를 볼 수 있는가?</li></ul>
+	      <ul class="check-list"><li><strong>데몬</strong>과 <strong>서비스</strong>의 차이와 겹치는 지점을 웹 서버, 파일 서버, 프린터 서비스 예로 설명할 수 있는가?</li><li>오래된 `service` 명령과 현재 Ubuntu의 `<strong>systemctl</strong>` 명령을 구분할 수 있는가?</li><li>init, <strong>systemd</strong>, <strong>systemctl</strong>의 관계를 말할 수 있는가?</li><li>runlevel 0/1/3/5/6과 poweroff/rescue/multi-user/graphical/reboot target의 관계를 이해했는가?</li><li><strong>systemd</strong>가 service 외에도 socket, mount, timer 같은 unit을 관리한다는 점을 이해했는가?</li><li>`<strong>systemctl</strong> status`, `start`, `stop`, `restart`, `reload`의 역할을 구분할 수 있는가?</li><li>`journalctl -u <strong>nginx</strong>`, `--since today`, `-xe`, `--disk-usage`가 어떤 상황에서 쓰이는지 설명할 수 있는가?</li><li><strong>Nginx</strong> 설치 후 `<strong>systemctl</strong> status nginx`에서 loaded, active, Main PID, 최근 로그를 읽을 수 있는가?</li><li>`curl localhost` 결과와 브라우저의 `localhost` 화면이 같은 웹 응답을 다른 방식으로 보여 준다는 점을 이해했는가?</li><li>일반 사용자로 <strong>서비스</strong> stop/start가 실패하고 `<strong>sudo</strong> systemctl`이 필요한 이유를 설명할 수 있는가?</li><li><strong>Nginx</strong>를 stop하면 inactive가 되고 curl/브라우저 응답이 실패하며, start하면 active와 응답이 돌아오는 흐름을 설명할 수 있는가?</li><li>`start/stop`과 `enable/disable`의 차이, active+disabled 같은 조합의 의미를 말할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

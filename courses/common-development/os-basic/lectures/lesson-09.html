@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>운영체제 기초 1-9 - 서버프로그램 설치 및 관리</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -22,12 +22,12 @@
       <div>
         <p class="small-label">운영체제 1-9</p>
         <h1>서버프로그램 설치 및 관리</h1>
-        <p class="lead"><strong>웹 서버</strong>, 파일 서버, 데이터베이스 서버를 설치하고 설정 파일과 <strong>서비스</strong> 관리를 연결해 본다.</p>
-        <div class="tag-row large"><span>웹 서버</span><span>FTP</span><span>MySQL</span></div>
+        <p class="lead">웹 서버, FTP 파일 서버, <strong>MySQL</strong> 데이터베이스 서버를 설치하고 설정 파일, 심볼릭 링크, <strong>서비스</strong> 재시작, 접속 확인까지 한 흐름으로 실습한다.</p>
+        <div class="tag-row large"><span>Nginx</span><span>Apache</span><span>vsftpd</span><span>MySQL</span></div>
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">시즌2의 시작</a><a href="#section-2">웹 서버: Apache와 Nginx</a><a href="#section-3">Nginx 설정 파일 구조</a><a href="#section-4">가상 사이트와 포트 변경</a><a href="#section-5">파일 서버: vsftpd</a><a href="#section-6">FTP 권한: 익명, 쓰기, chroot</a><a href="#section-7">데이터베이스 서버: MySQL</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
+        <a href="#section-1">시즌2의 시작: 서버 프로그램을 직접 운영하기</a><a href="#section-2">웹 서버: Apache와 Nginx의 이름과 구조</a><a href="#section-3">Nginx 설치와 설정 파일 읽기</a><a href="#section-4">새 Nginx 가상 사이트 만들기와 포트 충돌 해결</a><a href="#section-5">FTP 파일 서버와 vsftpd</a><a href="#section-6">FTP 실습: 접속, 다운로드, 업로드, chroot</a><a href="#section-7">데이터베이스 서버: MySQL 설치와 최초 접속</a><a href="#section-8">MySQL 내부 사용자, 권한, 테이블 실습</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
@@ -51,7 +51,7 @@
         <label for="section-jump-1-9">섹션 바로가기</label>
         <select id="section-jump-1-9" data-section-jump>
           <option value="">읽을 섹션 선택</option>
-          <option value="#section-1">01. 시즌2의 시작</option><option value="#section-2">02. 웹 서버: Apache와 Nginx</option><option value="#section-3">03. Nginx 설정 파일 구조</option><option value="#section-4">04. 가상 사이트와 포트 변경</option><option value="#section-5">05. 파일 서버: vsftpd</option><option value="#section-6">06. FTP 권한: 익명, 쓰기, chroot</option><option value="#section-7">07. 데이터베이스 서버: MySQL</option>
+          <option value="#section-1">01. 시즌2의 시작: 서버 프로그램을 직접 운영하기</option><option value="#section-2">02. 웹 서버: Apache와 Nginx의 이름과 구조</option><option value="#section-3">03. Nginx 설치와 설정 파일 읽기</option><option value="#section-4">04. 새 Nginx 가상 사이트 만들기와 포트 충돌 해결</option><option value="#section-5">05. FTP 파일 서버와 vsftpd</option><option value="#section-6">06. FTP 실습: 접속, 다운로드, 업로드, chroot</option><option value="#section-7">07. 데이터베이스 서버: MySQL 설치와 최초 접속</option><option value="#section-8">08. MySQL 내부 사용자, 권한, 테이블 실습</option>
         </select>
       </div>
       <div class="lecture-control-actions" aria-label="섹션 보기 방식">
@@ -66,7 +66,7 @@
     <section id="goals" class="content-wrap intro-grid">
       <article class="note-block">
         <h2>학습 목표</h2>
-        <ul class="check-list"><li>Nginx와 Apache 같은 <strong>웹 서버</strong>의 기본 구조와 설정 파일 위치를 이해한다.</li><li>vsftpd를 이용한 <strong>FTP</strong> 서버 설정, 업로드 <strong>권한</strong>, chroot 제한을 이해한다.</li><li><strong>MySQL</strong> 서버 설치, 초기 접속, 데이터베이스와 사용자 <strong>권한</strong> 부여 흐름을 파악한다.</li></ul>
+        <ul class="check-list"><li>서버 프로그램 운영의 공통 흐름인 <strong>패키지</strong> 설치, 설정 파일 수정, <strong>서비스</strong> 재시작, 접속 확인을 이해한다.</li><li><strong>Apache</strong>와 <strong>Nginx</strong>의 이름 차이, 설정 파일 위치, 가상 호스트, sites-available/sites-enabled 구조를 설명한다.</li><li><strong>Nginx</strong>에서 새 사이트 설정을 복사·수정하고, <strong>포트</strong> 충돌을 nginx -t와 systemctl status로 확인하는 법을 익힌다.</li><li><strong>vsftpd</strong>를 설치하고 FTP 접속, 다운로드, 업로드 <strong>권한</strong>, chroot 제한, UTF-8/클라이언트 문제를 이해한다.</li><li><strong>MySQL</strong> 서버를 설치하고 <strong>sudo</strong> mysql로 접속한 뒤 데이터베이스, DB 사용자, 권한 부여, 테이블 생성 흐름을 파악한다.</li></ul>
       </article>
     </section>
 
@@ -75,43 +75,48 @@
         <div class="side-guide-head">
           <span data-side-current>SECTION 01</span>
           <strong>상세 정리 길잡이</strong>
-          <p>7개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+          <p>8개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
         </div>
         <nav class="side-guide-links" aria-label="상세 정리 바로가기">
           
         <a class="is-active" href="#section-1" data-side-section-link="section-1">
           <span>01</span>
-          <strong>시즌2의 시작</strong>
+          <strong>시즌2의 시작: 서버 프로그램을 직접 운영하기</strong>
         </a>
         
         <a href="#section-2" data-side-section-link="section-2">
           <span>02</span>
-          <strong>웹 서버: Apache와 Nginx</strong>
+          <strong>웹 서버: Apache와 Nginx의 이름과 구조</strong>
         </a>
         
         <a href="#section-3" data-side-section-link="section-3">
           <span>03</span>
-          <strong>Nginx 설정 파일 구조</strong>
+          <strong>Nginx 설치와 설정 파일 읽기</strong>
         </a>
         
         <a href="#section-4" data-side-section-link="section-4">
           <span>04</span>
-          <strong>가상 사이트와 포트 변경</strong>
+          <strong>새 Nginx 가상 사이트 만들기와 포트 충돌 해결</strong>
         </a>
         
         <a href="#section-5" data-side-section-link="section-5">
           <span>05</span>
-          <strong>파일 서버: vsftpd</strong>
+          <strong>FTP 파일 서버와 vsftpd</strong>
         </a>
         
         <a href="#section-6" data-side-section-link="section-6">
           <span>06</span>
-          <strong>FTP 권한: 익명, 쓰기, chroot</strong>
+          <strong>FTP 실습: 접속, 다운로드, 업로드, chroot</strong>
         </a>
         
         <a href="#section-7" data-side-section-link="section-7">
           <span>07</span>
-          <strong>데이터베이스 서버: MySQL</strong>
+          <strong>데이터베이스 서버: MySQL 설치와 최초 접속</strong>
+        </a>
+        
+        <a href="#section-8" data-side-section-link="section-8">
+          <span>08</span>
+          <strong>MySQL 내부 사용자, 권한, 테이블 실습</strong>
         </a>
         
         </nav>
@@ -121,121 +126,537 @@
         <details id="section-1" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 01</span>
-            <h2>시즌2의 시작</h2>
+            <h2>시즌2의 시작: 서버 프로그램을 직접 운영하기</h2>
           </summary>
           <div class="note-section-body">
-            <p>9강은 앞에서 배운 <strong>운영체제</strong> 개념, <strong>우분투</strong> 설치, GUI/CLI, 계정과 권한, 패키지 설치, 데몬 서비스 관리 위에 서버 프로그램 운영을 얹는 강의다. 온라인 강의만 보고 따라 하기 어려운 설정도 있으므로, 포즈와 반복 재생을 하며 직접 명령어를 쳐 보라고 강조한다.</p>
-<p>이 강의의 세 축은 <strong>웹 서버</strong>, 파일 서버, 데이터베이스 서버다. 모두 <strong>패키지</strong> 설치, 설정 파일 수정, systemctl로 서비스 재시작, 접속 확인이라는 공통 흐름을 가진다.</p>
+            <p>이번 강의는 시즌2의 첫 강의다. 시즌1에서는 <strong>운영체제</strong>가 무엇인지, Linux와 Ubuntu가 무엇인지, 가상 머신에 Ubuntu를 설치하는 법, <strong>GUI</strong>와 CLI를 다루는 법, 파일과 디렉토리, 사용자 계정과 권한, 패키지 설치, 데몬 서비스 관리를 배웠다. 이제 그 위에 실제 서버 프로그램을 설치하고 운영하는 내용을 얹는다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0011.jpg" alt="서버 프로그램 설치 및 관리 목차" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>서버 프로그램 설치 및 관리 목차</strong>
+    <span>시즌2 첫 강의는 웹 서버, 파일 서버, 데이터베이스 서버를 설치하고 설정하며 서비스 관리와 연결해 보는 흐름으로 진행된다.</span>
+  </figcaption>
+</figure>
+
+                <p>강사는 일부 설정이 온라인 강의만으로 따라 하기 어려울 수 있으므로, 영상을 멈추고 다시 재생하면서 직접 커맨드라인을 쳐 보라고 당부한다. 이 강의의 큰 축은 세 가지다. 첫째 웹 서버 구축, 둘째 파일 서버 구축, 셋째 데이터베이스 서버 구축이다. 세 영역은 모두 “<strong>패키지</strong> 설치 -> 설정 파일 확인과 수정 -> <strong>서비스</strong> 재시작 -> 실제 접속 확인”이라는 공통 흐름을 가진다.</p>
           </div>
         </details>
         
         <details id="section-2" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 02</span>
-            <h2>웹 서버: Apache와 Nginx</h2>
+            <h2>웹 서버: Apache와 Nginx의 이름과 구조</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>웹 서버</strong>로는 <strong>Apache와 Nginx</strong>가 대표적이다. Apache는 오래된 역사와 전통을 가진 웹 서버이고, Red Hat 계열에서는 httpd, Debian/Ubuntu 계열에서는 apache2라는 이름으로 설치된다. Nginx는 후발 주자지만 현재 많이 사용되는 웹 서버다. 이론에서는 Apache 설정 흐름을 설명하고, 실습은 Nginx로 진행한다.</p>
+            <p><strong>웹 서버</strong>의 대표 프로그램은 <strong>Apache</strong>와 Nginx다. Apache는 더 오래된 역사와 전통을 가진 웹 서버다. Red Hat/Fedora 계열에서는 <code>httpd</code>라는 이름으로 부르고, Debian/Ubuntu 계열에서는 <code>apache2</code>라는 패키지와 서비스 이름으로 다룬다. Nginx는 Apache보다 늦게 나온 후발 주자지만, 최근 실무에서 매우 많이 쓰인다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0017.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0017.jpg" alt="Apache와 Nginx" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Apache와 Nginx</strong>
+        <span>Apache는 오래된 역사와 전통을 가진 웹 서버이고, Nginx는 후발 주자지만 최근 널리 쓰이는 웹 서버로 소개된다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>이론 설명은 Apache의 구조에서 출발한다. 많은 웹 서버 설정 구조가 Apache에서 먼저 정리되었고, <strong>Nginx</strong>도 유사한 방식으로 sites-available과 sites-enabled 구조를 사용한다. 다만 실습 시간은 제한되어 있으므로 실제 조작은 Nginx 중심으로 진행한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0023.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0023.jpg" alt="Apache 설치와 설정 파일 구조" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Apache 설치와 설정 파일 구조</strong>
+        <span>Ubuntu에서는 apache2 패키지를 설치하고, /etc/apache2/apache2.conf와 sites-available, sites-enabled 구조로 사이트 설정을 관리한다.</span>
+      </figcaption>
+    </figure>
+
                     <pre><code class="language-bash">sudo apt install apache2
-sudo apt install nginx
-systemctl status nginx
-curl localhost</code></pre>
+systemctl status apache2
+sudo systemctl start apache2
+sudo systemctl stop apache2
+sudo systemctl restart apache2</code></pre>
+                    <p>Apache의 메인 설정은 <code>/etc/apache2/apache2.conf</code>에 있고, 사이트 설정은 <code>/etc/apache2/sites-available/</code>과 <code>/etc/apache2/sites-enabled/</code> 구조로 관리한다. 웹 콘텐츠의 기본 위치는 <code>/var/www/html</code>이고, <strong>로그</strong>는 <code>/var/log/apache2/</code>에 쌓인다. 설정 파일은 <code>/etc</code>, 변동 데이터와 로그는 <code>/var</code> 아래에 둔다는 앞 강의의 파일시스템 구조와 연결된다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0027.jpg" alt="sites-available과 sites-enabled" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>sites-available과 sites-enabled</strong>
+        <span>여러 가상 호스트 설정은 sites-available에 두고, 실제 활성화할 사이트는 sites-enabled의 심볼릭 링크로 연결하는 구조를 사용한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>하나의 웹 서버 프로그램이 여러 사이트를 운영할 수 있다. 이것을 가상 호스트, virtual host라고 부른다. 예를 들어 site1, site2, site3 설정 파일을 <code>sites-available</code>에 만들어 두고, 실제 켤 사이트만 <code>sites-enabled</code>에 심볼릭 링크로 연결한다. 여기서 5강의 <code>ln -s</code>가 실제 서버 운영에 쓰인다. “설정 후보는 available에 보관하고, 활성화는 enabled의 링크로 결정한다”는 구조를 기억하면 된다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0036.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0036.jpg" alt="Apache 기본 페이지" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Apache 기본 페이지</strong>
+        <span>apache2 설치 뒤 서비스가 실행되면 브라우저에서 Apache2 Ubuntu Default Page를 확인할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>Apache를 설치하고 <strong>서비스</strong>가 <strong>실행</strong>되면 브라우저에서 Apache2 Ubuntu Default Page를 볼 수 있다. 이것은 웹 서버가 포트를 열고, 요청을 받고, 기본 문서 루트의 HTML을 반환한다는 뜻이다.</p>
           </div>
         </details>
         
         <details id="section-3" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 03</span>
-            <h2>Nginx 설정 파일 구조</h2>
+            <h2>Nginx 설치와 설정 파일 읽기</h2>
           </summary>
           <div class="note-section-body">
-            <p>Nginx의 메인 설정은 <code>/etc/nginx/nginx.conf</code>에 있고, 사이트별 설정은 <code>/etc/nginx/sites-available/</code>과 <code>/etc/nginx/sites-enabled/</code> 구조로 관리된다. 실제 설정 파일은 available에 있고, enabled에는 심볼릭 링크로 활성화된 설정이 들어간다. <code>nginx.conf</code>는 enabled 안의 설정을 include한다.</p>
+            <p><strong>Nginx</strong>도 <strong>Apache</strong>와 유사한 설정 구조를 가진다. 패키지는 <code>sudo apt install nginx</code>로 설치하고, 상태는 <code>systemctl status nginx</code>로 확인한다. 강사는 VirtualBox 안에서 직접 볼 수도 있고, Windows 호스트에서 VM의 호스트 전용 어댑터 IP로 접속할 수도 있다고 설명한다. 예시 화면의 IP는 강사의 환경 기준이며, 학생의 VM IP는 다를 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0038.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0038.jpg" alt="Nginx 설정 파일 구조" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Nginx 설정 파일 구조</strong>
+        <span>Nginx도 /etc/nginx/nginx.conf와 sites-available, sites-enabled를 이용하며, 기본 문서 루트는 /var/www/html이다.</span>
+      </figcaption>
+    </figure>
+
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0045.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0045.jpg" alt="VirtualBox 네트워크 확인" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>VirtualBox 네트워크 확인</strong>
+        <span>강사는 Windows 호스트에서 Ubuntu VM에 접속하기 위해 NAT와 호스트 전용 어댑터 구성을 확인하고, 접속 IP가 환경마다 다를 수 있음을 설명한다.</span>
+      </figcaption>
+    </figure>
+
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0049.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0049.jpg" alt="Nginx 설치와 상태 확인" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Nginx 설치와 상태 확인</strong>
+        <span>sudo apt install nginx 후 systemctl status nginx로 서비스 상태를 확인하고, 브라우저에서 기본 페이지가 뜨는지 점검한다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo apt install nginx
+systemctl status nginx
+curl localhost
+# VM 안 브라우저: http://127.0.0.1
+# 호스트 PC 브라우저: http://&lt;Ubuntu_VM_IP&gt;</code></pre>
+                    <p>Nginx의 메인 설정 파일은 <code>/etc/nginx/nginx.conf</code>다. 이 파일에는 worker 설정, <strong>로그</strong> 위치, gzip, SSL 관련 기본 설정, 그리고 다른 설정 파일을 불러오는 <code>include</code> 구문이 있다. 특히 <code>include /etc/nginx/sites-enabled/*;</code>가 중요하다. Nginx는 <code>sites-available</code>을 직접 읽는 것이 아니라, <code>sites-enabled</code> 안에 활성화된 링크를 읽는다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0056.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0056.jpg" alt="nginx.conf의 include 구조" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>nginx.conf의 include 구조</strong>
+        <span>nginx.conf는 sites-enabled 안의 설정 파일을 include하여 활성화된 가상 호스트 설정을 불러온다.</span>
+      </figcaption>
+    </figure>
+
                     <table>
                       <thead><tr><th>경로</th><th>의미</th></tr></thead>
                       <tbody>
                         <tr><td><code>/etc/nginx/nginx.conf</code></td><td>Nginx 메인 설정 파일</td></tr>
                         <tr><td><code>/etc/nginx/sites-available/default</code></td><td>사이트별 실제 설정 파일</td></tr>
-                        <tr><td><code>/etc/nginx/sites-enabled/default</code></td><td>활성화된 설정으로 연결되는 심볼릭 링크</td></tr>
+                        <tr><td><code>/etc/nginx/sites-enabled/default</code></td><td>활성화된 설정을 가리키는 심볼릭 링크</td></tr>
                         <tr><td><code>/var/www/html</code></td><td>기본 웹 콘텐츠 루트</td></tr>
+                        <tr><td><code>/var/log/nginx/</code></td><td>접속 로그와 오류 로그 위치</td></tr>
                       </tbody>
                     </table>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0070.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0070.jpg" alt="Nginx default 사이트 설정" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Nginx default 사이트 설정</strong>
+        <span>default 설정 파일의 server 블록에는 listen 포트, root 디렉토리, index 파일, location 설정이 들어간다.</span>
+      </figcaption>
+    </figure>
+
                     <pre><code class="language-bash">cd /etc/nginx
 cat nginx.conf
 ls -l sites-enabled
 cat sites-available/default
 cat /var/www/html/index.nginx-debian.html</code></pre>
+                    <p><code>sites-available/default</code>의 <code>server</code> 블록에는 <code>listen</code>, <code>root</code>, <code>index</code>, <code>server_name</code>, <code>location</code> 설정이 들어 있다. <code>listen 80</code>은 80번 <strong>포트</strong>를 열겠다는 의미이고, <code>root /var/www/html;</code>은 요청한 파일을 찾을 기본 웹 루트다. <code>index index.html index.htm ...</code>은 디렉토리에 접근했을 때 기본으로 찾을 파일 이름이다.</p>
           </div>
         </details>
         
         <details id="section-4" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 04</span>
-            <h2>가상 사이트와 포트 변경</h2>
+            <h2>새 Nginx 가상 사이트 만들기와 포트 충돌 해결</h2>
           </summary>
           <div class="note-section-body">
-            <p>설정 파일의 <code>server</code> 블록에서 <code>listen 80</code>은 80번 <strong>포트</strong>로 요청을 받는다는 뜻이다. IPv4와 IPv6 설정이 각각 있을 수 있다. 기본 <strong>root</strong>를 <code>/var/www/html</code>에서 별도 디렉토리로 바꾸고, 8000번 포트로 새 사이트를 띄우는 실습을 진행한다.</p>
-                    <pre><code class="language-bash">sudo mkdir -p /var/www/whiteschool
-sudo vi /var/www/whiteschool/index.html
-sudo vi /etc/nginx/sites-available/default
+            <p>새 사이트를 만들 때는 기존 <code>default</code> 설정을 복사해서 출발할 수 있다. 강사는 <code>sites-available/default</code>를 <code>whiteschool</code>이라는 이름으로 복사한 뒤, 주석을 지우고 필요한 설정만 남긴다. Vim에서 <code>dd</code>는 한 줄 삭제, <code>10dd</code>는 10줄 삭제처럼 쓸 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0078.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0078.jpg" alt="심볼릭 링크로 사이트 활성화" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>심볼릭 링크로 사이트 활성화</strong>
+        <span>sites-available의 white school 설정을 sites-enabled에 ln -s로 연결해 새 가상 호스트를 활성화한다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">cd /etc/nginx/sites-available
+sudo cp default whiteschool
+sudo vi whiteschool
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/whiteschool
+ls -l
+sudo systemctl restart nginx</code></pre>
+                    <p>여기서 바로 재시작하면 오류가 날 수 있다. 복사한 설정 파일도 <code>listen 80</code>이고, 기존 default 설정도 <code>listen 80</code>이면 하나의 서버에서 같은 IP와 같은 <strong>포트</strong>를 두 설정이 동시에 잡으려 하기 때문이다. <code>systemctl status nginx</code>나 <code>journalctl -u nginx</code>를 보면 “80 포트를 이미 사용 중”이라는 bind 오류를 확인할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0083.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0083.jpg" alt="80 포트 중복 오류" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>80 포트 중복 오류</strong>
+        <span>default와 새 설정이 모두 80 포트를 listen하면 Nginx 재시작이 실패하고, status와 로그에서 bind 오류를 확인할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0090.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0090.jpg" alt="nginx -t로 설정 검사" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>nginx -t로 설정 검사</strong>
+        <span>sudo nginx -t는 재시작 전 설정 문법과 포트 충돌 같은 문제를 미리 확인하는 데 사용된다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo nginx -t
+sudo vi /etc/nginx/sites-available/whiteschool
+# listen 80; 을 listen 8000; 등으로 변경
 sudo nginx -t
 sudo systemctl restart nginx
 curl localhost:8000</code></pre>
-                    <p>설정 파일을 바꿨으면 즉시 재시작하기 전에 <code>nginx -t</code>로 문법 오류가 없는지 확인한다. 오류가 없으면 <strong>서비스</strong>를 재시작하고 브라우저나 curl로 확인한다.</p>
+                    <p><code>sudo nginx -t</code>는 <strong>Nginx</strong> 설정 문법과 기본적인 충돌을 재시작 전에 검사한다. 설정에 문제가 없으면 <code>syntax is ok</code>, <code>test is successful</code>처럼 나온다. 오류가 있으면 어느 파일의 몇 번째 줄인지 알려 주므로, 재시작 전에 반드시 확인하는 습관을 들여야 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0098.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0098.jpg" alt="새 웹 루트와 Hello 페이지" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>새 웹 루트와 Hello 페이지</strong>
+        <span>/var/www/html 아래 새 디렉토리와 index.html을 만들고 root를 바꾸면 8000번 포트에서 별도 페이지를 서비스할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo mkdir -p /var/www/html/whiteschool
+echo &#x27;&lt;h1&gt;Hello, WHS&lt;/h1&gt;&#x27; | sudo tee /var/www/html/whiteschool/index.html
+sudo vi /etc/nginx/sites-available/whiteschool
+# root /var/www/html/whiteschool; 로 변경
+sudo nginx -t
+sudo systemctl restart nginx
+curl localhost
+curl localhost:8000</code></pre>
+                    <p>80번 포트의 기본 사이트는 기존 Nginx 기본 페이지를 보여 주고, 8000번 포트의 새 사이트는 <code>Hello, WHS</code> 같은 별도 콘텐츠를 보여 줄 수 있다. 이 실습은 하나의 서버 안에서 여러 사이트를 설정 파일과 포트로 나누어 운영할 수 있음을 보여 준다.</p>
           </div>
         </details>
         
         <details id="section-5" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 05</span>
-            <h2>파일 서버: vsftpd</h2>
+            <h2>FTP 파일 서버와 vsftpd</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>파일 서버</strong>는 <strong>FTP</strong> 서버를 예로 든다. 과거에는 문서, 유틸리티, 배포판 이미지, MP3, 영상 파일을 업로드·다운로드하는 데 FTP가 많이 쓰였다. 우분투에서는 <code>vsftpd</code>를 설치해 실습한다. 설정 파일은 별도 폴더가 아니라 <code>/etc/vsftpd.conf</code> 단일 파일로 존재한다.</p>
-                    <pre><code class="language-bash">sudo apt install vsftpd
-sudo vi /etc/vsftpd.conf
-sudo systemctl restart vsftpd
-ftp 127.0.0.1</code></pre>
-                    <p>FTP 클라이언트는 <strong>우분투</strong>와 Windows에 기본 명령이 있고, <strong>GUI</strong> 클라이언트로 FileZilla도 사용할 수 있다. 한글이 깨질 경우 서버 설정에서 UTF-8 관련 값을 조정하고 서비스를 재시작한다.</p>
+            <p>웹 서버 다음은 파일 서버다. 강의에서는 대표적인 FTP 서버로 <code>vsftpd</code>를 사용한다. FTP는 과거 문서, 유틸리티, 배포판 이미지, MP3, 영상 파일을 업로드·다운로드하는 데 많이 쓰였던 파일 전송 <strong>프로토콜</strong>이다. 지금은 SFTP, <strong>클라우드</strong> 스토리지, 웹 기반 파일 공유가 더 많이 쓰이지만, 서버와 클라이언트, 계정, 권한, 디렉토리 제한을 배우는 데 좋은 예제다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0100.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0100.jpg" alt="vsftpd 파일 서버" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>vsftpd 파일 서버</strong>
+    <span>FTP 서버는 vsftpd 패키지로 설치하며, 설정은 /etc/vsftpd.conf 단일 파일에서 관리한다.</span>
+  </figcaption>
+</figure>
+
+                <p>웹 서버처럼 설정 파일이 항상 폴더 구조를 갖는 것은 아니다. <strong>Apache</strong>와 <strong>Nginx</strong>는 설정이 많아 <code>/etc/apache2/</code>, <code>/etc/nginx/</code> 아래 여러 파일과 폴더를 쓰지만, vsftpd는 기본 설정이 비교적 단순해 <code>/etc/vsftpd.conf</code> 단일 파일을 중심으로 관리한다. 설정 파일 구조는 Ubuntu가 임의로 정한다기보다 각 서버 프로그램을 만든 쪽의 설계에 따라 달라진다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0109.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0109.jpg" alt="FileZilla FTP 클라이언트" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>FileZilla FTP 클라이언트</strong>
+    <span>Ubuntu와 Windows에는 ftp CLI 클라이언트가 있고, GUI 클라이언트로 FileZilla 같은 서드파티 도구도 사용할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>FTP 클라이언트는 Ubuntu와 Windows에 기본 <strong>CLI</strong> 명령으로 들어 있을 수 있고, <strong>GUI</strong> 클라이언트로 FileZilla 같은 서드파티 도구도 있다. Ubuntu 내부 FTP CLI에서는 한글 파일명이 깨질 수 있고, GUI 클라이언트에서도 설정에 따라 깨질 수 있다. 이런 경우 서버의 UTF-8 관련 설정을 조정하고 서비스를 재시작해 확인한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0117.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0117.jpg" alt="FTP 익명 접속, write_enable, chroot" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>FTP 익명 접속, write_enable, chroot</strong>
+    <span>vsftpd.conf에서 anonymous_enable, local_enable, write_enable, chroot_local_user, allow_writeable_chroot 같은 설정으로 접속과 권한을 제어한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>vsftpd</strong>의 주요 설정은 다음처럼 이해한다. <code>anonymous_enable</code>은 익명 접속 허용 여부, <code>local_enable</code>은 로컬 OS 계정 접속 허용 여부, <code>write_enable</code>은 업로드·삭제 같은 쓰기 작업 허용 여부, <code>chroot_local_user</code>는 사용자를 홈 디렉토리 밖으로 나가지 못하게 가두는 설정이다. 쓰기 <strong>권한</strong>은 업로드뿐 아니라 삭제와 변경까지 가능하게 하므로 기본값이 꺼져 있는 이유를 이해해야 한다.</p>
           </div>
         </details>
         
         <details id="section-6" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 06</span>
-            <h2>FTP 권한: 익명, 쓰기, chroot</h2>
+            <h2>FTP 실습: 접속, 다운로드, 업로드, chroot</h2>
           </summary>
           <div class="note-section-body">
-            <p>기본적으로 <strong>FTP</strong>는 OS <strong>사용자 계정</strong>으로 로그인해 홈 디렉토리에 접근한다. 익명 사용자를 허용하려면 anonymous 관련 설정을 켜고, 공통 공유 폴더를 지정할 수 있다. 쓰기 권한은 기본적으로 꺼져 있는데, 업로드와 삭제가 가능해지므로 필요할 때만 <code>write_enable</code>을 켠다.</p>
-                    <p>사용자가 <strong>로그</strong>인 후 <code>cd ..</code>으로 상위 디렉토리에 올라가 시스템 파일을 볼 수 있으면 위험하다. 이를 막기 위해 <code>chroot_local_user=YES</code> 같은 설정으로 사용자의 홈 디렉토리를 루트처럼 묶는다. 버전에 따라 추가 <strong>쓰기</strong> 관련 설정이 필요할 수 있고, 설정 후에는 반드시 서비스를 재시작한다.</p>
-                    <pre><code class="language-bash"># /etc/vsftpd.conf 예시
+            <p>실습에서는 먼저 <strong>vsftpd</strong>가 설치되어 있지 않음을 <code>systemctl status vsftpd</code>로 확인한 뒤 설치한다. 설치 중 <strong>systemd</strong>에 서비스가 등록되고, 설치 후에는 active running 상태가 된다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0123.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0123.jpg" alt="vsftpd 설치와 상태" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>vsftpd 설치와 상태</strong>
+        <span>sudo apt install vsftpd 후 systemctl status vsftpd로 파일 서버가 active running 상태인지 확인한다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">systemctl status vsftpd
+sudo apt install vsftpd
+systemctl status vsftpd
+ftp 127.0.0.1</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0128.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0128.jpg" alt="Ubuntu 내부 FTP 접속" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Ubuntu 내부 FTP 접속</strong>
+        <span>Ubuntu 안에서 ftp 127.0.0.1로 접속하면 현재 사용자 계정이 기본값으로 들어가고 홈 디렉토리 파일을 볼 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>Ubuntu 안에서 <code>ftp 127.0.0.1</code>로 <strong>접속</strong>하면 현재 <strong>로그</strong>인한 사용자 <code>user1</code>이 기본 사용자명처럼 들어갈 수 있다. 비밀번호를 입력하면 user1의 홈 디렉토리를 볼 수 있고, <code>ls</code>, <code>pwd</code>, <code>get</code>, <code>put</code>, <code>cd</code> 같은 FTP 명령을 사용할 수 있다. 로컬에서 만든 <code>hello.txt</code>가 FTP 접속에서도 보이는 것을 통해, FTP가 OS 사용자 홈 디렉토리를 보여 주고 있음을 확인한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0134.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0134.jpg" alt="Windows에서 FTP 다운로드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Windows에서 FTP 다운로드</strong>
+        <span>Windows 클라이언트에서는 VM의 원격 IP로 접속하고 get hello.txt로 서버의 파일을 내려받는다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash"># Windows 또는 다른 클라이언트에서
+ftp &lt;Ubuntu_VM_IP&gt;
+user1
+get hello.txt
+quit
+type hello.txt</code></pre>
+                    <p>Windows에서 접속할 때 <code>127.0.0.1</code>은 Windows 자신을 의미하므로 Ubuntu VM에 접속되지 않는다. VM의 호스트 전용 어댑터 IP로 접속해야 한다. Ubuntu 안에서 Ubuntu 자신으로 접속할 때와 달리, Windows 클라이언트에서는 사용자명을 직접 <strong>입력</strong>해야 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0140.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0140.jpg" alt="FTP 업로드 권한 거부" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>FTP 업로드 권한 거부</strong>
+        <span>기본 설정에서는 쓰기 권한이 꺼져 있어 put myFile.txt 같은 업로드 시도가 permission denied로 실패한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>기본 설정에서는 <strong>업로드</strong>가 막혀 있다. Windows에서 메모장으로 <code>myFile.txt</code>를 만들고 FTP에서 <code>put myFile.txt</code>를 <strong>실행</strong>하면 <code>permission denied</code>가 날 수 있다. 이때 서버의 <code>/etc/vsftpd.conf</code>에서 쓰기 권한을 켜야 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0146.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0146.jpg" alt="write_enable 활성화" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>write_enable 활성화</strong>
+        <span>vsftpd.conf에서 write_enable을 켜고 서비스를 재시작하면 FTP 업로드가 가능해진다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo vi /etc/vsftpd.conf
+# /etc/vsftpd.conf 예시
 write_enable=YES
+sudo systemctl restart vsftpd
+systemctl status vsftpd
+ftp &lt;Ubuntu_VM_IP&gt;
+put myFile.txt</code></pre>
+                    <p>설정 파일을 바꿨으면 항상 <strong>서비스</strong>를 재시작해야 한다. 재시작 후 다시 접속하면 <code>put</code> 업로드가 성공하고, 서버 홈 디렉토리에 파일이 생긴 것을 확인할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0153.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0153.jpg" alt="chroot로 홈 디렉토리에 가두기" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>chroot로 홈 디렉토리에 가두기</strong>
+        <span>chroot_local_user=YES와 allow_writeable_chroot=YES를 설정하면 사용자가 FTP 접속 후 상위 디렉토리로 벗어나지 못하게 할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo vi /etc/vsftpd.conf
 chroot_local_user=YES
-allow_writeable_chroot=YES</code></pre>
+allow_writeable_chroot=YES
+sudo systemctl restart vsftpd
+ftp &lt;Ubuntu_VM_IP&gt;
+cd ..
+pwd</code></pre>
+                    <p>처음 상태에서는 FTP 로그인 후 <code>cd ..</code>로 상위 디렉토리로 올라가 시스템의 여러 파일을 볼 수 있다. 이것은 운영 환경에서는 위험하다. <code>chroot_local_user=YES</code>를 켜면 사용자의 홈 디렉토리를 FTP 세션의 루트처럼 만들어 상위로 벗어나지 못하게 할 수 있다. 일부 vsftpd 버전에서는 홈 디렉토리가 쓰기 가능할 때 로그인이 거부될 수 있어 <code>allow_writeable_chroot=YES</code>가 함께 필요하다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0158.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0158.jpg" alt="FTP 다운로드·업로드·chroot 확인" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>FTP 다운로드·업로드·chroot 확인</strong>
+        <span>설정 적용 후 다운로드와 업로드가 가능하고, cd ..로 상위 디렉토리 이동을 시도해도 홈 밖으로 벗어나지 않는 것을 확인한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>최종적으로 <strong>다운로드</strong>, 업로드, <strong>chroot</strong> 제한이 모두 동작하는지 확인한다. 이 강의에서는 모든 FTP 설정을 다 실습하지는 않지만, 익명 접속 허용, 특정 사용자 허용/거부, 화이트리스트/블랙리스트 같은 접근 제어도 설정 파일을 통해 더 확장할 수 있다고 설명한다.</p>
           </div>
         </details>
         
         <details id="section-7" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 07</span>
-            <h2>데이터베이스 서버: MySQL</h2>
+            <h2>데이터베이스 서버: MySQL 설치와 최초 접속</h2>
           </summary>
           <div class="note-section-body">
-            <p>마지막은 <strong>MySQL</strong> 서버다. 데이터베이스에는 MySQL, MariaDB, MSSQL, PostgreSQL 등 여러 종류가 있지만, 실습에서는 대표적인 MySQL을 사용한다. <strong>우분투</strong> 20.04 기준 최초 접속은 <code>sudo mysql</code>로 진행한다. 과거 버전이나 다른 배포판에서는 <code>mysql -u root</code> 흐름이 다를 수 있다.</p>
-                    <pre><code class="language-sql">sudo apt install mysql-server
+            <p>마지막은 <strong>데이터베이스 서버</strong>다. DB 서버에는 <strong>MySQL</strong>, MariaDB, MSSQL, PostgreSQL 등 여러 종류가 있다. 이 강의에서는 가장 대표적인 MySQL을 사용한다. 데이터베이스 수업이 아니므로 SQL 문법을 깊게 다루지는 않고, 리눅스 서버에 DB 서버를 설치하고 서비스 상태를 확인한 뒤 기본 사용자와 권한을 만드는 흐름만 익힌다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0160.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0160.jpg" alt="대표 데이터베이스 서버" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>대표 데이터베이스 서버</strong>
+        <span>DB 서버에는 MySQL, MariaDB, MSSQL, PostgreSQL 등이 있으며 실습에서는 MySQL을 사용한다.</span>
+      </figcaption>
+    </figure>
+
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0161.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0161.jpg" alt="MySQL 설치와 secure installation" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>MySQL 설치와 secure installation</strong>
+        <span>mysql-server 패키지를 설치하고, 필요하면 mysql_secure_installation으로 암호 정책과 기본 보안 설정을 조정할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-bash">sudo apt install mysql-server
+sudo mysql_secure_installation
 systemctl status mysql
-sudo mysql
+sudo mysql</code></pre>
+                    <p><code>mysql-server</code> <strong>패키지</strong>를 설치하면 서버뿐 아니라 MySQL 클라이언트와 여러 의존 패키지가 함께 설치된다. 설치 중 패키지 목록이 오래되어 다운로드가 실패하면 앞 강의처럼 <code>sudo apt update</code> 후 다시 설치한다. 설치가 끝날 때 <strong>systemd</strong>에 MySQL 서비스가 등록되는 심볼릭 링크 메시지도 볼 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0167.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0167.jpg" alt="MySQL 상태와 최초 접속" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>MySQL 상태와 최초 접속</strong>
+        <span>Ubuntu 18.04 이후 흐름에서는 systemctl status mysql로 상태를 보고, 최초 관리는 sudo mysql로 접속한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><code>mysql_secure_installation</code>은 암호 복잡도, <strong>root</strong> 암호, 익명 사용자, 원격 root <strong>로그</strong>인, 테스트 DB 같은 보안 관련 기본 설정을 조정하는 도구다. 강의에서는 복잡한 정책 없이 기본 실습을 진행하지만, 운영 환경에서는 반드시 보안 설정을 신중히 적용해야 한다. Ubuntu 18.04 이후 흐름에서는 초기 관리 접속을 <code>sudo mysql</code>로 수행한다. 과거 자료에서 보이는 <code>mysql -u root</code> 방식은 버전과 배포판에 따라 다를 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0176.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0176.jpg" alt="MySQL 설치 실습" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>MySQL 설치 실습</strong>
+        <span>mysql-server 설치 과정에서는 서버뿐 아니라 클라이언트와 여러 의존 패키지가 함께 설치된다.</span>
+      </figcaption>
+    </figure>
+          </div>
+        </details>
+        
+        <details id="section-8" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 08</span>
+            <h2>MySQL 내부 사용자, 권한, 테이블 실습</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>FTP는 Ubuntu의 OS <strong>사용자 계정</strong>으로 <strong>로그</strong>인할 수 있었다. 하지만 MySQL은 DB 내부 사용자와 권한을 따로 관리한다. 따라서 데이터베이스를 만들고, DB 사용자를 만들고, 그 사용자가 어느 위치에서 접속할 수 있는지와 어떤 데이터베이스에 권한을 가질지를 별도로 지정해야 한다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0184.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0184.jpg" alt="MySQL 콘솔과 DB 생성" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>MySQL 콘솔과 DB 생성</strong>
+        <span>sudo mysql로 접속한 뒤 show databases, create database, create user, grant privileges 같은 SQL 명령을 실행한다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-sql">sudo mysql
 
 SHOW DATABASES;
 CREATE DATABASE whiteschool;
-CREATE USER &#x27;user1&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;QWE123&#x27;;
+CREATE USER &#x27;user1&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;qwe123&#x27;;
 GRANT ALL PRIVILEGES ON whiteschool.* TO &#x27;user1&#x27;@&#x27;localhost&#x27;;
 FLUSH PRIVILEGES;
 SELECT user, host FROM mysql.user;
-exit
+EXIT;
 
 mysql -h localhost -u user1 -p
 USE whiteschool;</code></pre>
-                    <p><strong>FTP</strong>는 OS <strong>사용자 계정</strong>을 사용할 수 있었지만, MySQL은 DB 내부 사용자와 권한을 따로 관리한다. 그래서 데이터베이스, 사용자, 접속 위치, 권한 부여가 별도로 필요하다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0188.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0188.jpg" alt="DB 사용자와 권한 부여" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>DB 사용자와 권한 부여</strong>
+        <span>MySQL은 OS 계정과 별도의 DB 사용자를 관리하며, 특정 데이터베이스에 대한 권한을 grant로 부여하고 flush privileges로 적용한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><code>SHOW DATABASES;</code>는 현재 보이는 데이터베이스 목록을 <strong>출력</strong>한다. <code>CREATE DATABASE whiteschool;</code>은 새 데이터베이스를 만든다. <code>CREATE USER 'user1'@'localhost'</code>는 localhost에서 접속할 수 있는 DB 사용자 user1을 만든다는 뜻이다. 여기서 user1은 Ubuntu OS 사용자 user1과 이름이 같을 수는 있지만 별개의 DB 사용자다.</p>
+                    <p><code>GRANT ALL PRIVILEGES ON whiteschool.* TO 'user1'@'localhost';</code>는 user1에게 whiteschool 데이터베이스의 모든 테이블에 대한 <strong>권한</strong>을 준다. <code>FLUSH PRIVILEGES;</code>는 권한 변경을 반영한다. 그 후 <code>mysql -h localhost -u user1 -p</code>로 새 DB 사용자로 접속해 <code>USE whiteschool;</code>을 <strong>실행</strong>하면, 해당 데이터베이스 안에서 작업할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0191.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/os-basic/운영체제 기초-09-서버프로그램-설치-및-관리/운영체제 기초-09-서버프로그램-설치-및-관리 - 0191.jpg" alt="테이블 생성과 조회" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>테이블 생성과 조회</strong>
+        <span>권한을 받은 user1으로 접속해 데이터베이스를 선택하고 테이블을 만들며, show tables와 select로 결과를 확인한다.</span>
+      </figcaption>
+    </figure>
+
+                    <pre><code class="language-sql">CREATE TABLE students (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(50)
+);
+INSERT INTO students (name) VALUES (&#x27;user1&#x27;);
+SHOW TABLES;
+SELECT * FROM students;</code></pre>
+                    <p>강의는 데이터베이스 문법 자체를 깊게 다루지는 않는다. 중요한 점은 <strong>리눅스</strong> 서버 운영 관점에서 <strong>MySQL</strong>도 하나의 서버 프로그램이며, 패키지 설치, 서비스 상태 확인, 초기 접속, 내부 사용자 생성, 권한 부여, 접속 테스트라는 운영 흐름을 가진다는 것이다.</p>
           </div>
         </details>
         
@@ -244,8 +665,9 @@ USE whiteschool;</code></pre>
 
 	    <section id="review" class="content-wrap note-block">
 	      <h2>복습 체크</h2>
-	      <ul class="check-list"><li>Nginx의 available/enabled 설정 구조를 설명할 수 있는가?</li><li>설정 변경 후 `nginx -t`와 <strong>서비스</strong> 재시작이 필요한 이유를 이해했는가?</li><li><strong>FTP</strong>에서 write_enable과 chroot 설정이 각각 무엇을 통제하는지 말할 수 있는가?</li><li><strong>MySQL</strong>에서 OS 사용자와 DB 사용자가 별도라는 점을 설명할 수 있는가?</li></ul>
+	      <ul class="check-list"><li>서버 프로그램 운영의 공통 흐름인 설치, 설정 파일 수정, <strong>서비스</strong> 재시작, 접속 확인을 설명할 수 있는가?</li><li><strong>Apache</strong>가 Red Hat 계열에서 httpd, Ubuntu 계열에서 apache2로 불린다는 점과 <strong>Nginx</strong>의 위치를 이해했는가?</li><li><strong>Nginx</strong>의 `/etc/nginx/nginx.conf`, `sites-available`, `sites-enabled`, `/var/www/html`, `/var/log/nginx`의 역할을 말할 수 있는가?</li><li>sites-enabled가 심볼릭 링크로 활성 사이트를 관리한다는 점을 설명할 수 있는가?</li><li>80 <strong>포트</strong> 중복으로 <strong>Nginx</strong> 재시작이 실패할 수 있고, `systemctl status`, `journalctl`, `nginx -t`로 원인을 확인할 수 있는가?</li><li>새 웹 루트와 `index.html`을 만들고 `listen 8000`, `<strong>root</strong> /var/www/html/whiteschool` 같은 설정으로 별도 사이트를 띄우는 흐름을 이해했는가?</li><li><strong>vsftpd</strong>가 `/etc/vsftpd.conf` 단일 설정 파일을 사용하며, FTP 클라이언트 접속에서 로컬호스트와 VM IP의 차이를 구분할 수 있는가?</li><li>FTP의 `get`, `put`, `write_enable=YES`, `chroot_local_user=YES`, `allow_writeable_chroot=YES`가 각각 무엇을 하는지 설명할 수 있는가?</li><li>FileZilla 같은 <strong>GUI</strong> FTP 클라이언트와 UTF-8 파일명 문제를 이해했는가?</li><li><strong>MySQL</strong> 설치 후 `systemctl status mysql`, `<strong>sudo</strong> mysql`, `mysql_secure_installation`의 역할을 구분할 수 있는가?</li><li><strong>MySQL</strong>에서 OS 사용자와 DB 사용자가 별도이며, `CREATE USER`, `GRANT`, `FLUSH PRIVILEGES`로 DB <strong>권한</strong>을 부여한다는 점을 설명할 수 있는가?</li><li><strong>권한</strong>을 받은 DB 사용자로 접속해 `USE`, `CREATE TABLE`, `INSERT`, `SHOW TABLES`, `SELECT`를 <strong>실행</strong>하는 기본 흐름을 이해했는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

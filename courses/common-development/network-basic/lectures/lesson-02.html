@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>네트워크 기초 1-2 - 프로토콜 계층 구조</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -115,8 +115,20 @@
           </summary>
           <div class="note-section-body">
             <p><strong>네트워크</strong> 흐름을 하나의 거대한 과정으로 보면 너무 복잡하다. 그래서 강의는 네트워크를 <strong>계층 구조</strong>로 나누어 이해한다. 계층 구조는 크고 복잡한 시스템을 잘 정의된 부분으로 나누어, 각 부분이 어떤 역할을 하는지 따로 논의할 수 있게 해 준다. 네트워크에서는 이를 서비스 모델이라고도 부른다.</p>
-<p>각 계층은 상위 계층에게 특정 <strong>서비스</strong>를 제공하고, 상위 계층은 하위 계층의 서비스를 이용한다. 예를 들어 응용 계층은 메시지를 만들지만 직접 전선을 통해 <strong>비트</strong>를 보내지는 않는다. 전송 계층, 네트워크 계층, 링크 계층, 물리 계층이 차례대로 자기 역할을 수행하면서 실제 통신이 이루어진다.</p>
-<div class="callout">핵심 문장: 상위 계층은 하위 계층의 서비스를 사용하고, 각 계층은 자기 계층의 규칙과 데이터 단위를 가진다.</div>
+                <p>슬라이드는 이 단순화의 의미를 두 가지로 잡아 준다. 첫째, 한 계층의 구현이 변하더라도 시스템의 나머지 부분은 그대로 유지될 수 있다. 둘째, 각 계층은 상위 계층에게 제공하는 <strong>서비스</strong>에 관심을 갖고, 자기 계층의 동작을 수행할 때는 아래 계층의 서비스를 사용한다. 그래서 계층 구조는 단순한 그림이 아니라 네트워크 기능을 나누어 설계하고 설명하는 기준이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0003.jpg" alt="계층 구조와 Service Model" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>계층 구조와 Service Model</strong>
+    <span>인터넷 프로토콜 스택은 Application, Transport, Network, Link, Physical의 5계층으로 설명되며, 각 계층은 상위 계층에 서비스를 제공하고 하위 계층 서비스를 사용한다.</span>
+  </figcaption>
+</figure>
+
+                <p>예를 들어 응용 계층은 브라우저나 프로그램에서 나온 메시지를 만들지만, 직접 랜선 위로 <strong>비트</strong>를 밀어 넣지는 않는다. 전송 계층은 메시지를 <strong>프로세스</strong> 간 전달 가능한 단위로 만들고, 네트워크 계층은 호스트 간 경로를 다루며, 링크 계층은 이웃 네트워크 요소로 프레임을 보내고, 물리 계층은 실제 매체로 비트를 보낸다. 상위 계층은 아래 계층이 제공하는 서비스를 믿고 자기 역할에 집중한다.</p>
+                <div class="callout">핵심 문장: 상위 계층은 하위 계층의 서비스를 사용하고, 각 계층은 자기 계층의 규칙과 데이터 단위를 가진다.</div>
           </div>
         </details>
         
@@ -137,6 +149,7 @@
     <tr><td><strong>물리 계층</strong></td><td>bit</td><td>RJ45 케이블, 구리선, 광케이블 같은 매체로 <strong>비트</strong>를 이동시킨다.</td><td>전송 매체</td></tr>
   </tbody>
 </table>
+<p>이 표에서 가장 중요하게 봐야 할 것은 계층 이름과 데이터 단위의 연결이다. 응용 계층은 message, 전송 계층은 segment, 네트워크 계층은 datagram 또는 packet, 데이터 링크 계층은 frame, 물리 계층은 bit를 다룬다. 강사는 이 단위들이 뒤에서 설명할 <strong>캡슐화</strong> 때문에 계속 더해지고 감싸지는 구조라고 미리 강조한다.</p>
           </div>
         </details>
         
@@ -147,8 +160,64 @@
           </summary>
           <div class="note-section-body">
             <p><strong>물리 계층</strong>은 <strong>비트</strong> 단위 정보를 실제 전송 매체로 보내는 가장 낮은 계층이다. 우리가 랜선이라고 부르는 RJ45 케이블, 구리선, 광케이블 같은 매체를 통해 링크 계층 프레임을 구성하는 각 비트가 다음 노드로 이동한다.</p>
-<p><strong>데이터 링크 계층</strong>은 프레임을 사용한다. 이 계층은 한 <strong>네트워크</strong>에서 이웃 네트워크 요소로 프레임을 이동시키며, 어떤 링크 계층 프로토콜을 쓰는지에 따라 제공 서비스가 달라진다. 네트워크 계층은 자기 단위인 데이터그램을 링크 계층에게 내려 보내고, 링크 계층은 그것을 프레임 안에 담아 다음 네트워크 요소로 전달한다.</p>
-<p><strong>네트워크 계층</strong>은 데이터그램을 사용하며, 한 호스트에서 다른 호스트까지 데이터가 가는 최적 경로를 선택한다. 그래서 <strong>라우팅</strong>과 깊게 연결된다. 전송 계층은 TCP와 UDP를 사용해 클라이언트와 서버의 애플리케이션 프로세스 사이에서 메시지를 주고받게 한다. 응용 계층은 브라우저나 프로그램이 직접 사용하는 계층으로, HTTP, SMTP, FTP 같은 프로토콜을 통해 메시지를 교환한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0007.jpg" alt="Physical Layer" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Physical Layer</strong>
+    <span>물리 계층의 단위는 bit이며, 프레임 내부의 각 비트를 꼬임쌍선이나 단일 모드 광케이블 같은 실제 전송 매체를 통해 다음 노드로 이동시킨다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>데이터 링크 계층</strong>은 프레임을 사용한다. 이 계층은 한 <strong>네트워크</strong>에서 이웃 네트워크 요소로 프레임을 이동시키며, 어떤 링크 계층 프로토콜을 쓰는지에 따라 제공 서비스가 달라진다. 네트워크 계층은 자기 단위인 데이터그램을 링크 계층에게 내려 보내고, 링크 계층은 그것을 프레임 안에 담아 다음 네트워크 요소로 전달한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0011.jpg" alt="Data Link Layer" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Data Link Layer</strong>
+    <span>데이터 링크 계층의 단위는 frame이며, 전체 프레임을 한 네트워크 요소에서 이웃 네트워크 요소로 이동시킨다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>네트워크 계층</strong>은 데이터그램을 사용하며, 한 호스트에서 다른 호스트까지 데이터가 가는 최적 경로를 선택한다. 그래서 <strong>라우팅</strong>과 깊게 연결된다. 강사는 이 계층을 IP 계층이라고도 부른다고 설명한다. 현재 인터넷의 모든 주요 요소는 IP 프로토콜을 수행하며, 상위 계층인 전송 계층의 segment를 운반한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0013.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0013.jpg" alt="Network Layer" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Network Layer</strong>
+    <span>네트워크 계층은 IP 계층이라고도 하며, datagram을 단위로 한 호스트에서 다른 호스트까지 최적 경로를 선택하고 전송한다.</span>
+  </figcaption>
+</figure>
+
+                <p>전송 계층은 <strong>TCP</strong>와 <strong>UDP</strong>를 사용해 클라이언트와 서버의 애플리케이션 프로세스 사이에서 메시지를 주고받게 한다. TCP는 연결 지향형 서비스를 제공하고, 목적지로의 메시지 전달 보장과 흐름 제어를 포함한다. 또 긴 메시지를 짧은 메시지로 나누고, 혼잡 제어 기능을 제공한다. 반면 UDP는 비연결형 서비스를 제공하며 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다고 강의에서 정리한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0017.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0017.jpg" alt="Transport Layer" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Transport Layer</strong>
+    <span>전송 계층은 segment를 단위로 클라이언트와 서버의 애플리케이션 계층 메시지를 전달하며, 대표 프로토콜로 TCP와 UDP가 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>응용 계층은 브라우저나 프로그램이 직접 사용하는 계층이다. 웹사이트에 접속하거나 프로그램이 네트워크로 데이터를 보내려 할 때, 응용 계층은 message라는 단위의 데이터를 생성한다. 이 메시지를 실제로 전달하기 위해서는 하위 계층들의 <strong>서비스</strong>가 필요하다. 대표적인 응용 계층 <strong>프로토콜</strong>은 HTTP, SMTP, FTP다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0021.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0021.jpg" alt="Application Layer" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Application Layer</strong>
+    <span>응용 계층은 message를 단위로 네트워크 애플리케이션 간 정보를 교환하며 HTTP, SMTP, FTP 같은 프로토콜을 사용한다.</span>
+  </figcaption>
+</figure>
           </div>
         </details>
         
@@ -158,19 +227,31 @@
             <h2>캡슐화</h2>
           </summary>
           <div class="note-section-body">
-            <p>각 계층의 데이터 단위가 다른 이유는 <strong>캡슐화</strong> 때문이다. 응용 계층에서 메시지가 만들어지면 전송 계층은 여기에 전송 계층 헤더를 붙여 세그먼트를 만든다. <strong>네트워크 계층</strong>은 세그먼트에 IP 헤더를 붙여 데이터그램을 만든다. 링크 계층은 데이터그램에 링크 계층 헤더를 붙여 프레임을 만든다. 마지막으로 물리 계층은 프레임을 비트로 전달한다.</p>
-<div class="diagram">
-  <div><span class="node-title">Message</span><p>응용 계층 데이터</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">Segment</span><p>전송 계층 헤더 추가</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">Datagram</span><p>IP 헤더 추가</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">Frame</span><p>링크 계층 헤더 추가</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">Bits</span><p>물리 매체로 전송</p></div>
-</div>
-<p>강의는 캡슐화를 꼭 이해해야 한다고 강조한다. 이후 <strong>Wireshark</strong> 실습에서 Frame, Ethernet, IPv4, <strong>TCP</strong>, HTTP가 층층이 보이는 이유가 바로 이 캡슐화 구조이기 때문이다.</p>
+            <p>각 계층의 데이터 단위가 다른 이유는 <strong>캡슐화</strong> 때문이다. 강사는 “기존의 메시지에서 송수신에 필요한 Header를 붙여서 캡슐화한다”고 설명한다. 즉 데이터가 아래 계층으로 내려갈수록 기존 데이터 앞에 해당 계층이 해석할 헤더가 붙고, 그 결과 새로운 계층 단위가 된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0023.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-02-프로토콜-계층-구조/네트워크 기초-02-프로토콜-계층-구조 - 0023.jpg" alt="캡슐화" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>캡슐화</strong>
+    <span>기존 메시지에 송수신에 필요한 header가 계층별로 붙으면서 message, segment, packet 또는 datagram, frame으로 감싸져 내려간다.</span>
+  </figcaption>
+</figure>
+
+                <p>응용 계층에서 메시지가 만들어지면 전송 계층은 여기에 전송 계층 헤더를 붙여 세그먼트를 만든다. <strong>네트워크 계층</strong>은 세그먼트에 IP 헤더를 붙여 데이터그램을 만든다. 강의에서는 packet과 datagram을 거의 같은 의미로 언급하지만, 이후 설명에서는 네트워크 계층 단위를 datagram이라고 부르겠다고 정리한다. 링크 계층은 데이터그램에 링크 계층 헤더를 붙여 프레임을 만든다. 마지막으로 <strong>물리 계층</strong>은 프레임을 비트로 바꾸어 실제 매체를 통해 전송한다.</p>
+                <div class="diagram">
+                  <div><span class="node-title">Message</span><p>응용 계층 데이터</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">Segment</span><p>전송 계층 헤더 추가</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">Datagram</span><p>IP 헤더 추가</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">Frame</span><p>링크 계층 헤더 추가</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">Bits</span><p>물리 매체로 전송</p></div>
+                </div>
+                <p>강의는 캡슐화를 꼭 이해해야 한다고 강조한다. 이후 <strong>Wireshark</strong> 실습에서 Frame, Ethernet, IPv4, <strong>TCP</strong>, HTTP가 층층이 보이는 이유가 바로 이 캡슐화 구조이기 때문이다.</p>
           </div>
         </details>
         
@@ -191,6 +272,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>계층 구조</strong>를 <strong>서비스</strong> 모델이라고 부르는 이유를 설명할 수 있는가?</li><li>각 계층의 데이터 단위가 message, segment, datagram, frame, bit로 달라지는 이유를 말할 수 있는가?</li><li><strong>캡슐화</strong> 과정을 위에서 아래로 순서대로 설명할 수 있는가?</li><li><strong>Wireshark</strong>에서 여러 <strong>프로토콜</strong> 계층이 겹쳐 보이는 이유를 이해했는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

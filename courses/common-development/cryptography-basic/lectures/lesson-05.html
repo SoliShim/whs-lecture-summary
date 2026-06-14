@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>암호학 기초 1-5 - 공개키 암호기술</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -154,7 +154,17 @@
             <h2>키 배송 문제</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>공개키 암호</strong> 기술을 이해하려면 먼저 <strong>대칭키 암호</strong> 기술의 키 배송 문제를 봐야 한다. 대칭키 암호를 사용하려면 송신자와 수신자가 같은 키를 사전에 공유해야 한다. 과거에는 인편으로 안전하게 전달할 수 있었지만, 인터넷 환경에서는 매번 사람을 통해 키를 전달하는 방식이 한계가 있다.</p>
+            <figure class="screen-figure">
+      <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0002.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0002.jpg" alt="키 배송 문제" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>키 배송 문제</strong>
+        <span>대칭키를 사전에 공유해야 하는 구조에서 사용자가 늘수록 필요한 키 수가 급증하고, 이를 해결하기 위해 Diffie-Hellman과 공개키 암호가 등장함을 설명한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p><strong>공개키 암호</strong> 기술을 이해하려면 먼저 <strong>대칭키 암호</strong> 기술의 키 배송 문제를 봐야 한다. 대칭키 암호를 사용하려면 송신자와 수신자가 같은 키를 사전에 공유해야 한다. 과거에는 인편으로 안전하게 전달할 수 있었지만, 인터넷 환경에서는 매번 사람을 통해 키를 전달하는 방식이 한계가 있다.</p>
                     <p>사용자가 많아질수록 관리해야 할 키 수도 급격히 증가한다. 천 명의 직원이 서로 비밀 통신을 하려면 한 사람은 다른 999명과 키를 가져야 하고, 회사 전체로는 499,500개의 키가 필요하다고 강의는 계산한다.</p>
                     <pre><code class="language-text">n명의 사용자가 모두 서로 다른 대칭키를 공유해야 할 때 필요한 키 수
 
@@ -183,7 +193,17 @@
             <h2>Diffie-Hellman 키 교환</h2>
           </summary>
           <div class="note-section-body">
-            <p>Diffie와 Hellman은 1970년대에 키를 사전에 공유하지 않고도 <strong>암호화</strong>와 <strong>복호화</strong>에 사용할 수 있는 공통 키를 만들 수 있는 알고리즘을 고안했다. Diffie-Hellman 키 교환 알고리즘은 두 컴퓨터가 동일한 공유키를 생성할 수 있게 하는 비대칭 암호 기술 기반의 수학적 알고리즘이다.</p>
+            <figure class="screen-figure">
+      <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0044.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0044.jpg" alt="Diffie-Hellman 키 교환" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Diffie-Hellman 키 교환</strong>
+        <span>공개 정보 g, p와 개인 비밀값 a, b를 이용해 서로 비밀값을 직접 교환하지 않고 같은 공유키를 만드는 과정을 필기와 함께 보여 준다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>Diffie와 Hellman은 1970년대에 키를 사전에 공유하지 않고도 <strong>암호화</strong>와 <strong>복호화</strong>에 사용할 수 있는 공통 키를 만들 수 있는 알고리즘을 고안했다. Diffie-Hellman 키 교환 알고리즘은 두 컴퓨터가 동일한 공유키를 생성할 수 있게 하는 비대칭 암호 기술 기반의 수학적 알고리즘이다.</p>
                     <p>두 사람은 먼저 공개되어도 무방한 특정 정보 p와 g를 공유한다. Alice는 자신의 비밀값 a를 사용해 계산한 값을 Bob에게 보내고, Bob은 자신의 비밀값 b를 사용해 계산한 값을 Alice에게 보낸다. 두 사람은 서로의 비밀값 a, b를 직접 교환하지 않지만, 각자 계산하면 같은 공유키를 얻는다.</p>
                     <pre><code class="language-text">공개 정보: p, g
 Alice의 비밀값: a
@@ -215,8 +235,18 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
             <h2>디지털 서명</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>디지털 서명</strong>은 <strong>공개키 암호</strong> 알고리즘, 즉 비대칭 암호 기술을 이용한 방법이다. 강의는 송신자의 개인키로 암호화하는 것이 디지털 서명이라고 설명한다. 디지털 서명은 해시 함수와 비대칭 암호 기술을 함께 사용해 인증, 무결성, 부인방지를 제공한다.</p>
-<p>보통 원본 전체를 개인키로 <strong>암호화</strong>하는 방식이 아니라, 메시지 또는 코드의 해시값을 송신자의 개인키로 암호화해 서명으로 사용한다. 수신자는 송신자의 공개키로 서명을 확인하고, 자신이 계산한 해시값과 비교해 <strong>무결성</strong>을 확인한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0050.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0050.jpg" alt="디지털 서명 개요" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>디지털 서명 개요</strong>
+    <span>디지털 서명이 비대칭 암호 기술과 해시 함수를 사용해 인증, 무결성, 부인방지를 제공하는 수학적 기법임을 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>디지털 서명</strong>은 <strong>공개키 암호</strong> 알고리즘, 즉 비대칭 암호 기술을 이용한 방법이다. 강의는 송신자의 개인키로 암호화하는 것이 디지털 서명이라고 설명한다. 디지털 서명은 해시 함수와 비대칭 암호 기술을 함께 사용해 인증, 무결성, 부인방지를 제공한다.</p>
+                <p>보통 원본 전체를 개인키로 <strong>암호화</strong>하는 방식이 아니라, 메시지 또는 코드의 해시값을 송신자의 개인키로 암호화해 서명으로 사용한다. 수신자는 송신자의 공개키로 서명을 확인하고, 자신이 계산한 해시값과 비교해 <strong>무결성</strong>을 확인한다.</p>
           </div>
         </details>
         
@@ -226,13 +256,23 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
             <h2>코드 서명</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>디지털 서명</strong>의 대표 활용 중 하나가 <strong>코드 서명</strong>이다. 인터넷에서 받은 소프트웨어 실행 파일이 실제 개발 회사 또는 개발자가 배포한 것이 맞는지, 배포된 이후 수정되지 않았는지 확인할 때 코드 서명을 사용한다.</p>
-<ul class="check-list">
-  <li>코드가 진본이며 실제 게시자가 제공한 것임을 보증한다.</li>
-  <li>소프트웨어가 게시된 다음 코드가 수정되지 않았음을 보증한다.</li>
-  <li>게시자가 게시 행위를 부인할 수 없도록 <strong>부인방지</strong>를 제공한다.</li>
-</ul>
-<p>결국 코드 서명은 <strong>인증</strong>, <strong>무결성</strong>, 부인방지를 동시에 제공하는 기술이다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0064.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0064.jpg" alt="코드 서명" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>코드 서명</strong>
+    <span>소프트웨어 코드의 진위 여부와 무결성을 보장하기 위해 해시값을 개인키로 암호화해 디지털 봉투로 포장하는 과정을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>디지털 서명</strong>의 대표 활용 중 하나가 <strong>코드 서명</strong>이다. 인터넷에서 받은 소프트웨어 실행 파일이 실제 개발 회사 또는 개발자가 배포한 것이 맞는지, 배포된 이후 수정되지 않았는지 확인할 때 코드 서명을 사용한다.</p>
+                <ul class="check-list">
+                  <li>코드가 진본이며 실제 게시자가 제공한 것임을 보증한다.</li>
+                  <li>소프트웨어가 게시된 다음 코드가 수정되지 않았음을 보증한다.</li>
+                  <li>게시자가 게시 행위를 부인할 수 없도록 <strong>부인방지</strong>를 제공한다.</li>
+                </ul>
+                <p>결국 코드 서명은 <strong>인증</strong>, <strong>무결성</strong>, 부인방지를 동시에 제공하는 기술이다.</p>
           </div>
         </details>
         
@@ -242,8 +282,18 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
             <h2>디지털 인증서</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>디지털 인증서</strong>는 사이버 공간에서 신원을 확인하는 데 사용된다. 강의는 학생증, 주민등록증, 운전면허증과 비교한다. 현실의 신분증이 사람의 신원을 확인하듯, 디지털 인증서는 사용자, 호스트, 조직, 웹사이트가 누구인지 확인하는 데 쓰인다.</p>
-<p>웹 브라우저에서 HTTPS 사이트에 접속할 때도 디지털 <strong>인증서</strong>가 사용된다. 디지털 인증서는 사이트의 신원을 인증하고, 기밀 데이터를 교환하기 위한 <strong>암호화</strong>된 연결 설정에 필요한 정보를 제공한다. 공개키는 공개할 수 있지만, 그 공개키가 정말 해당 사이트나 사용자의 공개키인지를 확인해야 하므로 인증서가 필요하다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0070.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0070.jpg" alt="디지털 인증서" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>디지털 인증서</strong>
+    <span>디지털 인증서가 사용자, 호스트, 조직의 신원을 확인하고 수신자의 공개키를 신뢰해 기밀성 제공에도 쓰일 수 있음을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>디지털 인증서</strong>는 사이버 공간에서 신원을 확인하는 데 사용된다. 강의는 학생증, 주민등록증, 운전면허증과 비교한다. 현실의 신분증이 사람의 신원을 확인하듯, 디지털 인증서는 사용자, 호스트, 조직, 웹사이트가 누구인지 확인하는 데 쓰인다.</p>
+                <p>웹 브라우저에서 HTTPS 사이트에 접속할 때도 디지털 <strong>인증서</strong>가 사용된다. 디지털 인증서는 사이트의 신원을 인증하고, 기밀 데이터를 교환하기 위한 <strong>암호화</strong>된 연결 설정에 필요한 정보를 제공한다. 공개키는 공개할 수 있지만, 그 공개키가 정말 해당 사이트나 사용자의 공개키인지를 확인해야 하므로 인증서가 필요하다.</p>
           </div>
         </details>
         
@@ -253,8 +303,18 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
             <h2>주문 확인서 예시</h2>
           </summary>
           <div class="note-section-body">
-            <p>강의는 Bob의 웹사이트에서 Alice가 주문한 상황을 예로 든다. Bob은 주문 확인서에 대한 해시값을 만든다. 그리고 Bob의 개인키로 이 해시값을 <strong>암호화</strong>한다. 이렇게 암호화된 해시는 Bob의 <strong>디지털 서명</strong>이 된다. Bob은 주문 확인서에 이 서명을 붙여 Alice에게 보낸다.</p>
-<p>Alice는 Bob의 공개키를 얻고, 그 공개키로 서명을 <strong>복호화</strong>해 Bob이 만든 해시값을 확인한다. 동시에 Alice는 받은 주문 확인서로부터 직접 해시값을 계산한다. 두 해시값이 같으면 주문 확인서가 진본이며 변조되지 않았다고 판단할 수 있다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0080.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0080.jpg" alt="디지털 인증서 시나리오" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>디지털 인증서 시나리오</strong>
+    <span>Bob이 주문 확인 해시를 개인키로 서명하고 Alice가 Bob의 공개키로 서명을 확인해 주문 확인서의 진본성과 무결성을 검증하는 흐름이다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의는 Bob의 웹사이트에서 Alice가 주문한 상황을 예로 든다. Bob은 주문 확인서에 대한 해시값을 만든다. 그리고 Bob의 개인키로 이 해시값을 <strong>암호화</strong>한다. 이렇게 암호화된 해시는 Bob의 <strong>디지털 서명</strong>이 된다. Bob은 주문 확인서에 이 서명을 붙여 Alice에게 보낸다.</p>
+                <p>Alice는 Bob의 공개키를 얻고, 그 공개키로 서명을 <strong>복호화</strong>해 Bob이 만든 해시값을 확인한다. 동시에 Alice는 받은 주문 확인서로부터 직접 해시값을 계산한다. 두 해시값이 같으면 주문 확인서가 진본이며 변조되지 않았다고 판단할 수 있다.</p>
           </div>
         </details>
         
@@ -264,9 +324,19 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
             <h2>PKI와 신뢰할 수 있는 제3자</h2>
           </summary>
           <div class="note-section-body">
-            <p>공개키는 중요하지만 “이 공개키가 정말 Bob의 공개키인가”라는 신뢰 문제가 남는다. 이 문제를 해결하는 체계가 <strong>PKI</strong>(Public Key Infrastructure)다. <strong>인터넷</strong>상에서 신뢰할 수 있는 제3자가 디지털 인증서를 사용해 공개키의 진위 여부를 보장한다.</p>
-<p>제3자는 공격자가 위조하기 어려운 자격증명을 발급한다. 이 자격증명은 결국 제3자의 개인키로 <strong>디지털 서명</strong>한 <strong>인증서</strong>라고 이해할 수 있다. Alice와 Bob이 이 제3자를 신뢰한다면, 제3자가 발급한 인증서를 제3자의 공개키로 확인하고 받아들일 수 있다.</p>
-<p>PKI는 디지털 <strong>인증</strong>서를 생성, 관리, 배포, 사용, 저장, 해지하는 데 필요한 규칙과 기반 체계다. 하드웨어, 소프트웨어, 사람, 정책, 절차로 구성된다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0086.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0086.jpg" alt="공개키의 관리와 PKI" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>공개키의 관리와 PKI</strong>
+    <span>신뢰할 수 있는 제3자가 디지털 인증서를 통해 공개키의 진위 여부를 보장하고, PKI가 사이버 공간의 신분증 역할을 한다는 점을 비유로 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p>공개키는 중요하지만 “이 공개키가 정말 Bob의 공개키인가”라는 신뢰 문제가 남는다. 이 문제를 해결하는 체계가 <strong>PKI</strong>(Public Key Infrastructure)다. <strong>인터넷</strong>상에서 신뢰할 수 있는 제3자가 디지털 인증서를 사용해 공개키의 진위 여부를 보장한다.</p>
+                <p>제3자는 공격자가 위조하기 어려운 자격증명을 발급한다. 이 자격증명은 결국 제3자의 개인키로 <strong>디지털 서명</strong>한 <strong>인증서</strong>라고 이해할 수 있다. Alice와 Bob이 이 제3자를 신뢰한다면, 제3자가 발급한 인증서를 제3자의 공개키로 확인하고 받아들일 수 있다.</p>
+                <p>PKI는 디지털 <strong>인증</strong>서를 생성, 관리, 배포, 사용, 저장, 해지하는 데 필요한 규칙과 기반 체계다. 하드웨어, 소프트웨어, 사람, 정책, 절차로 구성된다.</p>
           </div>
         </details>
         
@@ -276,8 +346,29 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
             <h2>CA, RA, 인증서 DB</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>PKI</strong>의 주요 구성 요소에는 <strong>인증</strong>기관 CA, 등록기관 RA, 인증서 DB가 있다. CA는 PKI 인증서를 발행하는 신뢰할 수 있는 기관이다. 인증서 DB는 CA가 승인한 인증서 정보를 보관한다. 인증서는 공개키 소유자의 공개키 유효성을 인증하는 정보를 담고, 개인키와 함께 안전하게 관리되어야 한다.</p>
-<p>모든 <strong>인증서</strong>를 <strong>CA</strong>가 직접 처리하는 것은 아니며, CA는 RA라는 등록기관에 일부 기능을 위임할 수 있다. 강의는 공인인증서를 발급받을 때 은행이나 주민센터가 등록기관처럼 역할을 하는 것과 비슷하다고 설명한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0102.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0102.jpg" alt="PKI 주요 요소" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>PKI 주요 요소</strong>
+    <span>PKI 인증서, 인증서 보관, 인증기관 CA, 인증서 데이터베이스가 인증서 생성·관리·저장·배포·해지에 관여한다.</span>
+  </figcaption>
+</figure>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0110.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0110.jpg" alt="PKI 운용 예시" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>PKI 운용 예시</strong>
+    <span>CA가 Bob의 인증서를 발급하고, Bob이 Alice와 인증서를 교환하며, Alice가 CA 공개키로 인증서를 확인하는 흐름을 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>PKI</strong>의 주요 구성 요소에는 <strong>인증</strong>기관 CA, 등록기관 RA, 인증서 DB가 있다. CA는 PKI 인증서를 발행하는 신뢰할 수 있는 기관이다. 인증서 DB는 CA가 승인한 인증서 정보를 보관한다. 인증서는 공개키 소유자의 공개키 유효성을 인증하는 정보를 담고, 개인키와 함께 안전하게 관리되어야 한다.</p>
+                <p>PKI 운용 예시는 <strong>인증서</strong>가 단순히 파일 하나로 끝나는 것이 아니라 <strong>CA</strong> 발급, 당사자 간 인증서 교환, CA 공개키를 이용한 인증서 확인으로 이어진다는 점을 보여 준다. Alice가 Bob의 인증서를 신뢰하려면 Bob이 제시한 인증서가 CA에 의해 서명되었고, 그 CA를 Alice가 신뢰할 수 있어야 한다.</p>
+                <p>모든 인증서를 CA가 직접 처리하는 것은 아니며, CA는 <strong>RA</strong>라는 등록기관에 일부 기능을 위임할 수 있다. 강의는 공인인증서를 발급받을 때 은행이나 주민센터가 등록기관처럼 역할을 하는 것과 비슷하다고 설명한다.</p>
           </div>
         </details>
         
@@ -309,16 +400,26 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
             <h2>PKI 신뢰 토폴로지</h2>
           </summary>
           <div class="note-section-body">
-            <p>전 세계 모든 사용자를 하나의 CA 서버가 처리할 수는 없으므로, <strong>PKI</strong>는 신뢰 토폴로지를 형성한다. 강의는 세 가지 유형을 설명한다.</p>
-<table>
-  <thead><tr><th>토폴로지</th><th>설명</th></tr></thead>
-  <tbody>
-    <tr><td>단일 <strong>root</strong> PKI</td><td>하나의 root CA가 같은 조직 내 최종 사용자에게 모든 <strong>인증서</strong>를 발급한다.</td></tr>
-    <tr><td>cross-certified CA</td><td>각 CA가 서로 CA <strong>인증</strong>서를 교차 인증해 신뢰 관계를 설정한다.</td></tr>
-    <tr><td>hierarchical CA</td><td>최상위 root CA 아래 하위 CA를 두어 확장성 있게 인증서를 발급한다.</td></tr>
-  </tbody>
-</table>
-<p><strong>인터넷</strong>에서 많이 사용되는 형태는 root CA와 하위 CA를 갖는 계층적 CA 토폴로지라고 설명한다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0123.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0123.jpg" alt="PKI 신뢰 시스템" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>PKI 신뢰 시스템</strong>
+    <span>단일 루트 PKI, 상호 인증된 CA, 계층적 CA 토폴로지의 차이를 그림으로 비교한다.</span>
+  </figcaption>
+</figure>
+
+                <p>전 세계 모든 사용자를 하나의 CA 서버가 처리할 수는 없으므로, <strong>PKI</strong>는 신뢰 토폴로지를 형성한다. 강의는 세 가지 유형을 설명한다.</p>
+                <table>
+                  <thead><tr><th>토폴로지</th><th>설명</th></tr></thead>
+                  <tbody>
+                    <tr><td>단일 <strong>root</strong> PKI</td><td>하나의 root CA가 같은 조직 내 최종 사용자에게 모든 <strong>인증서</strong>를 발급한다.</td></tr>
+                    <tr><td>cross-certified CA</td><td>각 CA가 서로 CA <strong>인증</strong>서를 교차 인증해 신뢰 관계를 설정한다.</td></tr>
+                    <tr><td>hierarchical CA</td><td>최상위 root CA 아래 하위 CA를 두어 확장성 있게 인증서를 발급한다.</td></tr>
+                  </tbody>
+                </table>
+                <p><strong>인터넷</strong>에서 많이 사용되는 형태는 root CA와 하위 CA를 갖는 계층적 CA 토폴로지라고 설명한다.</p>
           </div>
         </details>
         
@@ -328,8 +429,18 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
             <h2>X.509와 상호 운용성</h2>
           </summary>
           <div class="note-section-body">
-            <p>여러 CA와 <strong>PKI</strong>가 서로 통신하고 <strong>인증서</strong>를 교환하려면 상호 운용성이 필요하다. 강의는 IETF가 X.509라는 프레임워크를 사용해 이 상호 운용성을 제공한다고 설명한다. 현재 X.509 버전 3이 사용된다고 언급된다.</p>
-<p>X.509는 SSL/TLS의 웹사이트 <strong>인증</strong>과 HTTPS 보안 통신, IPsec VPN의 공개키 분배, S/MIME 이메일 보안, EAP-TLS <strong>네트워크</strong> 접근 제어 인증 등에서 사용된다. 즉 공개키를 신뢰성 있게 교환하고 인증하기 위한 기반 형식으로 이해하면 된다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0131.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/cryptography-basic/암호학 기초-05-공개키-암호기술/암호학 기초-05-공개키-암호기술 - 0131.jpg" alt="X.509와 PKI 상호운용성" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>X.509와 PKI 상호운용성</strong>
+    <span>SSL/TLS, IPsec, S/MIME, EAP-TLS에서 X.509 v3 인증서가 사용되는 예를 통해 PKI 상호운용성을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p>여러 CA와 <strong>PKI</strong>가 서로 통신하고 <strong>인증서</strong>를 교환하려면 상호 운용성이 필요하다. 강의는 IETF가 X.509라는 프레임워크를 사용해 이 상호 운용성을 제공한다고 설명한다. 현재 X.509 버전 3이 사용된다고 언급된다.</p>
+                <p>X.509는 SSL/TLS의 웹사이트 <strong>인증</strong>과 HTTPS 보안 통신, IPsec VPN의 공개키 분배, S/MIME 이메일 보안, EAP-TLS <strong>네트워크</strong> 접근 제어 인증 등에서 사용된다. 즉 공개키를 신뢰성 있게 교환하고 인증하기 위한 기반 형식으로 이해하면 된다.</p>
           </div>
         </details>
         
@@ -340,6 +451,7 @@ Bob이 계산하는 공유키: A^b mod p = g^(ab) mod p</code></pre>
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>사용자 수가 늘수록 대칭키 관리가 왜 어려워지는지 n(n-1)/2로 설명할 수 있는가?</li><li><strong>Diffie-Hellman</strong>에서 공개 정보와 개인 비밀값이 각각 무엇인지 말할 수 있는가?</li><li><strong>디지털 서명</strong>이 <strong>인증</strong>, 무결성, 부인방지를 제공하는 원리를 설명할 수 있는가?</li><li>CA, RA, <strong>PKI</strong>, X.509가 공개키 신뢰와 어떤 관계인지 정리할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

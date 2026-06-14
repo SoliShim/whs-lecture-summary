@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>시큐어코딩 1-1 - 강의 오리엔테이션과 시큐어 코딩 개요</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -120,13 +120,24 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 화이트햇 멘토 유효곤 강사의 소개로 시작한다. 강사는 카이스트 김재철AI대학원 석사 과정에 있으며, 고려대학교 사이버국방학과와 <strong>취약점</strong> 분석 트랙에서 정보보안 관련 활동을 해 왔다고 소개한다.</p>
-<p><strong>시큐어 코딩</strong> 과목은 먼저 시큐어 코딩이 무엇인지 설명하고, 취약점 및 <strong>공격 유형</strong>을 소개한 뒤, 네 개 강의에 걸쳐 시큐어 코딩 기법을 구체적으로 다룬다. 마지막 강의에서는 시큐어 소프트웨어 개발 생명주기, 즉 코드 구현뿐 아니라 개발 전 과정에서 더 안전한 소프트웨어를 만드는 방법을 다룬다.</p>
-<div class="timeline">
-  <div><strong>1</strong><p>시큐어 코딩의 의미와 배경</p></div>
-  <div><strong>2-3</strong><p><strong>OWASP Top 10</strong> 기반 취약점과 공격 유형</p></div>
-  <div><strong>4-7</strong><p><strong>입력 검증</strong>, <strong>보안 기능</strong>, 시간·상태, 에러 처리, 코드 오류, API 오용</p></div>
-  <div><strong>8</strong><p>시큐어 <strong>SDLC</strong>, 요구사항, <strong>위협 모델링</strong>, 리스크 처리</p></div>
-</div>
+                <p><strong>시큐어 코딩</strong> 과목은 먼저 시큐어 코딩이 무엇인지 설명하고, 취약점 및 <strong>공격 유형</strong>을 소개한 뒤, 네 개 강의에 걸쳐 시큐어 코딩 기법을 구체적으로 다룬다. 마지막 강의에서는 시큐어 소프트웨어 개발 생명주기, 즉 코드 구현뿐 아니라 개발 전 과정에서 더 안전한 소프트웨어를 만드는 방법을 다룬다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0003.jpg" alt="시큐어 코딩 과목 전체 흐름" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>시큐어 코딩 과목 전체 흐름</strong>
+    <span>1강은 Secure Coding의 의미를 잡고, 이후 OWASP Top 10과 유형별 시큐어 코딩 기법, 마지막 SDLC로 이어지는 전체 구성을 소개한다.</span>
+  </figcaption>
+</figure>
+
+                <div class="timeline">
+                  <div><strong>1</strong><p>시큐어 코딩의 의미와 배경</p></div>
+                  <div><strong>2-3</strong><p><strong>OWASP Top 10</strong> 기반 취약점과 공격 유형</p></div>
+                  <div><strong>4-7</strong><p><strong>입력 검증</strong>, <strong>보안 기능</strong>, 시간·상태, 에러 처리, 코드 오류, API 오용</p></div>
+                  <div><strong>8</strong><p>시큐어 <strong>SDLC</strong>, 요구사항, <strong>위협 모델링</strong>, 리스크 처리</p></div>
+                </div>
           </div>
         </details>
         
@@ -137,7 +148,19 @@
           </summary>
           <div class="note-section-body">
             <p>강의에서 <strong>시큐어 코딩</strong>은 <strong>소프트웨어 취약점을 방지하고 공격으로부터 보호하기 위한 기법과 프로세스</strong>로 설명된다. <strong>퍼징</strong>, BOF, ROP처럼 특정 기술 이름이 있는 영역과 달리, 시큐어 코딩은 개발자가 소프트웨어를 만들 때 지켜야 하는 코딩 습관과 약속, 그리고 개발 프로세스에 가깝다.</p>
-<p>숙련된 소프트웨어 개발자라면 기능이 동작하는 코드를 작성하는 것에 그치지 않고, 알려진 <strong>보안 약점</strong>이 들어가지 않도록 코딩해야 한다. 즉 시큐어 코딩은 “보안 전문가만 하는 별도 작업”이 아니라 개발 과정 안에서 자연스럽게 따라야 하는 <strong>품질 기준</strong>이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0009.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0009.jpg" alt="Secure Coding의 정의" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Secure Coding의 정의</strong>
+    <span>시큐어 코딩은 소프트웨어 취약점을 방지하고 공격으로부터 보호하기 위한 코딩 기법과 개발 프로세스라는 점을 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <p>숙련된 소프트웨어 개발자라면 기능이 동작하는 코드를 작성하는 것에 그치지 않고, 알려진 <strong>보안 약점</strong>이 들어가지 않도록 코딩해야 한다. 즉 시큐어 코딩은 “보안 전문가만 하는 별도 작업”이 아니라 개발 과정 안에서 자연스럽게 따라야 하는 <strong>품질 기준</strong>이다.</p>
+                <p>강사는 보안 분야의 여러 세부 기술과 달리 시큐어 코딩은 특정 공격 하나를 배우는 시간이 아니라고 설명한다. 소프트웨어를 만들 때 <strong>취약점</strong>이 생기지 않도록 요구사항, 구현 습관, 검토 기준, 테스트 관점을 함께 갖추는 것이 핵심이다.</p>
           </div>
         </details>
         
@@ -148,18 +171,41 @@
           </summary>
           <div class="note-section-body">
             <p>소프트웨어는 코딩만으로 완성되지 않는다. 예를 들어 배달 플랫폼을 만든다고 하면, 먼저 어떤 <strong>서비스</strong>를 만들지 계획하고, 가게 등록·메뉴 등록·주문·배달 같은 기능을 생각한다. 그다음 그 기능들이 소프트웨어 요구사항으로 구체화되고, 기능 배치와 <strong>프로세스</strong>가 설계된다. 실제 Python이나 C 같은 언어로 구현하는 과정은 그 뒤에 나온다.</p>
-<table>
-  <thead><tr><th>단계</th><th>강의에서의 의미</th></tr></thead>
-  <tbody>
-    <tr><td>계획</td><td>어떤 소프트웨어를 만들지, 어떤 서비스와 기능이 필요한지 생각한다.</td></tr>
-    <tr><td>요구사항 도출</td><td>사용자 요청, 주문 처리, <strong>API</strong> 등 실제 기능으로 필요한 조건을 구체화한다.</td></tr>
-    <tr><td>설계</td><td>요구사항을 어떤 구조와 흐름으로 배치할지 정한다.</td></tr>
-    <tr><td>구현</td><td>개발자가 코드로 기능을 만든다. <strong>시큐어 코딩</strong>은 주로 이 단계에 집중한다.</td></tr>
-    <tr><td>테스트</td><td>기능이 잘 동작하는지, 대표 <strong>취약점</strong>이 없는지 점검한다.</td></tr>
-    <tr><td>배포와 유지보수</td><td>실제 서비스하고 수정, 패치, 운영을 이어 간다.</td></tr>
-  </tbody>
-</table>
-<p><strong>보안 약점</strong>은 계획, 요구사항, 설계, 테스트, 운영 과정에서도 생길 수 있다. 하지만 이 과목에서 말하는 시큐어 코딩은 그중 실제 개발·구현 단계에서 생기는 보안 약점을 줄이는 데 초점을 둔다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0015.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0015.jpg" alt="소프트웨어 개발 생명주기" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>소프트웨어 개발 생명주기</strong>
+    <span>계획, 요구사항 정의, 설계, 개발, 테스트, 배포·유지보수까지 소프트웨어는 여러 단계를 거쳐 완성된다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>단계</th><th>강의에서의 의미</th></tr></thead>
+                  <tbody>
+                    <tr><td>계획</td><td>어떤 소프트웨어를 만들지, 어떤 서비스와 기능이 필요한지 생각한다.</td></tr>
+                    <tr><td>요구사항 도출</td><td>사용자 요청, 주문 처리, <strong>API</strong> 등 실제 기능으로 필요한 조건을 구체화한다.</td></tr>
+                    <tr><td>설계</td><td>요구사항을 어떤 구조와 흐름으로 배치할지 정한다.</td></tr>
+                    <tr><td>구현</td><td>개발자가 코드로 기능을 만든다. <strong>시큐어 코딩</strong>은 주로 이 단계에 집중한다.</td></tr>
+                    <tr><td>테스트</td><td>기능이 잘 동작하는지, 대표 <strong>취약점</strong>이 없는지 점검한다.</td></tr>
+                    <tr><td>배포와 유지보수</td><td>실제 서비스하고 수정, 패치, 운영을 이어 간다.</td></tr>
+                  </tbody>
+                </table>
+                <p><strong>보안 약점</strong>은 계획, 요구사항, 설계, 테스트, 운영 과정에서도 생길 수 있다. 하지만 이 과목에서 말하는 시큐어 코딩은 그중 실제 개발·구현 단계에서 생기는 보안 약점을 줄이는 데 초점을 둔다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0027.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0027.jpg" alt="시큐어 코딩이 집중하는 구현 단계" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>시큐어 코딩이 집중하는 구현 단계</strong>
+    <span>강의는 개발 생명주기 중 Stage 4 Development를 강조하며, 구현 단계에서 보안 약점을 미리 제거하는 것이 시큐어 코딩의 중심이라고 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p>화면에서 강조된 Stage 4 Development에는 Coding Standard, Scalable Code, Version Control, Code Review가 포함된다. 강사는 이 단계에서 개발자가 실제 코드를 작성하므로, 보안 약점이 들어가지 않도록 미리 확인하고 제거하는 작업이 시큐어 코딩의 직접적인 대상이라고 설명한다.</p>
           </div>
         </details>
         
@@ -170,8 +216,20 @@
           </summary>
           <div class="note-section-body">
             <p>미국은 2002년부터 <strong>시큐어 코딩</strong> 필요성을 법제화했고, Microsoft는 2006년 Windows 개발부터 시큐어 코딩 <strong>프로세스</strong>를 선제적으로 도입했다. 우리나라도 2012년부터 소프트웨어 개발 보안 의무제를 시행하며 안전한 소프트웨어 개발을 위한 노력을 이어 왔다.</p>
-<p>시큐어 코딩이 중요한 이유는 침해 사고 상당수가 이미 알려진 <strong>취약점</strong>을 패치하지 않아 발생하기 때문이다. 강의에서는 침해 사고를 겪은 기업 중 약 60%가 알려진 취약점을 패치하지 않은 것이 원인이었고, 약 62%는 취약점 존재 자체를 알지 못했다고 설명한다. 알려진 취약점을 확인하고 패치했거나, 처음부터 안전하게 코딩했다면 줄일 수 있었던 사고라는 뜻이다.</p>
-<p>침입 탐지 시스템, 안티바이러스 같은 보안 제품은 보안 수준을 높이는 데 도움이 된다. 하지만 소프트웨어 자체에 존재하는 근본적인 보안 취약점을 이용하는 공격은 그런 제품만으로 막기 어렵다. 예를 들어 정상 사용자가 웹페이지 기능을 쓰는 것처럼 보이지만, 실제로는 소프트웨어 취약점을 악용하는 공격이라면 개발 단계에서 취약점을 줄여야 한다.</p>
+                <p>시큐어 코딩이 중요한 이유는 침해 사고 상당수가 이미 알려진 <strong>취약점</strong>을 패치하지 않아 발생하기 때문이다. 강의에서는 침해 사고를 겪은 기업 중 약 60%가 알려진 취약점을 패치하지 않은 것이 원인이었고, 약 62%는 취약점 존재 자체를 알지 못했다고 설명한다. 알려진 취약점을 확인하고 패치했거나, 처음부터 안전하게 코딩했다면 줄일 수 있었던 사고라는 뜻이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0033.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0033.jpg" alt="알려진 취약점과 패치 미흡" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>알려진 취약점과 패치 미흡</strong>
+    <span>침해 피해 조직 상당수가 이미 알려진 취약점 패치를 적용하지 않았거나, 취약한 상태라는 사실을 알지 못했다는 통계를 제시한다.</span>
+  </figcaption>
+</figure>
+
+                <p>침입 탐지 시스템, 안티바이러스 같은 보안 제품은 보안 수준을 높이는 데 도움이 된다. 하지만 소프트웨어 자체에 존재하는 근본적인 보안 취약점을 이용하는 공격은 그런 제품만으로 막기 어렵다. 예를 들어 정상 사용자가 웹페이지 기능을 쓰는 것처럼 보이지만, 실제로는 소프트웨어 취약점을 악용하는 공격이라면 개발 단계에서 취약점을 줄여야 한다.</p>
+                <p>따라서 보안은 제품을 사서 붙이는 문제만이 아니다. 공격자가 합법적인 요청처럼 보이는 <strong>입력</strong>을 보내 취약한 코드 경로를 타게 만들면, 외부 보안 장비는 그 요청을 단순 정상 사용으로 볼 수 있다. 이 경우 근본적인 대응은 취약한 코드 자체를 만들지 않거나 빠르게 고치는 것이다.</p>
           </div>
         </details>
         
@@ -182,7 +240,30 @@
           </summary>
           <div class="note-section-body">
             <p><strong>취약점</strong>은 늦게 발견될수록 수정 비용이 커진다. 요구사항 도출 단계에서 발견해 고치는 비용을 1이라고 하면, 코딩 단계에서 고칠 때 약 7배, 테스트 단계에서 고칠 때 약 15배, 배포 후 실제 사용 중 발견될 때는 30배에서 100배까지 커질 수 있다고 설명한다.</p>
-<p>그래서 <strong>보안 약점</strong>을 미리 확인하고 제거하는 것은 안전성뿐 아니라 비용 측면에서도 중요하다. 전체 소프트웨어 개발 생명주기에 보안을 고려하는 방법이 <strong>Security</strong> Development Life Cycle이다. 요구사항 단계에서는 보안 요구사항을 도출하고 리스크 분석을 하며, 설계 단계에서는 위협 모델링을 수행한다. 이 과목의 시큐어 코딩은 그중 구현 단계에 해당한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0045.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0045.jpg" alt="결함 발견 시점과 수정 비용" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>결함 발견 시점과 수정 비용</strong>
+    <span>요구사항 단계에서 발견한 결함을 1배 비용으로 잡으면, 코딩·테스트·배포 이후로 갈수록 수정 비용이 7배, 15배, 30~100배까지 커질 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>그래서 <strong>보안 약점</strong>을 미리 확인하고 제거하는 것은 안전성뿐 아니라 비용 측면에서도 중요하다. 전체 소프트웨어 개발 생명주기에 보안을 고려하는 방법이 <strong>Security</strong> Development Life Cycle이다. 요구사항 단계에서는 보안 요구사항을 도출하고 리스크 분석을 하며, 설계 단계에서는 위협 모델링을 수행한다. 이 과목의 시큐어 코딩은 그중 구현 단계에 해당한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0049.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0049.jpg" alt="Security Development Lifecycle" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Security Development Lifecycle</strong>
+    <span>SDL은 분석, 설계, 구현, 검증, 배포, 대응 단계 전체에 보안을 넣는 방식이며, 시큐어 코딩은 그중 구현 단계의 핵심 활동이다.</span>
+  </figcaption>
+</figure>
+
+                <p>SDL 관점에서는 분석 단계에서 보안 요구사항과 <strong>리스크</strong> 분석을 하고, 설계 단계에서 안전한 설계와 <strong>위협 모델링</strong>을 수행한다. 구현 단계에서는 시큐어 코딩, 디자인 리뷰, 코드 리뷰를 통해 개발자가 만든 코드가 보안 요구사항을 깨지 않는지 확인한다. 이후 검증, 배포, 사고 대응까지 이어지므로 시큐어 코딩은 전체 보안 개발 과정의 한 축으로 봐야 한다.</p>
           </div>
         </details>
         
@@ -193,16 +274,27 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 앞으로 다룰 대표 <strong>시큐어 코딩</strong> 기법을 여러 범주로 나눈다. 사용자 <strong>입력</strong>을 제대로 검증하는 입력 데이터 검증, 보안 기능 적용, 시간 및 상태 처리, 에러 처리, 코드 오류 방지, 캡슐화, API 오용 방지 등이 모두 시큐어 코딩 과정에서 신경 써야 할 요소다.</p>
-<table>
-  <thead><tr><th>분류</th><th>의미</th></tr></thead>
-  <tbody>
-    <tr><td>입력 데이터 검증</td><td>악의적 입력이 코드와 DB, 명령어, 브라우저에서 의도하지 않은 동작을 만들지 않게 한다.</td></tr>
-    <tr><td><strong>보안 기능</strong></td><td><strong>암호화</strong>, <strong>인증</strong> 시도 제한, 무결성 검증 같은 보안 기능을 올바르게 사용한다.</td></tr>
-    <tr><td>시간 및 상태</td><td>멀티스레딩, 파일 접근, <strong>반복문</strong>, 재귀 호출에서 시간 차이와 상태 변화로 생기는 문제를 막는다.</td></tr>
-    <tr><td><strong>에러 처리</strong></td><td>오류 메시지와 예외 상황이 공격자에게 힌트를 주지 않게 한다.</td></tr>
-    <tr><td>코드 오류와 <strong>API 오용</strong></td><td>널 값, 역직렬화, <strong>DNS</strong> lookup, 취약 <strong>API</strong> 사용 같은 개발 실수를 줄인다.</td></tr>
-  </tbody>
-</table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0053.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요/시큐어코딩-01-강의-오리엔테이션과-시큐어-코딩-개요 - 0053.jpg" alt="시큐어 코딩 기법 분류" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>시큐어 코딩 기법 분류</strong>
+    <span>입력 데이터 검증, 보안 기능 적용, 시간 및 상태 처리, 에러 처리, 코드 오류, 캡슐화, API 오용 등 이후 강의에서 다룰 기법 범주를 나열한다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>분류</th><th>의미</th></tr></thead>
+                  <tbody>
+                    <tr><td>입력 데이터 검증</td><td>악의적 입력이 코드와 DB, 명령어, 브라우저에서 의도하지 않은 동작을 만들지 않게 한다.</td></tr>
+                    <tr><td><strong>보안 기능</strong></td><td><strong>암호화</strong>, <strong>인증</strong> 시도 제한, 무결성 검증 같은 보안 기능을 올바르게 사용한다.</td></tr>
+                    <tr><td>시간 및 상태</td><td>멀티스레딩, 파일 접근, <strong>반복문</strong>, 재귀 호출에서 시간 차이와 상태 변화로 생기는 문제를 막는다.</td></tr>
+                    <tr><td><strong>에러 처리</strong></td><td>오류 메시지와 예외 상황이 공격자에게 힌트를 주지 않게 한다.</td></tr>
+                    <tr><td>코드 오류와 <strong>API 오용</strong></td><td>널 값, 역직렬화, <strong>DNS</strong> lookup, 취약 <strong>API</strong> 사용 같은 개발 실수를 줄인다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -213,6 +305,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>시큐어 코딩</strong>이 특정 공격 기술이 아니라 개발 과정의 보안 기법과 <strong>프로세스</strong>라는 점을 설명할 수 있는가?</li><li>소프트웨어 개발 6단계 중 <strong>시큐어 코딩</strong>이 주로 구현 단계에 집중한다는 점을 이해했는가?</li><li>보안 제품 도입만으로 소프트웨어 자체 <strong>취약점</strong>을 막기 어려운 이유를 말할 수 있는가?</li><li><strong>취약점</strong> 발견 시점이 늦어질수록 수정 비용이 증가하는 이유를 설명할 수 있는가?</li><li><strong>입력 검증</strong>, <strong>보안 기능</strong>, 시간·상태, 에러 처리, 코드 오류, API 오용의 큰 분류를 말할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

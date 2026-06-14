@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>네트워크 기초 1-3 - 데이터 링크 계층</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -125,14 +125,26 @@
           </summary>
           <div class="note-section-body">
             <p><strong>데이터 링크 계층</strong>을 이해하려면 먼저 <strong>노드와 링크</strong>를 구분해야 한다. 노드는 링크 계층 프로토콜을 실행하는 장치다. 사용자의 호스트, 라우터, 스위치, AP 같은 장비가 모두 노드가 될 수 있다. 링크는 이런 노드들이 모인 네트워크 요소에서 이웃 네트워크 요소로 이동하는 연결이다.</p>
-<p>이전 강의에서 링크 계층은 한 <strong>네트워크</strong>에서 이웃 네트워크로 데이터를 전송하는 계층이라고 했다. 상위 계층인 <strong>네트워크 계층</strong>에서 내려온 데이터그램은 링크 계층에서 프레임이라는 더 큰 단위로 캡슐화된다. 즉 링크 계층의 기본 단위는 프레임이다.</p>
-<div class="diagram">
-  <div><span class="node-title">네트워크 계층</span><p>IP 데이터그램을 내려 보낸다.</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">링크 계층</span><p>프레임으로 캡슐화한다.</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">이웃 노드</span><p>다음 네트워크 요소로 전달한다.</p></div>
-</div>
+                <p>이전 강의에서 링크 계층은 한 <strong>네트워크</strong>에서 이웃 네트워크로 데이터를 전송하는 계층이라고 했다. 상위 계층인 <strong>네트워크 계층</strong>에서 내려온 데이터그램은 링크 계층에서 프레임이라는 더 큰 단위로 캡슐화된다. 즉 링크 계층의 기본 단위는 프레임이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0003.jpg" alt="링크 계층 소개: 노드와 링크" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>링크 계층 소개: 노드와 링크</strong>
+    <span>노드는 링크 계층 프로토콜을 실행하는 호스트, 라우터, 스위치, AP 같은 장치이고, 링크는 인접한 노드를 연결하는 통신 채널이다.</span>
+  </figcaption>
+</figure>
+
+                <p>슬라이드의 네트워크 그림은 여러 네트워크 <strong>그룹</strong>이 링크로 연결되어 있는 구조를 보여 준다. 강사는 오른쪽 그림을 가리키며 여러 네트워크 그룹이 간선, 즉 링크를 통해 이어진다고 설명한다. <strong>데이터 링크</strong> 계층의 관점에서는 전체 인터넷을 한 번에 보는 것이 아니라, “현재 네트워크 요소에서 이웃 네트워크 요소로 어떻게 프레임을 넘기는가”가 핵심이다.</p>
+                <div class="diagram">
+                  <div><span class="node-title">네트워크 계층</span><p>IP 데이터그램을 내려 보낸다.</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">링크 계층</span><p>프레임으로 캡슐화한다.</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">이웃 노드</span><p>다음 네트워크 요소로 전달한다.</p></div>
+                </div>
           </div>
         </details>
         
@@ -143,8 +155,19 @@
           </summary>
           <div class="note-section-body">
             <p>링크 계층은 여러 <strong>서비스</strong>를 제공한다. 첫째, 프레임화다. <strong>네트워크 계층</strong>에서 내려온 데이터그램을 링크 계층 단위인 프레임으로 감싼다. 둘째, 링크 액세스다. 링크 계층 프로토콜은 링크 위에서 프레임을 어떻게 전송할지 규칙을 정하고, 네트워크끼리 통신할 수 있게 링크 접속을 수행한다.</p>
-<p>셋째, 신뢰적 전달 서비스도 제공할 수 있다. 후반부에서 <strong>TCP</strong>도 신뢰적 전달을 제공한다고 배우지만, 링크 계층의 신뢰적 전달은 오류가 발생한 링크 구간에서 정정이나 재전송을 수행하는 의미로 설명된다. 넷째, 오류 검출과 정정이다. 상위 계층에서 내려온 데이터그램에 오류가 있다면 그대로 전달할 필요가 없기 때문에, 링크 계층은 낮은 계층에서 오류를 확인한다.</p>
-<p>링크 계층은 2계층이고 하드웨어와 가까운 낮은 계층이므로, 하드웨어와 소프트웨어가 조합되어 구현된다고 이해하면 된다.</p>
+                <p>셋째, 신뢰적 전달 서비스도 제공할 수 있다. 후반부에서 <strong>TCP</strong>도 신뢰적 전달을 제공한다고 배우지만, 링크 계층의 신뢰적 전달은 오류가 발생한 링크 구간에서 정정이나 재전송을 수행하는 의미로 설명된다. 넷째, 오류 검출과 정정이다. 상위 계층에서 내려온 데이터그램에 오류가 있다면 그대로 전달할 필요가 없기 때문에, 링크 계층은 낮은 계층에서 오류를 확인한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0007.jpg" alt="링크 계층이 제공하는 서비스" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>링크 계층이 제공하는 서비스</strong>
+    <span>링크 계층은 framing, link access, 신뢰적 전달, 오류 검출과 정정 서비스를 제공하며 하드웨어와 소프트웨어의 조합으로 구현된다.</span>
+  </figcaption>
+</figure>
+
+                <p>링크 계층은 2계층이고 하드웨어와 가까운 낮은 계층이므로, 하드웨어와 소프트웨어가 조합되어 구현된다고 이해하면 된다.</p>
           </div>
         </details>
         
@@ -155,16 +178,27 @@
           </summary>
           <div class="note-section-body">
             <p>스위치는 링크 계층의 <strong>패킷</strong> 교환기라고 볼 수 있다. 이때 스위치는 <strong>네트워크 계층</strong>의 IP 주소 체계를 사용하지 않는다. 계층 구조에서는 각 계층이 독립적으로 구성되어야 하며, 각 계층은 자기 주소 체계를 가져야 하기 때문이다. 링크 계층에서 사용하는 주소가 MAC 주소다.</p>
-<p><strong>MAC 주소</strong>는 호스트나 라우터의 <strong>네트워크</strong> 인터페이스가 갖는 주소다. 하나의 컴퓨터나 라우터에도 여러 네트워크 인터페이스가 있을 수 있고, 각 인터페이스는 자기 MAC 주소를 가진다. 프레임을 수신한 어댑터는 프레임 안의 목적지 MAC 주소를 검사해 이 프레임이 자기에게 온 것인지 판단한다.</p>
-<table>
-  <thead><tr><th>항목</th><th>설명</th></tr></thead>
-  <tbody>
-    <tr><td><strong>MAC</strong> <strong>주소</strong></td><td>링크 계층 주소다. 일반적으로 6바이트로 구성된다.</td></tr>
-    <tr><td>목적지 MAC</td><td>프레임을 받을 인터페이스를 가리킨다.</td></tr>
-    <tr><td>출발지 MAC</td><td>프레임을 보낸 인터페이스를 가리킨다.</td></tr>
-    <tr><td>broadcast address</td><td>모든 <strong>비트</strong>가 1인 주소, 표기상 FF:FF:FF:FF:FF:FF로 모든 어댑터에게 보내는 데 쓰인다.</td></tr>
-  </tbody>
-</table>
+                <p><strong>MAC 주소</strong>는 호스트나 라우터의 <strong>네트워크</strong> 인터페이스가 갖는 주소다. 하나의 컴퓨터나 라우터에도 여러 네트워크 인터페이스가 있을 수 있고, 각 인터페이스는 자기 MAC 주소를 가진다. 프레임을 수신한 어댑터는 프레임 안의 목적지 MAC 주소를 검사해 이 프레임이 자기에게 온 것인지 판단한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0011.jpg" alt="링크 계층 주소체계와 MAC 주소" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>링크 계층 주소체계와 MAC 주소</strong>
+    <span>스위치는 IP 주소 체계를 쓰지 않고 링크 계층 고유 주소인 MAC 주소를 사용하며, broadcast address는 FF-FF-FF-FF-FF-FF로 모든 어댑터에게 보낸다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>항목</th><th>설명</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>MAC</strong> <strong>주소</strong></td><td>링크 계층 주소다. 일반적으로 6바이트로 구성된다.</td></tr>
+                    <tr><td>목적지 MAC</td><td>프레임을 받을 인터페이스를 가리킨다.</td></tr>
+                    <tr><td>출발지 MAC</td><td>프레임을 보낸 인터페이스를 가리킨다.</td></tr>
+                    <tr><td>broadcast address</td><td>모든 <strong>비트</strong>가 1인 주소, 표기상 FF:FF:FF:FF:FF:FF로 모든 어댑터에게 보내는 데 쓰인다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -175,8 +209,20 @@
           </summary>
           <div class="note-section-body">
             <p><strong>네트워크 계층</strong> <strong>주소</strong>는 IP 주소이고, 링크 계층 주소는 MAC 주소다. 두 주소 체계는 계층이 다르기 때문에 서로 독립적이다. 하지만 실제로 프레임을 보내려면 목적지 또는 다음 홉의 MAC 주소가 필요하다. 그래서 상위 계층에서 내려온 IP 주소에 대응되는 MAC 주소를 구해야 하며, 이 작업을 수행하는 프로토콜이 ARP다.</p>
-<p><strong>ARP</strong>는 같은 <strong>서브넷</strong> 안에서 IP 주소에 해당하는 MAC 주소를 알아낸다. 이 매핑은 영원히 유지되지 않는다. 강의에서 언급된 TTL, Time To Live는 이 매핑을 언제 삭제하거나 갱신해야 하는지와 관련된 시간 개념이다. 또한 ARP는 관리자가 하나하나 직접 구성하지 않아도 자동으로 구축되므로 plug and play 성격을 가진다고 설명된다.</p>
-<div class="callout">같은 서브넷 안에서는 ARP로 상대 IP에 대응하는 MAC 주소를 찾을 수 있지만, 다른 서브넷의 최종 호스트 MAC 주소를 로컬 ARP로 직접 알아낼 수는 없다.</div>
+                <p><strong>ARP</strong>는 같은 <strong>서브넷</strong> 안에서 IP 주소에 해당하는 MAC 주소를 알아낸다. 이 매핑은 영원히 유지되지 않는다. 강의에서 언급된 TTL, Time To Live는 이 매핑을 언제 삭제하거나 갱신해야 하는지와 관련된 시간 개념이다. 또한 ARP는 관리자가 하나하나 직접 구성하지 않아도 자동으로 구축되므로 plug and play 성격을 가진다고 설명된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0019.jpg" alt="ARP: IP 주소에서 MAC 주소 찾기" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>ARP: IP 주소에서 MAC 주소 찾기</strong>
+    <span>ARP는 네트워크 계층 주소와 링크 계층 주소 사이를 변환해 IP 주소를 가진 호스트의 MAC 주소를 알아내는 프로토콜이다.</span>
+  </figcaption>
+</figure>
+
+                <p>강사는 “<strong>IP 주소</strong>를 가진 호스트의 <strong>MAC 주소</strong>를 알아내야 한다”는 문장을 ARP의 핵심으로 강조한다. 같은 서브넷 안에서 A가 C에게 데이터그램을 보내려면 IP 주소만으로는 링크 계층 프레임을 만들 수 없다. 링크 계층은 MAC 주소를 보고 프레임을 전달하므로, IP와 MAC의 대응 관계를 알아내는 과정이 반드시 필요하다.</p>
+                <div class="callout">같은 서브넷 안에서는 ARP로 상대 IP에 대응하는 MAC 주소를 찾을 수 있지만, 다른 서브넷의 최종 호스트 MAC 주소를 로컬 ARP로 직접 알아낼 수는 없다.</div>
           </div>
         </details>
         
@@ -187,7 +233,18 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 서로 다른 <strong>서브넷</strong>에 있는 노드끼리 통신하는 경우도 다룬다. 예를 들어 111.111.111.111 쪽 호스트가 222.222.222.222 쪽 다른 서브넷 호스트로 데이터를 보내려 한다고 하자. 로컬 서브넷 안에는 목적지 호스트의 <strong>MAC 주소</strong>가 없기 때문에 ARP로 그 최종 MAC 주소를 바로 구할 수 없다.</p>
-<p>이때 송신 호스트는 프레임을 라우터 인터페이스의 <strong>MAC</strong> <strong>주소</strong>로 보낸다. 라우터가 네트워크 계층에서 다음 경로를 판단하고, 목적지 쪽 서브넷에 맞는 링크 계층 전달을 이어 간다. 즉 다른 서브넷으로 가는 첫 프레임의 목적지 MAC은 최종 서버의 MAC이 아니라 기본 게이트웨이 또는 라우터 인터페이스의 MAC이 된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0023.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0023.jpg" alt="다른 서브넷으로 데이터그램을 보낼 때" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>다른 서브넷으로 데이터그램을 보낼 때</strong>
+    <span>목적지 호스트가 같은 서브넷에 없으면 최종 호스트의 MAC 주소로 바로 보내는 것이 아니라 라우터 인터페이스의 MAC 주소로 전달한다.</span>
+  </figcaption>
+</figure>
+
+                <p>이때 송신 호스트는 프레임을 라우터 인터페이스의 <strong>MAC</strong> <strong>주소</strong>로 보낸다. 라우터가 네트워크 계층에서 다음 경로를 판단하고, 목적지 쪽 서브넷에 맞는 링크 계층 전달을 이어 간다. 즉 다른 서브넷으로 가는 첫 프레임의 목적지 MAC은 최종 서버의 MAC이 아니라 기본 게이트웨이 또는 라우터 인터페이스의 MAC이 된다.</p>
           </div>
         </details>
         
@@ -198,17 +255,40 @@
           </summary>
           <div class="note-section-body">
             <p>오늘날 Ethernet은 가장 중요한 LAN 기술로 소개된다. <strong>인터넷</strong>이 전 세계 네트워킹을 논하는 개념이라면, Ethernet은 근거리 <strong>네트워크</strong>에서 이웃 네트워크 요소로 값을 전송하는 대표 기술이다.</p>
-<table>
-  <thead><tr><th>필드</th><th>역할</th></tr></thead>
-  <tbody>
-    <tr><td>Destination address</td><td>목적지 <strong>MAC 주소</strong>가 들어간다.</td></tr>
-    <tr><td>Source address</td><td>출발지 <strong>MAC</strong> <strong>주소</strong>가 들어간다.</td></tr>
-    <tr><td>Type</td><td>상위 <strong>네트워크 계층</strong> <strong>프로토콜</strong>이 무엇인지 나타낸다. 예를 들어 IPv4를 구분한다.</td></tr>
-    <tr><td>Data</td><td>상위 계층에서 내려온 IP 데이터그램을 싣는다.</td></tr>
-    <tr><td>CRC</td><td>오류 검출을 위한 값이다.</td></tr>
-  </tbody>
-</table>
-<p>Ethernet은 비연결형이고 비신뢰적인 <strong>서비스</strong>를 제공한다. CRC로 오류를 검사하지만, 성공 응답이나 실패 응답을 보내지 않는다. 실패하면 프레임을 폐기한다. <strong>이더넷</strong> 자체는 재전송 여부나 새로운 데이터그램 여부를 구분하지 않으며, 필요한 신뢰성은 상위 전송 계층의 TCP 같은 프로토콜이 담당할 수 있다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0031.jpg" alt="Ethernet 프레임 구조" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Ethernet 프레임 구조</strong>
+    <span>Ethernet 프레임은 목적지 MAC, 출발지 MAC, type, data, CRC 등을 포함하고 data 필드에는 IP 데이터그램이 운반된다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>필드</th><th>역할</th></tr></thead>
+                  <tbody>
+                    <tr><td>Destination address</td><td>목적지 <strong>MAC 주소</strong>가 들어간다.</td></tr>
+                    <tr><td>Source address</td><td>출발지 <strong>MAC</strong> <strong>주소</strong>가 들어간다.</td></tr>
+                    <tr><td>Type</td><td>상위 <strong>네트워크 계층</strong> <strong>프로토콜</strong>이 무엇인지 나타낸다. 예를 들어 IPv4를 구분한다.</td></tr>
+                    <tr><td>Data</td><td>상위 계층에서 내려온 IP 데이터그램을 싣는다.</td></tr>
+                    <tr><td>CRC</td><td>오류 검출을 위한 값이다.</td></tr>
+                  </tbody>
+                </table>
+                <p>Data 필드에는 상위 네트워크 계층의 IP 데이터그램이 들어간다. 강의는 Data 크기를 46바이트에서 1500바이트로 설명하고, 이보다 크면 단편화가 진행될 수 있다고 언급한다. Destination address와 Source address에는 앞에서 배운 목적지·출발지 MAC 주소가 들어가며, Type 필드는 IP 같은 상위 네트워크 계층 프로토콜 종류를 나타낸다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0035.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0035.jpg" alt="Ethernet의 비연결형·비신뢰적 서비스" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Ethernet의 비연결형·비신뢰적 서비스</strong>
+    <span>Ethernet은 CRC로 프레임을 검사하지만 응답이나 부정 확인 응답을 보내지 않고, 실패한 프레임은 폐기한다.</span>
+  </figcaption>
+</figure>
+
+                <p>Ethernet은 비연결형이고 비신뢰적인 <strong>서비스</strong>를 제공한다. CRC로 오류를 검사하지만, 성공 응답이나 실패 응답을 보내지 않는다. 실패하면 프레임을 폐기한다. <strong>이더넷</strong> 자체는 재전송 여부나 새로운 데이터그램 여부를 구분하지 않으며, 필요한 신뢰성은 상위 전송 계층의 TCP 같은 프로토콜이 담당할 수 있다.</p>
           </div>
         </details>
         
@@ -219,15 +299,26 @@
           </summary>
           <div class="note-section-body">
             <p>스위치는 프레임을 전달할 때 전송 속도와 수신 용량 차이를 처리해야 한다. <strong>입력</strong>되는 프레임이 처리 가능한 용량을 넘으면 <strong>패킷</strong> 손실이 발생할 수 있으므로, 어느 정도 수용하기 위한 버퍼를 가진다.</p>
-<p>또 스위치는 <strong>filtering</strong>과 <strong>forwarding</strong>을 수행한다. Filtering은 받은 프레임을 폐기할지 판단하는 동작이고, forwarding은 프레임을 어느 인터페이스로 내보낼지 결정해 실제로 전송하는 동작이다.</p>
-<table>
-  <thead><tr><th>장비</th><th>계층</th><th>주소 체계</th><th>역할</th></tr></thead>
-  <tbody>
-    <tr><td>스위치</td><td>2계층, <strong>데이터 링크</strong></td><td><strong>MAC 주소</strong></td><td>프레임을 이웃 <strong>네트워크</strong> 요소로 전달한다.</td></tr>
-    <tr><td>라우터</td><td>3계층, 네트워크</td><td><strong>IP 주소</strong></td><td>패킷이 목적지 호스트까지 갈 경로를 결정한다.</td></tr>
-  </tbody>
-</table>
-<p>강의의 마지막 그림은 응용 계층 메시지가 스위치를 통해 링크 계층에서 이동하고, 라우터가 <strong>네트워크 계층</strong> <strong>라우팅</strong>을 책임진 뒤 수신 호스트로 전달되는 흐름을 보여 준다.</p>
+                <p>또 스위치는 <strong>filtering</strong>과 <strong>forwarding</strong>을 수행한다. Filtering은 받은 프레임을 폐기할지 판단하는 동작이고, forwarding은 프레임을 어느 인터페이스로 내보낼지 결정해 실제로 전송하는 동작이다.</p>
+                <table>
+                  <thead><tr><th>장비</th><th>계층</th><th>주소 체계</th><th>역할</th></tr></thead>
+                  <tbody>
+                    <tr><td>스위치</td><td>2계층, <strong>데이터 링크</strong></td><td><strong>MAC 주소</strong></td><td>프레임을 이웃 <strong>네트워크</strong> 요소로 전달한다.</td></tr>
+                    <tr><td>라우터</td><td>3계층, 네트워크</td><td><strong>IP 주소</strong></td><td>패킷이 목적지 호스트까지 갈 경로를 결정한다.</td></tr>
+                  </tbody>
+                </table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0039.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-03-데이터-링크-계층/네트워크 기초-03-데이터-링크-계층 - 0039.jpg" alt="링크 계층 스위치와 라우터 비교" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>링크 계층 스위치와 라우터 비교</strong>
+    <span>스위치는 MAC 주소를 사용하는 2계층 패킷 교환기이고, 라우터는 네트워크 계층 주소를 사용하는 3계층 패킷 교환기다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의의 마지막 그림은 응용 계층 메시지가 스위치를 통해 링크 계층에서 이동하고, 라우터가 <strong>네트워크 계층</strong> <strong>라우팅</strong>을 책임진 뒤 수신 호스트로 전달되는 흐름을 보여 준다.</p>
           </div>
         </details>
         
@@ -238,6 +329,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>노드와 링크를 <strong>네트워크</strong> 장비 예시로 설명할 수 있는가?</li><li><strong>IP 주소</strong>와 <strong>MAC 주소</strong>가 서로 다른 계층의 주소인 이유를 이해했는가?</li><li><strong>ARP</strong>가 같은 <strong>서브넷</strong>에서 어떤 문제를 해결하는지 말할 수 있는가?</li><li>Ethernet이 비연결형·비신뢰적이라는 말과 <strong>TCP</strong>의 <strong>신뢰성</strong>이 어떻게 공존하는지 설명할 수 있는가?</li><li>스위치와 라우터의 계층, <strong>주소</strong>, 역할 차이를 구분할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

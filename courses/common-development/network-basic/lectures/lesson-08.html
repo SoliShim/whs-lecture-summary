@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>네트워크 기초 1-8 - 소켓 프로그래밍</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -134,8 +134,20 @@
             <h2>소켓 프로그래밍의 목적</h2>
           </summary>
           <div class="note-section-body">
-            <p>마지막 강의는 <strong>소켓</strong>을 이용해 클라이언트-서버 애플리케이션을 어떻게 만드는지 소개한다. 우리가 사용하는 대부분의 애플리케이션은 <strong>네트워크</strong>를 거치며, 그 내부에는 TCP 또는 UDP 기반 소켓 프로그래밍이 들어 있다. 이 강의에서는 UDP와 TCP를 기준으로 기본 구조를 본다.</p>
-<p>소켓은 앞 강의에서 설명한 것처럼 애플리케이션과 전송 계층 사이의 출입구다. 애플리케이션은 소켓을 통해 데이터를 보내고 받고, 전송 계층은 <strong>TCP</strong>나 <strong>UDP</strong> 규칙에 맞춰 세그먼트 또는 데이터그램을 처리한다.</p>
+            <p>마지막 강의는 <strong>socket programming</strong>으로 client/server 애플리케이션을 어떻게 만드는지 소개한다. 우리가 사용하는 대부분의 애플리케이션은 <strong>네트워크</strong>를 거치며, 내부에서는 <strong>TCP</strong> 또는 UDP 기반 소켓을 통해 데이터를 주고받는다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0003.jpg" alt="소켓 프로그래밍의 이해" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>소켓 프로그래밍의 이해</strong>
+    <span>소켓은 호스트의 애플리케이션과 트랜스포트 계층 사이의 인터페이스이며, 이 강의는 client/server 애플리케이션을 UDP와 TCP socket으로 만드는 흐름을 다룬다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>소켓</strong>은 호스트의 application layer와 transport layer 사이의 인터페이스다. 애플리케이션은 소켓에 데이터를 넣고, transport layer는 TCP나 <strong>UDP</strong> 규칙에 맞춰 segment 또는 datagram을 처리한다. 강의에서는 소켓 유형을 크게 <strong>UDP socket</strong>과 <strong>TCP socket</strong>으로 나누어 본다.</p>
+                <p>이 강의의 목표는 완성된 대규모 서버 프로그램을 만드는 것이 아니라, 네트워크 애플리케이션의 최소 구조를 이해하는 것이다. 즉 server와 client가 각각 <strong>socket</strong>을 만들고, 어떤 <strong>함수</strong>로 데이터를 보내고 받으며, TCP에서는 왜 연결 설정이 먼저 필요한지를 파악하는 데 집중한다.</p>
           </div>
         </details>
         
@@ -145,15 +157,27 @@
             <h2>UDP 소켓 프로그래밍 흐름</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>UDP</strong>는 비연결형 <strong>프로토콜</strong>이다. 데이터를 보내기 전에 handshake로 연결을 설정하지 않는다. 송신자는 각 패킷에 목적지 IP와 port만 붙여 보내면 되고, 수신자는 받은 패킷에서 보낸 사람의 IP와 port를 추출한다. 다만 UDP는 신뢰성이 없기 때문에 전송된 데이터가 손실될 수 있다.</p>
-<div class="diagram">
-  <div><span class="node-title">서버 소켓</span><p>UDP <strong>socket</strong> 생성 후 port bind</p></div>
-  <span class="arrow">←</span>
-  <div><span class="node-title">클라이언트</span><p>서버 IP와 port로 datagram 전송</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">응답</span><p>서버가 client address로 datagram 반환</p></div>
-</div>
-<p>서버와 클라이언트는 각각 <strong>소켓</strong>을 열고, 클라이언트는 서버 IP와 port로 데이터그램을 보낸다. 서버는 UDP 세그먼트를 읽고 필요한 처리를 한 뒤 응답을 보낸다. 클라이언트는 응답을 받고 작업을 마치면 소켓을 닫는다.</p>
+            <p><strong>UDP</strong>는 비연결형 <strong>프로토콜</strong>이다. 데이터를 보내기 전에 TCP처럼 handshake로 연결을 설정하지 않는다. Sender는 각 packet에 destination IP와 port를 붙여 보내고, receiver는 수신된 packet에서 보낸 사람의 IP와 port를 추출한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0007.jpg" alt="UDP socket programming 흐름" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>UDP socket programming 흐름</strong>
+    <span>UDP에서는 server와 client가 각각 socket(AF_INET, SOCK_DGRAM)을 만들고, client가 server IP와 port를 담은 datagram을 보내며 server는 client address로 응답한다.</span>
+  </figcaption>
+</figure>
+
+                <p>그림에서 server와 client는 각각 <strong>socket</strong>을 연다. 이때 UDP socket은 <code>socket(AF_INET, SOCK_DGRAM)</code>으로 만든다. <code>AF_INET</code>은 IPv4를 의미하고, <code>SOCK_DGRAM</code>은 UDP datagram socket을 의미한다.</p>
+                <div class="diagram">
+                  <div><span class="node-title">서버 소켓</span><p>UDP socket 생성 후 port bind</p></div>
+                  <span class="arrow">←</span>
+                  <div><span class="node-title">클라이언트</span><p>서버 IP와 port로 datagram 전송</p></div>
+                  <span class="arrow">→</span>
+                  <div><span class="node-title">응답</span><p>서버가 client address로 datagram 반환</p></div>
+                </div>
+                <p>Client는 message를 datagram으로 만들어 server IP와 port로 보낸다. Server는 UDP segment를 읽고, 처리 결과를 다시 client address와 port로 보낸다. Client는 응답을 받은 뒤 할 일을 마치면 socket을 닫는다. 흐름은 간단하지만 UDP는 <strong>신뢰성</strong>을 제공하지 않기 때문에 전송 데이터가 손실될 수 있다는 점을 함께 기억해야 한다.</p>
           </div>
         </details>
         
@@ -163,20 +187,37 @@
             <h2>UDP client 예시</h2>
           </summary>
           <div class="note-section-body">
-            <p>강의에서 설명한 <strong>Python</strong> <strong>UDP</strong> client 구조를 학습용으로 정리하면 다음과 같다. <code>AF_INET</code>은 IPv4를 의미하고, <code>SOCK_DGRAM</code>은 UDP socket을 의미한다. Client는 메시지를 입력받아 서버 주소로 보내고, 서버 응답을 기다린 뒤 출력하고 socket을 닫는다.</p>
-                    <pre><code class="language-python">from socket import socket, AF_INET, SOCK_DGRAM
+            <p>강의 화면의 <strong>UDP</strong> client는 <strong>Python</strong> <code>socket</code> 모듈을 사용한다. <code>serverName</code>에는 server host name 또는 IP가 들어가고, <code>serverPort</code>에는 12000이 들어간다. 그 다음 <code>clientSocket = socket(AF_INET, SOCK_DGRAM)</code>으로 IPv4 기반 UDP socket을 생성한다.</p>
 
-server_name = &quot;127.0.0.1&quot;
-server_port = 12000
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0011.jpg" alt="UDPClient.py 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>UDPClient.py 코드</strong>
+        <span>UDP client는 clientSocket을 만들고 message를 입력받아 sendto로 serverName/serverPort에 보내며, recvfrom으로 응답과 serverAddress를 받는다.</span>
+      </figcaption>
+    </figure>
 
-client_socket = socket(AF_INET, SOCK_DGRAM)
-message = input(&quot;Input lowercase sentence: &quot;)
+                    <pre><code class="language-python">from socket import * # 해당 모듈을 통해 소켓 생성
 
-client_socket.sendto(message.encode(), (server_name, server_port))
-modified_message, server_address = client_socket.recvfrom(2048)
+serverName = &#x27;hostname&#x27;
+serverPort = 12000
 
-print(modified_message.decode())
-client_socket.close()</code></pre>
+clientSocket = socket(AF_INET, SOCK_DGRAM) # client socket 생성, IPv4, UDP
+
+message = Input(&#x27;Input lowercase sentence:&#x27;)
+
+clientSocket.sendto(message.encode(), (serverName, serverPort))
+
+# 패킷 데이터, 패킷 출발지 주소 할당
+modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
+
+print(modifiedMessage.decode())
+
+# 소켓 닫기
+clientSocket.close()</code></pre>
+                    <p><code>sendto</code>는 UDP에서 중요한 <strong>함수</strong>다. <strong>TCP</strong>처럼 먼저 연결된 상대가 있는 것이 아니므로, 보낼 message와 함께 목적지인 <code>(serverName, serverPort)</code>를 매번 넘겨 준다. <code>recvfrom(2048)</code>은 server의 응답 data와 그 응답이 온 server address를 함께 반환한다. 마지막으로 client는 <code>clientSocket.close()</code>로 socket을 닫는다.</p>
           </div>
         </details>
         
@@ -186,19 +227,36 @@ client_socket.close()</code></pre>
             <h2>UDP server 예시</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>UDP</strong> server는 UDP <strong>socket</strong>을 만들고 12000번 port에 bind한다. 이후 계속 반복문을 돌며 client에서 온 데이터를 <code>recvfrom</code>으로 받고, 처리한 결과를 client address로 다시 보낸다. UDP에서는 매 요청마다 sender address를 함께 확인하는 점이 중요하다.</p>
-                    <pre><code class="language-python">from socket import socket, AF_INET, SOCK_DGRAM
+            <p><strong>UDP</strong> server도 마찬가지로 <code>socket(AF_INET, SOCK_DGRAM)</code>으로 UDP <strong>socket</strong>을 만든다. Server는 client가 찾아올 수 있도록 특정 port를 socket에 묶어야 하므로 <code>serverSocket.bind(('', serverPort))</code>를 호출한다. 강의 예시는 12000번 port를 사용한다.</p>
 
-server_port = 12000
-server_socket = socket(AF_INET, SOCK_DGRAM)
-server_socket.bind((&quot;&quot;, server_port))
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0015.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0015.jpg" alt="UDPServer.py 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>UDPServer.py 코드</strong>
+        <span>UDP server는 12000번 port에 bind한 뒤 while True에서 recvfrom으로 message와 clientAddress를 받고, 대문자로 변환한 뒤 sendto로 돌려준다.</span>
+      </figcaption>
+    </figure>
 
-print(&quot;UDP server is ready&quot;)
+                    <pre><code class="language-python">from socket import *
+
+serverPort = 12000
+serverSocket = socket(AF_INET, SOCK_DGRAM)
+
+# 12000 포트 번호를 소켓 할당
+serverSocket.bind((&#x27;&#x27;, serverPort))
+
+print(&quot;The server is ready to receive&quot;)
 
 while True:
-    message, client_address = server_socket.recvfrom(2048)
-    modified_message = message.decode().upper()
-    server_socket.sendto(modified_message.encode(), client_address)</code></pre>
+    # 데이터, 패킷 출발지 주소 저장
+    message, clientAddress = serverSocket.recvfrom(2048)
+
+    modifiedMessage = message.decode().upper()
+
+    serverSocket.sendto(modifiedMessage.encode(), clientAddress)</code></pre>
+                    <p>Server는 <code>while True</code> <strong>반복문</strong> 안에서 계속 client 요청을 기다린다. <code>recvfrom(2048)</code>은 client가 보낸 message와 client address를 함께 반환한다. Server는 message를 decode한 뒤 <code>upper()</code>로 대문자로 바꾸고, <code>sendto</code>를 이용해 같은 client address로 다시 보낸다. UDP server는 연결을 유지하지 않으므로 매 요청에서 sender address를 함께 다루는 구조가 된다.</p>
           </div>
         </details>
         
@@ -208,18 +266,41 @@ while True:
             <h2>TCP 소켓 프로그래밍 흐름</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>TCP</strong>는 <strong>UDP</strong>와 달리 데이터를 주고받기 전에 연결이 수립되어야 한다. 서버에는 항상 열려 있는 welcome socket이 있고, 클라이언트는 그 socket에 연결하고 싶다고 요청한다. TCP connection이 이루어지면 서버는 welcome socket과 별개의 connection socket을 만들어 실제 데이터 통신에 사용한다.</p>
-<p>이 구조 덕분에 서버는 여러 클라이언트와 통신할 수 있고, 각 클라이언트는 source port 등으로 구분된다. TCP는 <strong>신뢰성</strong> 있는 연결을 제공하며, <strong>3-way handshake</strong> 이후 connection socket을 통해 데이터가 오간다.</p>
-<table>
-  <thead><tr><th>요소</th><th>역할</th></tr></thead>
-  <tbody>
-    <tr><td>welcome <strong>socket</strong></td><td>서버가 클라이언트 연결 요청을 기다리는 <strong>소켓</strong>이다.</td></tr>
-    <tr><td>connect</td><td>클라이언트가 서버와 TCP connection을 만들기 위해 호출한다.</td></tr>
-    <tr><td>listen</td><td>서버가 연결 요청을 받을 준비를 한다.</td></tr>
-    <tr><td>accept</td><td>연결 요청을 받아 connection socket을 만든다.</td></tr>
-    <tr><td>connection socket</td><td>연결된 client와 실제 데이터를 주고받는 소켓이다.</td></tr>
-  </tbody>
-</table>
+            <p><strong>TCP</strong>는 <strong>UDP</strong>와 달리 데이터를 주고받기 전에 연결이 수립되어야 한다. Server에는 client의 연결 요청을 기다리는 <strong>welcome socket</strong>이 열려 있고, client는 server IP와 port로 “연결하고 싶다”고 요청한다. 이 과정에서 TCP 3-way handshake가 수행된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0019.jpg" alt="TCP socket programming 개념" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>TCP socket programming 개념</strong>
+    <span>TCP client는 welcome socket의 IP와 port를 통해 연결을 만들고, server는 connection socket을 생성해 여러 client와 신뢰성 있는 연결을 제공한다.</span>
+  </figcaption>
+</figure>
+
+                <p>연결이 수립되면 server는 welcome <strong>socket</strong>과 별개의 <strong>connection socket</strong>을 생성한다. 실제 data 송수신은 이 connection socket을 통해 이루어진다. Welcome socket은 계속 열려 있으므로 server는 다음 client의 연결 요청도 받을 수 있다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0023.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0023.jpg" alt="TCP socket programming 흐름" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>TCP socket programming 흐름</strong>
+    <span>Server는 socket 생성 후 accept로 incoming connection을 기다리고, client는 connect로 TCP connection setup을 완료한 뒤 request와 reply를 주고받는다.</span>
+  </figcaption>
+</figure>
+
+                <p>이 구조 덕분에 server는 여러 client와 통신할 수 있고, 각 client는 source port 등으로 구분된다. TCP는 client-server 사이에 <strong>신뢰성</strong> 있는 연결을 제공하며, 연결 설정 이후에는 byte stream 형태로 데이터를 주고받는다.</p>
+                <table>
+                  <thead><tr><th>요소</th><th>역할</th></tr></thead>
+                  <tbody>
+                    <tr><td>welcome socket</td><td>서버가 클라이언트 연결 요청을 기다리는 <strong>소켓</strong>이다.</td></tr>
+                    <tr><td>connect</td><td>클라이언트가 서버와 TCP connection을 만들기 위해 호출한다.</td></tr>
+                    <tr><td>listen</td><td>서버가 연결 요청을 받을 준비를 한다.</td></tr>
+                    <tr><td>accept</td><td>연결 요청을 받아 connection socket을 만든다.</td></tr>
+                    <tr><td>connection socket</td><td>연결된 client와 실제 데이터를 주고받는 소켓이다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -229,22 +310,37 @@ while True:
             <h2>TCP client 예시</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>TCP</strong> client는 <strong>UDP</strong> client와 달리 데이터를 보내기 전에 <code>connect</code>를 호출한다. 이 호출을 통해 TCP connection이 만들어지고, 이후 같은 socket으로 데이터를 보내고 응답을 받는다.</p>
-                    <pre><code class="language-python">from socket import socket, AF_INET, SOCK_STREAM
+            <p><strong>TCP</strong> client는 <strong>UDP</strong> client와 마찬가지로 server name과 server port를 지정하지만, socket type이 다르다. <code>socket(AF_INET, SOCK_STREAM)</code>은 IPv4 기반 TCP socket을 의미한다. UDP의 <code>SOCK_DGRAM</code>과 달리 TCP는 <code>SOCK_STREAM</code>을 사용한다.</p>
 
-server_name = &quot;127.0.0.1&quot;
-server_port = 12000
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0025.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0025.jpg" alt="TCPClient.py 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>TCPClient.py 코드</strong>
+        <span>TCP client는 socket(AF_INET, SOCK_STREAM)을 만들고 connect로 3-way handshake를 먼저 수행한 뒤 send, recv, close 순서로 동작한다.</span>
+      </figcaption>
+    </figure>
 
-client_socket = socket(AF_INET, SOCK_STREAM)
-client_socket.connect((server_name, server_port))
+                    <pre><code class="language-python">from socket import *
 
-sentence = input(&quot;Input lowercase sentence: &quot;)
-client_socket.send(sentence.encode())
+serverName = &#x27;servername&#x27;
+serverPort = 12000
 
-modified_sentence = client_socket.recv(2048)
-print(modified_sentence.decode())
+# IPv4, TCP 소켓 명시
+clientSocket = socket(AF_INET, SOCK_STREAM)
 
-client_socket.close()</code></pre>
+# 데이터를 보내기 전 TCP connection이 먼저 이루어져야 한다. (3-way handshake)
+clientSocket.connect((serverName, serverPort))
+
+sentence = raw_input(&#x27;Input lowercase sentence:&#x27;)
+clientSocket.send(sentence.encode())
+
+modifiedSentence = clientSocket.recv(1024)
+print(&#x27;From Server: &#x27;, modifiedSentence.decode())
+
+clientSocket.close() # 연결 종료</code></pre>
+                    <p>가장 중요한 차이는 <code>clientSocket.connect((serverName, serverPort))</code>다. TCP는 데이터를 보내기 전에 연결이 먼저 이루어져야 하므로, 이 connect 호출에서 TCP connection setup, 즉 <strong>3-way handshake</strong>가 수행된다. 그 다음에는 <code>send</code>로 데이터를 보내고, <code>recv(1024)</code>로 server response를 받는다. 통신이 끝나면 client <strong>socket</strong>을 닫는다.</p>
           </div>
         </details>
         
@@ -254,22 +350,37 @@ client_socket.close()</code></pre>
             <h2>TCP server 예시</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>TCP</strong> server는 <strong>socket</strong>을 만들고 bind한 뒤, <code>listen</code>으로 연결 요청을 기다린다. Client가 연결하면 <code>accept</code>가 connection socket을 반환하고, server는 그 socket으로 값을 받고 응답을 보낸 뒤 connection socket을 닫는다. Welcome socket은 계속 살아 있으므로 다음 client 연결을 다시 받을 수 있다.</p>
-                    <pre><code class="language-python">from socket import socket, AF_INET, SOCK_STREAM
+            <p><strong>TCP</strong> server는 먼저 <code>serverSocket = socket(AF_INET, SOCK_STREAM)</code>으로 TCP <strong>socket</strong>을 만든다. 그 다음 <code>bind</code>로 12000번 port에 server socket을 묶고, <code>listen(1)</code>으로 client가 문을 두드리기를 기다린다.</p>
 
-server_port = 12000
-server_socket = socket(AF_INET, SOCK_STREAM)
-server_socket.bind((&quot;&quot;, server_port))
-server_socket.listen(1)
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/network-basic/네트워크 기초-08-소켓-프로그래밍/네트워크 기초-08-소켓-프로그래밍 - 0027.jpg" alt="TCPServer.py 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>TCPServer.py 코드</strong>
+        <span>TCP server는 SOCK_STREAM socket을 bind/listen한 뒤 accept로 connectionSocket을 만들고, recv, upper, send, close 순서로 응답한다.</span>
+      </figcaption>
+    </figure>
 
-print(&quot;TCP server is ready&quot;)
+                    <pre><code class="language-python">from socket import *
+
+serverPort = 12000
+serverSocket = socket(AF_INET, SOCK_STREAM) # TCP 소켓 생성
+
+serverSocket.bind((&#x27;&#x27;, serverPort))
+
+serverSocket.listen(1) # 클라이언트가 문을 두드리기를 기다린다.
+print(&#x27;The server is ready to receive&#x27;)
 
 while True:
-    connection_socket, client_address = server_socket.accept()
-    sentence = connection_socket.recv(2048).decode()
-    modified_sentence = sentence.upper()
-    connection_socket.send(modified_sentence.encode())
-    connection_socket.close()</code></pre>
+    # client가 TCP 연결 요청을 하면, accept()로 연결 소켓 생성
+    connectionSocket, addr = serverSocket.accept()
+    sentence = connectionSocket.recv(1024).decode()
+    capitalizedSentence = sentence.upper()
+    connectionSocket.send(capitalizedSentence.encode())
+
+    connectionSocket.close() # 응답을 보내고 연결 소켓을 닫는다.</code></pre>
+                    <p>Client가 TCP 연결 요청을 보내면 <code>serverSocket.accept()</code>가 호출되고, 이때 <code>connectionSocket</code>이 만들어진다. Server는 이 connection socket에서 <code>recv(1024)</code>로 문장을 받고, <code>upper()</code>로 대문자로 바꾼 뒤 <code>send</code>로 돌려준다. 마지막에 닫는 것은 welcome socket이 아니라 해당 client와 통신하던 connection socket이다.</p>
           </div>
         </details>
         
@@ -310,6 +421,7 @@ while True:
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>UDP</strong> client/server가 연결 설정 없이 datagram을 주고받는 흐름을 설명할 수 있는가?</li><li><strong>Python</strong> <strong>socket</strong>에서 AF_INET과 SOCK_DGRAM이 무엇을 의미하는지 기억하는가?</li><li><strong>TCP</strong> server에서 welcome <strong>socket</strong>과 connection socket이 왜 구분되는지 말할 수 있는가?</li><li><strong>TCP</strong> client가 데이터를 보내기 전에 connect를 호출해야 하는 이유를 이해했는가?</li><li><strong>UDP</strong>와 <strong>TCP</strong> 소켓 프로그래밍의 함수 흐름 차이를 표 없이도 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

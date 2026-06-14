@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>해커의 프로그래밍 1-6 - 개인정보 유출과 데이터 결합</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -136,7 +136,18 @@
           </summary>
           <div class="note-section-body">
             <p><strong>개인정보 유출</strong> 원인은 다양하다. <strong>해킹</strong>으로 데이터베이스가 털릴 수도 있고, 내부자가 유출할 수도 있으며, 누군가 의도하지 않았지만 파일을 잘못 업로드하는 업무상 과실로 새어 나갈 수도 있다. 중소규모 웹사이트, 신뢰하기 어려운 해외 쇼핑몰, 브라우저 확장 기능 취약점 등도 유출 경로가 될 수 있다.</p>
-<p>강의에서는 홈쇼핑이나 작은 사이트에서도 한 번 사고가 나면 수십만 명, 백만 명 단위의 <strong>개인정보</strong>가 유출될 수 있다고 설명한다. 또 2024년 KISA 보도자료 사례로 자동 <strong>로그</strong>인 기능을 활용한 로그인 정보 탈취를 언급한다. 브라우저의 비밀번호 자동완성 기능에 문제가 있으면 사용자가 저장해 둔 여러 사이트의 아이디와 비밀번호가 함께 노출될 수 있다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0007.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0007.jpg" alt="개인정보 유출 사고의 원인" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>개인정보 유출 사고의 원인</strong>
+    <span>해킹, 내부자 유출, 업무상 과실뿐 아니라 중소규모 웹사이트, 해외 홈쇼핑, 브라우저 확장 취약점도 유출 경로가 될 수 있음을 보여 준다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의에서는 홈쇼핑이나 작은 사이트에서도 한 번 사고가 나면 수십만 명, 백만 명 단위의 <strong>개인정보</strong>가 유출될 수 있다고 설명한다. 또 2024년 KISA 보도자료 사례로 자동 <strong>로그</strong>인 기능을 활용한 로그인 정보 탈취를 언급한다. 브라우저의 비밀번호 자동완성 기능에 문제가 있으면 사용자가 저장해 둔 여러 사이트의 아이디와 비밀번호가 함께 노출될 수 있다.</p>
           </div>
         </details>
         
@@ -147,15 +158,26 @@
           </summary>
           <div class="note-section-body">
             <p>유출된 <strong>개인정보</strong>는 다크웹이나 <strong>해킹</strong> 포럼에서 공유·판매될 수 있다. 강의에서는 BreachForums 같은 온라인 포럼을 예로 들며, 해커들이 개인정보 유출 데이터나 침해 접근 권한을 거래하는 공간이라고 설명한다. 이 사이트는 미국 FBI와 사법부의 조치로 폐쇄된 적이 있지만 다시 살아나는 등 차단과 재등장이 반복되는 특징이 있다.</p>
-<p>실제 유통되는 데이터 형태도 다양하다. 아이디와 패스워드가 콜론으로 구분된 텍스트 파일, 이름·<strong>주소</strong>·전화번호·SSN이 들어간 <strong>CSV</strong> 파일, 데이터베이스 전체를 가져온 SQL 덤프 파일 등이 있다. 중요한 점은 하나의 파일만으로도 위험하지만, 여러 파일이 결합되면 훨씬 더 심각한 정보가 될 수 있다는 것이다.</p>
-<table>
-  <thead><tr><th>형태</th><th>포함될 수 있는 정보</th></tr></thead>
-  <tbody>
-    <tr><td>텍스트 파일</td><td><code>id:password</code>처럼 <strong>로그</strong>인 정보가 한 줄씩 나열될 수 있다.</td></tr>
-    <tr><td>CSV 파일</td><td>이름, 주소, 전화번호, 주민등록번호 또는 SSN 같은 항목이 표 형태로 정리될 수 있다.</td></tr>
-    <tr><td>SQL 덤프</td><td><strong>서비스</strong> 데이터베이스의 테이블 구조와 데이터가 통째로 포함될 수 있다.</td></tr>
-  </tbody>
-</table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0013.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0013.jpg" alt="BreachForums와 유출 데이터 유통" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>BreachForums와 유출 데이터 유통</strong>
+    <span>BreachForums는 개인정보 유출 데이터를 거래·공유하는 온라인 포럼의 예시이며, 국내 유출 사고 관련 정보도 함께 올라올 수 있음을 보여 준다.</span>
+  </figcaption>
+</figure>
+
+                <p>실제 유통되는 데이터 형태도 다양하다. 아이디와 패스워드가 콜론으로 구분된 텍스트 파일, 이름·<strong>주소</strong>·전화번호·SSN이 들어간 <strong>CSV</strong> 파일, 데이터베이스 전체를 가져온 SQL 덤프 파일 등이 있다. 중요한 점은 하나의 파일만으로도 위험하지만, 여러 파일이 결합되면 훨씬 더 심각한 정보가 될 수 있다는 것이다.</p>
+                <table>
+                  <thead><tr><th>형태</th><th>포함될 수 있는 정보</th></tr></thead>
+                  <tbody>
+                    <tr><td>텍스트 파일</td><td><code>id:password</code>처럼 <strong>로그</strong>인 정보가 한 줄씩 나열될 수 있다.</td></tr>
+                    <tr><td>CSV 파일</td><td>이름, 주소, 전화번호, 주민등록번호 또는 SSN 같은 항목이 표 형태로 정리될 수 있다.</td></tr>
+                    <tr><td>SQL 덤프</td><td><strong>서비스</strong> 데이터베이스의 테이블 구조와 데이터가 통째로 포함될 수 있다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -166,8 +188,19 @@
           </summary>
           <div class="note-section-body">
             <p><strong>모자이크 이론</strong>은 단편적인 개별 정보는 별로 중요해 보이지 않아도, 여러 조각을 결합하면 이전에는 몰랐던 핵심 사실을 알 수 있다는 주장이다. 원래 정보기관 쪽에서 많이 언급되던 이론이지만, <strong>개인정보</strong>와 OSINT에서도 매우 중요하다.</p>
-<p>예를 들어 김민철이라는 사람이 <code>nyan101</code>이라는 아이디를 쓴다는 정보는 그 자체로 큰 비밀이 아닐 수 있다. 그 아이디가 Gmail <strong>주소</strong>와 연결되어 있고, 그 메일로 어떤 사이트에 가입했으며, 그 사이트의 게시글에서 어느 도시에 산다는 단서가 나오고, 또 직장 동료라고 소개한 사람이 어떤 회사에 다니는지 공개되어 있다면 상황이 달라진다. 조각들을 합치면 특정 사람이 어디에 살고, 어떤 회사와 관련 있고, 어떤 이메일을 쓰는지까지 추정할 수 있다.</p>
-<p>이처럼 <strong>데이터 결합</strong>은 모자이크를 채워 큰 그림을 완성하는 과정과 같다. 그래서 개별 정보 하나하나는 사소해 보여도, 공개 범위와 결합 가능성을 함께 고려해야 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0019.jpg" alt="모자이크 이론" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>모자이크 이론</strong>
+    <span>각각은 사소한 단서라도 아이디, 메일 주소, 가입 사이트, 거주지 단서, 직장 관계를 결합하면 새로운 사실을 추정할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>예를 들어 김민철이라는 사람이 <code>nyan101</code>이라는 아이디를 쓴다는 정보는 그 자체로 큰 비밀이 아닐 수 있다. 그 아이디가 Gmail <strong>주소</strong>와 연결되어 있고, 그 메일로 어떤 사이트에 가입했으며, 그 사이트의 게시글에서 어느 도시에 산다는 단서가 나오고, 또 직장 동료라고 소개한 사람이 어떤 회사에 다니는지 공개되어 있다면 상황이 달라진다. 조각들을 합치면 특정 사람이 어디에 살고, 어떤 회사와 관련 있고, 어떤 이메일을 쓰는지까지 추정할 수 있다.</p>
+                <p>이처럼 <strong>데이터 결합</strong>은 모자이크를 채워 큰 그림을 완성하는 과정과 같다. 그래서 개별 정보 하나하나는 사소해 보여도, 공개 범위와 결합 가능성을 함께 고려해야 한다.</p>
           </div>
         </details>
         
@@ -178,16 +211,27 @@
           </summary>
           <div class="note-section-body">
             <p>서로 다른 데이터 집합에 공통된 값이 있으면 그 값을 기준으로 하나의 큰 데이터로 합칠 수 있다. SQL에서는 이를 join이라고 한다. 목적에 따라 inner join, left join, right join, outer join을 선택한다.</p>
-<table>
-  <thead><tr><th>방식</th><th>의미</th><th>강의 예시</th></tr></thead>
-  <tbody>
-    <tr><td>inner join</td><td>양쪽 모두에 존재하는 데이터만 남긴다.</td><td>이름·이메일 표와 이메일·전화번호 표에서 공통 이메일이 있는 사람만 이름, 이메일, 연락처를 가진다.</td></tr>
-    <tr><td>left join</td><td>왼쪽 표를 기준으로 남기고, 오른쪽 정보가 없으면 빈 값으로 둔다.</td><td>이름과 이메일 정보가 더 중요하면 연락처가 없어도 사람을 남긴다.</td></tr>
-    <tr><td>right join</td><td>오른쪽 표를 기준으로 남긴다.</td><td>이메일과 연락처 정보가 더 중요하면 이름이 없어도 남긴다.</td></tr>
-    <tr><td>outer join</td><td>양쪽 중 어느 한쪽에만 있어도 모두 남긴다.</td><td>조금 난잡하더라도 어느 정보도 버리지 않고 전체 후보를 유지한다.</td></tr>
-  </tbody>
-</table>
-<p>분석 목적에 따라 어떤 정보를 버릴 수 있는지, 어떤 정보를 반드시 보존해야 하는지를 먼저 정해야 한다. 무조건 많이 합치는 것이 좋은 것이 아니라, 데이터의 의미와 고유성을 이해해야 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0031.jpg" alt="데이터 결합과 JOIN 방식" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>데이터 결합과 JOIN 방식</strong>
+    <span>두 데이터 집합을 공통 속성으로 결합하고, 목적에 따라 INNER JOIN, LEFT/RIGHT JOIN, OUTER JOIN을 선택하는 기준을 정리한다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>방식</th><th>의미</th><th>강의 예시</th></tr></thead>
+                  <tbody>
+                    <tr><td>inner join</td><td>양쪽 모두에 존재하는 데이터만 남긴다.</td><td>이름·이메일 표와 이메일·전화번호 표에서 공통 이메일이 있는 사람만 이름, 이메일, 연락처를 가진다.</td></tr>
+                    <tr><td>left join</td><td>왼쪽 표를 기준으로 남기고, 오른쪽 정보가 없으면 빈 값으로 둔다.</td><td>이름과 이메일 정보가 더 중요하면 연락처가 없어도 사람을 남긴다.</td></tr>
+                    <tr><td>right join</td><td>오른쪽 표를 기준으로 남긴다.</td><td>이메일과 연락처 정보가 더 중요하면 이름이 없어도 남긴다.</td></tr>
+                    <tr><td>outer join</td><td>양쪽 중 어느 한쪽에만 있어도 모두 남긴다.</td><td>조금 난잡하더라도 어느 정보도 버리지 않고 전체 후보를 유지한다.</td></tr>
+                  </tbody>
+                </table>
+                <p>분석 목적에 따라 어떤 정보를 버릴 수 있는지, 어떤 정보를 반드시 보존해야 하는지를 먼저 정해야 한다. 무조건 많이 합치는 것이 좋은 것이 아니라, 데이터의 의미와 고유성을 이해해야 한다.</p>
           </div>
         </details>
         
@@ -198,7 +242,18 @@
           </summary>
           <div class="note-section-body">
             <p><strong>개인정보</strong> 실습에서 실제 사람의 정보를 사용하면 윤리적·법적 문제가 생긴다. 그래서 강의에서는 <strong>Python</strong> 패키지 Faker를 소개한다. Faker는 실제 존재하지 않는 이름, 직업, 이메일, 주소, 연락처, 주민등록번호 형식의 값 등을 만들어 낼 수 있다.</p>
-<p><strong>Faker</strong>는 한국어 로케일도 지원한다. 같은 코드에 <code>ko_KR</code>을 지정하면 외국 이름과 <strong>주소</strong> 대신 한국식 이름, 직업, 주소, 주민등록번호 형식의 값이 생성된다. 강의 실습 데이터는 이런 방식으로 100명 정도의 가상 개인정보를 만든 뒤, 이름-이메일, 이메일-주소, 이메일-연락처처럼 여러 파일로 흩어 둔 형태다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0037.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0037.jpg" alt="Faker를 이용한 가상 개인정보 생성" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Faker를 이용한 가상 개인정보 생성</strong>
+    <span>Faker는 이름, 직업, 이메일, 주소, 전화번호, SSN 형식의 값을 만들 수 있고, ko_KR 로케일로 한국식 가상 정보도 생성할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>Faker</strong>는 한국어 로케일도 지원한다. 같은 코드에 <code>ko_KR</code>을 지정하면 외국 이름과 <strong>주소</strong> 대신 한국식 이름, 직업, 주소, 주민등록번호 형식의 값이 생성된다. 강의 실습 데이터는 이런 방식으로 100명 정도의 가상 개인정보를 만든 뒤, 이름-이메일, 이메일-주소, 이메일-연락처처럼 여러 파일로 흩어 둔 형태다.</p>
           </div>
         </details>
         
@@ -209,27 +264,72 @@
           </summary>
           <div class="note-section-body">
             <p>실습 목표는 흩어진 가상 <strong>개인정보</strong> 파일을 하나의 테이블로 결합하는 것이다. 압축 파일을 풀면 이메일-<strong>주소</strong>, 주소-직업, 이메일-직업, 이메일-전화번호 같은 여러 CSV 파일이 나온다. 각 줄은 쉼표로 구분되며, 강의에서는 주소나 직장 이름 안에 쉼표가 들어가지 않도록 처리되어 있다고 가정한다.</p>
-                    <p><strong>Python</strong>에서는 파일을 읽은 뒤 <code>line.strip()</code>으로 양끝 공백과 줄바꿈을 제거하고, <code>split(",", 1)</code>로 두 항목을 나눌 수 있다. 여기서 중요한 것은 어떤 값이 사람을 구분하는 키가 될 수 있는지 판단하는 것이다. 이름은 동명이인이 있을 수 있고, 직업은 당연히 여러 사람이 같을 수 있다. 주소도 가족끼리 공유할 수 있다. 강의에서는 이메일 주소를 비교적 고유한 기준으로 보고 사람을 묶는다.</p>
-                    <pre><code class="language-python">from pathlib import Path
 
-people = {}
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0084.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0084.jpg" alt="가상 개인정보 병합 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>가상 개인정보 병합 코드</strong>
+        <span>실습에서는 person_info 폴더의 email_address.csv, email_job.csv, email_phone.csv, name_email.csv, phone_sex.csv를 읽고 이메일과 전화번호를 기준으로 흩어진 값을 하나의 딕셔너리에 병합한다.</span>
+      </figcaption>
+    </figure>
 
-for line in Path(&quot;email-address.csv&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines():
-    email, address = line.strip().split(&quot;,&quot;, 1)
-    people.setdefault(email, {&quot;email&quot;: email})[&quot;address&quot;] = address
+                    <p><strong>Python</strong>에서는 파일을 읽은 뒤 <code>line.strip()</code>으로 양끝 공백과 줄바꿈을 제거하고, <code>split(",")</code>로 두 항목을 나눈다. 여기서 중요한 것은 어떤 값이 사람을 구분하는 키가 될 수 있는지 판단하는 것이다. 이름은 동명이인이 있을 수 있고, 직업은 당연히 여러 사람이 같을 수 있다. 주소도 가족끼리 공유할 수 있다. 강의에서는 이메일 주소를 비교적 고유한 기준으로 보고 사람을 묶는다.</p>
 
-for line in Path(&quot;email-job.csv&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines():
-    email, job = line.strip().split(&quot;,&quot;, 1)
-    if email in people:
-        people[email][&quot;job&quot;] = job
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0080.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-06-개인정보-유출과-데이터-결합/해커의 프로그래밍-06-개인정보-유출과-데이터-결합 - 0080.jpg" alt="이름과 성별 정보 추가 병합" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>이름과 성별 정보 추가 병합</strong>
+        <span>주소, 직업, 전화번호를 붙인 뒤 name_email.csv로 이름을, phone_sex.csv로 성별을 추가해 최종 개인정보 레코드를 완성한다.</span>
+      </figcaption>
+    </figure>
 
-for line in Path(&quot;email-phone.csv&quot;).read_text(encoding=&quot;utf-8&quot;).splitlines():
-    email, phone = line.strip().split(&quot;,&quot;, 1)
-    if email in people:
-        people[email][&quot;phone&quot;] = phone
+                    <p>코드는 먼저 <code>email_address.csv</code>를 기준으로 <code>person_db</code> 리스트를 만든다. 각 원소는 한 사람을 나타내는 딕셔너리이며, 처음에는 이메일과 주소만 들어 있다. 그다음 <code>email_job.csv</code>, <code>email_phone.csv</code>를 차례로 읽고, 이미 만들어 둔 사람 목록을 순회하면서 이메일이 같은 사람에게 직업과 전화번호를 붙인다.</p>
+                    <p>이후 <code>name_email.csv</code>에서는 이름과 이메일을 읽는다. 이메일이 이미 기준 키로 쓰이고 있으므로 이름을 붙이는 것은 비교적 안전하다. 마지막으로 <code>phone_sex.csv</code>에서는 전화번호와 성별을 읽고, 전화번호가 같은 사람에게 성별 값을 붙인다. <strong>캡처</strong> 화면의 <strong>출력</strong>처럼 최종 딕셔너리에는 <code>address</code>, <code>email</code>, <code>job</code>, <code>phone</code>, <code>name</code>, <code>sex</code>가 함께 들어간다.</p>
+                    <pre><code class="language-python">from pprint import pprint
 
-for person in people.values():
-    print(person)</code></pre>
+person_db = []
+
+lines = open(&quot;./person_info/email_address.csv&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;).readlines()
+for line in lines:
+    email, address = line.strip().split(&quot;,&quot;)
+    person_db.append({
+        &quot;email&quot;: email,
+        &quot;address&quot;: address,
+    })
+
+lines = open(&quot;./person_info/email_job.csv&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;).readlines()
+for line in lines:
+    email, job = line.strip().split(&quot;,&quot;)
+    for person in person_db:
+        if person[&quot;email&quot;] == email:
+            person[&quot;job&quot;] = job
+
+lines = open(&quot;./person_info/email_phone.csv&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;).readlines()
+for line in lines:
+    email, phone = line.strip().split(&quot;,&quot;)
+    for person in person_db:
+        if person[&quot;email&quot;] == email:
+            person[&quot;phone&quot;] = phone
+
+lines = open(&quot;./person_info/name_email.csv&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;).readlines()
+for line in lines:
+    name, email = line.strip().split(&quot;,&quot;)
+    for person in person_db:
+        if person[&quot;email&quot;] == email:
+            person[&quot;name&quot;] = name
+
+lines = open(&quot;./person_info/phone_sex.csv&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;).readlines()
+for line in lines:
+    phone, sex = line.strip().split(&quot;,&quot;)
+    for person in person_db:
+        if person[&quot;phone&quot;] == phone:
+            person[&quot;sex&quot;] = sex
+
+pprint(person_db)</code></pre>
                     <p>이메일을 기준으로 주소, 직업, 전화번호는 비교적 자연스럽게 붙일 수 있다. 하지만 직업으로 성별이나 주민등록번호를 붙이는 것은 위험하다. 같은 직업을 가진 사람이 여러 명일 수 있기 때문이다. “재봉사라는 직업을 가진 사람이 남자”라는 데이터가 있어도, 다른 재봉사는 여성일 수 있다. 따라서 직업은 고유 키가 아니며, 그 값을 기준으로 특정인의 민감 정보를 확정하면 안 된다.</p>
                     <p>강의의 결론은 <strong>데이터 결합</strong>에서 유일하지 않은 값을 유일한 값처럼 취급하면 오류와 침해 위험이 커진다는 것이다. 단순한 Python 코드로도 실습은 가능하지만, 실제 분석에서는 키의 고유성, 중복, 후보 수, 매칭 한계를 먼저 따져야 한다.</p>
           </div>
@@ -242,6 +342,7 @@ for person in people.values():
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>이름, 이메일, <strong>IP 주소</strong>, 비밀번호가 각각 <strong>개인정보</strong> 판단에서 왜 다르게 보일 수 있는지 설명할 수 있는가?</li><li>유출 데이터가 텍스트, <strong>CSV</strong>, SQL 덤프 형태로 유통될 수 있다는 점을 이해했는가?</li><li>모자이크 이론이 <strong>개인정보</strong> 위험과 어떻게 연결되는지 예시로 말할 수 있는가?</li><li>inner, left, right, outer join의 차이를 설명할 수 있는가?</li><li>이메일, 이름, 직업, <strong>주소</strong> 중 어떤 값이 결합 키로 적합한지 판단할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

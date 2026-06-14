@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>운영체제 기초 1-2 - 운영체제란 무엇인가, 리눅스란, 우분투란</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -27,7 +27,7 @@
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">운영체제의 역할</a><a href="#section-2">하드웨어 추상화와 시스템 서비스</a><a href="#section-3">가상 머신과 클라우드</a><a href="#section-4">리눅스와 배포판</a><a href="#section-5">우분투 버전과 용어</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
+        <a href="#section-1">운영체제의 역할</a><a href="#section-2">하드웨어 추상화와 시스템 서비스</a><a href="#section-3">UNIX에서 Linux로 이어지는 역사</a><a href="#section-4">GNU, 자유 소프트웨어, 오픈소스</a><a href="#section-5">리눅스 배포판이란 무엇인가</a><a href="#section-6">배포판 선택 기준과 데스크톱 환경</a><a href="#section-7">커널의 의미와 커널 유형</a><a href="#section-8">Ubuntu의 위치와 버전 체계</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
@@ -51,7 +51,7 @@
         <label for="section-jump-1-2">섹션 바로가기</label>
         <select id="section-jump-1-2" data-section-jump>
           <option value="">읽을 섹션 선택</option>
-          <option value="#section-1">01. 운영체제의 역할</option><option value="#section-2">02. 하드웨어 추상화와 시스템 서비스</option><option value="#section-3">03. 가상 머신과 클라우드</option><option value="#section-4">04. 리눅스와 배포판</option><option value="#section-5">05. 우분투 버전과 용어</option>
+          <option value="#section-1">01. 운영체제의 역할</option><option value="#section-2">02. 하드웨어 추상화와 시스템 서비스</option><option value="#section-3">03. UNIX에서 Linux로 이어지는 역사</option><option value="#section-4">04. GNU, 자유 소프트웨어, 오픈소스</option><option value="#section-5">05. 리눅스 배포판이란 무엇인가</option><option value="#section-6">06. 배포판 선택 기준과 데스크톱 환경</option><option value="#section-7">07. 커널의 의미와 커널 유형</option><option value="#section-8">08. Ubuntu의 위치와 버전 체계</option>
         </select>
       </div>
       <div class="lecture-control-actions" aria-label="섹션 보기 방식">
@@ -75,7 +75,7 @@
         <div class="side-guide-head">
           <span data-side-current>SECTION 01</span>
           <strong>상세 정리 길잡이</strong>
-          <p>5개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+          <p>8개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
         </div>
         <nav class="side-guide-links" aria-label="상세 정리 바로가기">
           
@@ -91,17 +91,32 @@
         
         <a href="#section-3" data-side-section-link="section-3">
           <span>03</span>
-          <strong>가상 머신과 클라우드</strong>
+          <strong>UNIX에서 Linux로 이어지는 역사</strong>
         </a>
         
         <a href="#section-4" data-side-section-link="section-4">
           <span>04</span>
-          <strong>리눅스와 배포판</strong>
+          <strong>GNU, 자유 소프트웨어, 오픈소스</strong>
         </a>
         
         <a href="#section-5" data-side-section-link="section-5">
           <span>05</span>
-          <strong>우분투 버전과 용어</strong>
+          <strong>리눅스 배포판이란 무엇인가</strong>
+        </a>
+        
+        <a href="#section-6" data-side-section-link="section-6">
+          <span>06</span>
+          <strong>배포판 선택 기준과 데스크톱 환경</strong>
+        </a>
+        
+        <a href="#section-7" data-side-section-link="section-7">
+          <span>07</span>
+          <strong>커널의 의미와 커널 유형</strong>
+        </a>
+        
+        <a href="#section-8" data-side-section-link="section-8">
+          <span>08</span>
+          <strong>Ubuntu의 위치와 버전 체계</strong>
         </a>
         
         </nav>
@@ -114,8 +129,20 @@
             <h2>운영체제의 역할</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>운영체제</strong>는 사용자가 원하는 애플리케이션 소프트웨어가 하드웨어 위에서 원활하게 동작하도록 도와주는 시스템 소프트웨어다. 사용자는 웹브라우저, 워드 프로세서, 파워포인트, 포토샵, 영상 편집 프로그램 같은 응용 프로그램을 쓰고 싶어 한다. 그 아래에서 <strong>CPU</strong>, 메모리, 디스크, 그래픽 카드, 프린터, 네트워크 장치 같은 하드웨어를 직접 다루는 부담을 줄여 주는 것이 운영체제다.</p>
-<p>운영체제는 시스템 하드웨어를 관리하고, 응용 소프트웨어를 <strong>실행</strong>하기 위해 하드웨어를 추상화하며, 공통 시스템 <strong>서비스</strong>를 제공한다. 스마트폰, 스마트 TV, 셋톱박스, 자율주행차, ATM처럼 다양한 하드웨어에도 각자 목적에 맞는 운영체제가 들어간다.</p>
+            <p>강사는 먼저 “우리가 컴퓨터를 쓰는 목적은 <strong>운영체제</strong> 자체가 아니라 그 위에서 돌아가는 소프트웨어를 쓰는 것”이라고 설명한다. 사용자는 웹브라우저로 <strong>인터넷</strong>을 보고, 워드 프로세서·파워포인트·엑셀로 문서를 만들고, 포토샵이나 영상 편집 프로그램처럼 원하는 응용 프로그램을 실행하고 싶어 한다. 이때 운영체제는 그 소프트웨어들이 하드웨어 위에서 원활하게 동작하도록 받쳐 주는 기반이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0015.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0015.jpg" alt="운영체제의 정의와 계층 구조" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>운영체제의 정의와 계층 구조</strong>
+    <span>운영체제는 사용자와 응용 프로그램이 하드웨어를 직접 다루지 않아도 되도록 중간에서 하드웨어 추상화와 공통 시스템 서비스를 제공하는 시스템 소프트웨어다.</span>
+  </figcaption>
+</figure>
+
+                <p>슬라이드의 정의처럼 운영체제(OS, Operating System)는 <strong>시스템 하드웨어를 관리</strong>하고, 응용 소프트웨어가 하드웨어를 직접 제어하지 않아도 되도록 <strong>하드웨어를 추상화</strong>하며, 여러 프로그램이 공통으로 필요로 하는 <strong>시스템 서비스</strong>를 제공하는 시스템 소프트웨어다. 계층으로 보면 사용자 아래에 응용 프로그램이 있고, 그 아래에서 운영체제가 하드웨어를 감싼다.</p>
+                <p>Windows는 개인용 PC에서 가장 익숙한 운영체제지만 전부는 아니다. 강의에서는 Windows, <strong>Linux</strong>, Solaris, macOS, <strong>Ubuntu</strong> 같은 여러 OS를 언급한다. 스마트폰, 스마트 TV, 셋톱박스, 자율주행차, ATM 같은 장치도 모두 각자 목적에 맞는 운영체제를 갖는다. 예전 TV가 방송을 보여 주는 단순 장치였다면, 스마트 TV는 넷플릭스·유튜브·VOD·웹서핑 앱을 동시에 실행하므로 TV용 운영체제가 필요하다.</p>
           </div>
         </details>
         
@@ -125,62 +152,232 @@
             <h2>하드웨어 추상화와 시스템 서비스</h2>
           </summary>
           <div class="note-section-body">
-            <p>응용 프로그램 개발자가 매번 SSD인지 HDD인지, C 드라이브인지 D 드라이브인지, 그래픽 카드가 어떤 모델인지 직접 다루면 개발이 지나치게 복잡해진다. <strong>운영체제</strong>는 이런 하드웨어 차이를 추상화해서 <strong>파일 시스템</strong>, 화면 출력, 네트워크 통신, 프로세스 실행 같은 공통 인터페이스로 제공한다.</p>
-<table>
-  <thead><tr><th>운영체제 기능</th><th>강의에서의 설명</th></tr></thead>
-  <tbody>
-    <tr><td>프로세서 관리</td><td>여러 프로그램이 동시에 <strong>실행</strong>되는 것처럼 보이도록 <strong>CPU</strong> 사용을 조정한다.</td></tr>
-    <tr><td>파일 관리</td><td>파일 저장, 읽기, 디렉토리 구조를 제공한다.</td></tr>
-    <tr><td><strong>네트워크</strong> 관리</td><td>유선랜, Wi-Fi, 블루투스, LTE, 5G 같은 통신을 응용 프로그램이 쓰게 한다.</td></tr>
-    <tr><td>장치 관리</td><td>디스플레이, 프린터, <strong>입력</strong> 장치 같은 하드웨어를 응용 프로그램과 연결한다.</td></tr>
-  </tbody>
-</table>
+            <p><strong>운영체제</strong>가 중요한 이유는 하드웨어의 복잡성을 응용 프로그램 대신 처리하기 때문이다. 예를 들어 파워포인트와 엑셀을 동시에 쓰고, 엑셀에서 만든 자료를 워드에 붙여 넣는 동안 파일 저장과 읽기, 화면 <strong>출력</strong>, 메모리 사용, 입력 장치 처리가 계속 일어난다. 이런 일을 응용 프로그램 개발자가 SSD인지 HDD인지, C 드라이브인지 D 드라이브인지, 그래픽 카드가 어떤 모델인지까지 모두 직접 제어하도록 만들면 개발은 지나치게 복잡해진다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0022.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0022.jpg" alt="운영체제의 주요 기능" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>운영체제의 주요 기능</strong>
+    <span>프로세스, 파일, 네트워크, 메인 메모리, 디스크 저장소, 입출력 장치, 보안, 명령어 해석 시스템처럼 응용 프로그램이 공통으로 필요로 하는 기능을 운영체제가 맡는다.</span>
+  </figcaption>
+</figure>
+
+                <p>운영체제는 저장소, 그래픽 카드, 모니터, 프린터, 키보드, 마우스, 터치펜, 지문 인식 장치, 듀얼 모니터 같은 다양한 하드웨어를 응용 프로그램이 쓰기 쉬운 형태로 감싼다. 이 추상화 덕분에 Chrome 같은 브라우저는 유선랜인지 Wi-Fi인지, Bluetooth인지 LTE·5G인지 일일이 몰라도 “<strong>인터넷</strong>이 연결되어 있다”는 환경을 사용할 수 있다.</p>
+                <table>
+                  <thead><tr><th>운영체제 기능</th><th>강의에서의 설명</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>프로세스 관리</strong></td><td>여러 프로그램이 동시에 <strong>실행</strong>되는 것처럼 보이도록 <strong>CPU</strong> 사용과 실행 흐름을 조정한다.</td></tr>
+                    <tr><td>파일 관리</td><td>파일 저장, 읽기, 디렉토리 구조, <strong>파일 시스템</strong> 접근을 응용 프로그램에 제공한다.</td></tr>
+                    <tr><td><strong>네트워크</strong> 관리</td><td>유선랜, Wi-Fi, Bluetooth, LTE, 5G 같은 통신 수단의 차이를 숨기고 네트워크 <strong>서비스</strong>를 제공한다.</td></tr>
+                    <tr><td>메인 <strong>메모리</strong> 관리</td><td>프로그램이 실행될 때 필요한 메모리 공간을 배분하고 회수한다.</td></tr>
+                    <tr><td>디스크 저장소 관리</td><td>SSD, HDD, 파티션, 드라이브 차이를 파일과 디렉토리라는 공통 구조로 보여 준다.</td></tr>
+                    <tr><td><strong>입출력</strong> 장치 관리</td><td>키보드, 마우스, 프린터, 모니터, 센서 같은 장치를 응용 프로그램과 연결한다.</td></tr>
+                    <tr><td>보안 관리</td><td>사용자와 <strong>권한</strong>, <strong>접근 통제</strong>, 기본 보호 기능을 제공한다.</td></tr>
+                    <tr><td>명령어 해석 시스템</td><td>사용자가 <strong>입력</strong>한 명령어를 해석해 운영체제 기능을 호출하게 한다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
         <details id="section-3" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 03</span>
-            <h2>가상 머신과 클라우드</h2>
+            <h2>UNIX에서 Linux로 이어지는 역사</h2>
           </summary>
           <div class="note-section-body">
-            <p>요즘에는 <strong>운영체제</strong>를 물리 하드웨어에만 직접 설치하지 않는다. VirtualBox, VMware, QEMU 같은 하이퍼바이저 위에 여러 운영체제를 설치할 수 있고, 이런 가상화된 하드웨어를 많은 사용자가 범용적으로 빌려 쓰는 환경이 <strong>클라우드</strong>다. 이 강의는 운영체제를 직접 다루기 위해 가상 머신을 만들고 그 안에 우분투를 설치하는 흐름으로 이어진다.</p>
-<div class="diagram">
-  <div><span class="node-title">물리 하드웨어</span><p><strong>CPU</strong>, <strong>메모리</strong>, 디스크, 네트워크</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">하이퍼바이저</span><p>VirtualBox, VMware, QEMU</p></div>
-  <span class="arrow">→</span>
-  <div><span class="node-title">가상 OS</span><p>Windows, <strong>Ubuntu</strong>, 여러 <strong>Linux</strong> 배포판</p></div>
-</div>
+            <p><strong>운영체제</strong> 종류를 설명하면서 강사는 <strong>Linux</strong>가 갑자기 독립적으로 생긴 것이 아니라 UNIX의 역사와 이어져 있다고 강조한다. UNIX는 AT&amp;T에서 1960년대에 개발되어 메인프레임, 중형 컴퓨터, 소형 컴퓨터에서 오래 사용된 운영체제다. 당시에는 방 하나를 차지할 정도의 큰 서버와 메인프레임이 있었고, 그 서버용 운영체제 흐름에서 UNIX가 중요한 위치를 차지했다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0031.jpg" alt="UNIX 운영체제 계보" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>UNIX 운영체제 계보</strong>
+    <span>Linux는 어느 날 갑자기 등장한 것이 아니라, AT&amp;T UNIX와 BSD·System V·Solaris·AIX·HP-UX 등으로 이어지는 UNIX 계열 역사와 교육용 Minix의 흐름 속에서 탄생했다.</span>
+  </figcaption>
+</figure>
+
+                <p>UNIX는 시간이 지나며 BSD 계열, System V 계열, POSIX 계열, SunOS, AIX, HP-UX, Solaris 등 여러 갈래로 파생되었다. 교육 목적으로는 Minix라는 운영체제도 등장했다. 강사는 Minix 이름만 알고 있어도 충분하다고 했지만, Linux의 출발점을 이해하려면 “UNIX와 비슷한 교육용 OS인 Minix를 배우던 학생이 직접 만든 <strong>커널</strong>”이라는 맥락이 중요하다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0036.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0036.jpg" alt="리눅스 운영체제의 탄생" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>리눅스 운영체제의 탄생</strong>
+    <span>리누스 토발즈는 Minix를 참고해 학습과 취미 목적으로 1991년 Linux 커널을 처음 공개했고, 이후 다양한 CPU와 워크스테이션·임베디드 장치로 이식되었다.</span>
+  </figcaption>
+</figure>
+
+                <p>리누스 토발즈는 핀란드 헬싱키 출신 개발자로, 대학생 시절 Minix를 참고해 취미와 학습 목적으로 Linux 커널을 만들었다. 1991년에 0.1 버전이 처음 공개되었고, 처음에는 Intel 80386 <strong>CPU</strong>가 장착된 PC에서 동작하는 운영체제로 출발했다. 이후 다양한 CPU와 워크스테이션, 라우터, 자동 제어 시스템, TV, 셋톱박스, 게임 콘솔, 스마트워치 같은 임베디드 장치까지 포팅되었다.</p>
           </div>
         </details>
         
         <details id="section-4" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 04</span>
-            <h2>리눅스와 배포판</h2>
+            <h2>GNU, 자유 소프트웨어, 오픈소스</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>리눅스</strong>는 좁게는 <strong>커널</strong>을 의미하지만, 실제 사용자가 만나는 리눅스 환경은 커널만으로 이루어지지 않는다. GNU 도구, 셸, 패키지 관리자, 데스크톱 환경, 설정 파일, 기본 유틸리티가 함께 묶여 배포판 형태로 제공된다. 우분투, 데비안, 페도라, 민트, 오픈수세, 만자로 같은 이름은 모두 이런 배포판을 가리킨다.</p>
-<p>강의에서는 <strong>우분투</strong>가 2004년에 등장한 뒤 빠르게 인기를 얻었고, 오랫동안 대표적인 리눅스 배포판으로 자리 잡았다고 설명한다. 현재는 다른 배포판들도 인기를 얻지만, 우분투는 여전히 자료가 많고 학습 환경으로 쓰기 좋다.</p>
+            <p><strong>Linux</strong> 역사에서 리누스 토발즈만큼 중요한 인물로 강사는 리처드 스톨먼을 설명한다. 과거에는 하드웨어가 비싼 장비였고, 소프트웨어는 연구자들이 짧은 코드로 작성해 연구 목적으로 공유하는 경우가 많았다. 시간이 지나 소프트웨어가 커지고 상업적으로 판매되기 시작하자, 스톨먼은 소프트웨어가 자유롭게 공유·수정·배포되어야 한다는 철학을 내세워 <strong>자유 소프트웨어</strong> 재단과 GNU 프로젝트를 이끌었다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0046.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0046.jpg" alt="GNU 프로젝트와 자유 소프트웨어" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>GNU 프로젝트와 자유 소프트웨어</strong>
+    <span>GNU 프로젝트는 누구나 실행, 복사, 수정, 배포할 수 있는 자유 소프트웨어를 지향했고, gcc·glibc·gnu-utils·gdb·emacs 같은 핵심 도구를 제공했다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>GNU</strong>는 “GNU is Not Unix”의 재귀 약자다. GNU 프로젝트는 누구나 <strong>실행</strong>, 복사, 수정, 배포할 수 있고 그런 권리를 제한하면 안 된다는 자유 소프트웨어 라이선스 철학을 중심에 둔다. 이 프로젝트를 통해 C 컴파일러인 <strong>gcc</strong>, C 표준 라이브러리인 <strong>glibc</strong>, <strong>make</strong> 같은 GNU 유틸리티, 디버거 <strong>gdb</strong>, 편집기 <strong>emacs</strong> 등 수많은 도구가 만들어졌다.</p>
+                <p>강사는 자유 소프트웨어 운동이 정치적·철학적 성격도 띠었고, 이후에는 그 성격에 부담을 느낀 사람들이 <strong>오픈소스</strong>라는 흐름을 별도로 만들었다고 설명한다. 그래서 오늘날에는 GNU 프로젝트뿐 아니라 Apache 재단과 Apache License 같은 다양한 오픈소스 재단·라이선스가 존재한다. 수업에서 오픈소스 라이선스를 별도로 깊게 다루지는 않지만, 취업 후 많은 오픈소스를 다루게 되므로 라이선스 원칙은 반드시 알아야 한다는 점도 강조한다.</p>
           </div>
         </details>
         
         <details id="section-5" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 05</span>
-            <h2>우분투 버전과 용어</h2>
+            <h2>리눅스 배포판이란 무엇인가</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>우분투</strong>에는 18.04, 20.04, 22.04처럼 버전 번호가 있다. 강의에서는 모든 명령어와 화면을 맞추기 위해 우분투 20.04를 기준으로 진행한다. 최신 버전을 쓰지 않는 이유는 수업 자료와 실습 환경을 일관되게 유지하기 위해서다.</p>
-<table>
-  <thead><tr><th>용어</th><th>의미</th></tr></thead>
-  <tbody>
-    <tr><td>LTS</td><td><strong>Long</strong> Term Support. 장기 지원 버전으로 안정적인 운영 환경에 적합하다.</td></tr>
-    <tr><td>GA</td><td>General Availability. 일반 사용자에게 정식 배포되는 버전이라는 의미로 여러 소프트웨어에서 쓰인다.</td></tr>
-    <tr><td>HWE</td><td>Hardware Enablement. 새 하드웨어 지원을 보강하는 흐름으로 이해하면 된다.</td></tr>
-  </tbody>
-</table>
+            <p>GNU 프로젝트에는 많은 도구가 있었지만, 사용자가 PC에 설치해 쓸 수 있는 완성된 <strong>운영체제</strong> <strong>커널</strong>은 부족했다. 반대로 토발즈가 만든 Linux 커널은 하드웨어를 관리하는 핵심은 제공했지만, 사용자가 편하게 쓰려면 컴파일러, 셸, 편집기, X Window, 유틸리티, 패키지 관리자, 매뉴얼 같은 주변 도구가 필요했다. 이 둘이 결합하면서 실제 사용 가능한 <strong>리눅스 배포판</strong>이라는 형태가 탄생했다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0075.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0075.jpg" alt="대표 리눅스 배포판 계열" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>대표 리눅스 배포판 계열</strong>
+    <span>강의는 Slackware, Debian, Red Hat 계열을 대표 흐름으로 정리하고, 각 계열의 파생 배포판과 패키지 관리자 rpm·zypper, dpkg·apt, rpm·yum을 함께 소개한다.</span>
+  </figcaption>
+</figure>
+
+                <p>오픈소스이기 때문에 누구든 기존 배포판을 기반으로 포크를 만들고, 자신의 목적에 맞는 “향”을 더할 수 있다. 강사는 이를 아이스크림의 바닐라, 딸기, 초코, 민트초코 같은 flavor에 비유한다. 기본 바탕인 <strong>Linux</strong> 커널, 즉 토발즈가 관리하는 바닐라 커널에 각 회사와 커뮤니티가 설정과 도구를 더해 Debian, Slackware, Red Hat, <strong>Ubuntu</strong>, Fedora, Mint, Kali Linux 같은 다양한 배포판을 만든다.</p>
+                <table>
+                  <thead><tr><th>계열</th><th>대표 파생</th><th>패키지 관리자</th><th>강의에서 강조한 특징</th></tr></thead>
+                  <tbody>
+                    <tr><td>Slackware 계열</td><td>SuSE Linux, SLES, SLED, OpenSUSE</td><td>rpm, zypper</td><td>안정성을 자랑하며 Novell에 인수된 이력이 있다.</td></tr>
+                    <tr><td>Debian 계열</td><td>Ubuntu, Knoppix, Lindows, Mint, Kali Linux</td><td>dpkg, <strong>apt</strong></td><td>Debian 선언문과 FSF GNU 프로젝트 지원을 바탕으로 비상업적 배포판을 지향했다. Ubuntu는 이 계열에서 나왔다.</td></tr>
+                    <tr><td>Red Hat 계열</td><td>RHEL, Fedora, CentOS, Mandrake</td><td>rpm, yum</td><td>국내 기업에서 많이 쓰는 서버 운영체제 계열이며, 유료 RHEL과 무료 CentOS/Fedora 흐름이 있다.</td></tr>
+                  </tbody>
+                </table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0091.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0091.jpg" alt="리눅스 배포판의 구성 요소" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>리눅스 배포판의 구성 요소</strong>
+    <span>배포판은 리눅스 커널만이 아니라 데스크톱 UI, 유틸리티, 배포판 특화 설정 도구, 응용 소프트웨어, 매뉴얼, 고객지원까지 묶은 사용 가능한 운영체제 묶음이다.</span>
+  </figcaption>
+</figure>
+
+                <p>배포판 구성 요소는 단순히 Linux 커널만을 뜻하지 않는다. <strong>리눅스</strong> 커널 위에 <strong>GUI</strong>나 Office 같은 운영환경, 배포판 특화 소프트웨어, 시스템 설정 도구, 패키지 관리자, 응용 소프트웨어, 매뉴얼, 고객지원이 함께 묶인다. 그래서 “Linux OS”는 좁게 커널과 핵심 기능을 가리킬 수 있지만, 실제 사용자가 설치하는 “Linux Distribution”은 사용 환경 전체를 뜻한다.</p>
+          </div>
+        </details>
+        
+        <details id="section-6" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 06</span>
+            <h2>배포판 선택 기준과 데스크톱 환경</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>강사는 배포판이 너무 많기 때문에 무엇을 선택해야 하는지는 목적에 따라 달라진다고 설명한다. 개인 학습용인지 회사 업무용인지, 서버인지 데스크톱인지 임베디드인지, 특수 목적의 라우터·공유기인지, 교육·과학·음악·생물학·군사 목적처럼 특정 산업군에 맞는지에 따라 선택 기준이 달라진다. 보안적 안정성, 사용성, 이식성, 특정 국가에서 기술지원이 되는지도 고려해야 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0102.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0102.jpg" alt="리눅스 데스크톱 환경" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>리눅스 데스크톱 환경</strong>
+    <span>GNOME, KDE, XFce, LXDE처럼 리눅스에는 여러 데스크톱 환경이 있고, 강의에서는 대표적으로 GNOME과 KDE의 철학과 기반 기술을 비교한다.</span>
+  </figcaption>
+</figure>
+
+                <p>배포판 선택과 함께 데스크톱 환경도 중요하다. <strong>리눅스</strong> <strong>커널</strong> 위에서 사용자가 창과 아이콘을 볼 수 있도록 해 주는 X Window/데스크톱 환경에는 GNOME, KDE, XFce, LXDE 등이 있다. GNOME은 GNU 프로젝트의 영향을 받아 Free and Open Source Software 철학을 담고, 단순한 사용을 지향하며 GTK+와 Unity 계열 기술을 언급한다. KDE는 기능과 확장성, 다중 플랫폼 호환성을 강조하고 Qt와 Plasma를 기반으로 한다. XFce와 LXDE는 오래된 하드웨어나 저사양 환경에서도 쓸 수 있는 가벼운 데스크톱 환경으로 소개된다.</p>
+                <div class="callout">이 강의에서 꼭 기억할 대표 데스크톱 환경은 GNOME과 KDE다. 뒤 강의에서 우분투 GUI를 볼 때 기본적으로 GNOME 계열 환경을 만나게 된다.</div>
+          </div>
+        </details>
+        
+        <details id="section-7" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 07</span>
+            <h2>커널의 의미와 커널 유형</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>커널</strong>은 <strong>운영체제</strong>의 핵심이 되는 컴퓨터 프로그램이다. CPU, 메모리, 디스크, 네트워크 장치 같은 하드웨어를 관리하고, 응용 프로그램이 필요한 서비스를 사용할 수 있도록 중간에서 요청을 처리한다. 사용자가 입력하는 명령어와 응용 프로그램은 유저 모드에서 실행되고, 하드웨어를 직접 다루는 핵심 기능은 커널 모드에서 동작한다. 이 둘 사이의 경계에서 시스템 콜이 사용된다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0113.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0113.jpg" alt="단일형 커널과 마이크로 커널" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>단일형 커널과 마이크로 커널</strong>
+    <span>단일형 커널은 여러 핵심 기능을 한 덩어리로 묶고, 마이크로 커널은 통신·파일 시스템·장치 관리자 등을 더 작게 나누어 구성한다. 실제 운영체제는 이론적 구분만큼 단순하지 않고 하이브리드 성격을 가진다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의에서는 커널을 크게 <strong>단일형 커널(monolithic kernel)</strong>과 <strong>마이크로 커널(micro kernel)</strong>로 나눈다. 단일형 커널은 <strong>프로세스 관리</strong>, <strong>메모리</strong> 관리, 통신, 파일 시스템, 디바이스 드라이버 같은 기능이 하나의 큰 덩어리 안에 들어가는 형태다. Linux는 대표적으로 단일형 커널 계열로 설명된다. 속도가 빠르고 용량이 작을 수 있지만, 모든 기능이 한 덩어리에 가깝다는 점이 특징이다.</p>
+                <p>마이크로 커널은 통신 모듈, <strong>파일 시스템</strong>, 디바이스 드라이버, 장치 관리자 같은 기능을 작은 서브시스템으로 나누고 서로 통신하게 한다. 구조만 보면 더 좋아 보일 수 있지만, 모듈 간 통신과 인터페이스가 늘어나 성능이 느려지거나 용량이 커질 수 있다. Windows, QNX, Mach 계열이 예시로 언급된다. 다만 강사는 현실의 운영체제가 이론처럼 딱 잘라지지 않으며, <strong>Linux</strong>도 모노리식 커널이지만 디바이스 드라이버는 모듈화되어 있어 하이브리드 성격이 있다고 설명한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0125.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0125.jpg" alt="kernel.org와 바닐라 커널" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>kernel.org와 바닐라 커널</strong>
+    <span>kernel.org와 git.kernel.org에서는 Linux 커널의 mainline, stable, longterm 버전과 토발즈가 관리하는 바닐라 커널 소스 트리를 확인할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>강사는 자신이 과거 Linux 커널 개발자였다고 밝히며, 커널 소스 코드를 직접 내려받아 모듈 구조를 파악하고 <strong>C 언어</strong>로 원하는 기능을 구현했던 경험도 언급한다. Linux 커널 소스는 kernel.org와 git.kernel.org에서 볼 수 있고, 토발즈가 관리하는 메인라인 커널은 흔히 바닐라 커널이라고 부른다. 강의 화면은 2020년 무렵의 5.x 커널, stable, longterm 버전 목록을 보여 주지만, 핵심은 “커널도 계속 개발되고 버전이 올라간다”는 점이다.</p>
+          </div>
+        </details>
+        
+        <details id="section-8" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 08</span>
+            <h2>Ubuntu의 위치와 버전 체계</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>Ubuntu</strong>는 Debian 계열에서 나온 대표적인 배포판이다. 강사는 Ubuntu가 “전 세계 사람 누구나 어렵지 않게 <strong>Linux</strong>를 사용하게 하겠다”는 목적과 철학으로 등장했다고 설명한다. 처음에는 데스크톱 일반 PC를 대상으로 출발했지만, Ubuntu를 쉽게 배운 사용자들이 회사에 들어가고 시간이 지나면서 서버, 클라우드, 컨테이너, IoT, 임베디드 환경에서도 널리 쓰이게 되었다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0143.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0143.jpg" alt="우분투 버전, LTS, GA, HWE" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>우분투 버전, LTS, GA, HWE</strong>
+    <span>Ubuntu 버전은 출시 연월을 바탕으로 이해할 수 있고, LTS는 장기 지원, GA는 정식 일반 배포, HWE는 새 하드웨어 지원을 위한 커널·드라이버 보강 흐름을 뜻한다.</span>
+  </figcaption>
+</figure>
+
+                <p>Ubuntu 버전 번호는 출시 연월을 의미한다. 예를 들어 14.04는 2014년 4월, 16.04는 2016년 4월, 20.04는 2020년 4월에 나온 버전이다. 화면에는 Trusty, Xenial, Bionic, Eoan 같은 프로젝트명도 함께 표시된다. 강사는 버전을 <code>Major Version.Minor Version.Patch Version</code>처럼 이해할 수 있다고 설명하고, 홀수 계열은 최신 기능이 들어가는 플래그십 성격이 강하며 짝수 LTS 버전은 안정성을 중시한다고 정리한다.</p>
+                <table>
+                  <thead><tr><th>용어</th><th>의미</th></tr></thead>
+                  <tbody>
+                    <tr><td>LTS</td><td>Long-Term Support. 최초 릴리즈부터 최소 5년 보안 지원을 제공하는 장기 지원 버전이다.</td></tr>
+                    <tr><td>GA</td><td>General Availability. 일반 사용자에게 정식으로 제공되는 기본 <strong>커널</strong>·배포 상태이며, 강의 화면에서는 5년 보안 지원과 연결해 설명한다.</td></tr>
+                    <tr><td>HWE</td><td>Hardware Enablement. 새 하드웨어 지원을 위해 커널과 드라이버를 보강하는 흐름이며, 화면에서는 6개월 보안 지원 후 다음 HWE 버전으로 이어지는 방식으로 설명한다.</td></tr>
+                  </tbody>
+                </table>
+                <p>강의 시점에는 22.04도 나와 있었지만, 수업에서는 명령어와 화면을 맞추기 위해 Ubuntu 20.04를 기준으로 진행한다고 말한다. 18.04, 20.04, 22.04 어느 버전을 써도 기본 흐름은 크게 다르지 않지만, 학생들이 같은 실습 결과를 보려면 같은 버전을 맞추는 편이 좋다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0156.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란/운영체제 기초-02-운영체제란-무엇인가-리눅스란-우분투란 - 0156.jpg" alt="리눅스 주요 배포판 인기도 변화" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>리눅스 주요 배포판 인기도 변화</strong>
+    <span>강의 마지막에는 DistroWatch 기반 인기도 변화 영상을 보며 Ubuntu가 2004년 등장 후 빠르게 성장했고, Mint·Debian·Manjaro 같은 배포판도 시대에 따라 주목받았음을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p>마지막으로 강사는 Linux 배포판 인기도 영상을 보여 준다. 2004년 Ubuntu가 등장하면서 빠르게 상위권을 차지했고, 이후 Mint Linux가 한동안 많은 인기를 얻었으며 Manjaro 같은 후발 주자도 <strong>인터넷</strong> 입소문을 타고 빠르게 올라왔다. 그래도 Ubuntu는 오랜 기간 높은 인지도를 유지한 대표적인 배포판이므로, 수업용 기준 배포판으로 삼기에 적절하다는 결론으로 강의가 마무리된다.</p>
           </div>
         </details>
         
@@ -191,6 +388,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>운영체제</strong>가 하드웨어를 추상화한다는 말을 예시로 설명할 수 있는가?</li><li>가상 머신과 <strong>클라우드</strong>가 <strong>운영체제</strong> 학습에 왜 등장하는지 이해했는가?</li><li><strong>리눅스</strong> <strong>커널</strong>과 리눅스 배포판의 차이를 구분할 수 있는가?</li><li><strong>우분투</strong> 20.04를 기준으로 실습하는 이유를 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

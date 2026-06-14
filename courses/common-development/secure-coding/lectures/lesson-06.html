@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>시큐어코딩 1-6 - 보안 기능과 시간 및 상태</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -124,8 +124,54 @@
             <h2>적절한 암호 알고리즘 사용</h2>
           </summary>
           <div class="note-section-body">
-            <p>6강부터는 <strong>입력 검증</strong>이 아니라 <strong>보안 기능</strong>과 시간 및 상태를 다룬다. 보안 기능의 대표 예는 암호화 알고리즘이다. 서버와 서버, 서버와 클라이언트 사이의 통신에서 데이터가 평문으로 전송되지 않도록 암호화를 사용한다.</p>
-<p>하지만 아무 <strong>암호화</strong> 알고리즘이나 쓰면 되는 것은 아니다. <strong>DES</strong>처럼 오래된 알고리즘은 개발 당시보다 컴퓨팅 파워가 크게 증가해 안전하지 않다. 목적에 맞는 표준 알고리즘을 써야 하며, 강의에서는 대칭키 암호에는 AES, 공개키 암호에는 RSA 계열, 전자서명과 해시도 표준에서 권장하는 키 길이와 알고리즘을 따라야 한다고 설명한다.</p>
+            <p>6강부터는 <strong>입력</strong> 데이터 검증이 아니라 <strong>보안 기능</strong>과 <strong>시간 및 상태</strong>를 다룬다. <strong>보안 기능</strong>은 암호화 알고리즘, 반복된 인증 시도 제한처럼 널리 알려진 보안 기능을 올바르게 사용하는 방법이고, 시간 및 상태는 멀티스레딩·멀티프로세스 환경이나 반복 함수에서 시간 차이와 상태 변화 때문에 생기는 문제를 방지하는 방법이다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0003.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0003.jpg" alt="6강에서 다루는 보안 기능과 시간 및 상태" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>6강에서 다루는 보안 기능과 시간 및 상태</strong>
+        <span>보안 기능은 암호화 알고리즘, 하드코딩, 난수, 쿠키, 무결성, 반복 인증 제한을 다루고, 시간 및 상태는 Race Condition과 재귀·무한 루프를 다룬다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>보안 기능의 대표 예는 <strong>암호화</strong> 알고리즘이다. 서버와 서버 사이, 서버와 클라이언트 사이에서 데이터가 <strong>평문</strong>으로 전송되지 않도록 암호화를 사용하지만, 암호화를 했다는 사실만으로 안전해지는 것은 아니다. 오래된 알고리즘이나 권장되지 않는 모드를 쓰면 암호문을 받은 사람이 알고리즘을 분석해 복호화하거나 평문을 알아낼 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0011.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0011.jpg" alt="암호 알고리즘 검증 기준" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>암호 알고리즘 검증 기준</strong>
+        <span>블록암호, 해시함수, 메시지 인증, 난수발생기, 공개키 암호, 전자서명, 키 설정·유도 알고리즘마다 권장 알고리즘과 키 길이가 정해져 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강사는 목적에 맞는 공개 표준을 따라야 한다고 설명했다. <strong>대칭키 암호</strong>에는 <strong>AES</strong> 계열처럼 현재 안전하다고 평가되는 알고리즘을 사용해야 하고, 공개키 암호, 전자서명, 해시, 메시지 인증, 난수발생기, 키 설정·키 유도 알고리즘도 각각 권장 알고리즘과 키 길이가 존재한다. 이런 기준에서 벗어난 알고리즘을 쓰면 암호화했음에도 통신 과정의 암호문이 복호화될 위험이 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0015.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0015.jpg" alt="DES 사용 취약 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>DES 사용 취약 코드</strong>
+        <span>이미 오래된 DES와 ECB 모드를 사용하면 암호화했더라도 현재 컴퓨팅 환경에서 안전하지 않을 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>슬라이드의 코드 예시는 <strong>DES</strong>를 사용한다. DES는 개발된 지 오래되었고, 당시와 비교해 현재 컴퓨팅 파워가 훨씬 커졌기 때문에 더 이상 안전한 선택으로 보기 어렵다. 특히 ECB 모드는 같은 평문 블록이 같은 <strong>암호문</strong> 블록으로 나타나는 구조적 문제가 있어 민감 데이터 보호에 부적절하다.</p>
+                    <pre><code class="language-python">import base64
+from Crypto.Cipher import DES
+from Crypto.Util.Padding import pad
+
+def get_enc_text(plain_text, key):
+    # 취약한 암호화 알고리즘인 DES를 사용하여 안전하지 않음
+    cipher_des = DES.new(key, DES.MODE_ECB)
+    encrypted_data = base64.b64encode(cipher_des.encrypt(pad(plain_text, 32)))
+
+    return encrypted_data.decode(&#x27;ASCII&#x27;)</code></pre>
+                    <p>따라서 “암호화 <strong>함수</strong>가 호출된다”는 사실만 확인해서는 부족하다. 코드 리뷰에서는 어떤 알고리즘을 쓰는지, 키 길이와 운용 모드가 적절한지, 표준에서 권장하는 설정인지까지 확인해야 한다.</p>
           </div>
         </details>
         
@@ -135,17 +181,88 @@
             <h2>하드코딩 방지</h2>
           </summary>
           <div class="note-section-body">
-            <p>하드코딩은 개발 편의를 위해 호스트, <strong>포트</strong>, 사용자 아이디, 비밀번호, 경로, 키 같은 값을 코드 안에 직접 <strong>문자열</strong>로 넣는 것이다. 공격자가 코드에 접근하거나, 개발자가 실수로 GitHub에 코드를 올리면 아이디와 비밀번호가 그대로 노출된다.</p>
-                    <p>방어하려면 이런 값들을 코드에서 분리해 설정 파일이나 <strong>환경 변수</strong>로 관리하고, 설정 파일도 <strong>암호화</strong>하거나 접근 권한을 제한해야 한다. 코드가 노출되어도 비밀값은 함께 노출되지 않게 만드는 것이 핵심이다.</p>
-                    <pre><code class="language-python">import os
-from secrets import token_urlsafe
+            <p><strong>하드코딩</strong>은 개발 편의를 위해 호스트, <strong>포트</strong>, 사용자 아이디, 비밀번호, 경로, 키처럼 환경에 따라 바뀌어야 하는 값을 코드 안에 고정 <strong>문자열</strong>로 넣는 것이다. 강사는 이런 값을 코드에 직접 넣으면 공격자가 소스 코드나 저장소에 접근했을 때 중요 데이터까지 함께 읽을 수 있다고 설명했다.</p>
 
-DB_HOST = os.environ[&quot;DB_HOST&quot;]
-DB_PORT = int(os.environ.get(&quot;DB_PORT&quot;, &quot;5432&quot;))
-DB_USER = os.environ[&quot;DB_USER&quot;]
-DB_PASSWORD = os.environ[&quot;DB_PASSWORD&quot;]
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0017.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0017.jpg" alt="하드코딩된 암호 노출 흐름" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>하드코딩된 암호 노출 흐름</strong>
+        <span>코드 안에 URL, 아이디, 비밀번호가 고정되어 있으면 공격자가 소프트웨어나 저장소 접근만으로 원하는 정보를 추출할 수 있다.</span>
+      </figcaption>
+    </figure>
 
-session_token = token_urlsafe(32)</code></pre>
+                    <p>흐름도에서는 하드코딩된 암호가 들어 있는 소프트웨어가 공격자에게 노출되고, 공격자가 그 값으로 제한 없는 접근을 하거나 원하는 정보를 추출하는 과정을 보여 준다. 실제로 개발자가 하드코딩된 코드를 GitHub에 올리면, 코드를 내려받은 사람이 아이디와 비밀번호를 그대로 확인할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0019.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0019.jpg" alt="하드코딩 취약 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>하드코딩 취약 코드</strong>
+        <span>DB host, port, user, passwd, db 이름을 소스 코드에 평문 문자열로 직접 넣으면 코드 유출 시 계정 정보도 함께 노출된다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>취약 코드는 DB 접속 정보인 <code>host</code>, <code>port</code>, <code>user</code>, <code>passwd</code>, <code>db</code>를 모두 소스 코드에 <strong>평문</strong>으로 넣는다. 이 파일 하나만 유출되어도 DB 계정과 비밀번호가 노출된다.</p>
+                    <pre><code class="language-python">import pymysql
+
+def query_execute(query):
+    # user, passwd가 소스코드에 평문으로 하드코딩되어 있음
+    dbconn = pymysql.connect(
+        host=&#x27;127.0.0.1&#x27;,
+        port=&#x27;1234&#x27;,
+        user=&#x27;root&#x27;,
+        passwd=&#x27;1234&#x27;,
+        db=&#x27;mydb&#x27;,
+        charset=&#x27;utf8&#x27;,
+    )
+    curs = dbconn.cursor()
+    curs.execute(query)
+    dbconn.commit()
+    dbconn.close()</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0023.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0023.jpg" alt="설정 파일과 복호화를 이용한 하드코딩 방지" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>설정 파일과 복호화를 이용한 하드코딩 방지</strong>
+        <span>설정 파일에서 DB 정보를 읽고 암호화된 사용자명과 비밀번호를 복호화해 사용하면 코드가 노출되어도 비밀값 노출 위험을 줄일 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>방어 예시는 설정 파일에서 값을 읽고, <strong>암호화</strong>되어 저장된 사용자명과 비밀번호를 <strong>복호화</strong>해 사용한다. 중요한 값은 코드에서 분리하고, 설정 파일 자체도 암호화하거나 접근 권한을 제한해야 한다. 복호화 키도 코드에 평문으로 넣지 않고 별도 보관해야 한다.</p>
+                    <pre><code class="language-python">import pymysql
+import json
+
+def query_execute(query, config_path):
+    with open(config_path, &#x27;r&#x27;) as config:
+        # 설정 파일에서 user, passwd를 가져와 사용
+        dbconf = json.load(fp=config)
+
+    # 암호화되어 있는 블록 암호화 키를 복호화 해서 가져오는
+    # 사용자 정의 함수
+    blockKey = get_decrypt_key(dbconf[&#x27;blockKey&#x27;])
+
+    # 설정 파일에 암호화되어 있는 값을 가져와 복호화한 후에 사용
+    dbUser = decrypt(blockKey, dbconf[&#x27;user&#x27;])
+    dbPasswd = decrypt(blockKey, dbconf[&#x27;passwd&#x27;])
+
+    dbconn = pymysql.connect(
+        host=dbconf[&#x27;host&#x27;],
+        port=dbconf[&#x27;port&#x27;],
+        user=dbUser,
+        passwd=dbPasswd,
+        db=dbconf[&#x27;db_name&#x27;],
+        charset=&#x27;utf8&#x27;,
+    )
+    curs = dbconn.cursor()
+    curs.execute(query)
+    dbconn.commit()
+    dbconn.close()</code></pre>
+                    <p>핵심은 코드가 노출되어도 비밀값이 함께 노출되지 않게 만드는 것이다. 설정값, 비밀번호, <strong>API 키</strong>, 암호화 키는 코드와 분리해 관리하고, 저장소에 올릴 때는 실사용 비밀값이 포함되지 않았는지 점검해야 한다.</p>
           </div>
         </details>
         
@@ -155,8 +272,52 @@ session_token = token_urlsafe(32)</code></pre>
             <h2>안전하지 않은 난수 생성기</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>Python</strong>의 <code>random</code>이나 C의 <code>rand()</code>는 보안용 <strong>난수</strong>로 적합하지 않다. 실제로는 유사 난수이며, 시드 값이 고정되거나 실행 시간을 추정할 수 있으면 공격자가 같은 난수열을 재현할 수 있다. 난수가 암호화 키, 토큰, 인증 우회 방지 값에 쓰였다면 치명적이다.</p>
-<p>보안에 필요한 난수는 Python의 <code>secrets</code> <strong>패키지</strong>나 OS가 제공하는 안전한 난수 생성 기능을 사용해야 한다. 강의에서는 일반 random <strong>함수</strong>의 시드가 특정 시간 기반일 수 있어, 실행 시간을 유추하면 공격자가 난수를 제한할 수 있다고 설명한다.</p>
+            <p><strong>Python</strong>의 <code>random</code>이나 C의 <code>rand()</code>는 개발 과정에서 자주 쓰이지만, <strong>보안 기능</strong>을 위한 난수로는 적합하지 않다. 이 값은 진짜 난수가 아니라 유사 난수이며, 시드 값이나 난수 발생 알고리즘을 알면 공격자가 같은 난수열을 재현할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0027.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0027.jpg" alt="안전하지 않은 난수 생성기 공격 흐름" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>안전하지 않은 난수 생성기 공격 흐름</strong>
+        <span>공격자가 난수 발생기를 분석하고 예측된 난수를 이용하면 원하는 데이터 열람이나 권한 획득으로 이어질 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강의의 공격 흐름은 공격자가 <strong>난수</strong> 발생기를 분석하고, 예측된 난수를 통해 난수 발생기를 우회한 뒤, 원하는 데이터 열람이나 <strong>권한</strong> 획득으로 이어지는 구조다. 난수가 암호화 키, OTP, 세션 토큰, 인증 우회 방지 값에 쓰였다면 예측 가능성은 곧 보안 기능 우회로 이어진다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0031.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0031.jpg" alt="random과 secrets 난수 생성 비교" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>random과 secrets 난수 생성 비교</strong>
+        <span>보안용 OTP에는 시간 기반으로 예측 가능한 random보다 secrets.randbelow나 os.urandom 기반 난수를 사용하는 편이 안전하다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>슬라이드의 위쪽 코드는 <code>random.randrange(10)</code>으로 6자리 OTP를 만든다. 강사는 일반 <code>random</code>이 특정 시간 기반 시드를 사용할 수 있으므로, 코드 <strong>실행</strong> 시간을 추정할 수 있으면 공격자가 가능한 난수를 좁혀 갈 수 있다고 설명했다. 아래쪽 코드는 <code>secrets.randbelow(10)</code>을 사용한다. 보안 기능에 필요한 난수는 <code>secrets</code> <strong>패키지</strong>나 OS가 제공하는 <code>os.urandom()</code> 기반 난수를 사용해야 한다.</p>
+                    <pre><code class="language-python">import random
+
+def get_otp_number():
+    random_str = &#x27;&#x27;
+
+    # 시스템 현재 시간 값을 시드로 사용하고 있으면, 주요 보안 기능을 위한
+    # 난수로 안전하지 않다
+    for i in range(6):
+        random_str += str(random.randrange(10))
+    return random_str
+
+
+import secrets
+
+def get_otp_number():
+    random_str = &#x27;&#x27;
+
+    # 보안기능에 적합한 난수 생성용 secrets 라이브러리 사용
+    for i in range(6):
+        random_str += str(secrets.randbelow(10))  # os.urandom()
+    return random_str</code></pre>
           </div>
         </details>
         
@@ -166,8 +327,74 @@ session_token = token_urlsafe(32)</code></pre>
             <h2>쿠키 유효기간과 무결성 검증</h2>
           </summary>
           <div class="note-section-body">
-            <p>쿠키는 사용자의 브라우저 또는 PC에 저장된다. 사용자의 PC가 감염되어 쿠키가 공격자에게 전송될 수 있다는 점을 항상 염두에 두어야 한다. 쿠키 유효기간을 1년처럼 너무 길게 설정하면, 유출된 쿠키를 공격자가 오랫동안 사용해 해당 사용자처럼 접속할 수 있다. 너무 짧아도 사용성이 나빠지지만, 너무 길면 보안 위험이 커진다.</p>
-<p><strong>무결성</strong> 검증은 다운로드한 파일이나 서버에서 받은 데이터가 중간에 변조되지 않았는지 확인하는 과정이다. 공식 사이트가 제공하는 해시값과 내가 받은 파일의 해시값을 비교하면, 파일이 손상되거나 조작되었는지 확인할 수 있다. 이는 중간자 공격이나 조작 파일 <strong>실행</strong>을 예방하는 데 중요하다.</p>
+            <p>쿠키는 사용자의 브라우저나 PC에 저장된다. 따라서 사용자의 PC가 감염되면 쿠키 값이 공격자에게 전송될 수 있다는 점을 항상 염두에 두어야 한다. 쿠키 유효기간이 지나치게 길면, 유출된 쿠키를 공격자가 오랫동안 사용해 해당 사용자처럼 웹사이트에 접속할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0035.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0035.jpg" alt="쿠키 유출 위험 흐름" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>쿠키 유출 위험 흐름</strong>
+        <span>사용자 PC가 감염되어 쿠키 파일의 주요 정보가 유출되면 공격자가 그 쿠키로 사용자처럼 접속할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>흐름도는 공격자가 악성 코드를 유포하고, 악성 코드가 저장된 웹 서버를 통해 사용자 PC가 감염된 뒤, 쿠키 파일에 저장된 주요 정보가 유출되는 과정을 보여 준다. 쿠키는 유출될 수 있다는 전제에서 다뤄야 하며, 유효기간을 짧게 두어 유출 이후 악용 가능한 시간을 줄이는 것이 중요하다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0039.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0039.jpg" alt="쿠키 유효기간과 secure, httpOnly 설정" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>쿠키 유효기간과 secure, httpOnly 설정</strong>
+        <span>쿠키 만료시간을 1년처럼 길게 두지 말고 적절히 줄이며 secure와 httpOnly 옵션을 활성화해야 한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>슬라이드의 취약 코드는 <code>rememberme</code> 쿠키의 <code>max_age</code>를 1년으로 설정한다. 방어 코드는 유효기간을 1시간으로 줄이고, HTTPS에서만 전송되도록 <code>secure=True</code>, JavaScript 접근을 막기 위해 <code>httponly=True</code>를 설정한다.</p>
+                    <pre><code class="language-python">from django.http import HttpResponse
+
+def remind_user_state(request):
+    res = HttpResponse()
+    # 쿠키의 만료시간을 1년으로 과도하게 길게 설정하고 있어 안전하지 않다
+    res.set_cookie(&#x27;rememberme&#x27;, 1, max_age=60 * 60 * 24 * 365)
+    return res
+
+
+from django.http import HttpResponse
+
+def remind_user_state(request):
+    res = HttpResponse()
+    # 쿠키의 만료시간을 적절하게 부여하고 secure 및 httpOnly 옵션을 활성화 한다.
+    res.set_cookie(&#x27;rememberme&#x27;, 1, max_age=60 * 60, secure=True, httponly=True)
+    return res</code></pre>
+                    <p><strong>무결성</strong> 검증은 다운로드한 파일이나 서버에서 받은 데이터가 중간에 변조되지 않았는지 확인하는 과정이다. 공식 사이트가 제공하는 해시값과 내가 받은 파일의 해시값을 비교하면 파일이 손상되거나 조작되었는지 확인할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0043.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0043.jpg" alt="무결성 검증 없는 원격 코드 다운로드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>무결성 검증 없는 원격 코드 다운로드</strong>
+        <span>신뢰할 수 없는 사이트에서 code.py를 다운로드해 저장하면 중간자 공격이나 조작 파일 실행 위험이 생긴다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강의 예시는 신뢰할 수 없는 사이트에서 <code>code.py</code>를 다운로드해 <code>save.py</code>로 저장하는 코드다. 이 파일이 공식 파일인지, 누군가가 중간에서 조작한 파일인지 확인할 방법이 없기 때문에 그대로 <strong>실행</strong>하면 중간자 공격이나 조작 파일 실행으로 이어질 수 있다. 해시 검증이나 서명 검증 없이 원격 코드를 받아 실행하는 구조는 피해야 한다.</p>
+                    <pre><code class="language-python">import requests
+
+def execute_remote_code():
+    # 신뢰할 수 없는 사이트에서 코드를 다운로드
+    url = &quot;https://www.somewhere.com/storage/code.py&quot;
+    # 원격 코드 다운로드
+
+    file = requests.get(url)
+    remote_code = file.content
+    file_name = &#x27;save.py&#x27;
+
+    with open(file_name, &#x27;wb&#x27;) as f:
+        f.write(file.content)
+        ......</code></pre>
           </div>
         </details>
         
@@ -177,8 +404,20 @@ session_token = token_urlsafe(32)</code></pre>
             <h2>반복된 인증 시도 제한</h2>
           </summary>
           <div class="note-section-body">
-            <p>브루트포스 공격은 비밀번호를 계속 대입해 맞히려는 방식이다. <strong>로그</strong>인 시도 제한이 없으면 공격자는 시간만 충분하면 언젠가 비밀번호를 찾을 가능성이 있다. 그래서 일정 횟수 이상 실패하면 IP를 차단하거나, 일정 시간 동안 로그인 시도를 막거나, 추가 <strong>인증</strong>을 요구해야 한다.</p>
-<p>이 제한은 단순히 공격자를 불편하게 하는 것이 아니라, 가능한 시도 횟수 자체를 줄여 공격 성공 확률을 낮추는 핵심 <strong>보안 기능</strong>이다.</p>
+            <p><strong>반복된 인증 시도 제한</strong>은 브루트포스 공격을 줄이기 위한 <strong>보안 기능</strong>이다. 공격자가 비밀번호를 계속 대입할 수 있고, 시간 제한이나 횟수 제한이 없다면 언젠가는 해당 계정의 비밀번호를 맞힐 가능성이 생긴다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0047.jpg" alt="반복된 인증 시도 제한" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>반복된 인증 시도 제한</strong>
+    <span>무작위 대입 공격을 계속 허용하면 언젠가 ID와 비밀번호 조합을 맞출 수 있으므로 시도 횟수와 시간을 제한해야 한다.</span>
+  </figcaption>
+</figure>
+
+                <p>슬라이드는 공격자가 ID와 비밀번호 사전을 기반으로 1차, 2차, 3차, N차 시도를 계속 수행하는 모습을 보여 준다. 강사는 일정 횟수 이상 실패하면 IP를 차단하거나, 10분 동안 <strong>로그</strong>인 시도를 막거나, 추가 <strong>인증</strong>을 요구하는 식으로 시도를 제한해야 한다고 설명했다.</p>
+                <p>이 제한은 단순히 공격자를 불편하게 하는 기능이 아니다. 가능한 시도 횟수 자체를 줄여 공격 성공 확률을 낮추는 핵심 보안 기능이다. 로그인, 관리자 페이지, 비밀번호 재설정, OTP 검증 같은 인증 관련 기능에는 실패 횟수와 시간 제한을 반드시 고려해야 한다.</p>
           </div>
         </details>
         
@@ -188,16 +427,83 @@ session_token = token_urlsafe(32)</code></pre>
             <h2>Race Condition</h2>
           </summary>
           <div class="note-section-body">
-            <p>시간 및 상태 문제의 대표 예는 <strong>Race Condition</strong>이다. 멀티스레딩이나 멀티프로세스 환경에서 검사 시점과 사용 시점 사이에 상태가 바뀌면 문제가 생긴다. 예를 들어 <strong>프로세스</strong> A가 파일이 존재하는지 확인한 뒤 읽으려는 순간, 프로세스 B가 그 파일을 삭제하면 A는 오류를 만나게 된다.</p>
-                    <p>동일한 파일에 두 <strong>스레드</strong>가 동시에 쓰는 경우도 문제가 된다. 두 스레드가 빈 파일을 열고 각각 내용을 쓴 뒤 저장하면, 기대한 두 내용이 모두 남지 않고 마지막에 저장한 내용만 남을 수 있다. 방어하려면 공유 자원에 접근할 때 lock, semaphore 같은 동기화 기법을 사용해 한 번에 하나의 스레드만 처리하도록 해야 한다.</p>
-                    <pre><code class="language-python">import threading
+            <p>시간 및 상태 문제의 대표 예는 <strong>Race Condition</strong>이다. 강의에서는 TOCTOU, 즉 Time Of Check와 Time Of Use의 차이를 중심으로 설명했다. 멀티스레딩이나 멀티프로세스 환경에서 검사 시점과 실제 사용 시점 사이에 공유 자원의 상태가 바뀌면 프로그램이 의도하지 않은 동작을 할 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0055.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0055.jpg" alt="Race Condition TOCTOU 흐름" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Race Condition TOCTOU 흐름</strong>
+        <span>파일 유무 검사 시점과 파일 사용 시점 사이에 다른 프로세스가 공유 자원을 변경하면 읽기 시도 오류 같은 문제가 생긴다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>예를 들어 <strong>프로세스</strong> A가 파일이 존재하는지 먼저 확인하고, 그 다음 파일을 읽으려 한다고 하자. 그런데 검사와 읽기 사이에 프로세스 B가 그 파일을 삭제하면, A는 “존재한다”고 판단한 파일을 읽는 순간 오류를 만난다. 동일한 파일에 두 <strong>스레드</strong>가 동시에 쓰는 경우도 문제가 된다. 두 스레드가 각각 빈 파일을 열고 내용을 쓴 뒤 저장하면, 기대한 두 내용이 모두 남지 않고 마지막에 저장한 내용만 남을 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0059.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0059.jpg" alt="Race Condition 취약 코드" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Race Condition 취약 코드</strong>
+        <span>멀티스레드 환경에서 파일 존재 여부를 검사한 뒤 잠금 없이 파일을 열고 쓰면 검사와 사용 사이의 상태 변경에 취약하다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>취약 코드는 파일 존재 여부를 확인한 뒤 바로 파일을 열어 쓴다. 하지만 그 사이 다른 스레드나 프로세스가 파일을 바꾸거나 삭제할 수 있다.</p>
+                    <pre><code class="language-python">import os
+import io
+import datetime
+import threading
+
+def write_shared_file(filename, content):
+    # 멀티스레드 환경에서는 다른 사용자들의 작업에 따라 파일이 사라질 수
+    # 있기 때문에 공유 자원에 대해서는 검사와 사용을 동시에 해야 한다.
+    if os.path.isfile(filename) is True:
+        f = open(filename, &#x27;w&#x27;)
+        f.seek(0, io.SEEK_END)
+        f.write(content)
+        f.close()
+
+def start():
+    filename = &#x27;./temp.txt&#x27;
+    content = f&quot;start time is {datetime.datetime.now()}&quot;
+    my_thread = threading.Thread(target=write_shared_file, args=(filename, content))
+    my_thread.start()</code></pre>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0063.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0063.jpg" alt="Lock을 이용한 Race Condition 방어" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Lock을 이용한 Race Condition 방어</strong>
+        <span>threading.Lock을 사용해 공유 파일 접근 구간을 한 스레드씩 처리하면 동시에 접근해 생기는 상태 충돌을 줄일 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>방어 코드는 <code>threading.Lock()</code>을 사용한다. <code>with lock:</code> 구간 안에서는 한 번에 하나의 스레드만 공유 파일에 접근할 수 있으므로, 검사와 사용 사이의 상태 충돌을 줄일 수 있다. 강사는 lock 외에도 semaphore 같은 동기화 기법을 언급하며, 여러 스레드나 프로세스가 동일 공유 자원에 접근할 때는 한 작업을 먼저 끝낸 뒤 다음 작업을 처리하도록 만들어야 한다고 설명했다.</p>
+                    <pre><code class="language-python">import os
+import io
+import datetime
+import threading
 
 lock = threading.Lock()
 
-def append_log(content):
+def write_shared_file(filename, content):
+    # lock을 이용하여 여러 사용자가 동시에 파일에 접근하지 못하도록 제한
     with lock:
-        with open(&quot;content.txt&quot;, &quot;a&quot;, encoding=&quot;utf-8&quot;) as file:
-            file.write(content + &quot;\n&quot;)</code></pre>
+        if os.path.isfile(filename) is True:
+            f = open(filename, &#x27;w&#x27;)
+            f.seek(0, io.SEEK_END)
+            f.write(content)
+            f.close()
+
+def start():
+    filename = &#x27;./temp.txt&#x27;
+    content = f&quot;start time is {datetime.datetime.now()}&quot;
+    my_thread = threading.Thread(target=write_shared_file, args=(filename, content))
+    my_thread.start()</code></pre>
           </div>
         </details>
         
@@ -208,7 +514,56 @@ def append_log(content):
           </summary>
           <div class="note-section-body">
             <p><strong>반복문</strong>이나 재귀 <strong>함수</strong>에서 종료 조건이 없으면 프로그램이 끝나지 않는다. 파일을 열거나 메모리를 계속 사용하는 코드라면 자원 고갈로 이어질 수 있고, CPU를 계속 점유해 다른 프로세스가 제대로 동작하지 못하게 만들 수 있다.</p>
-<p>factorial 같은 함수도 재귀로 작성할 때 종료 조건이 반드시 필요하다. <code>while</code> 문에는 <code>break</code>나 조건 변화가 필요하고, 재귀 함수에는 더 이상 자기 자신을 호출하지 않는 기저 조건이 필요하다. <strong>Python</strong>에서는 재귀 호출 최대 횟수를 설정할 수도 있으므로, 필요한 경우 제한 값을 작게 설정하는 것도 방어 방법이 된다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0067.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0067.jpg" alt="Recursive와 Infinite Loop의 자원 고갈" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Recursive와 Infinite Loop의 자원 고갈</strong>
+        <span>종료되지 않는 반복문이나 재귀 호출은 CPU와 메모리를 계속 사용해 다른 프로세스의 정상 동작을 방해할 수 있다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>강사는 <code>while</code> 같은 반복문에 종료 조건이 없거나, 함수가 계속 자기 자신을 호출하면 코드가 끝나지 않는다고 설명했다. 이런 코드는 <strong>메모리</strong>와 <strong>CPU</strong>를 계속 사용하므로 서버 전체 성능 저하나 서비스 장애로 이어질 수 있다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0071.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-06-보안-기능과-시간-및-상태/시큐어코딩-06-보안-기능과-시간-및-상태 - 0071.jpg" alt="재귀 함수 탈출 조건과 재귀 제한" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>재귀 함수 탈출 조건과 재귀 제한</strong>
+        <span>factorial 재귀 함수에 종료 조건을 두지 않으면 무한 호출이 발생하므로 기저 조건과 sys.setrecursionlimit 같은 제한을 둔다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>factorial 예시에서 위쪽 코드는 <code>return num * factorial(num - 1)</code>만 있고 탈출 조건이 없다. 따라서 <code>factorial(5)</code>를 호출해도 5, 4, 3, 2, 1, 0, -1로 계속 내려가며 종료되지 않는다. 아래쪽 코드처럼 <code>if num == 0: return 1</code>이라는 기저 조건을 두어야 재귀 호출이 끝난다.</p>
+                    <pre><code class="language-python">def factorial(num):
+    # 재귀함수 탈출조건을 설정하지 않아 동작 중 에러 발생
+    return num * factorial(num - 1)
+
+if __name__ == &#x27;__main__&#x27;:
+    itr = 5
+    result = factorial(itr)
+    print(str(itr) + &#x27; 팩토리얼 값은 : &#x27; + str(result))
+
+
+def factorial(num):
+    # 재귀함수 사용 시에는 탈출 조건을 명시해야 한다.
+    if num == 0:
+        return 1
+    else:
+        return num * factorial(num - 1)
+
+if __name__ == &#x27;__main__&#x27;:
+    itr = 5
+    result = factorial(itr)
+    print(str(itr) + &#x27; 팩토리얼 값은 : &#x27; + str(result))
+
+
+import sys
+sys.setrecursionlimit(1000)</code></pre>
+                    <p><strong>Python</strong>은 <code>sys.setrecursionlimit()</code>으로 재귀 호출 최대 횟수를 설정할 수 있다. 이것은 근본 해결책이라기보다는 피해를 제한하는 장치다. 실제 방어의 핵심은 반복문에는 조건 변화나 <code>break</code>를 두고, 재귀 함수에는 더 이상 자기 자신을 호출하지 않는 명확한 종료 조건을 두는 것이다.</p>
           </div>
         </details>
         
@@ -219,6 +574,7 @@ def append_log(content):
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li><strong>DES</strong> 같은 오래된 알고리즘을 사용하면 <strong>암호화</strong>해도 안전하지 않을 수 있는 이유를 설명할 수 있는가?</li><li>비밀번호와 키를 코드에 하드코딩하면 어떤 위험이 생기는지 이해했는가?</li><li>random과 secrets의 보안상 차이를 말할 수 있는가?</li><li>쿠키 유효기간을 너무 길게 두면 왜 위험한지 설명할 수 있는가?</li><li><strong>Race Condition</strong>을 검사 시점과 사용 시점의 차이로 설명할 수 있는가?</li><li>무한 루프와 재귀 호출에 종료 조건이 필요한 이유를 이해했는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

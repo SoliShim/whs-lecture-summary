@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>시큐어코딩 1-8 - 시큐어 SDLC</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -125,7 +125,31 @@
           </summary>
           <div class="note-section-body">
             <p>8강은 <strong>시큐어 코딩</strong> 전체의 마지막 강의로, 코드 구현뿐 아니라 소프트웨어 개발 전 과정에서 안전한 소프트웨어를 만드는 방법을 다룬다. 보안 관점에서 <strong>취약점</strong>, 보안 약점, 여러 위험을 리스크라고 볼 수 있다. 리스크를 줄이려면 보안 솔루션이나 침입 탐지 시스템을 적용할 수도 있고, 앞선 강의의 시큐어 코딩 기법을 적용할 수도 있다.</p>
-<p>하지만 더 근본적으로는 처음 설계부터 보안을 고려하고, 소프트웨어 복잡도를 낮추는 것이 중요하다. 강의는 <code>printf("hello world")</code>처럼 매우 단순한 코드에는 공격자가 노릴 벡터가 거의 없다고 설명한다. 소프트웨어가 복잡해질수록 공격 지점도 많아지므로, 복잡도를 낮추고 설계 단계에서 위험을 줄여야 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0003.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0003.jpg" alt="시큐어 SDLC 강의 목차" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>시큐어 SDLC 강의 목차</strong>
+    <span>8강은 리스크 감소, Secure Software Development Cycle, Requirements, Threat Modeling 순서로 진행된다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의 목차는 네 가지다. 먼저 <strong>리스크</strong>를 어떻게 줄일 수 있는지 생각하고, 이어서 Secure Software Development Cycle을 설명한다. 그 다음 요구사항을 어떻게 도출해야 하는지, 마지막으로 Threat Modeling을 통해 설계에서 발생 가능한 위협을 찾는 방법을 다룬다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0011.jpg" alt="리스크를 줄이는 방법" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>리스크를 줄이는 방법</strong>
+    <span>보안 솔루션 적용뿐 아니라 설계부터 보안을 고려하고 소프트웨어 복잡도를 낮추는 것이 리스크 감소의 핵심이다.</span>
+  </figcaption>
+</figure>
+
+                <p>강사는 “보안적으로 우수한 소프트웨어를 만들려면 좋은 보안 솔루션을 적용하면 되는가?”라는 질문으로 시작한다. IDS 같은 침입 탐지 시스템이나 보안 솔루션을 적용하는 것도 방법이고, 앞선 강의에서 배운 시큐어 코딩 기법을 적용하는 것도 중요한 방법이다. 하지만 더 근본적인 방법은 처음 설계부터 보안을 고려하는 것이다.</p>
+                <p>또 하나의 기준은 소프트웨어 복잡도를 낮추는 것이다. 강의 예시의 <code>printf("Hello World\n");</code> 같은 코드는 매우 단순하므로 공격자가 노릴 공격 벡터가 거의 없다. 반대로 소프트웨어가 복잡해질수록 기능, <strong>입력</strong>, 상태, 외부 연동이 늘어나고 공격자가 노릴 지점도 많아진다. 따라서 리스크 감소는 “보안 장비를 붙이는 것”만이 아니라 <strong>설계부터 보안을 고려하고, 불필요한 복잡도를 줄이는 것</strong>까지 포함한다.</p>
           </div>
         </details>
         
@@ -136,7 +160,31 @@
           </summary>
           <div class="note-section-body">
             <p>Secure <strong>Software Development Life Cycle</strong>은 설계부터 구현, 배포, 유지보수까지 전체 과정에서 <strong>리스크</strong>를 줄이려는 개발 방법론이다. 강의는 개발 주기를 크게 정의 단계, 개발 단계, 유지보수 단계로 나눈다. 정의 단계에서는 무엇을 만들지와 요구사항을 정하고, 개발 단계에서는 설계·구현·테스트를 수행하며, 유지보수 단계에서는 배포 후 운영과 폐기까지 다룬다.</p>
-                    <p>Microsoft의 <strong>Security</strong> Development Lifecycle은 단계를 더 세분화한다. 교육 단계까지 포함해 보안적으로 무엇을 신경 써야 하는지 가르치고, 계획과 분석 단계에서 보안 버그와 프라이버시 위험을 분석하며, 설계 단계에서 <strong>위협 모델링</strong>을 수행한다. 구현 단계에서는 금지 함수와 위험한 행위를 확인하고, 이후 테스트와 퍼징, 배포 전 사고 대응 계획, 실제 사고 대응까지 이어진다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0015.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0015.jpg" alt="Secure Software Development Cycle 3단계" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Secure Software Development Cycle 3단계</strong>
+        <span>소프트웨어 개발 주기는 정의 단계, 개발 단계, 유지보수 단계로 나눌 수 있으며 각 단계에서 보안을 고려해야 한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>정의 단계는 <strong>무엇을 만들 것인지</strong> 정하는 단계다. <strong>서비스</strong> 목적, 개발 계획, 요구사항 분석이 여기에 포함된다. 개발 단계는 <strong>어떻게 만들 것인지</strong>를 구체화하는 단계로, 설계, 개발, 테스트가 이어진다. 유지보수 단계는 배포 이후 실제 서비스를 운영하고, 문제가 생기면 수정하거나 예방하며, 필요하면 기능이나 서비스를 폐기하는 단계다.</p>
+
+    <figure class="screen-figure">
+      <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0023.jpg" target="_blank" rel="noopener">
+        <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0023.jpg" alt="Microsoft Security Software Development Life Cycle" loading="lazy">
+      </a>
+      <figcaption>
+        <strong>Microsoft Security Software Development Life Cycle</strong>
+        <span>Microsoft SDL은 교육, 계획/분석, 설계, 구현, 시험/검증, 배포/운영, 대응의 7단계를 제시한다.</span>
+      </figcaption>
+    </figure>
+
+                    <p>Microsoft의 <strong>Security</strong> Development Lifecycle은 이 흐름을 7단계로 더 세분화한다. 교육 단계에서는 개발자에게 보안적으로 무엇을 신경 써야 하는지 가르친다. 계획/분석 단계에서는 소프트웨어의 <strong>품질 기준</strong>, 버그 경계, 보안과 프라이버시 위험을 분석한다. 설계 단계에서는 공격 영역 분석과 위협 모델링을 수행한다.</p>
+                    <p>구현 단계는 앞선 <strong>시큐어 코딩</strong> 기법과 직접 연결된다. 금지된 <strong>함수</strong> 사용을 제한하고, 정적 분석으로 위험한 코드 패턴을 확인한다. 시험/검증 단계에서는 동적 테스트와 퍼징, 공격 영역과 위협 모델 검증을 수행한다. 배포/운영 단계에서는 사고 대응 계획과 최종 보안 검토, 기록 보관을 준비하고, 대응 단계에서는 실제 사고가 발생했을 때 대응을 수행한다.</p>
                     <pre><code class="language-text">교육
 -&gt; 계획과 분석: 보안 버그, 프라이버시 위험, 보안 요구사항 확인
 -&gt; 설계: 위협 모델링, 데이터 흐름, 공격 가능 지점 분석
@@ -144,6 +192,7 @@
 -&gt; 검증: 테스트, 퍼징, 보안 점검
 -&gt; 배포: 사고 대응 계획 수립
 -&gt; 대응: 실제 사고 발생 시 대응과 개선</code></pre>
+                    <p>이 강의에서 특히 강조하는 지점은 계획/분석과 설계 단계다. 구현 단계에서 취약 코드를 줄이는 것도 중요하지만, 요구사항과 설계가 애초에 불명확하거나 위험하면 구현 단계에서 모든 문제를 고치기 어렵다.</p>
           </div>
         </details>
         
@@ -154,7 +203,20 @@
           </summary>
           <div class="note-section-body">
             <p>요구사항 도출 단계에서도 보안을 고려해야 한다. 단순히 “민감정보는 <strong>암호화</strong>되어야 한다”라고 쓰면 너무 추상적이다. 개발자마다 암호화 방식, 적용 위치, 전송 시점, 저장 시점을 다르게 해석할 수 있다.</p>
-<p>더 좋은 요구사항은 “모든 민감정보는 전송과 수신 시 암호화되어야 하며, 암호화 방법은 <strong>AES</strong> 방식을 사용한다”처럼 구체적이어야 한다. 이렇게 명세하면 어떤 개발자가 구현하더라도 전송과 수신 모두에서 암호화를 적용하고, 사용할 알고리즘도 분명해진다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0031.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0031.jpg" alt="구체적인 보안 요구사항" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>구체적인 보안 요구사항</strong>
+    <span>민감정보 암호화처럼 추상적인 요구사항보다 전송과 수신 시점, 암호화 방식까지 구체적으로 명시해야 구현 결과가 달라지지 않는다.</span>
+  </figcaption>
+</figure>
+
+                <p>슬라이드는 두 요구사항을 비교한다. 첫 번째는 “모든 민감정보는 암호화되어야 한다.”이다. 이 문장은 방향은 맞지만 구체성이 부족하다. 저장할 때만 암호화하면 되는지, 전송할 때만 암호화하면 되는지, 어떤 알고리즘을 써야 하는지 개발자마다 다르게 판단할 수 있다.</p>
+                <p>두 번째 요구사항은 “모든 민감정보는 전송과 수신 시 암호화되어야 하며, 암호화 방법은 <strong>AES</strong> 이상의 암호를 사용해야 한다.”이다. 이 문장은 적용 시점과 암호화 방법을 함께 명시한다. 따라서 어떤 개발자가 구현하더라도 전송과 수신 모두에서 암호화를 적용하고, 최소한의 알고리즘 기준도 지키게 된다.</p>
+                <p>강사의 핵심 설명은 요구사항이 최종 결과물을 크게 바꾼다는 것이다. 보안 요구사항은 좋은 의도를 적는 문장이 아니라 구현자가 오해 없이 같은 결과를 만들 수 있도록 하는 명세여야 한다.</p>
           </div>
         </details>
         
@@ -165,15 +227,33 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 요구사항 도출 과정에서 알아야 할 여러 보안 원칙이 있다고 설명하고, 그중 중요한 원칙을 몇 가지 소개한다.</p>
-<table>
-  <thead><tr><th>원칙</th><th>설명</th></tr></thead>
-  <tbody>
-    <tr><td>Least Privilege</td><td>사용자에게 필요한 <strong>최소 권한</strong>만 준다. 과한 권한은 악의적 행위와 사고의 범위를 넓힌다.</td></tr>
-    <tr><td>Open <strong>Design</strong></td><td>설계가 공개되어도 안전해야 한다. <strong>AES</strong>처럼 알고리즘이 공개되어도 키가 안전하면 <strong>보안성</strong>이 유지되는 방식이다.</td></tr>
-    <tr><td>Built-in, Not Bolted-on</td><td>기능을 다 만든 뒤 보안을 덧붙이는 것이 아니라 처음부터 보안을 포함해 설계한다.</td></tr>
-  </tbody>
-</table>
-<p>이 원칙들은 단순 구호가 아니라 요구사항과 설계 문서에 반영되어야 한다. 특히 나중에 보안을 덧붙이는 방식은 처음부터 고려한 설계보다 안전하기 어렵다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0043.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0043.jpg" alt="요구사항 도출 시 고려할 보안 원칙" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>요구사항 도출 시 고려할 보안 원칙</strong>
+    <span>Least Privilege, Fail-Safe Defaults, Open Design, Defense in Depth, Effective Logging, Build in Not Bolt On 등 여러 보안 원칙을 요구사항과 설계에 반영한다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>원칙</th><th>설명</th></tr></thead>
+                  <tbody>
+                    <tr><td>Least Privilege</td><td>사용자에게 필요한 <strong>최소 권한</strong>만 준다. 과한 권한은 악의적 행위와 사고의 범위를 넓힌다.</td></tr>
+                    <tr><td>Fail-Safe Defaults</td><td>기본 상태는 허용이 아니라 거부가 되어야 하며, 명시적으로 허용된 경우에만 접근하게 한다.</td></tr>
+                    <tr><td>Economy of Mechanism</td><td>보안 메커니즘은 단순할수록 검토와 유지보수가 쉽고 오류 가능성이 줄어든다.</td></tr>
+                    <tr><td>Complete Mediation</td><td><strong>권한</strong> 확인은 한 번만 하는 것이 아니라 접근할 때마다 일관되게 수행되어야 한다.</td></tr>
+                    <tr><td>Open <strong>Design</strong></td><td>설계가 공개되어도 안전해야 한다. <strong>AES</strong>처럼 알고리즘이 공개되어도 키가 안전하면 <strong>보안성</strong>이 유지되는 방식이다.</td></tr>
+                    <tr><td>Separation of Privilege</td><td>중요한 동작은 하나의 조건이나 권한만으로 허용하지 않고 여러 조건을 조합해 확인한다.</td></tr>
+                    <tr><td>Defense in Depth</td><td>한 방어선이 실패해도 다음 방어선이 남도록 여러 계층의 보호 장치를 둔다.</td></tr>
+                    <tr><td>Effective Logging</td><td>문제 발생 시 추적할 수 있도록 의미 있는 보안 이벤트를 기록한다.</td></tr>
+                    <tr><td>Built-in, Not Bolted-on</td><td>기능을 다 만든 뒤 보안을 덧붙이는 것이 아니라 처음부터 보안을 포함해 설계한다.</td></tr>
+                  </tbody>
+                </table>
+                <p>강사는 특히 Least Privilege, Open Design, Built-in Not Bolt On을 강조했다. 최소 권한은 사용자가 작업에 필요한 권한만 갖도록 제한하는 원칙이다. Open Design은 설계 방식이 공개되어도 핵심 비밀, 예를 들어 <strong>암호화</strong> 키만 안전하면 전체 보안이 유지되도록 만드는 원칙이다. Built-in Not Bolt On은 기능을 다 만든 뒤 보안을 덧붙이는 방식보다 처음부터 보안을 포함해 설계해야 한다는 의미다.</p>
+                <p>이 원칙들은 단순 구호가 아니라 요구사항과 설계 문서에 반영되어야 한다. 요구사항 도출 단계에서 원칙을 놓치면 이후 구현 단계에서 <strong>보안 기능</strong>을 억지로 붙이게 되고, 처음부터 고려한 설계보다 안전하기 어렵다.</p>
           </div>
         </details>
         
@@ -184,8 +264,20 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 보안 정책 모델의 예로 <strong>BLP 모델</strong>을 소개한다. BLP 모델은 <strong>기밀성</strong>을 유지하기 위한 모델이다. 핵심은 상위 권한의 데이터를 읽지 못하고, 하위 권한의 데이터에 쓰지 못하게 하는 것이다.</p>
-<p>상위 <strong>권한</strong>의 데이터를 읽지 못하게 하는 것은 직관적이다. 자기 권한보다 높은 기밀 정보를 읽을 수 있으면 기밀성이 깨진다. 반대로 하위 권한 데이터에 쓰지 못하게 하는 것도 중요하다. 높은 권한을 가진 사용자가 자신이 아는 기밀 정보를 낮은 등급의 데이터 영역에 써 버리면, 낮은 권한 사용자에게 기밀 정보가 공개될 수 있기 때문이다.</p>
-<p>이처럼 어떤 권한이 어떤 데이터를 읽고 쓸 수 있는지 정책으로 명확히 정해야 한다. 강의는 BLP 외에도 다양한 우수 보안 정책 모델이 있으니 더 찾아보는 것을 권한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0051.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0051.jpg" alt="BLP 보안 정책 모델" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>BLP 보안 정책 모델</strong>
+    <span>Bell-LaPadula 모델은 기밀성 유지를 위해 No read up과 No write down 규칙을 사용한다.</span>
+  </figcaption>
+</figure>
+
+                <p>상위 <strong>권한</strong>의 데이터를 읽지 못하게 하는 것은 직관적이다. 자기 권한보다 높은 기밀 정보를 읽을 수 있으면 기밀성이 깨진다. 반대로 하위 권한 데이터에 쓰지 못하게 하는 것도 중요하다. 높은 권한을 가진 사용자가 자신이 아는 기밀 정보를 낮은 등급의 데이터 영역에 써 버리면, 낮은 권한 사용자에게 기밀 정보가 공개될 수 있기 때문이다.</p>
+                <p>슬라이드에는 Bell-LaPadula 모델의 세 규칙이 보인다. Simple Confidentiality Rule은 No read up, 즉 낮은 권한 사용자가 상위 등급 데이터를 읽지 못하게 한다. Star Confidentiality Rule은 No write down, 즉 높은 권한 사용자가 하위 등급 영역에 데이터를 쓰지 못하게 한다. Strong Star Confidentiality Rule은 같은 등급 안에서 읽기와 쓰기를 제한해 정보가 위아래로 흐르지 않도록 한다.</p>
+                <p>이처럼 어떤 권한이 어떤 데이터를 읽고 쓸 수 있는지 정책으로 명확히 정해야 한다. 강의는 BLP 외에도 다양한 보안 정책 모델이 있으니 추가로 찾아보는 것을 권했다.</p>
           </div>
         </details>
         
@@ -196,8 +288,38 @@
           </summary>
           <div class="note-section-body">
             <p>설계가 끝나면 그 설계에서 어디에 위협이 발생할 수 있는지 확인해야 한다. 먼저 데이터 흐름 다이어그램을 그린다. 어떤 데이터가 어디에서 어디로 이동하고, 어디에서 처리되고, 어디에 저장되는지 확인해야 한다. 보안의 큰 목적 중 하나가 데이터 <strong>기밀성</strong> 유지이기 때문이다.</p>
-<p>다음으로 보호해야 할 대상을 구분한다. 모든 데이터를 같은 수준으로 보호할 필요는 없고, 민감정보와 중요 자산을 식별해야 한다. 이후 알려진 공격, 원데이 <strong>취약점</strong>, 공개된 공격 방식이 데이터 흐름의 어느 지점에서 발생할 수 있는지 시나리오를 작성한다. 마지막으로 위험도가 높은 순서대로 대응책을 마련한다.</p>
-<p>이 과정을 반복하면 설계상의 취약점을 최대한 줄일 수 있다. 다만 시간, 비용, 인력에는 한계가 있으므로 완전히 무결한 소프트웨어를 만드는 것은 현실적으로 어렵다. 그래서 위험도를 기준으로 우선순위를 정해야 한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0055.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0055.jpg" alt="위협 모델링을 위한 설계 도면 예시" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>위협 모델링을 위한 설계 도면 예시</strong>
+    <span>설계 도면을 바탕으로 어떤 데이터가 어디서 어디로 이동하고 어느 지점에서 처리되는지 확인해야 한다.</span>
+  </figcaption>
+</figure>
+
+                <p>강의는 복잡한 <strong>클라우드</strong>/웹 <strong>서비스</strong> 설계 도면을 예로 보여 준다. 사용자, 인터넷, CDN, 로드밸런서, 애플리케이션 서버, 데이터베이스, 로그 저장소처럼 여러 구성요소가 연결되어 있으면 데이터가 이동하는 경로도 많아진다. 위협 모델링은 이 구조를 보고 공격자가 어느 경로에서 개입할 수 있는지 생각하는 과정이다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0059.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0059.jpg" alt="Threat Modeling 절차" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Threat Modeling 절차</strong>
+    <span>데이터 흐름 확인, 보호 대상 식별, 알려진 공격 시나리오 도출, 위험도 산정과 대응책 마련, 반복 개선 순서로 진행한다.</span>
+  </figcaption>
+</figure>
+
+                <p>다음으로 보호해야 할 대상을 구분한다. 모든 데이터를 같은 수준으로 보호할 필요는 없고, 민감정보와 중요 자산을 식별해야 한다. 이후 알려진 공격, 원데이 <strong>취약점</strong>, 공개된 공격 방식이 데이터 흐름의 어느 지점에서 발생할 수 있는지 시나리오를 작성한다. 마지막으로 위험도가 높은 순서대로 대응책을 마련한다.</p>
+                <ol>
+                  <li>Data Flow Diagram으로 정보의 흐름을 확인한다.</li>
+                  <li>보호해야 하는 대상, 즉 민감정보와 중요 자산을 확인한다.</li>
+                  <li>알려진 공격을 검토해 다이어그램에서 발생 가능한 공격과 공격 시나리오를 도출한다.</li>
+                  <li>위험도를 산출하고 높은 순서대로 대응책을 마련한다.</li>
+                  <li>수정된 설계를 기준으로 다시 1번부터 반복한다.</li>
+                </ol>
+                <p>이 과정을 반복하면 설계상의 취약점을 최대한 줄일 수 있다. 다만 시간, 비용, 인력에는 한계가 있으므로 완전히 무결한 소프트웨어를 만드는 것은 현실적으로 어렵다. 그래서 위험도를 기준으로 우선순위를 정해야 한다.</p>
           </div>
         </details>
         
@@ -207,16 +329,39 @@
             <h2>리스크 처리 네 가지 방법</h2>
           </summary>
           <div class="note-section-body">
-            <table>
-  <thead><tr><th>방법</th><th>의미</th><th>강의에서의 설명</th></tr></thead>
-  <tbody>
-    <tr><td>수용</td><td>위험을 그대로 받아들인다.</td><td>노출되어도 큰 문제가 없는 데이터나 낮은 위험은 그대로 둘 수 있다.</td></tr>
-    <tr><td>제거</td><td>위험한 기능 자체를 없앤다.</td><td><strong>취약점</strong>이 심각하고 패치가 어렵다면 기능을 폐기할 수 있다.</td></tr>
-    <tr><td>전가</td><td>손실을 다른 방식으로 이전한다.</td><td>기능은 유지하되 보험 등으로 경제적 손실을 대비한다.</td></tr>
-    <tr><td>감소</td><td>패치와 개선으로 위험을 줄인다.</td><td>개발자가 흔히 생각하는 취약점 패치 방식이다.</td></tr>
-  </tbody>
-</table>
-<p>강의의 결론은 <strong>보안 약점</strong>을 항상 코드 패치로만 없애야 하는 것은 아니라는 점이다. 위험이 작으면 수용할 수 있고, 위험이 너무 크면 기능을 제거할 수 있으며, 제거가 어렵다면 보험 같은 방식으로 전가할 수도 있다. 물론 실제 패치로 위험을 줄이는 것도 중요한 선택지다.</p>
+            <figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0067.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0067.jpg" alt="위험을 처리하는 네 가지 방법" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>위험을 처리하는 네 가지 방법</strong>
+    <span>항상 완전히 무결한 소프트웨어를 만들 수는 없으므로 Risk Accept, Risk Avoid, Risk Transfer, Risk Reduce를 상황에 맞게 선택한다.</span>
+  </figcaption>
+</figure>
+
+                <p>강사는 “항상 보안적으로 무결한 소프트웨어를 만들어야 하는가?”라는 질문을 던진다. 이상적으로는 그렇지만 현실에서는 시간, 예산, 인력, 운영 요구사항이 제한된다. 따라서 모든 위험을 같은 방식으로 고치는 것이 아니라 위험의 성격과 크기에 따라 처리 방법을 선택해야 한다.</p>
+                <table>
+                  <thead><tr><th>방법</th><th>의미</th><th>강의에서의 설명</th></tr></thead>
+                  <tbody>
+                    <tr><td>Risk Accept</td><td>위험을 그대로 받아들인다.</td><td>노출되어도 큰 문제가 없는 데이터나 낮은 위험은 그대로 둘 수 있다.</td></tr>
+                    <tr><td>Risk Avoid</td><td>위험한 기능 자체를 없앤다.</td><td><strong>취약점</strong>이 심각하고 패치가 어렵다면 기능이나 <strong>서비스</strong>를 폐기할 수 있다.</td></tr>
+                    <tr><td>Risk Transfer</td><td>손실을 다른 방식으로 이전한다.</td><td>기능은 유지하되 보험 등으로 경제적 손실을 대비한다.</td></tr>
+                    <tr><td>Risk Reduce</td><td>패치와 개선으로 위험을 줄인다.</td><td>개발자가 흔히 생각하는 취약점 패치 방식이다.</td></tr>
+                  </tbody>
+                </table>
+                <p>강의의 결론은 <strong>보안 약점</strong>을 항상 코드 패치로만 없애야 하는 것은 아니라는 점이다. 위험이 작으면 수용할 수 있고, 위험이 너무 크면 기능을 제거할 수 있으며, 제거가 어렵다면 보험 같은 방식으로 전가할 수도 있다. 물론 실제 패치로 위험을 줄이는 것도 중요한 선택지다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0079.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/secure-coding/시큐어코딩-08-시큐어-SDLC/시큐어코딩-08-시큐어-SDLC - 0079.jpg" alt="시큐어 SDLC 전체 정리" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>시큐어 SDLC 전체 정리</strong>
+    <span>리스크 감소, Secure SDLC, 요구사항, 위협 모델링의 흐름으로 시큐어 코딩 전체 강의를 마무리한다.</span>
+  </figcaption>
+</figure>
+
+                <p>8강은 <strong>시큐어 코딩</strong> 전체의 결론이다. 안전한 소프트웨어는 구현 단계에서 취약 코드를 줄이는 것만으로 만들어지지 않는다. 요구사항 도출, 설계, 구현, 검증, 배포, 운영, 사고 대응까지 전 과정에서 보안을 고려해야 한다. 또한 취약점을 발견했을 때는 무조건 한 가지 방식으로만 대응하지 말고, 위험도와 현실적 제약을 기준으로 수용, 제거, 전가, 감소 중 적절한 방법을 선택해야 한다.</p>
           </div>
         </details>
         
@@ -227,6 +372,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>보안 <strong>리스크</strong>를 줄이기 위해 설계 단계부터 보안을 고려해야 하는 이유를 설명할 수 있는가?</li><li>정의, 개발, 유지보수 단계와 Microsoft SDL 7단계를 큰 흐름으로 말할 수 있는가?</li><li>추상적인 보안 요구사항과 구체적인 보안 요구사항의 차이를 예시로 설명할 수 있는가?</li><li>Least Privilege, Open <strong>Design</strong>, Built-in Not Bolted-on 원칙을 구분할 수 있는가?</li><li>BLP 모델에서 상위 읽기 금지와 하위 쓰기 금지가 <strong>기밀성</strong>과 어떻게 연결되는지 이해했는가?</li><li><strong>리스크</strong> 수용, 제거, 전가, 감소의 차이를 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

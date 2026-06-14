@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>운영체제 기초 1-3 - 리눅스 설치하기: 가상머신 및 클라우드</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -27,7 +27,7 @@
       </div>
       <aside class="toc-box">
         <strong>페이지 목차</strong>
-        <a href="#section-1">왜 가상 머신에 설치하는가</a><a href="#section-2">가상 머신 생성과 디스크 설정</a><a href="#section-3">ISO와 설치 과정</a><a href="#section-4">업데이트와 종료 방식</a><a href="#section-5">VirtualBox 네트워크와 Mac·클라우드 대안</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
+        <a href="#section-1">왜 가상 머신에 설치하는가</a><a href="#section-2">VirtualBox 설치와 새 VM 생성</a><a href="#section-3">가상 디스크와 ISO 연결</a><a href="#section-4">ISO와 설치 과정</a><a href="#section-5">업데이트와 종료 방식</a><a href="#section-6">Guest Additions와 네트워크 모드</a><a href="#section-7">Mac 사용자와 클라우드 대안</a><a href="#review">복습 체크</a><a href="#transcript">강의 원문</a>
       </aside>
     </section>
   </header>
@@ -51,7 +51,7 @@
         <label for="section-jump-1-3">섹션 바로가기</label>
         <select id="section-jump-1-3" data-section-jump>
           <option value="">읽을 섹션 선택</option>
-          <option value="#section-1">01. 왜 가상 머신에 설치하는가</option><option value="#section-2">02. 가상 머신 생성과 디스크 설정</option><option value="#section-3">03. ISO와 설치 과정</option><option value="#section-4">04. 업데이트와 종료 방식</option><option value="#section-5">05. VirtualBox 네트워크와 Mac·클라우드 대안</option>
+          <option value="#section-1">01. 왜 가상 머신에 설치하는가</option><option value="#section-2">02. VirtualBox 설치와 새 VM 생성</option><option value="#section-3">03. 가상 디스크와 ISO 연결</option><option value="#section-4">04. ISO와 설치 과정</option><option value="#section-5">05. 업데이트와 종료 방식</option><option value="#section-6">06. Guest Additions와 네트워크 모드</option><option value="#section-7">07. Mac 사용자와 클라우드 대안</option>
         </select>
       </div>
       <div class="lecture-control-actions" aria-label="섹션 보기 방식">
@@ -75,7 +75,7 @@
         <div class="side-guide-head">
           <span data-side-current>SECTION 01</span>
           <strong>상세 정리 길잡이</strong>
-          <p>5개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
+          <p>7개 섹션을 따라가며 현재 읽는 위치를 확인한다.</p>
         </div>
         <nav class="side-guide-links" aria-label="상세 정리 바로가기">
           
@@ -86,22 +86,32 @@
         
         <a href="#section-2" data-side-section-link="section-2">
           <span>02</span>
-          <strong>가상 머신 생성과 디스크 설정</strong>
+          <strong>VirtualBox 설치와 새 VM 생성</strong>
         </a>
         
         <a href="#section-3" data-side-section-link="section-3">
           <span>03</span>
-          <strong>ISO와 설치 과정</strong>
+          <strong>가상 디스크와 ISO 연결</strong>
         </a>
         
         <a href="#section-4" data-side-section-link="section-4">
           <span>04</span>
-          <strong>업데이트와 종료 방식</strong>
+          <strong>ISO와 설치 과정</strong>
         </a>
         
         <a href="#section-5" data-side-section-link="section-5">
           <span>05</span>
-          <strong>VirtualBox 네트워크와 Mac·클라우드 대안</strong>
+          <strong>업데이트와 종료 방식</strong>
+        </a>
+        
+        <a href="#section-6" data-side-section-link="section-6">
+          <span>06</span>
+          <strong>Guest Additions와 네트워크 모드</strong>
+        </a>
+        
+        <a href="#section-7" data-side-section-link="section-7">
+          <span>07</span>
+          <strong>Mac 사용자와 클라우드 대안</strong>
         </a>
         
         </nav>
@@ -114,68 +124,252 @@
             <h2>왜 가상 머신에 설치하는가</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>운영체제</strong>는 하드웨어를 제어하는 시스템 소프트웨어이므로, 원래는 물리 PC에 직접 설치한다. 하지만 학습 목적으로 기존 Windows나 macOS를 지우고 <strong>리눅스</strong>를 설치할 수는 없다. 그래서 하드웨어를 가상화해 여러 OS를 설치할 수 있게 도와주는 하이퍼바이저를 사용한다.</p>
-<p>강의에서는 <strong>VirtualBox</strong>를 기본 도구로 사용한다. VMware는 오랜 역사를 가진 강력한 상용 하이퍼바이저이고, Hyper-V는 Windows Pro 이상에서 사용할 수 있으며, WSL도 엄밀히는 Windows 안의 가상화 기술 위에서 리눅스 환경을 제공한다. 하지만 수업에서는 오픈소스이고 접근하기 쉬운 VirtualBox를 기준으로 진행한다.</p>
+            <p>강사는 앞 시간의 <strong>운영체제</strong> 정의를 짧게 복습한 뒤 설치로 넘어간다. 운영체제는 하드웨어를 제어하는 시스템 소프트웨어이므로 원칙적으로는 물리 PC에 직접 설치해야 한다. 그러나 학생들의 PC에는 Windows나 macOS와 개인 데이터가 들어 있으므로, 학습 목적으로 기존 OS를 지우고 Ubuntu를 설치할 수는 없다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0011.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0011.jpg" alt="대표 하이퍼바이저 소프트웨어" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>대표 하이퍼바이저 소프트웨어</strong>
+    <span>VirtualBox, VMware, Microsoft Hyper-V는 하나의 물리 PC 위에서 여러 운영체제를 실행할 수 있게 해 주는 대표적인 하이퍼바이저다.</span>
+  </figcaption>
+</figure>
+
+                <p>그래서 수업은 <strong>하이퍼바이저</strong>를 사용한다. 하이퍼바이저는 하드웨어를 가상화해 하나의 물리 PC 안에 여러 OS를 설치할 수 있게 해 주는 또 다른 시스템 소프트웨어이며, Virtual Machine Manager라고도 부른다. 이를 통해 Windows 위에 Ubuntu를 설치하거나, 여러 Linux·Windows VM을 동시에 만들 수 있다.</p>
+                <p>강의에서 기준 도구는 <strong>VirtualBox</strong>다. <strong>VirtualBox</strong>는 오픈소스라 교육용으로 쓰기 좋다. VMware는 하이퍼바이저 분야에서 오래된 강자이고, 과거에는 비싼 상용 제품이었지만 현재는 개인용으로 무료 배포되는 버전도 있다. Microsoft Hyper-V는 Windows Pro 이상에서 쓸 수 있고, WSL도 엄밀히 보면 Windows 안의 Hyper-V 기반 가상화 위에서 Ubuntu 환경을 제공하는 방식으로 이해할 수 있다.</p>
           </div>
         </details>
         
         <details id="section-2" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 02</span>
-            <h2>가상 머신 생성과 디스크 설정</h2>
+            <h2>VirtualBox 설치와 새 VM 생성</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>VirtualBox</strong>에서 새 가상 머신을 만들 때 <strong>CPU</strong> 코어 수, 메모리 크기, 디스크 크기와 디스크 파일 형식을 정한다. 초급 과정에서는 복잡한 옵션을 깊게 다루지 않고 기본값을 따라가도 된다. 다만 디스크를 만들 때 동적 할당과 고정 크기의 차이는 기억해야 한다.</p>
-<table>
-  <thead><tr><th>옵션</th><th>설명</th><th>강의의 기준</th></tr></thead>
-  <tbody>
-    <tr><td>동적 할당</td><td>처음부터 전체 용량을 차지하지 않고 필요할 때 커진다.</td><td>교육용 환경에서는 일반적으로 무리가 없다.</td></tr>
-    <tr><td>고정 크기</td><td>처음부터 정한 용량을 실제 파일로 확보한다.</td><td>과거 HDD 환경에서는 성능상 유리할 수 있었다.</td></tr>
-    <tr><td>VDI</td><td>VirtualBox 기본 디스크 이미지 형식이다.</td><td>다른 하이퍼바이저 호환성이 필요 없으면 기본값으로 충분하다.</td></tr>
-  </tbody>
-</table>
+            <p><strong>VirtualBox</strong>는 공식 다운로드 페이지에서 설치 파일을 내려받는다. 강의 <strong>캡처</strong>는 6.1.4 기준이지만 강사는 최신 7.0 계열을 설치해도 무방하다고 안내한다. 다만 오픈소스 소프트웨어는 메이저 버전이 올라간 직후 버그가 있을 수 있어, 강사는 6.1 계열을 오래 선호했고 7.0은 다소 느리거나 불편한 점이 있었다고 언급한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0021.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0021.jpg" alt="VirtualBox 다운로드와 Extension Pack" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>VirtualBox 다운로드와 Extension Pack</strong>
+    <span>강의 자료는 VirtualBox 6.1 기준 캡처지만 최신 7.0 계열로 설치해도 무방하며, 본체와 Oracle VM VirtualBox Extension Pack을 함께 내려받는다.</span>
+  </figcaption>
+</figure>
+
+                <p>다운로드할 것은 두 가지다. 하나는 VirtualBox 본체이고, 다른 하나는 <strong>Oracle VM VirtualBox Extension Pack</strong>이다. Extension Pack은 <strong>GUI</strong> 사용, USB 장치, 그래픽·해상도 조정 같은 기능을 더 편하게 해 주는 확장 플러그인이다. 설치 과정은 대부분 기본값으로 Next, Yes, Install을 눌러 진행하면 된다. 중간에 <strong>네트워크</strong>·USB 등 가상 장치를 위한 드라이버가 호스트 OS에 설치될 수 있다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0035.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0035.jpg" alt="새 가상 머신 생성" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>새 가상 머신 생성</strong>
+    <span>새로 만들기 메뉴에서 Ubuntu 가상 머신을 만들고, 화면 캡처의 16.04 대신 실습 기준인 20.04를 사용하라는 강사의 주석을 확인한다.</span>
+  </figcaption>
+</figure>
+
+                <p>VirtualBox를 <strong>실행</strong>한 뒤에는 상단의 <strong>새로 만들기</strong> 버튼이나 메뉴의 <strong>머신 &gt; 새로 만들기</strong>를 사용한다. 캡처에는 Ubuntu 16.04가 보이지만, 강사는 반복해서 이번 수업의 기준은 <strong>Ubuntu 20.04</strong>라고 표시한다. 이름에 Ubuntu를 넣으면 종류가 Linux, 버전이 Ubuntu 64-bit로 자동 탐지될 수 있고, 자동 탐지가 틀리면 직접 수정한다. 이 선택에 따라 VirtualBox 내부의 가상 하드웨어 기본 옵션이 맞춰진다.</p>
+                <table>
+                  <thead><tr><th>항목</th><th>강의 기준</th><th>설명</th></tr></thead>
+                  <tbody>
+                    <tr><td>OS 이름</td><td>Ubuntu 20.04</td><td>화면 캡처가 16.04여도 실제 실습은 20.04로 진행한다.</td></tr>
+                    <tr><td><strong>메모리</strong></td><td>최소 2GB 이상</td><td>PC가 8GB라면 2GB 정도, 16GB 이상이면 4GB·6GB·8GB처럼 여유 있게 줄 수 있다.</td></tr>
+                    <tr><td>디스크</td><td>약 10GB</td><td>기초 수업 실습에는 충분하며, 나중에 늘릴 수 있지만 처음부터 너무 크게 만들 필요는 없다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
         <details id="section-3" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 03</span>
-            <h2>ISO와 설치 과정</h2>
+            <h2>가상 디스크와 ISO 연결</h2>
           </summary>
           <div class="note-section-body">
-            <p>가상 머신의 하드웨어 설정을 마치면 아직 <strong>운영체제</strong>가 설치된 것은 아니다. <strong>우분투</strong> ISO 이미지를 가상 CD-ROM에 넣어야 한다. 이는 물리 PC에 설치 CD나 USB를 꽂고 부팅하는 것과 같은 의미다. 강의 자료의 화면에는 다른 버전이 보일 수 있지만, 실제 수업 기준은 우분투 20.04다.</p>
-<p>설치 과정에서는 사용자 이름과 패스워드를 만들고, 설치가 끝나면 “installation medium을 제거하라”는 안내가 나올 수 있다. 가상 CD를 뺐다고 알려 주는 의미로 엔터를 치면 재부팅되고, 이후 <strong>로그</strong>인 화면이 뜨면 설치가 완료된 것이다.</p>
+            <p>가상 머신을 만들 때 디스크 파일 형식은 기본값인 <strong>VDI(VirtualBox Disk Image)</strong>를 사용한다. VHD나 VMDK는 다른 하이퍼바이저와의 호환성을 고려할 때 의미가 있지만, 초급 과정에서는 <strong>VirtualBox</strong> 기본값이 충분하다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0047.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0047.jpg" alt="디스크 종류와 동적 할당" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>디스크 종류와 동적 할당</strong>
+    <span>가상 디스크는 VirtualBox 기본 형식인 VDI를 사용하고, 교육용 환경에서는 10GB 정도의 동적 할당 디스크로 시작해도 충분하다.</span>
+  </figcaption>
+</figure>
+
+                <table>
+                  <thead><tr><th>옵션</th><th>설명</th><th>강의의 기준</th></tr></thead>
+                  <tbody>
+                    <tr><td>동적 할당</td><td>처음부터 전체 용량을 차지하지 않고 필요할 때 커진다.</td><td>교육용 환경에서는 일반적으로 무리가 없다.</td></tr>
+                    <tr><td>고정 크기</td><td>처음부터 정한 용량을 실제 파일로 확보한다.</td><td>과거 HDD 환경에서는 성능상 유리할 수 있었지만 요즘 SSD/NVMe 환경에서는 체감 차이가 크지 않다.</td></tr>
+                    <tr><td>VDI</td><td>VirtualBox 기본 디스크 이미지 형식이다.</td><td>다른 하이퍼바이저 호환성이 필요 없으면 기본값으로 충분하다.</td></tr>
+                  </tbody>
+                </table>
+                <p>디스크까지 만들면 <strong>CPU</strong>, <strong>메모리</strong>, 저장소 같은 가상 하드웨어 틀은 준비된 것이다. 하지만 아직 Ubuntu가 설치된 것은 아니다. 앞 강의에서 받은 Ubuntu ISO 이미지를 <strong>저장소 &gt; 비어 있음 &gt; CD 아이콘</strong>을 통해 가상 CD-ROM에 넣어야 한다. 강사는 이것을 실제 PC에 설치 CD나 USB를 꽂고 부팅하는 것과 같다고 설명한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0061.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0061.jpg" alt="ISO 삽입과 네트워크 어댑터" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>ISO 삽입과 네트워크 어댑터</strong>
+    <span>Ubuntu ISO를 가상 CD-ROM에 넣고, 어댑터 1은 NAT로 유지하며, 이후 호스트 전용 어댑터를 추가해 Windows 호스트에서 게스트 Ubuntu로 접속할 수 있음을 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>네트워크</strong>는 일단 기본값인 <strong>어댑터 1: NAT</strong>를 그대로 둔다. NAT는 게스트 Ubuntu가 <strong>인터넷</strong>을 쓰기 위한 기본 연결이다. 이후 오프라인 실습에서는 <strong>어댑터 2: 호스트 전용 어댑터</strong>를 추가해 Windows 호스트에서 Ubuntu 게스트로 접속하는 환경을 만들 수 있다.</p>
           </div>
         </details>
         
         <details id="section-4" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 04</span>
-            <h2>업데이트와 종료 방식</h2>
+            <h2>ISO와 설치 과정</h2>
           </summary>
           <div class="note-section-body">
-            <p>설치 직후 <strong>우분투</strong>가 새 버전으로 업그레이드할 것인지 묻거나 <strong>패키지</strong> 업데이트를 제안할 수 있다. 강의에서는 수업 환경을 20.04로 유지하기 위해 새 배포판으로 업그레이드하지 말라고 설명한다. 교육용 가상 머신에서는 자동 업데이트를 너무 자주 켜 두면 실습할 때마다 업데이트가 돌아 느려질 수 있으므로 최소화하는 것도 권장한다.</p>
-<p>가상 머신을 끌 때도 강제로 전원을 끄는 것과 정상 종료는 다르다. 강제 종료는 물리 PC의 전원 플러그를 뽑는 것과 비슷해서 작업 중 데이터가 손상될 수 있다. 전원 버튼 신호 보내기나 <strong>운영체제</strong> 안의 종료 메뉴를 통해 graceful shutdown을 하는 것이 안정적이다.</p>
+            <p>ISO를 넣고 시작 버튼을 누르면 <strong>Ubuntu 설치</strong> 화면으로 부팅된다. 언어 목록에서 한국어를 선택할 수 있다. 여기서 가장 중요한 주의점은 <strong>Ubuntu 체험하기</strong>가 아니라 <strong>Ubuntu 설치</strong>를 눌러야 한다는 것이다. 체험하기를 누르면 설치된 것처럼 보일 수 있지만 실제 디스크에 설치된 것이 아니므로, 이 수업의 목적과 다르다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0070.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0070.jpg" alt="Ubuntu 체험하기가 아니라 설치하기" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Ubuntu 체험하기가 아니라 설치하기</strong>
+    <span>한국어를 선택한 뒤에는 Ubuntu 체험하기가 아니라 Ubuntu 설치를 눌러야 실제 디스크에 설치가 진행된다.</span>
+  </figcaption>
+</figure>
+
+                <p>Ubuntu 20.04를 <strong>VirtualBox</strong>에서 설치할 때는 화면 해상도 때문에 오른쪽 아래의 <strong>계속</strong> 또는 <strong>다음</strong> 버튼이 보이지 않을 수 있다. 강사는 이때 당황하지 말고 <code>Alt + F7</code>을 누른 뒤 마우스로 창을 움직이면 아래쪽 버튼을 볼 수 있다고 설명한다. <strong>캡처</strong>의 16.04에서는 버튼이 잘 보이지만, 20.04에서는 이 문제가 더 잘 나타날 수 있다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0075.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0075.jpg" alt="기본 사용자 계정 설정" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>기본 사용자 계정 설정</strong>
+    <span>수업을 그대로 따라가려면 사용자 이름은 user1, 교육용 비밀번호는 qwe123으로 맞추되, 이 비밀번호는 실무나 클라우드에서는 절대 사용하면 안 된다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>사용자 계정</strong> 화면에서는 수업을 그대로 따라가고 싶다면 이름과 사용자 이름을 <code>user1</code>로 맞춘다. 뒤 강의에서 <code>user2</code>를 만들어 비교할 예정이기 때문이다. 비밀번호는 교육용으로 <code>qwe123</code>을 안내하지만, 강사는 이것이 보안적으로 매우 취약한 비밀번호라고 분명히 경고한다. VirtualBox 안의 폐쇄된 교육용 VM에서는 기억하기 쉽게 쓰는 것이고, <strong>클라우드</strong>나 실무 서버에서는 절대 이렇게 만들면 안 된다.</p>
+                <p>설치 도중에는 Ubuntu에서 제공하는 기능 소개 화면이 지나간다. 강사는 시간이 남을 때 이 화면들을 훑어보며 Windows에서 하던 웹, 문서, 그래픽, <strong>인터넷</strong> 작업을 Linux에서도 무료 소프트웨어로 할 수 있음을 확인하라고 말한다. 설치가 끝나면 <strong>지금 다시 시작</strong>을 눌러 재부팅한다. 이후 <code>Please remove the installation medium</code> 메시지가 나오면 가상 CD를 뺐다고 알려 주는 의미로 Enter를 누르면 된다.</p>
           </div>
         </details>
         
         <details id="section-5" class="note-section section-disclosure" data-note-section open>
           <summary>
             <span>SECTION 05</span>
-            <h2>VirtualBox 네트워크와 Mac·클라우드 대안</h2>
+            <h2>업데이트와 종료 방식</h2>
           </summary>
           <div class="note-section-body">
-            <p><strong>VirtualBox</strong> <strong>네트워크</strong> 어댑터에는 NAT, 브리지, 내부 네트워크, 호스트 전용 어댑터, NAT 네트워크 같은 여러 모드가 있다. 온라인 강의에서는 기본 NAT를 사용해도 충분하지만, 오프라인 실습에서는 공격자와 방어자 같은 시나리오를 구성하기 위해 여러 가상 머신과 네트워크 모드를 조합할 수 있다.</p>
-<table>
-  <thead><tr><th>모드</th><th>의미</th></tr></thead>
-  <tbody>
-    <tr><td>NAT</td><td>게스트 OS가 외부 <strong>인터넷</strong>을 사용할 수 있게 하는 기본 모드다.</td></tr>
-    <tr><td>브리지</td><td>게스트가 실제 네트워크에 직접 붙은 장비처럼 동작한다.</td></tr>
-    <tr><td>내부 네트워크</td><td>가상 머신끼리만 통신하는 실습망을 만들 때 쓴다.</td></tr>
-    <tr><td>호스트 전용</td><td>호스트 OS에서 게스트 OS로 접속하기 위한 망을 만들 때 쓴다.</td></tr>
-  </tbody>
-</table>
-<p>M1·M2 Mac에서는 VirtualBox 지원이 안정적이지 않을 수 있어 UTM, VMware Fusion, Parallels 같은 대안을 검토할 수 있다. 정말 아무 환경도 없다면 <strong>클라우드</strong> 프리티어에서 Ubuntu Server 20.04, 예를 들어 EC2 t2.micro 같은 최소 사양을 사용할 수도 있지만, 클라우드 자체는 별도 수업 범위이므로 여기서는 필요한 만큼만 언급한다.</p>
+            <p>설치 후 <strong>로그</strong>인 화면이 나오고 <code>user1</code> 비밀번호를 <strong>입력</strong>하면 Ubuntu 데스크톱에 들어갈 수 있다. 20.04 이후에는 22.04 같은 새 버전이 나왔다는 업그레이드 알림이 뜰 수 있다. 강사는 수업 환경을 맞추기 위해 20.04를 설치한 것이므로, 새 배포판 업그레이드는 하지 말라고 설명한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0102.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0102.jpg" alt="업그레이드와 자동 업데이트 설정" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>업그레이드와 자동 업데이트 설정</strong>
+    <span>20.04 실습 환경을 유지하기 위해 새 배포판 업그레이드는 거부하고, 교육용 VM에서는 자동 업데이트를 최소화해 실습 중 방해를 줄인다.</span>
+  </figcaption>
+</figure>
+
+                <p><strong>패키지</strong> 업데이트 알림도 뜰 수 있다. 물리 서버라면 보안 업데이트를 자주 확인하는 것이 좋지만, 교육용 <strong>VirtualBox</strong> VM에서는 켤 때마다 업데이트가 실행되어 실습을 방해할 수 있다. 그래서 자동 다운로드·자동 설치를 최소화하고, 필요할 때 나중에 터미널이나 GUI에서 수동으로 업데이트하는 흐름을 권장한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0111.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0111.jpg" alt="VirtualBox 종료 옵션" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>VirtualBox 종료 옵션</strong>
+    <span>현재 상태 저장, 전원 버튼 신호 보내기, 시스템 전원 끄기 옵션 중 안정적인 종료는 전원 버튼 신호 보내기처럼 OS의 정상 종료 절차를 거치는 방식이다.</span>
+  </figcaption>
+</figure>
+
+                <p>VM을 종료할 때도 방식이 중요하다. <strong>시스템 전원 끄기</strong>는 물리 PC의 전원 플러그를 뽑는 것과 비슷한 강제 종료라 데이터 손실이 생길 수 있다. 안정적인 방법은 <strong>전원 버튼 신호 보내기</strong>처럼 OS가 정상 종료 절차를 밟게 하는 것이다. 이런 정상 종료를 graceful shutdown이라고 부른다. 현재 상태 저장은 나중에 다시 켰을 때 하던 일을 복구하는 기능이지만, 기초 실습에서는 일반적으로 권장하지 않는다.</p>
+          </div>
+        </details>
+        
+        <details id="section-6" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 06</span>
+            <h2>Guest Additions와 네트워크 모드</h2>
+          </summary>
+          <div class="note-section-body">
+            <p><strong>VirtualBox</strong>를 더 편하게 쓰려면 Guest Additions를 설치할 수 있다. Guest Additions는 화면 해상도 자동 조정, 그래픽 드라이버 개선, Drag&amp;Drop, Clipboard, USB 3.0 같은 기능을 더 부드럽게 만들어 준다. 장치 메뉴에서 Guest Additions CD 이미지를 삽입하면 가상 CD가 마운트되고, <strong>실행</strong> 여부를 묻는 창과 관리자 인증 창이 나온다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0123.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0123.jpg" alt="Guest Additions 설치와 build-essential" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Guest Additions 설치와 build-essential</strong>
+    <span>Ubuntu 20.04에서는 Guest Additions 모듈 빌드에 필요한 도구가 빠져 있을 수 있으므로 sudo apt install build-essential -y를 먼저 실행해야 한다.</span>
+  </figcaption>
+</figure>
+
+                <p>검은 터미널 창에 많은 <strong>로그</strong>가 지나갈 때는 닫지 말고 읽는 습관을 가져야 한다. 로그는 “잘 됐다”, “무엇이 빠졌다”, “명령어 <strong>입력</strong>을 기다린다” 같은 정보를 담고 있다. 설치가 끝나면 <code>Press Return to close this window</code>처럼 Enter를 누르라는 메시지가 나온다. 단, Ubuntu 20.04에서는 Guest Additions 모듈 빌드에 필요한 도구가 기본 설치되어 있지 않을 수 있으므로 아래 명령을 먼저 실행해야 한다.</p>
+                <pre><code class="language-bash">sudo apt install build-essential -y</code></pre>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0126.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0126.jpg" alt="VirtualBox 네트워크 모드" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>VirtualBox 네트워크 모드</strong>
+    <span>NAT, 브리지 어댑터, 내부 네트워크, 호스트 전용 어댑터, NAT 네트워크를 조합하면 공격자·방어자 VM 같은 실습망을 구성할 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>VirtualBox <strong>네트워크</strong>는 뒤 실습의 기반이다. NAT는 게스트 OS가 <strong>인터넷</strong>으로 나갈 때 쓰고, 브리지 어댑터는 게스트가 실제 네트워크 장비처럼 동작하게 한다. 내부 네트워크는 VM끼리만 통신하는 망을 만들 때 쓰며, 호스트 전용 어댑터는 Windows 같은 호스트 OS에서 Ubuntu 게스트로 접속하는 데 사용한다. NAT 네트워크는 NAT와 내부 네트워크 성격을 섞은 모드로 이해하면 된다.</p>
+                <table>
+                  <thead><tr><th>모드</th><th>의미</th></tr></thead>
+                  <tbody>
+                    <tr><td>NAT</td><td>게스트 OS가 외부 인터넷을 사용할 수 있게 하는 기본 모드다.</td></tr>
+                    <tr><td>브리지</td><td>게스트가 실제 네트워크에 직접 붙은 장비처럼 동작한다.</td></tr>
+                    <tr><td>내부 네트워크</td><td>가상 머신끼리만 통신하는 실습망을 만들 때 쓴다.</td></tr>
+                    <tr><td>호스트 전용</td><td>호스트 OS에서 게스트 OS로 접속하기 위한 망을 만들 때 쓴다.</td></tr>
+                    <tr><td>NAT 네트워크</td><td>NAT와 내부 네트워크의 성격을 합친 모드로, 여러 VM이 함께 NAT 환경을 쓸 때 활용할 수 있다.</td></tr>
+                  </tbody>
+                </table>
+          </div>
+        </details>
+        
+        <details id="section-7" class="note-section section-disclosure" data-note-section open>
+          <summary>
+            <span>SECTION 07</span>
+            <h2>Mac 사용자와 클라우드 대안</h2>
+          </summary>
+          <div class="note-section-body">
+            <p>강사는 Mac 사용자에 대한 주의도 별도로 설명한다. Intel <strong>CPU</strong>를 쓰는 Mac은 <strong>VirtualBox</strong>를 설치할 수 있지만, 많은 학생이 사용하는 M1·M2 Mac은 VirtualBox 지원이 안정적이지 않거나 제공되지 않을 수 있다. 하이퍼바이저는 하드웨어를 가상화하는 도구이므로 Apple Silicon을 제대로 지원하는지가 중요하다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0136.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0136.jpg" alt="Mac 사용자를 위한 대안" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>Mac 사용자를 위한 대안</strong>
+    <span>Intel Mac은 VirtualBox를 사용할 수 있지만 M1·M2 Mac은 UTM, VMware Fusion, Parallels 같은 대안을 검토해야 한다.</span>
+  </figcaption>
+</figure>
+
+                <p>M1·M2 Mac에서는 무료 도구인 <strong>UTM</strong>, 개인용 무료로 사용할 수 있는 <strong>VMware Fusion</strong>, 상용 제품인 <strong>Parallels</strong> 같은 대안을 검토할 수 있다. 강사는 구체 설치 방법은 따로 안내하지 않으므로 직접 찾아서 진행하라고 말하지만, 앞으로 개발·보안 실습을 하려면 자신의 PC에 하이퍼바이저 하나 정도는 갖추는 것이 거의 필수라고 설명한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0141.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/os-basic/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드/운영체제 기초-03-리눅스-설치하기-가상머신-및-클라우드 - 0141.jpg" alt="클라우드 대안과 EC2 프리티어" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>클라우드 대안과 EC2 프리티어</strong>
+    <span>정말 로컬 가상화 환경을 만들 수 없다면 AWS EC2 프리티어에서 Ubuntu Server 20.04 LTS, t2.micro, SSH 접속으로 최소 실습 환경을 만들 수 있다.</span>
+  </figcaption>
+</figure>
+
+                <p>정말 로컬 환경을 만들 수 없다면 <strong>클라우드</strong>도 임시 대안이 될 수 있다. 예를 들어 AWS EC2 프리티어에서 Ubuntu Server 20.04 LTS, t2.micro 같은 최소 사양으로 VM을 만들고 SSH로 접속할 수 있다. 다만 강사는 초급자에게는 권장하지 않는다. 이후 수업에는 <strong>GUI</strong> 환경도 있고, 클라우드 자체가 별도 학습 범위이기 때문이다. 이 수업을 모두 마친 뒤에는 학생들이 EC2를 직접 만들고 터미널로 접속할 수 있는 역량을 갖추는 것이 목표다.</p>
           </div>
         </details>
         
@@ -186,6 +380,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>하이퍼바이저가 무엇이고 왜 필요한지 설명할 수 있는가?</li><li><strong>VirtualBox</strong>에서 ISO를 넣는 것이 물리 CD를 넣는 것과 같은 의미임을 이해했는가?</li><li>동적 할당과 고정 크기 디스크의 차이를 설명할 수 있는가?</li><li>NAT와 호스트 전용 어댑터가 각각 어떤 상황에 쓰이는지 말할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">

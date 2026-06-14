@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>해커의 프로그래밍 1-1 - 강의 오리엔테이션</title>
-  <link rel="stylesheet" href="../../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../../assets/styles.css?v=20260613-hero-kicker">
   <script src="../../../../assets/code-highlight.js" defer></script>
   <script src="../../../../assets/study-state.js" defer></script>
   <script src="../../../../assets/study-tools.js" defer></script>
@@ -115,8 +115,19 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 김민철 멘토의 소개로 시작한다. 멘토는 군에서 약 7년 동안 사이버 보안 업무를 수행했고, 국방과 공공 분야의 여러 기관을 거치며 <strong>정보보호</strong> 업무를 경험했다. 대회와 실무를 겪으며 느낀 점은 <strong>취약점</strong>을 많이 알고 익스플로잇을 작성하는 능력도 중요하지만, 머릿속에 떠오른 로직을 코드로 정확히 옮기고 이미 존재하는 도구를 이해해 활용하는 능력도 매우 중요하다는 것이다.</p>
-<p>이런 이유로 과목 이름은 <strong>해커의 프로그래밍</strong>이다. 오늘날 프로그래머는 보통 개발자나 소프트웨어 엔지니어를 뜻하고, 해커는 <strong>해킹</strong>을 하는 사람이라는 뜻으로 많이 쓰인다. 하지만 멘토는 해커라는 단어의 원래 의미, 즉 어떤 원리를 파고들고 구조를 이해하며 문제를 풀어내는 사람이라는 의미에 가깝게 이 과목을 설명한다.</p>
-<div class="callout">이 과목의 핵심은 “공격 기술 이름을 외우는 것”이 아니라 “필요한 정보를 얻기 위해 웹, 데이터, 도구를 어떻게 조합할지 생각하고 구현하는 것”이다.</div>
+                <p>이런 이유로 과목 이름은 <strong>해커의 프로그래밍</strong>이다. 오늘날 프로그래머는 보통 개발자나 소프트웨어 엔지니어를 뜻하고, 해커는 <strong>해킹</strong>을 하는 사람이라는 뜻으로 많이 쓰인다. 하지만 멘토는 해커라는 단어의 원래 의미, 즉 어떤 원리를 파고들고 구조를 이해하며 문제를 풀어내는 사람이라는 의미에 가깝게 이 과목을 설명한다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0004.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0004.jpg" alt="해커라는 단어의 의미" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>해커라는 단어의 의미</strong>
+    <span>화면에는 위키백과의 해커 정의가 제시된다. 강사는 해커를 단순 침입자가 아니라 컴퓨터와 정보보안 전반을 깊이 이해하는 사람으로 설명한다.</span>
+  </figcaption>
+</figure>
+
+                <div class="callout">이 과목의 핵심은 “공격 기술 이름을 외우는 것”이 아니라 “필요한 정보를 얻기 위해 웹, 데이터, 도구를 어떻게 조합할지 생각하고 구현하는 것”이다.</div>
           </div>
         </details>
         
@@ -127,15 +138,26 @@
           </summary>
           <div class="note-section-body">
             <p>강의는 먼저 범위를 명확히 자른다. 서버에 웹셸을 업로드해 임의 코드를 <strong>실행</strong>하는 것, 게시판의 숨겨진 비밀글을 보는 것, <strong>파일 업로드</strong> 취약점, 히든 파라미터 취약점, 크로스 사이트 스크립팅, SQL 인젝션 같은 세부 웹해킹 기법은 이 과목의 중심이 아니다. 그런 내용은 별도의 웹해킹 전문 강의에서 다루는 영역이다.</p>
-<p>또한 전산망을 <strong>해킹</strong>해 거래 장부를 획득하거나 <strong>인터넷</strong> 댓글 창에서 상대방을 해킹하는 식의 공격도 다루지 않는다. 이 과목은 불법 침입을 배우는 시간이 아니라, 주어진 합법적 데이터와 허가된 실습 환경 안에서 필요한 정보를 자동화·분석·정리하는 방법을 배우는 시간이다.</p>
-<table>
-  <thead><tr><th>다루지 않는 영역</th><th>이유</th></tr></thead>
-  <tbody>
-    <tr><td>웹셸 업로드, 임의 코드 실행</td><td>웹해킹 전문 강의의 영역이며 실제 <strong>서비스</strong>에서는 명백한 침해 행위가 될 수 있다.</td></tr>
-    <tr><td>SQL 인젝션, <strong>XSS</strong>, 파일 업로드 <strong>취약점</strong></td><td>취약점 원리 자체보다 자동화와 데이터 처리 능력에 집중한다.</td></tr>
-    <tr><td>타인 시스템 침입과 댓글 상대 해킹</td><td>법적·윤리적으로 허용되지 않는 행위이며 화이트햇 스쿨의 목적과 맞지 않는다.</td></tr>
-  </tbody>
-</table>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0010.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0010.jpg" alt="이 강의에서 다루지 않는 것" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>이 강의에서 다루지 않는 것</strong>
+    <span>웹셸 업로드, 비밀글 열람, 전산망 침해, 댓글 상대 해킹 같은 불법 침입 행위는 이 강의의 범위가 아니라고 못박는다.</span>
+  </figcaption>
+</figure>
+
+                <p>또한 전산망을 <strong>해킹</strong>해 거래 장부를 획득하거나 <strong>인터넷</strong> 댓글 창에서 상대방을 해킹하는 식의 공격도 다루지 않는다. 이 과목은 불법 침입을 배우는 시간이 아니라, 주어진 합법적 데이터와 허가된 실습 환경 안에서 필요한 정보를 자동화·분석·정리하는 방법을 배우는 시간이다.</p>
+                <table>
+                  <thead><tr><th>다루지 않는 영역</th><th>이유</th></tr></thead>
+                  <tbody>
+                    <tr><td>웹셸 업로드, 임의 코드 실행</td><td>웹해킹 전문 강의의 영역이며 실제 <strong>서비스</strong>에서는 명백한 침해 행위가 될 수 있다.</td></tr>
+                    <tr><td>SQL 인젝션, <strong>XSS</strong>, 파일 업로드 <strong>취약점</strong></td><td>취약점 원리 자체보다 자동화와 데이터 처리 능력에 집중한다.</td></tr>
+                    <tr><td>타인 시스템 침입과 댓글 상대 해킹</td><td>법적·윤리적으로 허용되지 않는 행위이며 화이트햇 스쿨의 목적과 맞지 않는다.</td></tr>
+                  </tbody>
+                </table>
           </div>
         </details>
         
@@ -146,9 +168,20 @@
           </summary>
           <div class="note-section-body">
             <p>대신 이 과목은 현실의 보안 업무와 CTF 풀이에서 자주 필요한 자동화 사고를 다룬다. 예를 들어 게시판에 글이 천 개, 만 개, 수십만 개 있을 때 그중 필요한 글 하나를 수작업으로 찾기는 어렵다. 이때 프로그래밍으로 요청을 반복하고 조건을 검사하면 원하는 정보를 빠르게 찾을 수 있다.</p>
-<p>처음 보는 웹사이트의 구조를 자동으로 파악하는 법도 배운다. 웹 <strong>크롤링</strong> 또는 웹 스파이더링이라고 부르는 방식으로 링크를 따라가며 사이트 구조를 복원하고, 전체 페이지가 어떤 그래프 구조를 갖는지 확인한다.</p>
-<p>거래 내역으로부터 자금 흐름을 구성하는 방법도 다룬다. 거래소를 <strong>해킹</strong>해 장부를 얻는 것이 아니라, 이미 주어진 거래 데이터가 있을 때 돈이 어디에서 어디로 흘렀는지 그래프로 단순화하는 사고를 배운다. 범죄 조직이나 <strong>가상자산 믹싱</strong> 사례처럼 A가 B에게 바로 보낸 흐름이 여러 단계를 거쳐 흐려질 때, 코드로 순흐름을 정리하는 방식이다.</p>
-<p>마지막으로 여러 출처에 흩어진 정보를 종합하는 방법을 다룬다. <strong>인터넷</strong>의 정보는 깔끔한 표 하나로 제공되지 않는 경우가 많다. 흩어진 글, 계정, <strong>주소</strong>, 이메일, 게시물, 거래 내역을 연결해 사람이 이해할 수 있는 정보로 가공하는 능력이 중요하다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0013.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0013.jpg" alt="이 강의에서 다루는 것" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>이 강의에서 다루는 것</strong>
+    <span>게시판 대량 글에서 필요한 정보 찾기, 사이트 구조 자동 파악, 거래내역 기반 자금 흐름 구성, 여러 출처 정보 종합이 핵심 학습 대상이다.</span>
+  </figcaption>
+</figure>
+
+                <p>처음 보는 웹사이트의 구조를 자동으로 파악하는 법도 배운다. 웹 <strong>크롤링</strong> 또는 웹 스파이더링이라고 부르는 방식으로 링크를 따라가며 사이트 구조를 복원하고, 전체 페이지가 어떤 그래프 구조를 갖는지 확인한다.</p>
+                <p>거래 내역으로부터 자금 흐름을 구성하는 방법도 다룬다. 거래소를 <strong>해킹</strong>해 장부를 얻는 것이 아니라, 이미 주어진 거래 데이터가 있을 때 돈이 어디에서 어디로 흘렀는지 그래프로 단순화하는 사고를 배운다. 범죄 조직이나 <strong>가상자산 믹싱</strong> 사례처럼 A가 B에게 바로 보낸 흐름이 여러 단계를 거쳐 흐려질 때, 코드로 순흐름을 정리하는 방식이다.</p>
+                <p>마지막으로 여러 출처에 흩어진 정보를 종합하는 방법을 다룬다. <strong>인터넷</strong>의 정보는 깔끔한 표 하나로 제공되지 않는 경우가 많다. 흩어진 글, 계정, <strong>주소</strong>, 이메일, 게시물, 거래 내역을 연결해 사람이 이해할 수 있는 정보로 가공하는 능력이 중요하다.</p>
           </div>
         </details>
         
@@ -159,12 +192,23 @@
           </summary>
           <div class="note-section-body">
             <div class="timeline">
-  <div><strong>웹</strong><p><strong>Python</strong> <strong>requests</strong>로 HTTP 요청을 보내고, HTML 구조를 이해하며, BeautifulSoup으로 필요한 요소를 뽑고, 크롤링으로 사이트 구조를 탐색한다.</p></div>
-  <div><strong>데이터</strong><p>거래 흐름 그래프, <strong>개인정보</strong> 결합, <strong>OSINT</strong>처럼 흩어진 데이터를 분석해 유의미한 정보로 바꾼다.</p></div>
-  <div><strong>도구</strong><p>CyberChef, Graphviz, <strong>n8n</strong> 같은 도구를 필요한 시점에 활용해 반복 작업을 줄이고 결과를 보기 좋게 만든다.</p></div>
-</div>
-<p>웹 파트에서는 Python 환경 구축과 <strong>Base64</strong> 실습으로 시작한다. 이후 <strong>HTTP</strong>와 HTML을 살펴보고, requests로 요청을 자동화한다. 더 나아가 BeautifulSoup으로 HTML을 분석하고, 웹페이지끼리 연결된 그래프 구조를 따라가며 사이트맵을 복원한다.</p>
-<p>데이터 파트에서는 <strong>가상자산 믹싱</strong>과 자금 흐름 그래프, <strong>개인정보 유출</strong> 데이터의 결합, OSINT 분석을 다룬다. 툴 파트에서는 API 연동과 n8n 자동화를 다루며, 검색 API, CTI API, 메신저 봇 API, AI API, 클라우드 액세스 키 같은 주제를 소개한다.</p>
+                  <div><strong>웹</strong><p><strong>Python</strong> <strong>requests</strong>로 HTTP 요청을 보내고, HTML 구조를 이해하며, BeautifulSoup으로 필요한 요소를 뽑고, 크롤링으로 사이트 구조를 탐색한다.</p></div>
+                  <div><strong>데이터</strong><p>거래 흐름 그래프, <strong>개인정보</strong> 결합, <strong>OSINT</strong>처럼 흩어진 데이터를 분석해 유의미한 정보로 바꾼다.</p></div>
+                  <div><strong>도구</strong><p>CyberChef, Graphviz, <strong>n8n</strong> 같은 도구를 필요한 시점에 활용해 반복 작업을 줄이고 결과를 보기 좋게 만든다.</p></div>
+                </div>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0019.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0019.jpg" alt="주요 추세: Web, Data, Tool" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>주요 추세: Web, Data, Tool</strong>
+    <span>전체 과목은 웹 스크래핑과 자동화, 데이터 분석, 오픈소스 도구 활용이라는 세 축으로 전개된다.</span>
+  </figcaption>
+</figure>
+
+                <p>웹 파트에서는 Python 환경 구축과 <strong>Base64</strong> 실습으로 시작한다. 이후 <strong>HTTP</strong>와 HTML을 살펴보고, requests로 요청을 자동화한다. 더 나아가 BeautifulSoup으로 HTML을 분석하고, 웹페이지끼리 연결된 그래프 구조를 따라가며 사이트맵을 복원한다.</p>
+                <p>데이터 파트에서는 <strong>가상자산 믹싱</strong>과 자금 흐름 그래프, <strong>개인정보 유출</strong> 데이터의 결합, OSINT 분석을 다룬다. 툴 파트에서는 API 연동과 n8n 자동화를 다루며, 검색 API, CTI API, 메신저 봇 API, AI API, 클라우드 액세스 키 같은 주제를 소개한다.</p>
           </div>
         </details>
         
@@ -175,7 +219,18 @@
           </summary>
           <div class="note-section-body">
             <p>멘토는 각 강의마다 작은 실습을 준비하지만, 실습은 멘토가 만든 예제 사이트와 제공된 파일을 대상으로 진행된다. 강의를 듣고 흥미가 생겼다고 해서 실제 운영 중인 외부 <strong>서비스</strong>를 대상으로 <strong>크롤링</strong>, 공격성 테스트, 개인정보 탐색을 시도해서는 안 된다.</p>
-<p>정보통신망 관련 법, <strong>개인정보</strong> 보호법 등 여러 법률이 있고, 화이트햇 스쿨의 목표는 합법적이고 윤리적인 보안 인재 양성이다. 따라서 호기심이 있어도 허가받지 않은 대상에는 실습 내용을 적용하지 않는 것이 이 과목의 기본 전제다.</p>
+
+<figure class="screen-figure">
+  <a href="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0037.jpg" target="_blank" rel="noopener">
+    <img src="../../../../videos/common-development/hackers-programming/해커의 프로그래밍-01-강의-오리엔테이션/해커의 프로그래밍-01-강의-오리엔테이션 - 0037.jpg" alt="실습 범위 주의" loading="lazy">
+  </a>
+  <figcaption>
+    <strong>실습 범위 주의</strong>
+    <span>실습으로 제시된 사이트 외 일반 사이트를 대상으로 수행하지 말라는 법적·윤리적 제한을 마지막에 다시 강조한다.</span>
+  </figcaption>
+</figure>
+
+                <p>정보통신망 관련 법, <strong>개인정보</strong> 보호법 등 여러 법률이 있고, 화이트햇 스쿨의 목표는 합법적이고 윤리적인 보안 인재 양성이다. 따라서 호기심이 있어도 허가받지 않은 대상에는 실습 내용을 적용하지 않는 것이 이 과목의 기본 전제다.</p>
           </div>
         </details>
         
@@ -186,6 +241,7 @@
 	      <h2>복습 체크</h2>
 	      <ul class="check-list"><li>이 과목에서 말하는 해커의 의미를 설명할 수 있는가?</li><li>웹해킹 기법 강의와 <strong>해커의 프로그래밍</strong> 과목의 차이를 구분할 수 있는가?</li><li>웹, 데이터, 도구 파트에서 각각 무엇을 배우는지 말할 수 있는가?</li><li>제공된 실습 사이트 밖의 실제 <strong>서비스</strong>에 실습을 적용하면 안 되는 이유를 설명할 수 있는가?</li></ul>
 	    </section>
+
 	    
     <section id="transcript" class="content-wrap transcript-wrap">
       <details class="reveal-section">
