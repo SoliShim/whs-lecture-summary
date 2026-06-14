@@ -93,62 +93,62 @@ def build_computer_architecture_1_lectures(code_block, screen_figure, image_figu
         "x86이라는 이름은 Intel 8086 계열에서 출발했고, 실무 다운로드 화면에서는 보통 32비트 프로그램 선택지로 자주 만난다.",
     )
     ca03_title = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0001.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0001.jpg",
         "데이터 표현 강의 시작",
         "3강은 컴퓨터가 0과 1로 데이터를 표현하는 방식, 비트와 바이트, 정수와 실수 표현, 오버플로우 사례를 다룬다.",
     )
     ca03_transistor_bit = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0002.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0002.jpg",
         "트랜지스터에서 1비트로",
         "트랜지스터의 on/off 상태를 1과 0으로 해석하고, 이 한 칸의 0 또는 1을 1bit로 본다.",
     )
     ca03_byte = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0019.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0019.jpg",
         "8bit는 1byte",
         "0과 1 하나가 bit이고, 8개의 bit가 모이면 파일 크기와 메모리 크기를 이야기하는 기본 단위인 byte가 된다.",
     )
     ca03_units = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0020.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0020.jpg",
         "SI 단위와 IEC 단위",
         "KB, MB, GB는 1000배 단위로, KiB, MiB, GiB는 1024배 단위로 계산한다는 차이를 표로 정리한다.",
     )
     ca03_binary_85 = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0043.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0043.jpg",
         "이진수 자리값과 85",
         "01010101에서 켜진 자리의 2의 거듭제곱 값을 더해 64 + 16 + 4 + 1 = 85가 되는 과정을 보여 준다.",
     )
     ca03_char_type = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0047.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0047.jpg",
         "자료형과 char의 크기",
         "C 언어의 char는 1byte이고, 같은 8bit라도 signed인지 unsigned인지에 따라 표현 범위가 달라진다.",
     )
     ca03_fixed_point = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0063.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0063.jpg",
         "고정소수점 방식",
         "소수점 위치를 고정하고 정수 부분과 소수 부분을 나눠 해석하면, 소수 부분은 2^-1, 2^-2처럼 작아지는 자리값을 가진다.",
     )
     ca03_float_range = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0068.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0068.jpg",
         "자료형별 표현 범위",
         "자료형마다 bit 공간을 부호, 지수, 가수 등으로 어떻게 나누느냐에 따라 표현 가능한 범위가 크게 달라진다.",
     )
     ca03_float_layout = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0080.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0080.jpg",
         "지수부와 유효숫자로 바뀌는 표현",
         "부동소수점은 지수부와 유효숫자 부분을 나눠 더 넓은 범위의 실수를 표현한다.",
     )
     ca03_overflow_255 = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0083.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0083.jpg",
         "8bit가 모두 켜진 255",
         "부호 없는 8bit에서 모든 bit가 1이면 255가 되며, 여기서 1을 더하면 표현 가능한 범위를 넘어선다.",
     )
     ca03_overflow_prompt = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0099.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0099.jpg",
         "오버플로우의 잘못된 표현",
         "표현 범위를 넘은 값은 0처럼 돌아가거나 음수처럼 보이는 등 자료형 해석 방식에 따라 잘못된 결과가 될 수 있다.",
     )
     ca03_youtube_overflow = image_figure(
-        "../../../../assets/generated/computer-architecture-1/lesson-03/ca1-l03-0102.jpg",
+        "../../../../screenshots/common-development/computer-architecture-1/컴퓨터 구조 1-03-데이터-표현/ca1-l03-0102.jpg",
         "강남스타일과 YouTube 조회 수 제한",
         "강남스타일 조회 수가 기존 YouTube view limit을 넘은 사례는 정수 표현 범위와 오버플로우가 실제 서비스 문제로 이어질 수 있음을 보여 준다.",
     )

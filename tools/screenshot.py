@@ -4,12 +4,12 @@ Extract screenshots from one video, or from every supported video in a directory
 at a fixed interval using FFmpeg.
 
 Example:
-    python3 extract_screenshots.py "/path/to/movie.mp4"
-    python3 extract_screenshots.py "/path/to/movie.mp4" 15
-    python3 extract_screenshots.py "/path/to/video-folder"
-    python3 extract_screenshots.py "/path/to/video-folder" 10 --recursive
-    python3 extract_screenshots.py "/path/to/movie.mp4" --interval 15 --format jpg
-    python3 extract_screenshots.py "/path/to/movie.mp4" --hwaccel auto
+    python3 tools/screenshot.py "/path/to/movie.mp4"
+    python3 tools/screenshot.py "/path/to/movie.mp4" 15
+    python3 tools/screenshot.py "/path/to/video-folder"
+    python3 tools/screenshot.py "/path/to/video-folder" 10 --recursive
+    python3 tools/screenshot.py "/path/to/movie.mp4" --interval 15 --format jpg
+    python3 tools/screenshot.py "/path/to/movie.mp4" --hwaccel auto
 """
 
 from __future__ import annotations

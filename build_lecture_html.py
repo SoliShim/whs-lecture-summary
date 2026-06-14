@@ -22,6 +22,8 @@ ROOT = Path(__file__).resolve().parent
 COURSE_ROOT = ROOT / "courses"
 ASSET_DIR = ROOT / "assets"
 STT_ROOT = ROOT / "stt"
+# Raw videos stay local-only. Published lesson captures are copied into
+# screenshots/ so GitHub Pages can serve them without committing videos/.
 RAW_VIDEO_ROOT = ROOT / "videos"
 SCREENSHOT_ROOT = ROOT / "screenshots"
 PUBLIC_OPERATIONAL_PATTERNS = [

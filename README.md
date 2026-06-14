@@ -46,6 +46,9 @@
 │   ├── logo.png
 │   ├── fonts/
 │   └── ...
+├── tools/
+│   ├── screenshot.py
+│   └── stt.py
 └── stt/
     └── common-development/
         ├── programming-basics-c/
@@ -60,6 +63,7 @@
 - `assets/styles.css`: 현재 UI와 디자인 기준의 실제 스타일 파일이다.
 - `assets/study-tools.js`: 홈 화면 과목 검색/필터, 섹션 드롭다운, 접기/펼치기, 현재 섹션 표시를 담당한다.
 - `screenshots/`: GitHub Pages에서 보여 줄 강의 캡처 이미지다. `videos/`의 원본 영상과 분리해 관리한다.
+- `tools/`: 영상 캡처 추출, STT 생성처럼 로컬에서만 쓰는 작업 도구다. GitHub Pages 런타임에서는 사용하지 않는다.
 - `DESIGN_SYSTEM.md`: 앞으로 새 강의를 추가할 때 지켜야 할 UI/디자인 기준이다.
 - `CODE_HIGHLIGHTING_README.md`: 코드 블록 작성과 색상 강조 기준이다.
 
@@ -81,6 +85,28 @@ python3 build_lecture_html.py
 생성된 HTML은 `courses/<track>/<course>/` 아래에 저장된다. 생성된 HTML을 직접 대량 수정하지 말고, 원본 데이터와 공통 스타일을 수정한 뒤 다시 생성한다.
 
 강의 화면 캡처 이미지는 생성 중 `videos/common-development/<course>/<lecture>/`에서 필요한 JPG만 `screenshots/common-development/<course>/<lecture>/`로 복사된다. GitHub Pages 배포에는 `screenshots/`를 포함하고, 원본 영상이 들어 있는 `videos/`는 `.gitignore`로 제외한다.
+
+## 스크린샷 관리 지침
+
+GitHub Pages에서 이미지가 깨지지 않도록, 새 과목이나 새 강의를 추가할 때도 다음 규칙을 지킨다.
+
+- HTML에서 `videos/`를 직접 참조하지 않는다. 공개 페이지의 이미지 경로는 항상 `screenshots/common-development/...` 아래여야 한다.
+- 원본 영상, 원본 오디오, 참고 메모는 `videos/`에 둔다. 이 폴더는 로컬 작업용이며 GitHub에 올리지 않는다.
+- 강의 본문에 캡처 이미지를 넣을 때는 직접 `<img>` 경로를 쓰지 말고 `screen_figure(course_id, lecture_stem, image_no, title, note)`를 사용한다.
+- `lecture_stem`은 `videos/common-development/<course>/<lecture_stem>/` 폴더명과 일치해야 한다.
+- 캡처 파일명은 `<lecture_stem> - 0001.jpg`처럼 4자리 번호 규칙을 따른다.
+- 이미 선별하거나 보정해서 파일명이 다른 기존 캡처도 `assets/generated/`가 아니라 `screenshots/common-development/<course>/<lecture>/` 아래에 둔다. 이 경우에만 `image_figure(...)`로 `screenshots/` 경로를 직접 참조한다.
+- `python3 build_lecture_html.py`를 실행하면 생성기가 필요한 JPG만 `screenshots/common-development/<course>/<lecture_stem>/`로 복사하고, HTML도 `screenshots/` 경로를 바라보게 만든다.
+- 커밋할 때 `screenshots/`는 포함하고 `videos/`는 포함하지 않는다.
+- 모든 캡처본을 통째로 옮기지 말고, 사이트에서 실제로 참조하는 JPG만 `screenshots/`에 둔다.
+
+스크린샷 경로를 점검할 때는 다음 명령을 사용한다.
+
+```bash
+rg -n 'src="[^"]*videos/|href="[^"]*videos/' courses index.html build_lecture_html.py
+```
+
+위 명령은 결과가 없어야 한다. 전체 링크/이미지 검증 명령도 함께 실행한다.
 
 ## 핵심어 볼드 처리 기준
 
@@ -128,8 +154,9 @@ python3 build_lecture_html.py
 HTML을 다시 생성한 뒤 기본 검증을 실행한다.
 
 ```bash
-python3 -m py_compile build_lecture_html.py
+python3 -m py_compile build_lecture_html.py course_data/*.py tools/*.py
 node --check assets/study-tools.js
+node --check assets/code-highlight.js
 ```
 
 전체 HTML 링크와 이미지 경로를 확인할 때는 다음 명령을 사용한다.

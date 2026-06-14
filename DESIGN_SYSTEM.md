@@ -45,6 +45,20 @@
 - 자동 강조가 부족한 새 과목은 `build_lecture_html.py`의 `EMPHASIS_TERMS`에 과목 핵심어를 추가한 뒤 전체 HTML을 다시 생성한다.
 - 코드 블록, 링크, 버튼, 내비게이션, 운영 설명 문구에는 본문 핵심어 강조를 넣지 않는다.
 
+## 스크린샷 경로 기준
+
+새 과목이나 새 강의를 추가할 때 캡처 이미지는 다음 구조를 지킨다.
+
+- 원본 영상과 전체 캡처 작업물은 `videos/`에 둔다. `videos/`는 로컬 전용이며 GitHub Pages 배포 대상이 아니다.
+- 공개 페이지에서 쓰는 캡처 이미지는 `screenshots/common-development/<course>/<lecture_stem>/` 아래에 둔다.
+- 생성된 HTML의 `<img>`와 이미지 링크는 `screenshots/`만 바라봐야 한다. `videos/`를 직접 바라보면 GitHub Pages에서 이미지가 깨진다.
+- 강의 본문 데이터에서는 직접 `<img>`를 쓰지 말고 `screen_figure(...)`를 사용한다.
+- `screen_figure(...)`의 `course_id`, `lecture_stem`, `image_no`는 `videos/common-development/<course_id>/<lecture_stem>/<lecture_stem> - 0001.jpg` 구조와 일치해야 한다.
+- 직접 선별하거나 보정해서 `screen_figure(...)` 규칙에 맞지 않는 캡처도 공개 자산이면 `screenshots/common-development/<course>/<lecture>/` 아래에 둔다. 이런 예외만 `image_figure(...)`로 `screenshots/` 경로를 명시한다.
+- `python3 build_lecture_html.py` 실행 시 필요한 JPG만 `screenshots/`로 복사되므로, 새 강의 추가 후에는 `screenshots/`에 새 이미지가 생성됐는지 확인한다.
+- 커밋에는 `screenshots/`를 포함하고, `videos/`의 원본 영상이나 전체 캡처본은 포함하지 않는다.
+- 검증 시 `rg -n 'src="[^"]*videos/|href="[^"]*videos/' courses index.html build_lecture_html.py` 결과가 없어야 한다.
+
 ## 금지 요소
 
 다음 요소는 학생의 집중을 분산시키므로 새 강의에 다시 추가하지 않는다.
@@ -101,8 +115,9 @@
 8. 아래 검증 명령을 실행한다.
 
 ```bash
-python3 -m py_compile build_lecture_html.py
+python3 -m py_compile build_lecture_html.py course_data/*.py tools/*.py
 node --check assets/study-tools.js
+node --check assets/code-highlight.js
 ```
 
 링크와 생성 구조는 필요할 때 다음 기준으로 점검한다.
