@@ -14,6 +14,7 @@ from course_data.hackers_programming import build_hackers_programming_lectures
 from course_data.latest_security_trend import build_latest_security_trend_lectures
 from course_data.modern_web_dev_security import build_modern_web_dev_security_lectures
 from course_data.network_basic import build_network_basic_lectures
+from course_data.offline_weekend import build_offline_weekend_lectures
 from course_data.os_basic import build_os_basic_lectures
 from course_data.secure_coding import build_secure_coding_lectures
 
@@ -374,6 +375,33 @@ EMPHASIS_TERMS = (
     "JSON",
     "CSV",
     "크롤링",
+    "정보보안윤리",
+    "사이버 안보",
+    "국가배우 해킹 조직",
+    "국제 해킹 조직",
+    "랜섬웨어",
+    "GitHub Codespaces",
+    "오브젝트 파일",
+    "relocatable",
+    "strip",
+    "SQL Injection",
+    "파일 입출력",
+    "JSON Object",
+    "JSON Array",
+    "정적 분석",
+    "AST",
+    "버그 패턴",
+    "requests",
+    "BeautifulSoup",
+    "Selenium",
+    "tqdm",
+    "matplotlib",
+    "heatmap",
+    "정보주체",
+    "가명정보",
+    "익명정보",
+    "IDOR",
+    "버그바운티",
 )
 EMPHASIS_BLOCK_TAGS = {"p", "li", "td"}
 EMPHASIS_SKIP_TAGS = {"a", "b", "button", "code", "h1", "h2", "h3", "option", "pre", "script", "select", "strong", "style", "summary", "textarea"}
@@ -660,6 +688,15 @@ def get_transcripts(course: dict) -> dict[str, str]:
     transcripts: dict[str, str] = {}
     stt_dir = STT_ROOT / str(course["track_id"]) / str(course["id"])
     for lecture in course.get("lectures", []):
+        explicit_path = lecture.get("transcript_path")
+        if explicit_path:
+            explicit_file = Path(str(explicit_path))
+            if not explicit_file.is_absolute():
+                explicit_file = ROOT / explicit_file
+            if not explicit_file.exists():
+                raise FileNotFoundError(f"Missing explicit transcript: {explicit_file}")
+            transcripts[str(lecture["id"])] = explicit_file.read_text(encoding="utf-8")
+            continue
         file = stt_dir / f"{transcript_file_stem(course, lecture)}.txt"
         legacy_file = stt_dir / f"{lesson_file_stem(lecture)}.txt"
         if file.exists():
@@ -1603,6 +1640,7 @@ HACKERS_PROGRAMMING_LECTURES = build_hackers_programming_lectures(code_block, sc
 LATEST_SECURITY_TREND_LECTURES = build_latest_security_trend_lectures(code_block, screen_figure)
 SECURE_CODING_LECTURES = build_secure_coding_lectures(code_block, screen_figure)
 MODERN_WEB_DEV_SECURITY_LECTURES = build_modern_web_dev_security_lectures(code_block, screen_figure)
+OFFLINE_WEEKEND_LECTURES = build_offline_weekend_lectures(code_block, image_figure)
 
 
 TRACKS = [
@@ -1625,6 +1663,11 @@ TRACKS = [
         "id": "security-ops-infra-consulting",
         "title": "보안운영관리/인프라/컨설팅",
         "description": "보안 운영, 인프라, 관리 체계, 컨설팅 실무를 다루는 과목 묶음.",
+    },
+    {
+        "id": "offline-intensive",
+        "title": "오프라인 강의",
+        "description": "2026년 6월 13일부터 7월 26일까지 매주 토요일과 일요일에 진행되는 현장 강의 정리 묶음.",
     },
 ]
 
@@ -1838,6 +1881,31 @@ COURSES = [
         ],
         "lectures": MODERN_WEB_DEV_SECURITY_LECTURES,
     },
+    {
+        "id": "offline-weekend",
+        "track_id": "offline-intensive",
+        "title": "오프라인 주말 강의",
+        "short_title": "오프라인",
+        "status": "ready",
+        "delivery": "offline",
+        "icon": "offline",
+        "summary": "2026년 6월 13일부터 7월 26일까지 매주 토·일 3교시씩 진행되는 현장 강의 녹취와 제공 자료를 정리한 과목.",
+        "featured_lecture": "1-5",
+        "offline_period": "2026.06.13 - 2026.07.26",
+        "offline_schedule": "매주 토·일, 하루 3교시",
+        "offline_current": "정리 완료 6개 / 예정 42개",
+        "flow": ["06/13", "06/14", "토·일", "3교시", "누적"],
+        "map_intro": "2026년 6월 13일과 6월 14일 현장 강의를 먼저 정리했다. 앞으로 이어지는 주말 강의도 같은 오프라인 강의 묶음에서 날짜순으로 확인한다. 제공 자료가 있는 회차는 본문 안에서 함께 볼 수 있다.",
+        "map": [
+            ("06/13 1교시", "정보보안윤리 / 사이버 안보", "윤리, 책임, 국가배우 위협, 랜섬웨어 생태계"),
+            ("06/13 2교시", "컴퓨터 구조 I", "Codespaces, 자료형, 오버플로우, 컴파일 파이프라인"),
+            ("06/13 3교시", "웹해킹 원리", "AI 시대 학습법, SQL Injection 실습, 허가된 범위"),
+            ("06/14 1교시", "프로그래밍 기초 및 응용 실습", "C 파일 입출력, JSON, Git, 정적 분석, AST"),
+            ("06/14 2교시", "해커의 프로그래밍", "PDF 자료 기반 Python 자동화, 스크래핑, 시각화"),
+            ("06/14 3교시", "개인정보보호법", "개인정보, 가명정보, IDOR, 정보통신망법, 저작권"),
+        ],
+        "lectures": OFFLINE_WEEKEND_LECTURES,
+    },
 ]
 
 
@@ -1887,6 +1955,7 @@ COURSE_ICON_BY_ID = {
     "modern-web-dev": "web",
     "modern-web-dev-security": "web",
     "modern-web-security": "web",
+    "offline-weekend": "offline",
 }
 
 COURSE_ICON_CYCLE = [
@@ -1998,6 +2067,58 @@ def lecture_content_stats(lecture: dict) -> dict[str, int]:
     }
 
 
+def offline_courses() -> list[dict]:
+    return [course for course in ready_courses() if course.get("delivery") == "offline"]
+
+
+def render_offline_home_section() -> str:
+    courses = offline_courses()
+    if not courses:
+        return ""
+
+    course_cards = []
+    for course in courses:
+        lecture_count = len(course.get("lectures", []))
+        first_lecture = course.get("lectures", [{}])[0]
+        course_cards.append(
+            f"""
+            <article class="offline-course-card">
+              <div>
+                <span class="small-label">OFFLINE</span>
+                <h3>{html.escape(str(course["title"]))}</h3>
+                <p>{html.escape(str(course["summary"]))}</p>
+              </div>
+              <dl class="offline-stats">
+                <div><dt>기간</dt><dd>{html.escape(str(course.get("offline_period", "")))}</dd></div>
+                <div><dt>일정</dt><dd>{html.escape(str(course.get("offline_schedule", "")))}</dd></div>
+                <div><dt>현재</dt><dd>{html.escape(str(course.get("offline_current", f"{lecture_count}개 정리")))}</dd></div>
+              </dl>
+              <div class="hero-actions">
+                <a class="button primary" href="{course_href(course)}">오프라인 강의 보기</a>
+                <a class="button secondary" href="{course_href(course).replace('index.html', 'lectures/' + lecture_html_file(first_lecture))}">첫 강의 열기</a>
+              </div>
+            </article>
+            """
+        )
+
+    return f"""
+    <section id="offline" class="offline-home-section">
+      <div class="content-wrap">
+        <div class="section-heading-row">
+          <div>
+            <span class="small-label">WEEKEND OFFLINE</span>
+            <h2>오프라인 강의</h2>
+          </div>
+          <p>현장 강의의 핵심 정리, 실습 흐름, 제공 자료, 강의 원문을 한 곳에서 이어 읽을 수 있다.</p>
+        </div>
+        <div class="offline-course-list">
+          {''.join(course_cards)}
+        </div>
+      </div>
+    </section>
+    """
+
+
 def render_site_index() -> str:
     ready_course_buttons = "".join(
         f'<a class="button secondary" href="{course_href(course)}">{html.escape(str(course["title"]))} 열기</a>'
@@ -2067,6 +2188,7 @@ def render_site_index() -> str:
   <header class="site-header">
     <nav class="top-nav">
       <a class="brand" href="index.html">화이트햇 강의 정리</a>
+      <a href="#offline">오프라인</a>
       <a href="#courses">과목</a>
     </nav>
     <section class="index-hero">
@@ -2076,6 +2198,7 @@ def render_site_index() -> str:
         <p class="lead">강의마다 핵심만 뽑아 정리했습니다. 제가 한건 아니고 AI가요. 화이트햇 4기 화이팅!</p>
         <div class="hero-actions">
           <a class="button primary" href="#courses">과목 보기</a>
+          <a class="button secondary" href="#offline">오프라인 강의</a>
           {ready_course_buttons}
         </div>
       </div>
@@ -2083,6 +2206,7 @@ def render_site_index() -> str:
   </header>
 
   <main>
+    {render_offline_home_section()}
     <span id="tracks" class="skip-anchor" aria-hidden="true"></span>
     <div id="courses">
       {''.join(track_sections)}
@@ -2131,9 +2255,6 @@ def render_lecture_card_profile(lecture: dict) -> str:
 def render_course_index(course: dict) -> str:
     cards = []
     lectures = course.get("lectures", [])
-    review_count = sum(len(lecture.get("checks", [])) for lecture in lectures)
-    featured_id = course.get("featured_lecture")
-    featured = next((lecture for lecture in lectures if lecture["id"] == featured_id), lectures[-1])
     for lecture in lectures:
         cards.append(
             f"""
@@ -2156,7 +2277,6 @@ def render_course_index(course: dict) -> str:
         f"<div><span>{html.escape(item[0])}</span><strong>{html.escape(item[1])}</strong><p>{html.escape(item[2])}</p></div>"
         for item in course.get("map", [])
     )
-    flow = "".join(f"<span>{html.escape(item)}</span>" for item in course.get("flow", []))
 
     return shared_head(f"{course['title']} 강의 정리", "../../../") + f"""
 <body>
@@ -2167,23 +2287,15 @@ def render_course_index(course: dict) -> str:
       <a href="#lectures">강의 목록</a>
       <a href="#map">전체 흐름</a>
     </nav>
-    <section class="index-hero">
+    <section class="index-hero course-index-hero">
       <div>
         <p class="small-label">과목 강의 노트</p>
         <h1>{html.escape(str(course['title']))}</h1>
         <p class="lead">{html.escape(str(course['summary']))}</p>
         <div class="hero-actions">
           <a class="button primary" href="#lectures">강의 목록으로 이동</a>
-          <a class="button secondary" href="lectures/{lecture_html_file(featured)}">대표 강의 바로가기</a>
         </div>
       </div>
-      <aside class="hero-panel">
-        <div class="panel-stat"><strong>{len(lectures)}</strong><span>강의</span></div>
-        <div class="panel-stat"><strong>{review_count}</strong><span>복습 질문</span></div>
-        <div class="mini-flow">
-          {flow}
-        </div>
-      </aside>
     </section>
   </header>
 

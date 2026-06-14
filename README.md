@@ -2,12 +2,13 @@
 
 화이트햇 과정 강의를 과목별 HTML 강의 노트로 정리하는 프로젝트다. 학생이 실제로 강의를 듣는 입장에서 본문을 편하게 읽고, 필요한 경우에만 표, 코드, 다이어그램, 강의 원문을 확인할 수 있도록 구성한다.
 
-현재 디자인과 UI 기준은 [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)에 저장되어 있다. 새 강의자료를 추가할 때는 이 기준을 먼저 확인한다.
+현재 디자인과 UI 기준은 [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)에 저장되어 있다. 새 강의자료와 오프라인 현장 녹취를 추가할 때는 이 기준을 먼저 확인한다.
 
 ## 현재 상태
 
-- 총 9개 과목
-- 총 72개 강의 HTML 생성 완료
+- 총 11개 과목
+- 총 88개 강의 HTML 생성 완료
+- 오프라인 주말 강의 1주차 6개 강의 HTML 생성 완료
 - 모든 강의 페이지에 섹션 드롭다운, 섹션 접기/전체 펼치기, 왼쪽 섹션 길잡이, 복습 체크, 강의 원문 영역 적용
 - 강의 본문 섹션은 기본적으로 열린 접이식 구조 유지
 - 강의 페이지의 플로팅 진행 카드와 과한 보조 패널 제거 상태 유지
@@ -28,11 +29,18 @@
 │   ├── code-highlight.js
 │   └── study-tools.js
 ├── screenshots/
-│   └── common-development/
+│   ├── common-development/
+│   │   └── ...
+│   └── offline-weekend/
 │       └── ...
 ├── course_data/
 │   ├── programming_basics_c.py
+│   ├── offline_weekend.py
 │   ├── hackers_programming.py
+│   └── ...
+├── 오프라인 강의/
+│   ├── 0613-1.txt
+│   ├── 0614-2.txt
 │   └── ...
 ├── courses/
 │   └── common-development/
@@ -42,6 +50,10 @@
 │       │       ├── lesson-01.html
 │       │       └── ...
 │       └── ...
+│   └── offline-intensive/
+│       └── offline-weekend/
+│           ├── index.html
+│           └── lectures/
 ├── official-assets/
 │   ├── logo.png
 │   ├── fonts/
@@ -60,9 +72,11 @@
 
 - `build_lecture_html.py`: 사이트 전체 HTML, 공통 스크립트, 기본 자산, 핵심어 자동 강조를 생성한다.
 - `course_data/*.py`: 과목별 강의 내용 원본이다. 새 강의 본문은 여기서 관리한다.
+- `course_data/offline_weekend.py`: 오프라인 주말 강의 녹취와 제공 자료를 기존 강의 형식으로 연결한다.
 - `assets/styles.css`: 현재 UI와 디자인 기준의 실제 스타일 파일이다.
 - `assets/study-tools.js`: 홈 화면 과목 검색/필터, 섹션 드롭다운, 접기/펼치기, 현재 섹션 표시를 담당한다.
 - `screenshots/`: GitHub Pages에서 보여 줄 강의 캡처 이미지다. `videos/`의 원본 영상과 분리해 관리한다.
+- `오프라인 강의/`: 현장 녹취 원문, 시간표 캡처, 나중에 제공되는 PPT/PDF 같은 원본 자료를 둔다.
 - `tools/`: 영상 캡처 추출, STT 생성처럼 로컬에서만 쓰는 작업 도구다. GitHub Pages 런타임에서는 사용하지 않는다.
 - `DESIGN_SYSTEM.md`: 앞으로 새 강의를 추가할 때 지켜야 할 UI/디자인 기준이다.
 - `CODE_HIGHLIGHTING_README.md`: 코드 블록 작성과 색상 강조 기준이다.
@@ -86,11 +100,25 @@ python3 build_lecture_html.py
 
 강의 화면 캡처 이미지는 생성 중 `videos/common-development/<course>/<lecture>/`에서 필요한 JPG만 `screenshots/common-development/<course>/<lecture>/`로 복사된다. GitHub Pages 배포에는 `screenshots/`를 포함하고, 원본 영상이 들어 있는 `videos/`는 `.gitignore`로 제외한다.
 
+## 오프라인 강의 추가 흐름
+
+오프라인 강의는 `오프라인 강의/`의 원본 녹취를 빠뜨리지 않는 것을 우선한다.
+
+1. 녹취 파일은 `오프라인 강의/MMDD-교시.txt` 형태로 둔다.
+2. `course_data/offline_weekend.py`에 강의 메타데이터, 학습 목표, 본문 섹션, 복습 체크를 추가한다.
+3. 강의 데이터에는 `transcript_path`를 반드시 넣어 해당 원문 파일을 직접 연결한다. 이 파일이 없으면 생성기가 실패해야 한다.
+4. PPT/PDF가 아직 없으면 녹취 기반 정리와 원문을 먼저 만든다.
+5. PPT/PDF가 나중에 제공되면 필요한 슬라이드만 `screenshots/offline-weekend/<강의-id>/` 아래 공개 이미지로 추출하고, 본문에 `image_figure(...)`로 추가한다.
+6. 학생 화면에는 강의 내용, 핵심 표, 코드, 시각자료만 남긴다. 작업 방식이나 파일 관리 설명은 넣지 않는다.
+7. `python3 build_lecture_html.py`로 전체 HTML을 다시 생성하고 링크/이미지 검증을 실행한다.
+
+현재 오프라인 강의는 `courses/offline-intensive/offline-weekend/` 아래에 생성된다.
+
 ## 스크린샷 관리 지침
 
 GitHub Pages에서 이미지가 깨지지 않도록, 새 과목이나 새 강의를 추가할 때도 다음 규칙을 지킨다.
 
-- HTML에서 `videos/`를 직접 참조하지 않는다. 공개 페이지의 이미지 경로는 항상 `screenshots/common-development/...` 아래여야 한다.
+- HTML에서 `videos/`를 직접 참조하지 않는다. 공개 페이지의 이미지 경로는 항상 `screenshots/common-development/...` 또는 `screenshots/offline-weekend/...` 아래여야 한다.
 - 원본 영상, 원본 오디오, 참고 메모는 `videos/`에 둔다. 이 폴더는 로컬 작업용이며 GitHub에 올리지 않는다.
 - 강의 본문에 캡처 이미지를 넣을 때는 직접 `<img>` 경로를 쓰지 말고 `screen_figure(course_id, lecture_stem, image_no, title, note)`를 사용한다.
 - `lecture_stem`은 `videos/common-development/<course>/<lecture_stem>/` 폴더명과 일치해야 한다.
@@ -195,3 +223,5 @@ for item in bad[:20]:
 - `공통/개발 > 최신 보안 동향`: 7개 강의
 - `공통/개발 > 해커의 프로그래밍`: 9개 강의
 - `공통/개발 > 시큐어코딩`: 8개 강의
+- `공통/개발 > 모던 웹 개발 및 보안`: 10개 강의
+- `오프라인 강의 > 오프라인 주말 강의`: 6개 강의

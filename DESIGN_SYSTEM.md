@@ -9,6 +9,7 @@
 - 사진, 인포그래픽, 코드, 표는 이해가 필요할 때만 넣는다.
 - 장식용 카드, 반복 설명 박스, 과한 미니 인포그래픽은 만들지 않는다.
 - 새 강의도 기존 생성기 구조를 사용한다. 생성된 HTML을 직접 대량 수정하지 않는다.
+- 오프라인 강의도 온라인 강의와 같은 페이지 구조를 사용하고, 녹취 원문은 반드시 강의 원문 영역에 연결한다.
 - PC 화면을 주 타겟으로 한다. 모바일은 깨지지 않게 유지하되 PC 가독성과 정렬을 우선한다.
 
 ## 현재 강의 페이지 구조
@@ -39,6 +40,7 @@
 - 두세 개 개념을 나란히 비교할 때만 `.diagram.two-col` 또는 `.diagram.three-col`을 쓴다.
 - 실습 코드가 있을 때만 `code_block(source, lang)` 또는 `<pre><code class="language-...">`를 쓴다.
 - 강의 화면 캡처는 `screen_figure(...)`를 사용하고, 공개 경로는 `screenshots/common-development/...` 아래로 생성한다.
+- 오프라인 강의의 시간표, PDF/PPT 추출 이미지, 현장 보조 자료는 `image_figure(...)`로 `screenshots/offline-weekend/...` 경로를 명시한다.
 - 코드, 표, 다이어그램을 같은 섹션에 과하게 몰아넣지 않는다.
 - 핵심 개념어, 표준명, 방법론, 취약점 이름, 프로토콜, 함수명은 필요한 만큼만 `<strong>`으로 강조한다.
 - 한 문단의 볼드 강조는 1-2개 정도로 제한한다. 이미 한 번 강조한 개념을 같은 섹션에서 과하게 반복하지 않는다.
@@ -51,6 +53,7 @@
 
 - 원본 영상과 전체 캡처 작업물은 `videos/`에 둔다. `videos/`는 로컬 전용이며 GitHub Pages 배포 대상이 아니다.
 - 공개 페이지에서 쓰는 캡처 이미지는 `screenshots/common-development/<course>/<lecture_stem>/` 아래에 둔다.
+- 오프라인 강의 공개 이미지는 `screenshots/offline-weekend/<course-or-date>/` 아래에 둔다.
 - 생성된 HTML의 `<img>`와 이미지 링크는 `screenshots/`만 바라봐야 한다. `videos/`를 직접 바라보면 GitHub Pages에서 이미지가 깨진다.
 - 강의 본문 데이터에서는 직접 `<img>`를 쓰지 말고 `screen_figure(...)`를 사용한다.
 - `screen_figure(...)`의 `course_id`, `lecture_stem`, `image_no`는 `videos/common-development/<course_id>/<lecture_stem>/<lecture_stem> - 0001.jpg` 구조와 일치해야 한다.
@@ -58,6 +61,16 @@
 - `python3 build_lecture_html.py` 실행 시 필요한 JPG만 `screenshots/`로 복사되므로, 새 강의 추가 후에는 `screenshots/`에 새 이미지가 생성됐는지 확인한다.
 - 커밋에는 `screenshots/`를 포함하고, `videos/`의 원본 영상이나 전체 캡처본은 포함하지 않는다.
 - 검증 시 `rg -n 'src="[^"]*videos/|href="[^"]*videos/' courses index.html build_lecture_html.py` 결과가 없어야 한다.
+
+## 오프라인 강의 기준
+
+오프라인 강의는 `course_data/offline_weekend.py`에서 관리한다.
+
+- 각 강의 데이터에는 `transcript_path`를 넣어 `오프라인 강의/`의 원문 녹취 파일을 직접 연결한다.
+- 본문은 녹취를 그대로 줄이는 것이 아니라, 온라인 강의와 같은 학습 목표, 상세 정리, 표/코드/시각자료, 복습 체크 구조로 재작성한다.
+- 강의자료가 아직 없으면 녹취 기반 정리와 원문을 먼저 제공한다.
+- PPT/PDF가 나중에 제공되면 필요한 장면만 공개 이미지로 추출해 본문에 추가한다.
+- 학생 화면에는 날짜, 교시, 강의명, 핵심 내용, 실습 코드, 표, 시각자료를 보여 주고, 작업 절차나 파일 관리 설명은 넣지 않는다.
 
 ## 금지 요소
 
@@ -113,6 +126,8 @@
 6. `python3 build_lecture_html.py`를 실행한다.
 7. 생성된 HTML에서 강의 내용이 빠지지 않았는지, 볼드가 과하지 않은지, 캡처 이미지가 `screenshots/` 경로를 바라보는지 확인한다.
 8. 아래 검증 명령을 실행한다.
+
+오프라인 강의는 1번 대신 `오프라인 강의/MMDD-교시.txt` 원문을 두고, `transcript_path`로 연결한다. PPT/PDF 제공 강의는 선별 이미지가 `screenshots/offline-weekend/...`에 있는지도 함께 확인한다.
 
 ```bash
 python3 -m py_compile build_lecture_html.py course_data/*.py tools/*.py
